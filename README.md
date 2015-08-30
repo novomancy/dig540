@@ -1,6 +1,8 @@
-**DIG540: Digital Collections & Exhibitions**
+## DIG540: Digital Collections & Exhibitions
 
 Syllabus v2.0, 3 credits
+
+  ----------------------------------------------------------------
 
 **Course Information**
 
@@ -32,6 +34,8 @@ cultural data in an information system.
 
 Readings will be provided for you throughout the semester. No specific
 text is needed.
+
+  ----------------------------------------------------------------
 
 **Course Site**
 
@@ -120,6 +124,8 @@ your grade. **If you for any reason think you may have an issue, either
 on a specific day/week or overall, talk to us! It is much easier to make
 accommodations ahead of time than after the fact.**
 
+  ----------------------------------------------------------------
+
 **University Policies**
 
 1)  **Academic Honesty Statement:** Academic honesty is very important.
@@ -156,7 +162,7 @@ accommodations ahead of time than after the fact.**
     campus Office of Sexual Assault & Violence Prevention or the Office
     of Equal Opportunity.
 
-    *If you want to talk in confidence* to someone about an
+-    *If you want to talk in confidence* to someone about an
     experience of sexual discrimination, please contact these resources:
 
 -   For *confidential resources on campus*: **Counseling Center:
@@ -172,6 +178,8 @@ accommodations ahead of time than after the fact.**
     Standards: 207-581-1409**, **University of Maine Police:
     207-581-4040 or 911**. Or see the OSAVP website for a complete list
     of services at <http://www.umaine.edu/osavp/>
+
+  ----------------------------------------------------------------
 
 **Participation**
 
@@ -266,11 +274,11 @@ potential issues involved in dealing with cultural data and gives
 students the opportunity to address those issues by adjusting the data
 model and output of a collection management system.
 
-**Topic Breakdown**
-
   ----------------------------------------------------------------
-| **Unit 1 : Virtual Collections** |
+| **Topic Breakdown** |
 |------------------------|
+| **Unit 1 : Virtual Collections** |
+|   |
 |  Setup – slack, github, atom, reclaim |
 |  Collections, exhibitions, and databases |
 |   |
