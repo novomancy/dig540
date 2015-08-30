@@ -156,7 +156,7 @@ accommodations ahead of time than after the fact.**
     campus Office of Sexual Assault & Violence Prevention or the Office
     of Equal Opportunity.
 
-    **If you want to talk** **in confidence** to someone about an
+    *If you want to talk in confidence* to someone about an
     experience of sexual discrimination, please contact these resources:
 
 -   For *confidential resources on campus*: **Counseling Center:
@@ -269,82 +269,61 @@ model and output of a collection management system.
 **Topic Breakdown**
 
   ----------------------------------------------------------------
-| Unit 1 : Virtual Collections |
+| **Unit 1 : Virtual Collections** |
 |------------------------|
 |  Setup – slack, github, atom, reclaim |
-|   |
 |  Collections, exhibitions, and databases |
-|------------------------|
+|   |
 |  Embedding values in data structures |
-| |
 |  Evaluating effectiveness and appropriateness |
-|------------------------|
+|   |
 |  Unit 2 : Database Structures
-|------------------------|
+|   |
 |  Introduction to database concepts |
-| |
 |  Properties of data |
-| |
 |  Making meaning |
-|------------------------|
+|   |
 |  Introduction to the SQL language |
-| |
 |  Writing data into a database |
-| |
 |  Administration tools |
-|------------------------|
+|   |
 |  Reading data from a database |
-| |
 |  Searching fields and text |
-| |
 |  Joining rows across tables |
-|------------------------|
+|   |
 |  Unit 3 : Publishing Data on the Web |
-|------------------------|
+|   |
 |  Introduction to PHP |
-| |
 |  Variables, flow control, input handlers |
-| |
 |  Functions |
-|------------------------|
+|   |
 |  Breaking a program into parts |
-| |
 |  Objects |
-| |
 |  Model-View-Controller |
-|------------------------|
+|   |
 |  Unit 4 : Merging Data and Logic
-|------------------------|
+|   |
 |  Where does data come from? |
-| |
 |  Software libraries |
-| |
 |  Transforming data with logic |
-|------------------------|
+|   |
 |  Database abstraction layers |
-| |
 |  Query portability |
-| |
 |  Data objects in practice |
-|------------------------|
+|   |
 |  Planning for obsolescence and other data disasters |
-| |
 |  Standardizing data |
-| |
 |  Data output for alternative uses |
-|------------------------|
+|   |
 |  Unit 5: Customizing a Content Management System for Exhibition |
-|------------------------|
+|   |
 |  Ethics of exhibitions |
-|------------------------|
+|   |
 |  Modifying the CMS |
-| |
 |  Domain specificity |
-| |
 |  Bits and atoms |
-|------------------------|
+|   |
 |  Presentations |
-|------------------------|
+|   |
 |  **Final Project Due: 5PM on Friday, Dec. 18** |
-|------------------------|
   ----------------------------------------------------------------
