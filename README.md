@@ -277,7 +277,7 @@ model and output of a collection management system.
 |  Embedding values in data structures |
 |  Evaluating effectiveness and appropriateness |
 |   |
-|  Unit 2 : Database Structures
+|  **Unit 2 : Database Structures ** |
 |   |
 |  Introduction to database concepts |
 |  Properties of data |
@@ -291,7 +291,7 @@ model and output of a collection management system.
 |  Searching fields and text |
 |  Joining rows across tables |
 |   |
-|  Unit 3 : Publishing Data on the Web |
+|  **Unit 3 : Publishing Data on the Web** |
 |   |
 |  Introduction to PHP |
 |  Variables, flow control, input handlers |
@@ -301,7 +301,7 @@ model and output of a collection management system.
 |  Objects |
 |  Model-View-Controller |
 |   |
-|  Unit 4 : Merging Data and Logic
+|  **Unit 4 : Merging Data and Logic** |
 |   |
 |  Where does data come from? |
 |  Software libraries |
@@ -315,7 +315,7 @@ model and output of a collection management system.
 |  Standardizing data |
 |  Data output for alternative uses |
 |   |
-|  Unit 5: Customizing a Content Management System for Exhibition |
+|  **Unit 5: Customizing a Content Management System for Exhibition** |
 |   |
 |  Ethics of exhibitions |
 |   |
