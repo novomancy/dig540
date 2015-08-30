@@ -277,7 +277,7 @@ model and output of a collection management system.
 |  Embedding values in data structures |
 |  Evaluating effectiveness and appropriateness |
 |   |
-|  **Unit 2 : Database Structures ** |
+|  **Unit 2 : Database Structures** |
 |   |
 |  Introduction to database concepts |
 |  Properties of data |
