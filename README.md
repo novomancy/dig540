@@ -4,9 +4,8 @@ Syllabus v2.0, 3 credits
 
 **Course Information**
 
--   Slack: <https://dig540-fall2015.slack.com>\
-    GitHub: <https://github.com/novomancy/dig540>
-
+-   Slack: <https://dig540-fall2015.slack.com>
+-   GitHub: <https://github.com/novomancy/dig540>
 -   Instructor: John Bell
 
 **Course Description**
@@ -22,14 +21,11 @@ solutions for domain and content appropriateness.
 
 Upon completing the course, students will have:
 
-Been shown a variety of the collection management packages in use across
+- Been shown a variety of the collection management packages in use across
 the field.
-
-Learned the fundamental structure and logic behind relational databases.
-
-Customized a collection management system built in the PHP language.
-
-Gained an appreciation for the special source concerns of working with
+- Learned the fundamental structure and logic behind relational databases.
+- Customized a collection management system built in the PHP language.
+- Gained an appreciation for the special source concerns of working with
 cultural data in an information system.
 
 **Required Materials**
@@ -158,8 +154,8 @@ accommodations ahead of time than after the fact.**
     form of gender discrimination** involving members of the campus,
     **your teacher is required to report** this information to the
     campus Office of Sexual Assault & Violence Prevention or the Office
-    of Equal Opportunity.\
-    \
+    of Equal Opportunity.
+
     **If you want to talk** **in confidence** to someone about an
     experience of sexual discrimination, please contact these resources:
 
@@ -167,10 +163,10 @@ accommodations ahead of time than after the fact.**
     207-581-1392** or **Cutler Health Center: at 207-581-4000**.
 
 -   For *confidential resources off campus*: **Rape Response Services:**
-    1-800-310-0000 or **Spruce Run**: 1-800-863-9909.\
+    1-800-310-0000 or **Spruce Run**: 1-800-863-9909.
     **Other resources:** The resources listed below can offer support
-    but may have to report the incident to others who can help:\
-    \
+    but may have to report the incident to others who can help:
+
     For *support services on campus*: **Office of Sexual Assault &
     Violence Prevention: 207-581-1406**, **Office of Community
     Standards: 207-581-1409**, **University of Maine Police:
@@ -273,83 +269,82 @@ model and output of a collection management system.
 **Topic Breakdown**
 
   ----------------------------------------------------------------
-  Unit 1 : Virtual Collections
-
-  Setup – slack, github, atom, reclaim
-
-  Collections, exhibitions, and databases
-
-  Embedding values in data structures
-
-  Evaluating effectiveness and appropriateness
-
-  Unit 2 : Database Structures
-
-  Introduction to database concepts
-
-  Properties of data
-
-  Making meaning
-
-  Introduction to the SQL language
-
-  Writing data into a database
-
-  Administration tools
-
-  Reading data from a database
-
-  Searching fields and text
-
-  Joining rows across tables
-
-  Unit 3 : Publishing Data on the Web
-
-  Introduction to PHP
-
-  Variables, flow control, input handlers
-
-  Functions
-
-  Breaking a program into parts
-
-  Objects
-
-  Model-View-Controller
-
-  Unit 4 : Merging Data and Logic
-
-  Where does data come from?
-
-  Software libraries
-
-  Transforming data with logic
-
-  Database abstraction layers
-
-  Query portability
-
-  Data objects in practice
-
-  Planning for obsolescence and other data disasters
-
-  Standardizing data
-
-  Data output for alternative uses
-
-  Unit 5: Customizing a Content Management System for Exhibition
-
-  Ethics of exhibitions
-
-  Modifying the CMS
-
-  Domain specificity
-
-  Bits and atoms
-
-  Presentations
-
-  **Final Project Due: 5PM on Friday, Dec. 18**
+| Unit 1 : Virtual Collections |
+|------------------------|
+|  Setup – slack, github, atom, reclaim |
+|   |
+|  Collections, exhibitions, and databases |
+|------------------------|
+|  Embedding values in data structures |
+| |
+|  Evaluating effectiveness and appropriateness |
+|------------------------|
+|  Unit 2 : Database Structures
+|------------------------|
+|  Introduction to database concepts |
+| |
+|  Properties of data |
+| |
+|  Making meaning |
+|------------------------|
+|  Introduction to the SQL language |
+| |
+|  Writing data into a database |
+| |
+|  Administration tools |
+|------------------------|
+|  Reading data from a database |
+| |
+|  Searching fields and text |
+| |
+|  Joining rows across tables |
+|------------------------|
+|  Unit 3 : Publishing Data on the Web |
+|------------------------|
+|  Introduction to PHP |
+| |
+|  Variables, flow control, input handlers |
+| |
+|  Functions |
+|------------------------|
+|  Breaking a program into parts |
+| |
+|  Objects |
+| |
+|  Model-View-Controller |
+|------------------------|
+|  Unit 4 : Merging Data and Logic
+|------------------------|
+|  Where does data come from? |
+| |
+|  Software libraries |
+| |
+|  Transforming data with logic |
+|------------------------|
+|  Database abstraction layers |
+| |
+|  Query portability |
+| |
+|  Data objects in practice |
+|------------------------|
+|  Planning for obsolescence and other data disasters |
+| |
+|  Standardizing data |
+| |
+|  Data output for alternative uses |
+|------------------------|
+|  Unit 5: Customizing a Content Management System for Exhibition |
+|------------------------|
+|  Ethics of exhibitions |
+|------------------------|
+|  Modifying the CMS |
+| |
+|  Domain specificity |
+| |
+|  Bits and atoms |
+|------------------------|
+|  Presentations |
+|------------------------|
+|  **Final Project Due: 5PM on Friday, Dec. 18** |
+|------------------------|
   ----------------------------------------------------------------
-
-
