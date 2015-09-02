@@ -24,3 +24,5 @@ In the videos I showed you how to install the Git desktop client so you shouldn'
 **Assignment**
 
 Install the software in the videos and create your GitHub account. Then, fork the <http://github.com/novomancy/dig540> repository. Once the fork is created, send me the link to your fork as a direct message in Slack. Clone your fork onto your local computer and add a helloworld.txt file to the 001 directory (like I did in the video), then sync it back to GitHub. The end result should be that your fork will have one more file than the master.
+
+**The assignment should be done by Wednesday Sept. 9th.**
