@@ -1,0 +1,16 @@
+DIG540: Week 3 Assignment
+Film musicology is evolving to explore how music drives the mood, setting, and plot of movies, television shows, and cartoons. Unfortunately, the majority of online venues discussing this topic are embedded in realm of post-secondary academia that assume an ability to site-read music as well as a working knowledge of music theory.
+A quick exploration of online exhibits expose two significant issues:
+1.	Lack of appropriate copyright access to musical scores and/or recordings, leading to voids in presentations where content has been removed
+2.	Lack of accessible interpretation of music theory for novices.
+This project proposes the creation of an online exhibit that breaks musical theory down into three major categories: Lydian scale, Diminished (minor) scale, and Major scale.  While current, academic sites are text heavy, I propose a mix of text, images, and narrative audio that helps meet the needs of multiple learning modalities.
+The educational portion of the exhibit will break musical theory down using examples of musical scores familiar to patrons with exposure to the western cultural movie-going experience. This portion of the exhibit will use animated music scores that highlight the progression of the audio, providing assistance to users who lack the ability to site read. The user will then be able to access a brief movie clip with the score in place to help bring home the association of music theory with a familiar experience.
+By securing copyright permission for both scores and movie clips, the exhibit will reinforce the message of legal compliance, even in open access forums, and ensure the exhibit remains intact for the duration of the run.
+Exhibit components will include:
+Building understanding—Explanation and examples of Lydian scale, Diminished scale, and Major scale; cadence; and modulation.
+Examples of modern and classical compositions—Animated musical scores that exemplify the components covered under Building understanding
+Example movie clips—Brief movie clips that reinforce the use of the music samples to set mood and drive plot
+Random sampler—Interactive component that allows the user to pull up a random music clip that invites them to identify the scale sample in terms available through Building understanding. Correct answers will be rewarded with a brief movie clip. Incorrect answers will be allowed to try again.
+Music Library—Interactive component that lists compositions in the exhibit’s music library, allowing the user to pull up any title and retrieve information about the scale, cadence, and modulation of the sample
+
+
