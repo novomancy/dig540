@@ -1,0 +1,23 @@
+
+
+
+Kim Sawtelle
+DIG540
+Wk 4 Assignment
+Re-cap of Wk 3 Assignment
+
+Film Musicology Database
+
+How does music create atmosphere and drive the mood, setting, and plot of movies? Film musicology is the study of the ways the construction of music—the scale, cadence, mood, and modulation—facilitates the viewer’s reaction to what is happening on the screen.  Minor cords signal danger and underscore negative themes.  Discordant cords enhance shock and surprise. 
+
+A quick review of film musicology sites online are deeply immersed in the realm of post-secondary academia, requiring a background in music theory and the ability to site-read music. This project proposes the creation of an online exhibit that breaks music theory down into easily understandable terms, linking these terms to those used in music theory to provide users with examples of musical tracks—individual pieces of instrumental music. The exhibit will discuss how the mood or timbre of music impacts human interpretation of the atmosphere (or mood) of a movie scene.  
+
+This project creates a dynamic database structure that will document the names of composers and their works as well as the music directors of movies who select, interpret, and score individual movie scenes. Users will be able to search for specific works of music by title, composer, movie, and scene. Users will also be able to search for music titles based on the mood they wish to communicate.  
+
+The database will incorporate controlled vocabularies that are in keeping with current academic studies in film and musicology. These terms, however, will be cross-referenced with common synonyms, as well. As a result, users will be provided an opportunity to learn the academic equivalents to lay-terminology.
+
+Related files:
+sawtelle_filmMusic_v2.3.15.png 
+sawtelle_filmMusic.sql
+
+
