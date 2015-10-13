@@ -7,7 +7,7 @@ These videos will introduce the keywords and syntax for writing SQL queries. Bui
 - Q&A on Database Creation: <https://www.youtube.com/watch?v=NFAPbgunees> (Thanks Mina!)
 - Compound Indices: <https://vimeo.com/142030577>
 - Select Statements: <https://vimeo.com/142030906>
-- Other SQL Queries: <https://vimeo.com/141132822>
+- Other SQL Queries: <https://vimeo.com/142031184>
 - Assignment: <https://vimeo.com/142030578>
 
 **Readings**
