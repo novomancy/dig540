@@ -26,4 +26,4 @@ Once your database is ready to go, I want you to start a new text file in your 0
 
 Run those queries, and paste the results of the queries into the text file as demonstrated in the assignment video (export as CSV is your friend!). Include that file and a new .sql export of your database in the 005 folder and sync it to your Github fork.
 
-This assignment is due on Wednesday Oct 17 at noon.
+This assignment is due on Saturday Oct 17 at noon.
