@@ -12,8 +12,8 @@ SELECT creature.creature_name FROM creature
 "Zilant"
 
 ** FOREIGN KEY SELECT **
-SELECT c.creature_name, b.how_born FROM creature c, how_born b, creature_how_born hb
-WHERE c.id = hb.creature_id AND b.id = hb.how_born_id
+SELECT c.creature_name, b.how_born FROM creature c, how_born b
+WHERE c.how_born_id = b.id
 
 "Griffin","Hatched"
 "Sybaris","Hatched"
@@ -55,8 +55,8 @@ WHERE c.id=cabp.creature_id AND ab.id=cabp.animal_base_id AND p.id = cabp.part_i
 "Sybaris","Woman","Head"
 "Sybaris","Woman","Torso"
 
-SELECT c.creature_name, o.origin FROM creature c, origin o, creature_origin co
-WHERE c.id=co.creature_id AND o.id=co.origin_id
+SELECT c.creature_name, o.origin FROM creature c, origin o
+WHERE c.origin_id = o.id
 
 "Sybaris","Delphic mythology"
 "Griffin","Middle Eastern folklore"
@@ -77,16 +77,16 @@ WHERE c.id=cs.creature_id AND s.id=cs.sound_id
 "Sybaris","30","1994"
 "Zilant","15","1982"
 
-SELECT s.year_recorded, sst.season, st.sound_type FROM sound s, sound_sound_type sst, sound_type st
-WHERE s.id=sst.sound_id AND st.id = sst.sound_type_id
+SELECT s.year_recorded, st.sound_type FROM sound s, sound_type st
+WHERE s.sound_type_id = st.id
 
-"1987","Spring","Call to Female"
-"1994","Winter","War Cry"
-"2006","Summer","Hunting"
-"2001","Autumn","Full Moon"
-"1994","Summer","Injuried"
-"1987","Autumn","Happy"
-"1982","Spring","Frightened"
+"1987","Hunting"
+"1994","Full Moon"
+"2006","War Cry"
+"2001","Injuried"
+"1994","Happy"
+"1987","Call to Female"
+"1982","Hunting"
 
 SELECT s.year_recorded, i.first_name, i.last_name, r.role_name FROM sound s, individual i, role r, sound_individual_role sir
 WHERE s.id = sir.sound_id AND i.id = sir.individual_id AND r.id = sir.role_id
@@ -110,8 +110,8 @@ WHERE s.id = sir.sound_id AND i.id = sir.individual_id AND r.id = sir.role_id
 
 (1) Which creatures are hatched from eggs?
 
-SELECT c.creature_name FROM creature c, how_born b, creature_how_born hb
-WHERE c.id = hb.creature_id and b.id = hb.how_born_id and hb.how_born_id = 1
+SELECT c.creature_name FROM creature c, how_born b
+WHERE c.how_born_id = b.id and b.id = 1
 
 "Griffin"
 "Sybaris"
@@ -128,11 +128,11 @@ WHERE c1.id=r.creature_id1 AND c2.id=r.creature_id2 AND r.relationship_type = "i
 
 (3) Which sounds were vocalized by Fredericka James?
 
-SELECT s.year_recorded, sst.season, st.sound_type FROM sound s, sound_sound_type sst, sound_type st, sound_individual_role sir
-WHERE st.id = sst.sound_type_id AND sir.sound_id = sst.sound_id AND s.id = sst.sound_id AND sir.individual_id = 3
+SELECT s.year_recorded, st.sound_type FROM sound s, sound_type st, sound_individual_role sir
+WHERE s.id = sir.sound_id AND s.sound_type_id = st.id AND sir.individual_id = 3
 
-"1987","Spring","Call to Female"
-"1982","Spring","Frightened"
+"1987","Hunting"
+"1982","Hunting"
 
 (4) Which creatures have dragon parts?
 
@@ -143,7 +143,7 @@ Creature, has from a Dragon
 "Griffin","Tail"
 "Sybaris","Tail"
 
-(5) What roles did DeNalia Smith play?
+(5) What role(s) did DeNalia Smith play?
 
 SELECT r.role_name AS "Sound Production Role" FROM individual i, sound_individual_role sir, role r
 WHERE r.id = sir.role_id AND i.id = sir.individual_id AND i.id = 5
