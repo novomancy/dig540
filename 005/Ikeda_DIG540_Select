@@ -11,7 +11,7 @@ SELECT creature.creature_name FROM creature
 "Sybaris"
 "Zilant"
 
-** FOREIGN KEY SELECT **
+** FOREIGN KEY AND LOOK-UP TABLE SELECT **
 SELECT c.creature_name, b.how_born FROM creature c, how_born b
 WHERE c.how_born_id = b.id
 
