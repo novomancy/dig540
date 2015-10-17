@@ -1,0 +1,162 @@
+Simple Select Statement
+SELECT *
+FROM `musician`
+WHERE `musician_name` = 'Roscoe Mitchell'
+
+results
+"6","Roscoe Mitchell","Chicago, Illinois, USA","1961-present"
+
+Album Foreign Key in Track Table
+SELECT track.track_title, album.album_title
+FROM track, album
+WHERE album.album_title = 'Duets'
+AND track.album_id =3
+
+results
+"Five Twenty One Equals Eight","Duets"
+"Line Fine Lyon Seven","Duets"
+"Seven Behind Nine Ninety-Seven Sixteen or Seven","Duets"
+"Cards-Three and Open","Duets"
+"Composition 40Q","Duets"
+"Composition 74B","Duets"
+"Composition 74A","Duets"
+
+Label Foreign Key in Album Table
+SELECT album.album_title, label.label_name
+FROM `album` , `label`
+WHERE album.label_id = label.id
+
+results
+"Young at Heart/Wise in Time","Delmark"
+"Roscoe Mitchell Quartet","Sackville"
+"Duets","Sackville"
+
+Instrument and Musician Foreign Keys
+SELECT musician.musician_name, instrument.instrument_name
+FROM `musician`, `instrument`, `instrument_musician`
+WHERE instrument.id = instrument_musician.instrument_id
+AND musician.id = instrument_musician.musician_id
+
+results
+"Muhal Richard Abrams","piano"
+"Leo Smith","alto saxophone"
+"Henry Threadgill","trumpet"
+"Henry Threadgill","flugelhorn"
+"Lester Lashley","bass"
+"Thurman Barker","percussion"
+"Roscoe Mitchell","alto saxophone"
+"Roscoe Mitchell","b flat soprano saxophone"
+"Roscoe Mitchell","tenor saxophone"
+"Roscoe Mitchell","reeds"
+"George Lewis","trombone"
+"Spencer Barefield","guitar"
+"Anthony Braxton","reeds"
+
+Instrument and Track Foreign Keys
+SELECT instrument_name, track_title
+FROM `instrument` , `track` , `instrument_track`
+WHERE instrument.id = instrument_track.instrument_id
+AND track.id = instrument_track.track_id
+
+results (first 10 out of 39):
+"alto saxophone","Young at Heart"
+"alto saxophone","Wise in Time"
+"alto saxophone","Tnoona"
+"alto saxophone","Cards"
+"alto saxophone","Olobo"
+"b flat soprano saxophone","Tnoona"
+"b flat soprano saxophone","Music for Trombone and B Flat Soprano"
+"b flat soprano saxophone","Cards"
+"b flat soprano saxophone","Olobo"
+"bass","Young at Heart"
+
+Musician and Track Foreign Keys
+SELECT musician_name, track_title
+FROM `musician` , `track` , `musician_track`
+WHERE musician.id = musician_track.musician_id
+AND track.id = musician_track.track_id
+
+results (first 10 out of 34)
+"Henry Threadgill","Young at Heart"
+"Lester Lashley","Young at Heart"
+"Muhal Richard Abrams","Young at Heart"
+"Leo Smith","Young at Heart"
+"Muhal Richard Abrams","Wise in Time"
+"Leo Smith","Wise in Time"
+"Henry Threadgill","Wise in Time"
+"Lester Lashley","Wise in Time"
+"Roscoe Mitchell","Tnoona"
+"Muhal Richard Abrams","Tnoona"
+
+
+Question 1
+What albums did a certain musician play on?
+SELECT album_title, musician_name
+FROM  `album` ,  `musician`
+WHERE musician.musician_name =  'George Lewis'
+
+results
+"Young at Heart/Wise in Time","George Lewis"
+"Roscoe Mitchell Quartet","George Lewis"
+"Duets","George Lewis"
+
+Question 2
+Which musicians play a certain instrument?
+SELECT musician_name, instrument_name
+FROM  `musician` ,  `instrument` ,  `instrument_musician`
+WHERE musician.id = instrument_musician.musician_id
+AND instrument.id = instrument_musician.instrument_id
+AND instrument.instrument_name =  'alto saxophone'
+
+results
+"Leo Smith","alto saxophone"
+"Roscoe Mitchell","alto saxophone"
+
+Question 3
+Which musicians are from a certain location?
+SELECT musician_name, origin
+FROM `musician`
+WHERE musician.origin = 'Chicago, Illinois, USA'
+
+results
+"Muhal Richard Abrams","Chicago, Illinois, USA"
+"Henry Threadgill","Chicago, Illinois, USA"
+"Lester Lashley","Chicago, Illinois, USA"
+"Thurman Barker","Chicago, Illinois, USA"
+"Roscoe Mitchell","Chicago, Illinois, USA"
+"George Lewis","Chicago, Illinois, USA"
+"Anthony Braxton","Chicago, Illinois, USA"
+
+Question 4
+Which albums feature a certain instrument?
+SELECT album_title, instrument_name
+FROM  `album` ,  `instrument` ,  `track` ,  `instrument_track`
+WHERE instrument.instrument_name =  'piano'
+AND track.id = instrument_track.track_id
+AND instrument.id = instrument_track.instrument_id
+AND track.album_id = album.id
+
+results
+"Young at Heart/Wise in Time","piano"
+"Young at Heart/Wise in Time","piano"
+"Roscoe Mitchell Quartet","piano"
+"Roscoe Mitchell Quartet","piano"
+
+Question 5
+Which albums have been released by a certain artist?
+select musician_name, album_title
+from `musician`, `album`, `track`, `musician_track`
+where musician.musician_name = 'Anthony Braxton'
+and musician.id = musician_track.musician_id
+and track.id = musician_track.track_id
+and album.id = track.album_id
+and musician_track.musician_role = 'lead'
+
+results
+"Anthony Braxton","Duets"
+"Anthony Braxton","Duets"
+"Anthony Braxton","Duets"
+"Anthony Braxton","Duets"
+"Anthony Braxton","Duets"
+"Anthony Braxton","Duets"
+"Anthony Braxton","Duets"
