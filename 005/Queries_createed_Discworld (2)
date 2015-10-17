@@ -1,0 +1,183 @@
+SELECT * from `book`
+14	The Colour of Magic	1	Rincewind	1
+15	The Light Fantastic	2	Rincewind	2
+16	Equal Rites	3	The Witches	1
+17	Mort	4	Death	1
+18	Sourcery	5	Rincewind	3
+19	Wyrd Sisters	6	The Witches	2
+20	Pyramids	7	Miscellaneous	1
+21	Guards! Guards!	8	City Watch	1
+22	Eric	9	Rincewind	4
+23	Moving Pictures	10	The Wizards	1
+24	Reaper Man	11	Death	2
+25	Witches Abroad	12	The Witches	3
+26	Small Gods	13	Miscellaneous	3
+27	Lords and Ladies	14	The Witches	4
+
+SELECT * from `narrator`
+2	Nigel Planer	London	Male	Theatre, television, and film actor. Also voiced many of the Discworld novels in audio-adaptation.
+8	Celia Imrie	Guidlford, Surrey, England	Female	author, film and television actor, audio-book voice actor
+9	Stephen Briggs	Oxford, England	Male	author, playwright, thespian, illustrator, audio-book voice actor
+10	Tony Robinson	London	Male	film and television actor, comedian, political activist, audio-book actor
+
+SELECT * from `performance`
+8	Isis	1995	415	unabridged	14
+9	Random House Audio Books	2007	184	abridged	14
+10	ISIS	1999	463	unabridged	16
+11	Random House	2007	174	abridged	16
+12	Isis	1999	419	unabridged	15
+13	Random House	2007	181	abridged	15
+14	ISIS	1999	448	unabridged	17
+15	Random House	2007	184	abridged	17
+
+SELECT story_serial, story_serial_number FROM `book` WHERE story_serial = 'The Witches'
+The Witches	1
+The Witches	2
+The Witches	3
+The Witches	4
+
+SELECT book_title, story_serial_number FROM `book` WHERE story_serial = 'The Witches'
+Equal Rites	1
+Wyrd Sisters	2
+Witches Abroad	3
+Lords and Ladies	4
+
+SELECT book_title FROM `book` JOIN `narrator` ON book.book_title = narrator.narrator_name;
+(joined zero results, but no syntactical error; unclear as to why this did not pull books aligned with narrators)
+
+SELECT book_title FROM  `book` JOIN  `performance` ON book.book_title = performance.format_length
+(same issue; syntax fine, no content)
+
+SELECT book . * , format_length FROM book, performance WHERE bookid = performance.format_length
+(again; syntax fine; no results)
+
+SELECT performance. * , narrator_name FROM performance, narrator
+8	Isis	1995	415	unabridged	14	Celia Imrie
+8	Isis	1995	415	unabridged	14	Nigel Planer
+8	Isis	1995	415	unabridged	14	Stephen Briggs
+8	Isis	1995	415	unabridged	14	Tony Robinson
+9	Random House Audio Books	2007	184	abridged	14	Celia Imrie
+9	Random House Audio Books	2007	184	abridged	14	Nigel Planer
+9	Random House Audio Books	2007	184	abridged	14	Stephen Briggs
+9	Random House Audio Books	2007	184	abridged	14	Tony Robinson
+10	ISIS	1999	463	unabridged	16	Celia Imrie
+10	ISIS	1999	463	unabridged	16	Nigel Planer
+10	ISIS	1999	463	unabridged	16	Stephen Briggs
+10	ISIS	1999	463	unabridged	16	Tony Robinson
+11	Random House	2007	174	abridged	16	Celia Imrie
+11	Random House	2007	174	abridged	16	Nigel Planer
+11	Random House	2007	174	abridged	16	Stephen Briggs
+11	Random House	2007	174	abridged	16	Tony Robinson
+12	Isis	1999	419	unabridged	15	Celia Imrie
+12	Isis	1999	419	unabridged	15	Nigel Planer
+12	Isis	1999	419	unabridged	15	Stephen Briggs
+12	Isis	1999	419	unabridged	15	Tony Robinson
+13	Random House	2007	181	abridged	15	Celia Imrie
+13	Random House	2007	181	abridged	15	Nigel Planer
+13	Random House	2007	181	abridged	15	Stephen Briggs
+13	Random House	2007	181	abridged	15	Tony Robinson
+14	ISIS	1999	448	unabridged	17	Celia Imrie
+14	ISIS	1999	448	unabridged	17	Nigel Planer
+14	ISIS	1999	448	unabridged	17	Stephen Briggs
+14	ISIS	1999	448	unabridged	17	Tony Robinson
+15	Random House	2007	184	abridged	17	Celia Imrie
+15	Random House	2007	184	abridged	17	Nigel Planer
+15	Random House	2007	184	abridged	17	Stephen Briggs
+15	Random House	2007	184	abridged	17	Tony Robinson
+
+SELECT performance. * , narrator_name FROM performance, narrator WHERE performance.format_length = 'unabridged'
+8	Isis	1995	415	unabridged	14	Celia Imrie
+8	Isis	1995	415	unabridged	14	Nigel Planer
+8	Isis	1995	415	unabridged	14	Stephen Briggs
+8	Isis	1995	415	unabridged	14	Tony Robinson
+10	ISIS	1999	463	unabridged	16	Celia Imrie
+10	ISIS	1999	463	unabridged	16	Nigel Planer
+10	ISIS	1999	463	unabridged	16	Stephen Briggs
+10	ISIS	1999	463	unabridged	16	Tony Robinson
+12	Isis	1999	419	unabridged	15	Celia Imrie
+12	Isis	1999	419	unabridged	15	Nigel Planer
+12	Isis	1999	419	unabridged	15	Stephen Briggs
+12	Isis	1999	419	unabridged	15	Tony Robinson
+14	ISIS	1999	448	unabridged	17	Celia Imrie
+14	ISIS	1999	448	unabridged	17	Nigel Planer
+14	ISIS	1999	448	unabridged	17	Stephen Briggs
+14	ISIS	1999	448	unabridged	17	Tony Robinson
+
+SELECT performance. * , narrator_name FROM performance, narrator WHERE performance.perf_length >300
+(I think this revealed a logic error, but I am not sure precisely what;
+Celia Imrie only narrated two books, but below, you can see she is attached to four (all entries)...)
+8	Isis	1995	415	unabridged	14	Celia Imrie
+8	Isis	1995	415	unabridged	14	Nigel Planer
+8	Isis	1995	415	unabridged	14	Stephen Briggs
+8	Isis	1995	415	unabridged	14	Tony Robinson
+10	ISIS	1999	463	unabridged	16	Celia Imrie
+10	ISIS	1999	463	unabridged	16	Nigel Planer
+10	ISIS	1999	463	unabridged	16	Stephen Briggs
+10	ISIS	1999	463	unabridged	16	Tony Robinson
+12	Isis	1999	419	unabridged	15	Celia Imrie
+12	Isis	1999	419	unabridged	15	Nigel Planer
+12	Isis	1999	419	unabridged	15	Stephen Briggs
+12	Isis	1999	419	unabridged	15	Tony Robinson
+14	ISIS	1999	448	unabridged	17	Celia Imrie
+14	ISIS	1999	448	unabridged	17	Nigel Planer
+14	ISIS	1999	448	unabridged	17	Stephen Briggs
+14	ISIS	1999	448	unabridged	17	Tony Robinson
+
+SELECT book_title, narrator_name FROM book, narrator
+(Something is definitely broken with my logic. :) Still cannot tell what)
+The Colour of Magic	Celia Imrie
+The Colour of Magic	Nigel Planer
+The Colour of Magic	Stephen Briggs
+The Colour of Magic	Tony Robinson
+The Light Fantastic	Celia Imrie
+The Light Fantastic	Nigel Planer
+The Light Fantastic	Stephen Briggs
+The Light Fantastic	Tony Robinson
+Equal Rites	Celia Imrie
+Equal Rites	Nigel Planer
+Equal Rites	Stephen Briggs
+Equal Rites	Tony Robinson
+Mort	Celia Imrie
+Mort	Nigel Planer
+Mort	Stephen Briggs
+Mort	Tony Robinson
+Sourcery	Celia Imrie
+Sourcery	Nigel Planer
+Sourcery	Stephen Briggs
+Sourcery	Tony Robinson
+Wyrd Sisters	Celia Imrie
+Wyrd Sisters	Nigel Planer
+Wyrd Sisters	Stephen Briggs
+Wyrd Sisters	Tony Robinson
+Pyramids	Celia Imrie
+Pyramids	Nigel Planer
+Pyramids	Stephen Briggs
+Pyramids	Tony Robinson
+Guards! Guards!	Celia Imrie
+Guards! Guards!	Nigel Planer
+Guards! Guards!	Stephen Briggs
+Guards! Guards!	Tony Robinson
+Eric	Celia Imrie
+Eric	Nigel Planer
+Eric	Stephen Briggs
+Eric	Tony Robinson
+Moving Pictures	Celia Imrie
+Moving Pictures	Nigel Planer
+Moving Pictures	Stephen Briggs
+Moving Pictures	Tony Robinson
+Reaper Man	Celia Imrie
+Reaper Man	Nigel Planer
+Reaper Man	Stephen Briggs
+Reaper Man	Tony Robinson
+Witches Abroad	Celia Imrie
+Witches Abroad	Nigel Planer
+Witches Abroad	Stephen Briggs
+Witches Abroad	Tony Robinson
+Small Gods	Celia Imrie
+Small Gods	Nigel Planer
+Small Gods	Stephen Briggs
+Small Gods	Tony Robinson
+Lords and Ladies	Celia Imrie
+Lords and Ladies	Nigel Planer
+Lords and Ladies	Stephen Briggs
+Lords and Ladies	Tony Robinson
