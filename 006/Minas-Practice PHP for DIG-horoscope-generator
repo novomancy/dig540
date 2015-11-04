@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title = "Horoscope Generator">
+			</title>
+		</head>
+		<body>
+		<div style= "padding-top: 2em; padding-bottom: 2em;" >
+		<p style= "text-align: center; font-size: 160%; padding-bottom: .5em; margin: 2em 3em 1em 1em;">  Welcome to Your Future </p></br>
+			<form method=POST action=''>
+					
+				First name: <input type="text" name="fname"></br>
+  				Last name: <input type="text" name="lname"></br>
+				<table border="0" cellspacing="0" >
+					<tr>
+				<td align=left > 
+				<select name=month value=''>Select Month</option>
+					<option value='--'>--</option>
+					<option value='01'>January</option>
+					<option value='02'>February</option>
+					<option value='03'>March</option>
+					<option value='04'>April</option>
+					<option value='05'>May</option>
+					<option value='06'>June</option>
+					<option value='07'>July</option>
+					<option value='08'>August</option>
+					<option value='09'>September</option>
+					<option value='10'>October</option>
+					<option value='11'>November</option>
+					<option value='12'>December</option>
+					</select>					
+					</td>
+				<td align=left > 
+				Day<select name=day value= ''>
+					<option value='--'>--</option>
+					<option value='01'>01</option>
+					<option value='02'>02</option>
+					<option value='03'>03</option>
+					<option value='04'>04</option>
+					<option value='05'>05</option>
+					<option value='06'>06</option>
+					<option value='07'>07</option>
+					<option value='08'>08</option>
+					<option value='09'>09</option>
+					<option value='10'>10</option>
+					<option value='11'>11</option>
+					<option value='12'>12</option>
+					<option value='13'>13</option>
+					<option value='14'>14</option>
+					<option value='15'>15</option>
+					<option value='16'>16</option>
+					<option value='17'>17</option>
+					<option value='18'>18</option>
+					<option value='19'>19</option>
+					<option value='20'>20</option>
+					<option value='21'>21</option>
+					<option value='22'>22</option>
+					<option value='23'>23</option>
+					<option value='24'>24</option>
+					<option value='25'>25</option>
+					<option value='26'>26</option>
+					<option value='27'>27</option>
+					<option value='28'>28</option>
+					<option value='29'>29</option>
+					<option value='30'>30</option>
+					<option value='31'>31</option>
+					</select>
+
+				<input type=submit value="Discover Your Future">
+			</table>
+		</form>
+						
+		</div>
+		<?php
+			$i = $_POST['fname'] . ' ' . $_POST['lname'];	
+				echo "Hello $i </br>";			
+			$a = $_POST['month'] . ' ' . $_POST['day'];
+				echo "Your date of birth is $a </br>";  		
+			$b = $_POST['fname'];
+			
+			 
+			
+			if ($_POST['month'] == "01" AND $_POST['day'] <= "19" OR $_POST['month'] == "12" AND $_POST['day'] >= "22") {
+				echo "That makes you a Capricorn! Here is your horoscope: </br> This coming Thanksgiving, you will eat so much canned spam that you will get the meat sweats. Come back again soon!</br></br>"; 
+				}	
+			elseif ($_POST['month'] == "01" AND $_POST['day'] >= "19" OR $_POST['month'] == "02" AND $_POST['day'] <= "18") {
+				echo "That makes you a Aquarius! Here is your horoscope: </br> Being an Aquarius, you likely own an aquarium. The stars are telling me...it's time to clean it. It's smelly. Come back again soon!</br></br>"; 
+				}
+				
+				elseif ($_POST['month'] == "02" AND $_POST['day'] >= "20" OR $_POST['month'] == "03" AND $_POST['day'] <= "18") {
+				echo "That makes you a Pisces! Here is your horoscope: </br> Don't look now. There's someone right behind you... Come back again soon!</br></br>"; 
+				}
+				
+				elseif ($_POST['month'] == "03" AND $_POST['day'] >= "21" OR $_POST['month'] == "04" AND $_POST['day'] <= "19") {
+				echo "That makes you an Aries! Here is your horoscope: </br> You're future looks... aw, bugger it. I quit. Fortune cookies are where the money is... </br></br>"; 
+				}
+				
+				elseif ($_POST['month'] == "04" AND $_POST['day'] >= "20" OR $_POST['month'] == "05" AND $_POST['day'] <= "20") {
+				echo "That makes you a Taurus! Here is your horoscope: </br> Just fyi: that thing you thought was a Jolly Rancher? It was not a Jolly Rancher. Get to a hospital. Come again soon! </br></br>"; 
+				}
+			
+				elseif ($_POST['month'] == "05" AND $_POST['day'] >= "21" OR $_POST['month'] == "06" AND $_POST['day'] <= "20") {
+				echo "That makes you a Gemini! Here is your horoscope: Here is your horoscope: </br> Rumor has it, Geminis get two of everything. Rumor has it Geminis get two of everything. Come again soon! Come again soon! </br></br>"; 
+				}
+				
+				elseif ($_POST['month'] == "06" AND $_POST['day'] >= "21" OR $_POST['month'] == "07" AND $_POST['day'] <= "22") {
+				echo "That makes you a Cancer! Here is your horoscope: </br> You will discover this month that it is, in fact, possible to get stung by a Jellyfish in the middle of Nebraska. Come again soon! </br></br>"; 
+				}
+				
+				elseif ($_POST['month'] == "07" AND $_POST['day'] >= "23" OR $_POST['month'] == "08" AND $_POST['day'] <= "22") {
+				echo "That makes you a Leo! Here is your horoscope: </br> Seriously, dubstep line-dancing is not a thing. Hang up your cowboy boots and go home. No one wants to see that... Come again soon! </br></br>"; 
+				}
+				
+				elseif ($_POST['month'] == "08" AND $_POST['day'] >= "23" OR $_POST['month'] == "09" AND $_POST['day'] <= "22") {
+				echo "That makes you a Virgo! Here is your horoscope: </br> A strange illness may plague you next year if you do not reconstitute your diet to include only crickets and grasshoppers. Orange soda is also okay. Come again soon! </br></br>"; 
+				}
+				
+				elseif ($_POST['month'] == "09" AND $_POST['day'] >= "23" OR $_POST['month'] == "10" AND $_POST['day'] <= "22") {
+				echo "That makes you a Libra! Here is your horoscope: </br> Family secrets are supposed to STAY family secrets, $b Come again soon! </br></br>"; 
+				}
+				
+				elseif ($_POST['month'] == "10" AND $_POST['day'] >= "23" OR $_POST['month'] == "11" AND $_POST['day'] <= "21") {
+				echo "That makes you a Scorpio! Here is your horoscope: </br> There's something in your teeth. No. Over to the left. It's green. Did you have salad for lunch? Oh...almost...right. Okay. Yeah. You got it. Come again soon! </br></br>"; 
+				}
+				
+				elseif ($_POST['month'] == "11" AND $_POST['day'] >= "22" OR $_POST['month'] == "12" AND $_POST['day'] <= "21") {
+				echo "That makes you a Sagittarius! Here is your horoscope: </br> 'Build a man a fire, and he'll be warm for a day. Set a man on fire, and he'll be warm for the rest of his life.' This horoscope was brought to you by Terry Pratchett. Come again soon! </br></br>"; 
+				}
+			
+			
+			?>
+			
+		<div>
+			
+		<img style="display: block; margin-left: auto; margin-right: auto;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Anatomical_Man.jpg/800px-Anatomical_Man.jpg" alt="This is an image take from an old, illuminated manuscript, which features the 12 astrological signs as depicted on the body of a person."> 	
+		
+				
+	
+		</div>
+		
+		</body>
+	
+	</html>
