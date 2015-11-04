@@ -1,7 +1,7 @@
 <html>
 
 	<head>
-		<title>Sawtelle Week 7 Assignment</title>
+		<title>Week 7 Assignment</title>
 	</head>
 
 	<body>
@@ -11,18 +11,18 @@
 	class nameGenerator{
 		private $firstName;
 		private $lastName;
-
+	
 		public function setName($userName){
 		//error checking takes place here
 		$this->name = $userName;
 		}
-
-
+	
+		
 		public function getName(){
 		echo $this->name;
 		}
-	}
+	}		
 ?>
 
 	</body>
-</html>
+</html>	
