@@ -1,6 +1,6 @@
 <html>
   <head>
-    <title>Week 7 User Name Generator</title>
+    <title>User Name Generator</title>
   </head>
 
   <body>

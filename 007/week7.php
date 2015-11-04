@@ -1,7 +1,7 @@
 <html>
 
 	<head>
-		<title>Week 7 Assignment</title>
+		<title>Sawtelle Week 7 Assignment</title>
 	</head>
 
 	<body>
