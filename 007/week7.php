@@ -11,17 +11,17 @@
 	class nameGenerator{
 		private $firstName;
 		private $lastName;
-	
+
 		public function setName($userName){
 		//error checking takes place here
 		$this->name = $userName;
 		}
-	
-		
+
+
 		public function getName(){
 		echo $this->name;
 		}
-	}		
+	}
 ?>
 
 	</body>
