@@ -1,0 +1,7 @@
+<FilesMatch "config.php">
+
+Order Allow,Deny
+
+Deny from all
+
+</FilesMatch>
