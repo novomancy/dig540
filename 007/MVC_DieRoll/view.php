@@ -16,7 +16,8 @@ $controller = new Controller ($model);
 
 ?>
 
-	<h1>Try your luck!</h1><img src="dice_row.png" height="107.5" width="640">
+	<h1>Try your luck!</h1><a href="https://pixabay.com/en/dice-games-game-six-sided-face-26772/" target="_blank">
+	<img src="dice_row.png" height="107.5" width="640"></a>
 	<form method="POST" action="">
 		How many rolls will result in a perfect 21? <input type="text" name="dieroll" size="3">
 		&nbsp;&nbsp;
