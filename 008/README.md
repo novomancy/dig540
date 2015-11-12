@@ -15,6 +15,7 @@ The files I ended up with after creating these videos are in the examples direct
 
 **Links**
 PDO Tutorial: <http://codular.com/php-pdo-how-to>
+
 Omeka Tutorials: <http://omeka.readthedocs.org/en/latest/Tutorials/index.html#plugin-basics>
 
 **Assignment**
