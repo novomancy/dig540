@@ -55,20 +55,20 @@ public function create(){
 //Update function
 
 public function update(){
-  global $db
+  global $db;
 
   if($db){
     $db->beginTransaction();
     $query = $db->prepare('UPDATE * FROM `contributor` (name, born, died) WHERE `id` = (?, ?, ?)');
   try{
-      $query->execute(array($this->name, $this->born, $this->died;
+      $query->execute(array($this->name, $this->born, $this->died));
     }
   catch(PDOException $e){
       print_r($e);
       $db->rollback();
     }
     $this->id = $db->rrd_lastupdate();
-    $db-.commit();
+    $db->commit();
     return true;
     }
   return false;
@@ -77,13 +77,13 @@ public function update(){
 //Delete function
 
 public function delete(){
-  global $db
+  global $db;
 
   if($db){
     $db->beginTransaction();
     $query = $db->prepare('DELETE FROM `contributor` (name, born, died) WHERE `id` = (?, ?, ?) LIMIT 1;;');
   try{
-      $query->execute(array($this->name, $this->born, $this->died;
+      $query->execute(array($this->name, $this->born, $this->died));
     }
     catch(PDOException $e){
       print_r($e);
@@ -91,23 +91,26 @@ public function delete(){
     }
     $this->id = $db->rowCount();
       return false;
-      }
-      $this->id
-  }
-}
+      $this->id;
+    }
 
 //Fetchall to create list of all composers
 
-public static function contributor_list(){
-  foreach($name->FetchAll() as $name){
+  $query = $db->query('SELECT * FROM `contributor`');
+  $query->execute();
+
+  $name = $query->fetchAll(PDO::FETCH_CLASS, `name`);
     echo $name[`name`].`<br />`;
   }
-}
 
 //Find a specific composer by name  (fetchall?)
 
 public static function find($target){
-  if(
+  if($db){
+    $db->beginTransaction();
+    $query = $db('SELECT * FROM `contributor` WHERE $target LIKE :search');
+    $query->bindValue(':search', '.')
+  }
 }
 
 
