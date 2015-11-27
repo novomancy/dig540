@@ -59,15 +59,25 @@ public function update(){
 
   if($db){
     $db->beginTransaction();
-    $query = $db->prepare('UPDATE * FROM `contributor` (name, born, died) WHERE `id` = (?, ?, ?)');
-  try{
-      $query->execute(array($this->name, $this->born, $this->died));
-    }
+
+    $query = "UPDATE Contributor SET
+        name = :updateName,
+        born = :updateBorn,
+        died = :updateDied,
+        WHERE contributorID = :contributorID";
+    $stmt = $PDO ->prepare($query);
+    $stmt -> bindParam(':updateName', $_POST['name'], PDO::PARAM_STR);
+    $stmt -> bindParam(':updateBorn', $_POST['born'], PDO::PARAM_STR);
+    $stmt -> bindParam(':updateDied', $_POST['died'], PDO::PARAM_STR);
+
+    try{
+    	$stmt->execute();
+    	}
+
   catch(PDOException $e){
       print_r($e);
       $db->rollback();
     }
-    $this->id = $db->rrd_lastupdate();
     $db->commit();
     return true;
     }
@@ -92,9 +102,10 @@ public function delete(){
     $this->id = $db->rowCount();
       return false;
       $this->id;
-    }
+}
 
 //Fetchall to create list of all composers
+
 
   $query = $db->query('SELECT * FROM `contributor`');
   $query->execute();
@@ -103,16 +114,19 @@ public function delete(){
     echo $name[`name`].`<br />`;
   }
 
+
 //Find a specific composer by name  (fetchall?)
 
-public static function find($target){
+public function find(){
   if($db){
     $db->beginTransaction();
-    $query = $db('SELECT * FROM `contributor` WHERE $target LIKE :search');
-    $query->bindValue(':search', '.')
-  }
-}
+    $query = $db->prepare('SELECT * FROM `contributor` WHERE name LIKE "'%'.$this->name.'%'');
+    $query->execute();
 
+    $result = $query->fetchAll();
+  }
+  return $result;
+}
 
 
 //Set & get id
