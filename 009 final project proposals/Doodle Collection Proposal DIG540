@@ -1,0 +1,62 @@
+Doodle-Minded
+Proposal by Araminta Matthews for DIG540 Omeka Collection
+Submitted 11/28/2015
+
+
+Background: If you are like me, you may find yourself in a variety of intense meetings
+throughout your work day. These meetings are, of course, critical to work and development,
+but as a creatively-minded individual, you may find it hard to sit still for six out of
+eight hours a day listening to others debate a puzzle you already solved by "playing around"
+on your laptop last night while your partner watched Jeopardy! and your kid built a tower
+out of blocks.
+
+In these situations, what is a creatively-minded person to do? There's really only one
+answer:
+
+Doodle.
+
+This collection will seek to gather a bevy of marginalia and doodlification of meeting
+notes while, of course, redacting the proprietary meeting-information therein and focusing
+entirely on the flowers, rain clouds, houses, eyeballs, and Mondrian-ian boxes drawn
+in the corners of the paper. While exposing you to the fidget-worthy ink-ramblings of
+a creative person exposed to "sitting still," I'll also show you the type of meeting
+that generated the doodle (was it a weekly team meeting? a meeting with clients? students?
+professors? colleagues? vendors?) as well as the personalities present at the meeting
+(the pontificator? the silent guy who stares at his computer screen? the woman clearly
+in two meetings at once (one from her phone), the debate-guy who picks a fight with
+every idea? The caution-woman who aims to slow every project down to a craw?).
+
+One unique feature of this collection will be a concurrent demonstration of the regional
+weather occurring during that meeting. Was it raining the day that creative person
+doodled those toadstools? Was it a sunny, 90-degree, July day in Maine when beach
+weather lasts approximately 48 seconds and that creative person was instead stuck in
+a meeting with fourteen sock-puppet vendors whilst she doodled those mermaids? Well!
+You'll find out in the new Doodle-Minded Collection by Araminta.
+
+Proposal: This Omeka Collection would pull together at least a single array of doodles,
+collected in a variety of notebooks spanning at least 3 years of professional employment
+in a highly creative career that is also often associated with 3-hour meetings full of
+really smart people who also might perhaps be a smidge on the borderline of pedantic. Ahem.
+
+Schema:This is almost entirely a graphic collection with some descriptions for each
+doodle submitted
+    1. Title
+    2. Author
+    3. Date Created
+    4. Image (URL or JPG upload)
+    6. Description (alt text of image)
+
+
+Process (Standard Installation and Pre-Scripted Plug-ins):
+1. Omeka Standard Installation
+2. Plug-in: Flickr Import (image files will be hosted on Flickr to contain storage capacity)
+3. Plug-in: Exhibit Builder (for dynamic exhibition)
+
+
+
+4. Plug-in: TO BE CUSTOM-CREATED:
+      This plug-in will connect to the National Weather Service. Based on the
+      accompanying zip code of the doodle's entry in the database, this plug-in
+      will cross-reference the regional weather against the creation-date for the
+      doodle and display a weather report in conjunction with the object in the
+      collection.
