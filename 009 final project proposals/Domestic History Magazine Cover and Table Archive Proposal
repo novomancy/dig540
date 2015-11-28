@@ -1,0 +1,60 @@
+Domestic History and Women's Pulps: Covers and Contents
+Proposal by Araminta Matthews for DIG540 Omeka Collection
+Submitted 11/28/2015
+
+
+Background: For about a decade, I have invested in an obscure collection of historical ephemera
+in the form of domestic history pulp magazines. Domestic history refers to a branch of history
+not overly documented: the history related to the running and integration of a household. As
+this was sometimes the domain of the woman, much of my collection of domestic history comes in
+the form of women's magazines from the pulp era. Pulps referred to the paper-quality on which
+they were printed (not intended to last beyond a few years), and so my collection of pulp
+magazines spanning the decades between 1870 and 1925, with their fraying, newsprint pages,
+are on the cusp of extinction in spite of my best archival efforts.
+
+At the same time, magazines and their contents are subject to an intense array of complex
+and tangled copyright laws preventing them from public display on the web without first
+exploring expensive copyright searches for each individual item of content in a single issue (and I
+have hundreds). I would love to archive this for posterity, committing the work to a digital
+but private space until such time as they enter the public domain completely as my fear
+of copyright infringement precludes a full archival process of the magazines in their entirety.
+
+Having said that, a lot of data can be gleaned from simply reviewing the cover art of a
+historical magazine and the Table of Contents. Where I have one collection of a single publication
+that spaces from 1870 to 1923 (missing only a few), we could glean from the cover images a
+certain inference of historical context (who is the cover model? is it in color? what is she
+wearing (WWI nurse's uniform, for instance?) what color is her hair (if color)? what diversity
+of ethnicity is demonstrated? Is it culturally affluent demonstration? What's the cover price?
+has inflation affected the cover price exponentially or only periodically? who wrote articles
+for each issue? can we cross-reference these authors against other magazines of the time in this
+golden-age of publishing and the dream of printing one's story?)
+
+Proposal: This Omeka Collection would pull together at least a single array of cover images
+and Tables of Content for a period of 10-30 years of print for the "Modern Priscilla Magazine"
+(and, eventually, also for "Needlepoint" magazine, and "Ladies Home Journal").
+
+Schema: Organizing periodicals is hardly a new concept. Thus, there are several schemae that
+can support this project. Creative Work's Periodical schema at https://schema.org/Periodical
+has all the required components for the purposes of this collection (with some modification):
+    1. Publisher
+    2. Publication
+    3. Date Created
+    4. Author (if image art illustrator's name is found)
+    5. Image (URL or JPG upload)
+    6. Description (alt text of image)
+    7. Mentions (to list Table of Contents)
+
+Process (Standard Installation and Pre-Scripted Plug-ins):
+1. Omeka Standard Installation
+2. Plug-in: Digital Object Linker (to connect to cover art images from public domain sites)
+3. Plug-in: Exhibit Builder (for dynamic exhibition)
+4. Plug-in: Getty Suggest (the ToC should be dynamic; Getty Suggest could connect other aspects
+  of the magazine's contents that might be found in the public domain or within Getty)
+5. Plug-in: Neatline Time (to allow for integration of a cover-art timeline of the periodicals)
+
+
+6. Plug-in: TO BE CUSTOM-CREATED:
+      Connect to Ancestry or other Genealogy Resource
+      This plug-in would allow a person to cross-reference a name search from a contributor
+      to the issue against any census and/or other historical data on Ancestry or another
+      Genealogical resource.
