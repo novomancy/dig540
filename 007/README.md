@@ -28,3 +28,5 @@ There is a link at the bottom of this to part 2 of the article. If you want to c
 Take the program that you wrote in the last assignment and identify the pieces that you think could be made into objects. Make classes for them and convert your code over to use those classes. Once everything is working, put all of the PHP files you create into your 007 folder and sync them to github. Also, modify this file (README.md) to add a link to your program on Reclaim.
 
 This assignment is due on Friday November 6th at noon.
+
+Kris' link: http://www.sirkadeki.net/DIG540/view.php
