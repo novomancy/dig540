@@ -1,0 +1,47 @@
+009 Assignment Proposal
+
+Define the Collection:
+I have been an Archaeological Conservator for 25 years and have a collection
+of  treatment reports and photo documentation for specific artifacts
+I have conserved.  I reconfigured my business in 2000 under the name of Head Tide
+Archaeological Conservation Laboratory.  This collection is a cross section of
+favorite artifacts I have conserved since 2000.  I would like to have the
+archaeologist to add information relating to the circumstances of discovering the
+artifact and a museum curator to have the ability to add information regarding
+the physical exhibitions this artifact was included in and why it was chosen (
+i.e. what part of the exhibition narritive does the inclusion of this artifact
+represent?) and a museum visitor to have the ability to ask question or express
+comments regarding the artifact.  Since these artifacts come from diverse cultures,
+an ability for foreign language translation will be important.
+
+Archaeological sites can be targeted by looters.  I thought about using Neatline plugins
+to show the specific location of the sites but rejected the option for security reasons.
+
+
+The parts of the collection I can model using built-in Omeka plugin functions include:
+
+1. Shared Shelf   https://omeka.org/add-ons/plugins/shared-shelf-link/
+   a. This plugin allows users to publish image files and data records.  I am
+   imagining at least 4 voices contributing to this exhibit:
+       1.  Molly O'Guinness Carlson, Archaeological Conservator
+       2.  Archaeologist
+       3.  Museum Curator
+       4. (Exhibit visitor... see Commenting plugin)
+
+2.  Commenting  http://omeka.org/add-ons/plugins/commenting/
+    a.  This plugin will allow an Exhibit visitor to add information such as questions
+    or comments in regard to the exhibited artifact.
+
+3.  Google Translate  https://omeka.org/codex/Plugins/GoogleTranslate
+    a.  This plugin may not be a perfect translation of all elements in your site,
+    but it does provide an easy way to make a site available to a diverse group of
+    language speakers.
+
+
+  The parts of the collection I cannot model using built-in Omeka plugins include:
+  1.  A very, very generalized map of artifact origin: by Country, State, County or
+    other vague descriptor to show generalized source location.
+
+  2.  A  Collection repository  plugin that  lists where the physical artifact is
+  being curated.
+     a. Country, State, Museum
