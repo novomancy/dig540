@@ -6,7 +6,7 @@ Syllabus v2.0, 3 credits
 
 **Course Information**
 
--   Slack: <https://dig540-fall2015.slack.com>
+-   Slack: <https://dig540-f17.slack.com>
 -   GitHub: <https://github.com/novomancy/dig540>
 -   Instructor: John Bell
 
@@ -26,7 +26,8 @@ Upon completing the course, students will have:
 - Been shown a variety of the collection management packages in use across
 the field.
 - Learned the fundamental structure and logic behind relational databases.
-- Customized a collection management system built in the PHP language.
+- Been introduced to concepts used in the PHP language to customize a CMS.
+- Used data transformation tools to migrate collection data between formats.
 - Gained an appreciation for the special source concerns of working with
 cultural data in an information system.
 
@@ -92,15 +93,15 @@ week’s videos.
 **Course Flow**
 
 The course is broken up into a series of topics that consist of video
-lectures, readings, and associated assignments. Nominally, each topic
+lectures, readings, and associated assignments. Nominally each topic
 takes one week, though you should expect some variation based on the
-complexity of the material in the topic. New topics will begin on
+complexity of the material in the topic (you'll notice that there are topics than weeks in the semester). New topics will begin on
 Wednesdays. For each topic you are expected to:
 
 -   Watch all of the lectures and tutorials listed in the week’s
     introduction and read any assigned material.
 
--   Submit the weekly assignment on GitHub (or as a link to another site
+-   Submit the assignment on GitHub (or as a link to another site
     or resource, as appropriate).
 
 -   Participate in the ongoing discussions on Slack. It cannot be
@@ -204,6 +205,8 @@ weighted equally across each week of the class. Your final project will
 count as 1/4 of your grade, as it largely occupies the final 1/4 of the
 semester.
 
+In most cases you will be allowed to submit your work more than once if you so desire. Since you are allowed to resubmit work you will generally not be given an explicit grade on each assignment. If you want I can provide a grade, but in general I'd rather have you focus on understanding concepts and getting technology working than hitting a specific point mark when you decide whether or not to resubmit any given assignment. If you feel like you need to review or rework something you probably do; if you don't feel that way and I don't tell you otherwise, you're probably fine.
+
 Participation is a significant part of your grade. The more you add
 thoughtful, insightful comments to the discussion the more both you and
 other students will benefit. Note, though, that does not mean you need
@@ -277,19 +280,23 @@ model and output of a collection management system.
   ----------------------------------------------------------------
 | **Topic Breakdown** |
 |------------------------|
-| **Unit 1 : Virtual Collections** |
+| **Part 1 : Virtual Collections** |
 |   |
-|  Setup – slack, github, atom, reclaim |
+|  Setup – slack, github, VSC, reclaim |
 |  Collections, exhibitions, and databases |
 |   |
 |  Embedding values in data structures |
 |  Evaluating effectiveness and appropriateness |
 |   |
-|  **Unit 2 : Database Structures** |
+|  All<sup>*</sup> the ways data are annoying |
+|  Making data less annoying |
+|  Data types and sources |
+|   |
+|  **Part 2 : Database Structures** |
 |   |
 |  Introduction to database concepts |
 |  Properties of data |
-|  Making meaning |
+|  Database normalization |
 |   |
 |  Introduction to the SQL language |
 |  Writing data into a database |
@@ -299,7 +306,7 @@ model and output of a collection management system.
 |  Searching fields and text |
 |  Joining rows across tables |
 |   |
-|  **Unit 3 : Publishing Data on the Web** |
+|  **Part 3 : Publishing Data on the Web** |
 |   |
 |  Introduction to PHP |
 |  Variables, flow control, input handlers |
@@ -309,7 +316,7 @@ model and output of a collection management system.
 |  Objects |
 |  Model-View-Controller |
 |   |
-|  **Unit 4 : Merging Data and Logic** |
+|  **Part 4 : Merging Data and Logic** |
 |   |
 |  Where does data come from? |
 |  Software libraries |
@@ -323,15 +330,12 @@ model and output of a collection management system.
 |  Standardizing data |
 |  Data output for alternative uses |
 |   |
-|  **Unit 5: Customizing a Content Management System for Exhibition** |
+|  **Part 5: Scope and Planning** |
 |   |
 |  Ethics of exhibitions |
+|  Structured sharing |
 |   |
-|  Modifying the CMS |
-|  Domain specificity |
-|  Bits and atoms |
+|  Platforms and tools |
 |   |
-|  Presentations |
-|   |
-|  **Final Project Due: 5PM on Friday, Dec. 18** |
+|  **Final Project Due: 5PM on Friday, Dec. 15** |
   ----------------------------------------------------------------
