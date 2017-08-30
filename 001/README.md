@@ -12,6 +12,8 @@ Hi everyone! This week is all about getting the environment set up. The videos b
 
 **Links**
 
+Before going to the first link, make sure you have your GitHub account set up.
+
 Installing Git: <https://www.visualstudio.com/learn/install-and-set-up-git/>
 
 You'll want to install Git before installing Visual Studio Code. This link provides instructions for setting up Git on Windows, MacOS, and Linux.
