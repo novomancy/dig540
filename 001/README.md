@@ -8,7 +8,7 @@ Hi everyone! This week is all about getting the environment set up. The videos b
 - Installing Slack: <https://vimeo.com/138143812>
 - Setting up Reclaim: <https://vimeo.com/138143813>
 - Creating a GitHub Account: <https://vimeo.com/138143816>
-- Configuring Visual Studio Code: tk
+- Configuring Visual Studio Code: <https://vimeo.com/231766886>
 
 **Links**
 
