@@ -7,7 +7,7 @@ No need to update your fork from the master this week as there are no files in G
 
 **Videos**
 
-- FreeDB and Spreadsheets: <https://vimeo.com/73813080>
+- FreeDB and Spreadsheets: <https://vimeo.com/234091066>
 
 **Assignment**
 
