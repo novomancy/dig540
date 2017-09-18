@@ -1,2 +1,3 @@
 CMS - Content Management System
 terminal - the place where coders go to make things happen (at laest in a Mac)
+GLAM - An acronym for Galleries, Libraries, Archives, and Museums
