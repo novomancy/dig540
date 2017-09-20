@@ -266,9 +266,9 @@ together. This unit demonstrates some basic programming techniques that
 are used to insert, access, and display database information on web
 sites in the PHP.
 
-*Unit 5: Customizing a Collection Management System*
+*Unit 5: Scope and Planning*
 
-The final unit will allow students to modify a collection management
+The final unit will allow students to plan modifications to a collection management
 system to meet the needs of their particular cultural information. While
 off-the-shelf platforms are useful, many cultural collections come with
 special concerns that must be respected and are not accounted for in

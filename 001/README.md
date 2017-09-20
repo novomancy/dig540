@@ -8,7 +8,7 @@ Hi everyone! This week is all about getting the environment set up. The videos b
 - Installing Slack: <https://vimeo.com/138143812>
 - Setting up Reclaim: <https://vimeo.com/138143813>
 - Creating a GitHub Account: <https://vimeo.com/138143816>
-- Configuring Visual Studio Code: tk
+- Configuring Visual Studio Code: <https://vimeo.com/231766886>
 
 **Links**
 
@@ -32,7 +32,7 @@ Most of our interaction with Git will be handled by Visual Studio Code so you sh
 
 **Assignment**
 
-Install the software in the videos and create your GitHub account. Then, fork the <http://github.com/novomancy/dig540> repository. Once the fork is created, send me the link to your fork as a direct message in Slack. Clone your fork onto your local computer and add a helloworld.txt file to the 001 directory (like I did in the video), then sync it back to GitHub. The end result should be that your fork will have one more file than the master.
+Install the software in the videos and create your GitHub account. Then, fork the <http://github.com/novomancy/dig540> repository. Once the fork is created, send me the link to your fork as a direct message in Slack. Clone your fork onto your local computer and edit the vocabulary.txt file like I did in the video, then sync it back to GitHub. (It may ask for an account and password when you try to sync; just use the GitHub account you created.) The end result should be that your fork will have one more file than the master. Finally, create a pull request so I can see your new vocabulary term.
 
 Also, set up your Reclaim account or let me know if you have another hosted environment already. Since the video linked above is a couple years old the signup page looks a little different and the price is slightly higher than I say in the video but it's still ridiculously cheap and convenient!
 
