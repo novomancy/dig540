@@ -3,4 +3,8 @@ terminal - the place where coders go to make things happen (at laest in a Mac)
 GLAM - An acronym for Galleries, Libraries, Archives, and Museums
 Normalization - restructuring data so that it fits into a relational database scheme
 1NF - the first normal form, which reduces duplication and created unique IDs
+<<<<<<< HEAD
 This will cause problems. Uhoh.
+=======
+This is a new line!
+>>>>>>> 5eb15a69f9e2f44da14e290845e8c283a2e413b0
