@@ -16,7 +16,7 @@ See the GitHub video below on how to update your fork of the class with this wee
 - Submitting Assignments on GitHub: <https://vimeo.com/234756048>
 - Using Gliffy: <https://vimeo.com/139494414> 
 
-*Note 1: Since the Gliffy video was made Gliffy was changed to require a login. Just create a free account, and once you're in the software works the same way it does in the video.*
+*Note 1: Since the Gliffy video was made Gliffy was changed to require a login. Just create a free account; once you're in, the software works the same way it does in the video.*
 
 *Note 2: In the 2NF video, I create a one to one relationship between artists and discs. That's because I'm just creating a model based on the FreeDB file right now, and yes, it should be a many to many relationship in an actual relational database schema for this type of data.*
 
