@@ -1,0 +1,122 @@
+Hathaway Hester
+DIG 540 Fall 2015
+2015 September 20
+
+Database Schema for Association for the Advancement of Creative Musicians (AACM) Vinyl Record Collection
+
+The Association for the Advancement of Creative Musicians (AACM) is a non-profit organization
+whose mission is "nurturing, performing, and recording serious, original music."  Founded
+in Chicago in 1965, the AACM includes NN musicians who are or were active in the avant-garde
+jazz arena.  Many of these musicians played together in various ensembles and guested on each
+others albums.
+
+This particular collection is made up of vinyl records from AACM musicians.  In order to document
+the relationships between these musicians, the database includes fields for lead and guest musicians
+for each album.  A search for an individual artist would not only bring up results for that artist's
+albums, but also those that the artist had played on as part of the ensemble.  In addition, the convention
+on jazz records to list the instrumentation has been preserved with the inclusion of an instruments field,
+which connects to tracks, albums, and musicians.
+
+The following fields are part of an individual album's record:
+
+alb_id: Unique key, automatically assigned in NNNN format.
+
+alb_title: Exact name of album.  Use initial capitals and spaces between words.
+
+alb_format: For this collection of vinyl records, this field refers to the size
+ of the physical original and must be chosen from one of the following:
+7 inch single, 10 inch EP, 12 inch LP.
+
+alb_date: Album's release date.  Enter as year YYYY or, if exact date is known, YYYY MM DD.
+
+label_name: Exact name of label. Use initial capitals and spaces between words.
+
+label_loc: Exact name of city where label is located.  Use City, State, Country format.
+
+mus_name: Exact name of artist.  Use initial capitals and spaces
+between words.  This field is repeatable for each musician credited on a track.
+
+mus_role: Enter either Lead, for lead credited musician(s), or Guest for all others.
+
+mus_years: Date range of musician's creative output, in YYYY-YYYY format.  If still active,
+enter date as YYYY-present.
+
+mus_origin: Exact name of musician's location of artistic activity.
+Use City, State, Country format.  This field is repeatable if the musician had
+significant activity in more than one city.
+
+track_title: Exact name of track.  Use initial capitals and spaces between words. This field is
+repeatable.
+
+track_duration: Length of track in MM:SS format.  This field is repeatable.
+
+ins_name: Exact name of instrument as listed on album notes.  Use initial capitals and
+spaces between words.
+
+Sample record:
+
+alb_id: 4897
+
+alb_title: Young at Heart, Wise in Time
+
+alb_date: 1974
+
+alb_format: 12 inch LP
+
+label_name: Delmark Records
+
+label_loc: Chicago, Illinois, USA
+
+mus_lead: Muhal Richard Abrams
+
+mus_years: 1950-present
+
+mus_origin: Chicago, Illinois, USA
+
+mus_guest: Leo Smith
+
+mus_years: 1967-present
+
+mus_origin: New York, New York, USA
+
+mus_origin: Valencia, California, USA
+
+mus_guest: Henry Threadgill
+
+mus_years: 1970-present
+
+mus_origin: Chicago, Illinois, USA
+
+mus_guest: Lester Lashley
+
+mus_years: 1966-1990
+
+mus_origin: Chicago, Illinois, USA
+
+mus_guest: Thurman Barker
+
+mus_years: 1966-present
+
+mus_origin: Chicago, Illinois, USA
+
+mus_origin: Annendale-on-Hudson, New York, USA
+
+track_title: Young at Heart
+
+track_duration: 29:20
+
+track_title: Wise in Time
+
+track_duration: 21:52
+
+ins_name: Piano
+
+ins_name: Alto Saxophone
+
+ins_name: Trumpet
+
+ins_name: Flugelhorn
+
+ins_name: Bass
+
+ins_name: Percussion
