@@ -1,0 +1,17 @@
+Audio files featuring interviews wtih people on 9-11. The collection is from East Sullivan
+Maine, but could be expanded to cover more people and places. For example, the exhibit might
+include voices from the day of 9-11, photos, interviews from survivors or relatives,news footage, memorials, links
+to remembrance events.
+Fields:
+9-11 Interview mp3 files
+Title (one interview per Title) and Interviewee
+Interviewer (one person doing all for this particular subset of the collection)
+Created (date created)
+Subject headings (September 11 Terrorist Attachs, Maine--Hancock County--East Sullivan)
+Genre (interviews, personal narratives)
+Notes (Mostly applying to that interview, so I think notes go with interview)
+Source Collection (Part of a LOC September 11, 2001 Documentary Project Collection, which has many artifacts)
+
+I think I have the basic idea of the relational database, but still not quite sure.
+Do you think "Notes" would be grouped with "Interviewee" since each interviewee would have a specific set of notes?
+
