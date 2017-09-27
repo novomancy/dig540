@@ -1,0 +1,76 @@
+
+Red Poppy Project
+In response to the United States' ongoing involvement in overseas military conflicts, American society has embraced the memorialization of fallen Veterans as a public expression of patriotism.
+
+As any genealogist will explain, despite the U.S. military's reputation for red tape, currently there is no complete, centralized, public-access database of personnel records or Veteran burial sites.
+
+There are 133 national cemeteries in 40 states (and Puerto Rico). At present, there is only one significant, open access resources about U.S. Veteran burial sites online: the CKAN Data API delivering information about 4,415,200 Veterans’ burials from the National Cemetery Association. This CSV and API for this resource are available through Inventory.Data.gov and will form the initial, primary dataset.
+ 
+Unfortunately, public access to The Department of Veterans Affairs, National Cemetery Administration electronic burial ledger through the National Archives & Records Administration is controlled by a partnership with the for-profit company, Ancestry.com. As a result, although this ledger is in the public domain, the 556,034 names it contains cannot be harvested en masse as a result of this corporate agreement which includes a Limited Use License restricting use to “personal and professional family history research” and prohibits the use of automated access tools to harvest information from the site. As a result, it appears there is currently no open, electronic access to U. S. Government documents recording the names of Veterans from the American Revolution through Civil War.  Access to burial records accumulated via the crowd-sourced website FindAGrave.org are similarly restricted since that site’s acquisition by Ancestry.com.
+
+Another potential source for gravestone inscription data is the Tombstone Transcription Project (http://www.usgwtombstones.org/military.html). This resource will undoubtedly contain some data that duplicates the U.S. Veteran burial site database, but it serves as a potential net for catching information from smaller, state-operated Veteran cemeteries.
+
+In an attempt to unlock access to Veterans’ burials and provide a centralized, non-profit, open-source location the information, the Red Poppy Project proposes to develop a website that harvests content from the National Cemetery Association, the Tombstone project, and as many open-sources of gravestone inscription data as may be compiled to populate a burial and memorial database for U.S. Veterans-only.  
+
+The Red Poppy Project will accumulate as much publically accessible information about deceased U.S. Veterans as possible by compiling and aggregating information from the above mentioned resources into a single, centralized database that can then be used as a lookup resource. Red Poppy Project can then be utilized not only as a research tool for genealogists but also as a tool for researchers interested in the cultural treatment of American Veteran gravesites from the colonial period through modern, contemporary times. 
+
+The site will allow for the creation of exhibits that explore evolving memorial practices and the evolution of military gravestones as well as reconstructing units and divisions of soldiers in a way that exposes the human face of war. The site also has potential to be made available for crowd-source contributions that will allow Veterans’ descendants to flesh out service history details and attach portraits.
+
+Omeka provides existing CSV import and Bulk Metadata Editor and catalog search features. It also offers a plugin that can add a layer of Geolocation for individual grave and memorial sites.  The Flickr Import plugin will also provide a means of importing images from contributors to the program.
+
+Omeka appears to lack a plugin to handle the calculation of the age of a Veteran at the time of death, so this simple calculator must be created. Additionally, an add-on will be created to trigger the display a branch of service emblem when that content is available from the dataset. To help descendants honor their Veteran family members, a plugin will also be created to display service ribbons and decorations.
+
+Though it is beyond the scope of this specific assignment, because it relies heavily on datasets gathered from a variety of open access sources, Red Poppy requires the development of a robust plugin to identify and prevent, aggregate, and/or remove duplicate records from the resources being harvested.  
+
+Such a plugin will require the minimum of a five-point match within a dataset that includes: first, last, and middle names (counting a single match); date of birth; date of death; branch of service; cemetery name; cemetery location; and plot number.  Testing with human-checked results will establish a lower point-match threshold at which a duplicate can be confirmed via automation vs. being identified as a potential duplicate that requires human confirmation.
+
+Red Poppy Project Database Fields
+
+Veteran:
+Id
+birthDate
+birthPlace
+deathDate
+deathPlace
+deathAge
+serviceDates
+militaryRank
+militaryHonors
+portrait (image file)
+
+Service:
+militaryBranch
+militaryUnit
+militaryTheater
+
+Burial:
+Id
+burialPlot
+burialGPS
+burial_CemeteryName
+burial_CemeteryType
+burial_CemeteryLocation
+burial_CemeteryAddress
+
+Memorial:
+Id
+memorialPlot
+memorialGPS
+memorial_CemeteryName
+memorial_CemeteryType
+memorial_CemeteryLocation
+memorial_CemeteryAddress
+
+Marker:
+markerType
+markerCondition
+markerInscription
+photo (image file)
+
+Data Sources:
+https://inventory.data.gov/dataset/418c770d-3427-4b26-b31f-e3ec97508a98/resource/53a0824d-2236-4c22-9dc8-9ac59b05285d
+http://www.cem.va.gov/cem/pdf/faqs_public_ancestry_ledgers_final.pdf
+http://www.cem.va.gov/CEM/pdf/ledger_list.pdf
+http://files.usgwarchives.net/va/fauquier/cemeteries/man-alpha.txt
+
+

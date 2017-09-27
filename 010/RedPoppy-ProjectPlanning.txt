@@ -1,0 +1,51 @@
+Red Poppy Project
+1. Primary goal:  To create a centralized database that records the gravesites of U.S. Veterans, whether domestically or overseas. The site will:
+
+	a. Record Veteran names
+	b. Birth and death dates
+	c. Gravestone inscriptions
+	d. Cemetery and stone location (plot #; GIS, when available)
+	e. Branches of service, when available
+	f. Service decorations, when available
+	g. Photographs of gravestones, when available
+	h. Portraits of Veterans, when available
+	i. Memories, when available (invitation to family & comrades to contribute)
+
+2. Secondary goal: U.S. military history is well-documented and the subject of many books, exhibits, and film documentaries. What is lesser known is the identity of the millions of men and woman who served and often died in the service of the Country. The Red Poppy Project compiles the names and profiles of Veterans who, through research of public-access service records can be associated with specific units, squads, and operations, allowing for the creation of exhibits that put a human face on war.
+
+3. Primary audience: Family and professional genealogists, and descendants of the Veterans included in the database. The site will invite this primary audience to contribute to the database including uploading new listings for Veterans not present in the database, adding gravestone photos, adding portraits of Veterans, and providing service information. In this way, family members and comrades are provided an opportunity to recognize and honor fallen loved ones in an open access, digital environment. 
+
+4. Secondary audience: Secondary and post-secondary age students who may be better able to connect with U.S. History if it is provided in association with the personal stories, ages, and photographs of Veterans. Exhibits will be constructed in compliance with Common Core goals and standards and will provide a series of suggested lesson plans for secondary-level instruction across the spectrum of U.S. History from 1754 to present day. Lesson plans will emphasize interdisciplinary instruction and include opportunities to address such areas as genealogical research, storytelling, and historic, cemetery preservation.
+
+5. Website breakdown: 
+
+	a. Theme: A customized theme will be created to deliver a consistent header, menu, and color scheme across the site. 
+
+		i. Colors: Light blue, gray, and subtle gold accents with black text will be utilized throughout the site. The chosen colors, in combination with the scarlet poppy logo, deliver a nod to the official colors of each branch of the U.S. Military. Colors will be subtle with black text to provide optimal on-screen access. 
+		ii. Directory: The site will incorporate tab navigation which will include the following menu:
+
+			1. About this Project: Defines the purpose, scope, and data sources for the site.
+			2. Exhibits: This landing page will serve as a portal to an index of exhibit titles; a rotating feature exhibit display. Each exhibit listing will include a brief synopsis. Exhibit-specific lesson plans will be incorporated within the navigation options for each exhibit.
+			3. Veteran Cemeteries: Listings of National and State Veterans Cemeteries, including a Google geolocation map and links to asp-delivered directories of interments included in the database.
+			4. Veterans A-Z: Alphabetical list of individual Veterans’ names with links that generate profile pages on the fly. This tab includes a search feature allowing users to search for individual Veterans by name.
+			5. Add Memories: An interactive form that allows users to upload new Veteran listings and inscriptions, gravestone pictures and geolocation, Veteran portraits, obituaries, service record information, or narrative memories.
+
+	b. Omeka Plugins: Archive Repertory; Bulk Metadata Editor; Catalog Search; Collection Tree; Commenting; Contribution; Contributor Contact; Corrections; CSV Import; Derivative Images; Dropbox; Exhibit Builder; Facet by Metadata; Flickr Import; Geolocation; Honor Thy Contributors; HTML5 Media; Item History Log; Item Relations; Record Relations; Redact Elements; Search by Metadata; Simple Pages; Social Bookmarking.
+	c. Mobile Omeka Plugins: Location-based search; Contribution Mobile; Send to Mobile; Enhanced JSON Output.
+	d. Custom Plugins: Service Branch Emblem; Service Decorations (Beyond the scope of the assignment: Pages on the Fly (asp generated Veteran profile pages); Dup Checker)
+
+6. Building the Site: 
+	a. Metadata schema: TBA but objects will include the following:
+
+		i. Veteran names
+		ii. Birth and death dates
+		iii. Gravestone inscriptions
+		iv. Cemetery and stone location (plot #; GIS, when available)
+		v. Branches of service, when available (informs Service Branch Emblem plugin)
+		vi. Service decorations, when available (informs Service Decorations plugin)
+		vii. Photographs of gravestones, when available
+		viii. Portraits of Veterans, when available
+		ix. Memories, when available (invitation to family & comrades to contribute)
+
+	b. Dataload: Once defined, metadata, available in CSV format from the National Cemetery Association, documenting 4,415,200 U.S. Veterans’ burials will be loaded into the database driving the site.
+

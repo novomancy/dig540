@@ -1,0 +1,163 @@
+
+1. SQL Statement:  SELECT * FROM `contributor`
+
+RESULTS:
+17	Ennio Morricone	11/10/1928	NULL
+18	Sergio Leone	1/3/1929	4/30/1989
+19	George Lucas	5/14/1944	NULL
+20	John Williams	2/8/1932	NULL
+21	Chris Columbus	9/10/1958	NULL
+22	John Berry	11/3/1933	1/30/2011
+23	Monty Norman	4/4/1928	NULL
+24	Guy Hamilton	9/16/1922	NULL
+
+2. SQL Statement: Select contributor.name as 'Composer' from `contributor` ASC
+
+Composer
+Chris Columbus
+Ennio Morricone
+George Lucas
+Guy Hamilton
+John Berry
+John Williams
+Monty Norman
+Sergio Leone
+
+3. SQL Statement: Select track.title as 'Composition' from `track`
+
+Composition
+Binary Sunset
+Goldfinger Theme
+Hedwig's Theme
+James Bond Theme
+Man with a Harmonica
+
+4. SQL Statement: Select contributor.name as 'Composer', track.title as 'Composition' from `contributor`, `track`, `contributor_track` where contributor.id=`contributor_track`.contributor_id and track.id=`contributor_track`.track_id
+
+Composer	Composition
+John Williams	Binary Sunset
+John Berry	Goldfinger Theme
+John Williams	Hedwig's Theme 
+Monty Norman	James Bond Theme
+Ennio Morricone	Man with a Harmonica
+
+5. SQL Statement: Select contributor.name as 'Composer', track.title as 'Composition', movie.title as 'Movie' from `contributor`, `track`, `contributor_track`, `movie`, `movie_track` where contributor.id=`contributor_track`.contributor_id and track.id=`contributor_track`.track_id and track.id=`movie_track`.track_id
+and movie.id=`movie_track`.movie_id
+
+Composer	Composition		Movie
+John Berry	Goldfinger Theme	Goldfinger
+Monty Norman	James Bond Theme	Goldfinger
+John Williams	Hedwig's Theme		Harry Potter and the Philosopher's Stone
+Ennio Morricone	Man with a Harmonica	Once Upon a Time in the West
+John Williams	Binary Sunset		Star Wars: A New Hope
+
+6. SQL Statement: Select track.title as 'Composition', musicGenre.name as 'Genre' from `track`, `musicGenre`, `track_musicGenre`where track.id=`track_musicGenre`.track_id and musicGenre.id=`track_musicGenre`.musicGenre_id
+
+Composition		Genre
+Binary Sunset		Orchestral
+Goldfinger Theme	Pop
+Hedwig's Theme		Symphonic
+James Bond Theme	Jazz
+Man with a Harmonica	Western
+
+7. SQL Statement: Select movie.title as 'Movie', contributor.name as 'Director' from `contributor`, `movie`, `contributor_movie` where contributor.id=`contributor_movie`.contributor_id and movie.id=`contributor_movie`.movie_id
+
+Movie						Director
+Goldfinger					Guy Hamilton
+Harry Potter and the Philosopher's Stone	Chris Columbus
+Once Upon a Time in the West			Sergio Leone
+Star Wars: A New Hope				George Lucas
+
+8. SQL Statement: SELECT * from `mood`
+
+33	Cool
+34	Eerie
+28	Ethereal
+27	Hope
+36	Menance
+30	Mysterious
+35	Ominous
+25	Poignant
+26	Struggle
+32	Suave
+31	Suspenseful
+29	Wonder
+
+9. SQL Statement: SELECT movie.title as 'Movie', scene.name as 'Scene' from `movie`, `scene`, `movie_scene` where movie.id=`movie_scene`.movie_id and scene.id=`movie_scene`.scene_id
+
+Movie						Scene
+Goldfinger					Title sequence
+Harry Potter and the Philosopher's Stone	Hedwig Flying
+Once Upon a Time in the West			Frank and Harmonica's Final Show Down
+Star Wars: A New Hope				Luke Skywalker contemplates his future
+
+------------
+
+------------
+
+------------
+
+5 Questions
+
+1. What moods are expressed by the movie music?
+
+SELECT track.title as 'Composition', mood.name as 'Mood' from `track`, `mood`, `track_mood` where track.id=`track_mood`.track_id and mood.id=`track_mood`.mood_id
+
+Composition		Mood
+Binary Sunset		Struggle
+Goldfinger Theme	Suave
+Hedwig's Theme		Ethereal
+James Bond Theme	Suspenseful
+Man with a Harmonica	Eerie
+
+------------
+
+2. In which movies and scenes do the compositions appear? 
+
+SELECT movie.title as 'Movie', scene.name as 'Scene', track.title as 'Composition' from `movie`, `scene`, `movie_scene`, `track`, `track_scene` where movie.id=`movie_scene`.movie_id and scene.id=`movie_scene`.scene_id and track.id=`track_scene`.track_id and scene.id=`track_scene`.scene_id
+
+Movie						Scene					Composition
+Goldfinger					Title sequence				Goldfinger Theme
+Goldfinger					Title sequence				James Bond Theme
+Harry Potter and the Philosopher's Stone	Hedwig Flying				Hedwig's Theme
+Once Upon a Time in the West			Frank and Harmonica's Final Show Down	Man with a Harmonica
+Star Wars: A New Hope				Luke Skywalker contemplates his future	Binary Sunset
+
+------------
+
+3. Who were the directors of these movies?
+
+SELECT contributor.name as 'Director', movie.title as 'Movie' from `contributor`, `movie`, `contributor_movie` where contributor.id=`contributor_movie`.contributor_id and movie.id=`contributor_movie`.movie_id 
+
+Director	Movie
+Guy Hamilton	Goldfinger
+Chris Columbus	Harry Potter and the Philosopher's Stone
+Sergio Leone	Once Upon a Time in the West
+George Lucas	Star Wars: A New Hope
+
+------------
+
+4. What kind of atmosphere was being created in each of the movies and what was the name of the musical scores?
+
+SELECT scene.name as 'Scene', mood.name as 'Atmosphere', track.title AS 'Composition', movie.title as  'Movie' FROM  `scene` ,  `mood` ,  `track` ,  `movie` ,  `movie_scene` ,  `track_scene` ,  `scene_mood` WHERE scene.id = `scene_mood`.scene_id AND mood.id = `scene_mood`.mood_id AND track.id = `track_scene`.track_id AND scene.id = `track_scene`.scene_id AND movie.id = `movie_scene`.movie_id AND scene.id = `movie_scene`.scene_id 
+
+Scene					Atmosphere	Composition		Movie
+Frank and Harmonica's Final Show Down	Ominous		Man with a Harmonica	Once Upon a Time in the West
+Hedwig Flying				Wonder		Hedwig's Theme		Harry Potter and the Philosopher's Stone
+Luke Skywalker contemplates his future	Poignant	Binary Sunset		Star Wars: A New Hope
+Title sequence				Suave		Goldfinger Theme	Goldfinger
+Title sequence				Suave		James Bond Theme	Goldfinger
+
+------------
+
+5. What is the musicological analysis of these musical scores?
+
+SELECT track.title as 'Composition', musicGenre.name as 'Genre', modulation.name as 'Tempo', cadence.name as 'Cadence', mood.name as 'Mood' from `track`, `musicGenre`, `track_musicGenre`, `modulation`, `track_modulation`, `cadence`, `track_cadence`, `mood`, `track_mood` where track.id=`track_musicGenre`.track_id and musicGenre.id=`track_musicGenre`.musicGenre_id and track.id=`track_modulation`.track_id and modulation.id=`track_modulation`.modulation_id and track.id=`track_cadence`.track_id and cadence.id=`track_cadence`.cadence_id and track.id=`track_mood`.track_id and mood.id=`track_mood`.mood_id
+
+Composition		Genre		Tempo		Cadence		Mood
+Man with a Harmonica	Western		3-beat meter	Ostinato	Eerie
+Goldfinger Theme	Pop		Diminished 7th	Dominant	Suave
+Binary Sunset		Orchestral	4-beat meter	Tonic		Struggle
+Hedwig's Theme		Symphonic	3-beat meter	Dominant	Ethereal
+James Bond Theme	Jazz		Chain		Ostinato	Suspenseful
+
