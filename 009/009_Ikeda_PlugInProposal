@@ -1,0 +1,152 @@
+Kris Ikeda
+DIG540, Fall 2015
+Omeka Exhibition Proposal with New Plug-In
+_________________________________________________________
+
+Tadao Photography: A Sparkly Vision
+______________________________________
+Tadao Photography: A Sparkly Vision is a compilation of years of collecting
+firework imagery on July 4th during public celebrations throughout the United
+States of America.
+
+This proposed Omeka exhibition is supported by the DIG540, 2015 Fall Division.
+The online presentation of this exhibition will be curated by Sirk Adeki.
+
+This exhibition collection will consist of still photography
+and video imagery.
+
+* Included with Omeka *
+Omeka has a standard installation and a variety of plug-ins that will handle
+most exhibition needs. The standard installation will accommodate:
+
+-- Basic Metadata: Dublin Core Metadata Initiative --
+
+Title
+Title as given to the piece by Tadao.
+
+Subject
+Topic of the piece. For this exhibition, all will be tagged as
+“Fireworks display.”
+
+Description
+A description of the piece to include the date, the location, and enough
+remarks for identification.
+
+Creator
+All will be tagged as “Tadao.”
+
+Source
+Physical location in the country for where the fireworks display was viewed.
+
+Publisher
+All will be tagged as “Sirk Adeki” who will curate this online exhibition.
+
+Date
+Date of viewed fireworks display from which the piece was derived.
+
+Contributor
+All will be tagged as “DIG540, 2015 Fall Edition” to recognize a major
+resource contributor.
+
+Rights
+TO BE ENHANCED WITH NEW PLUG-IN
+
+Relation
+All will be tagged as “Tadao Studios.”
+
+Format
+Will refer to file format, physical medium and/or dimensions of the piece,
+as applicable.
+
+Language
+All will be tagged as “English.”
+
+Type
+Tagged as “Digital Photography” or “Video Photography,” as applicable.
+
+Identifier
+Tagged as “Tadao Photography: A Sparkly Vision –“ to be followed by the
+name of the piece.
+
+Coverage
+Tagged as “Tadao Photography: A Sparkly Vision.”
+
+Bibliographic Citation
+A reference note as composed by Omeka.
+
+* Still Images *
+
+Object Type Description
+A static visual representation. All of Tadao’s still photography will be
+tagged as Still Image.
+
+Common Format Files: specifically, JPEG
+
+-- Additional Metadata Elements --
+
+Original Format
+Digital Photograph
+
+Resolution
+Varies by image (pixels)
+
+Dimensions
+Varies by image (pixels)
+
+Physical Dimensions
+Not applicable
+
+* Moving Images *
+
+Description
+A moving visual representation. All of Tadao’s videos will be tagged as
+Moving Images.
+
+Common Format Files: specifically, MP4
+
+-- Additional Metadata Elements --
+
+Transcription
+Not applicable
+
+Original Format
+Digital video
+
+Duration
+Varies (seconds)
+
+Compression
+Varies
+
+Producer
+Tadao
+
+Director
+Tadao
+
+* Required Plug-Ins *
+Exhibit Builder
+
+** New Plug-In **
+Omeka.net (free version) only allows for text in the Rights metadata category.
+To adhere to the contract with Tadao Studios, a new plug-in will be designed.
+
+* Features *
+Ability to watermark images, both thumbnails and full-size
+Ability to link Creative Commons licenses, as necessary and applicable
+Ability to disable right-click “Save Image As” function
+
+-- Plug-In -- Additional Metadata --
+
+Watermark Disabled
+  Field has two options: Yes/No
+    "Yes" invokes a watermark across the center of the image (thumbnails, full-size)
+    "No" indicates no watermark
+
+Rights
+  Field holds a URL for a Creative Commons license or other similar site link
+
+Disable Right-Click
+  Field has two options: Yes/No
+    Yes disables the right-click save option for an image
+    No allows the right-click save option for an image

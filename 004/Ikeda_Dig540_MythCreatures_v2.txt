@@ -1,0 +1,89 @@
+## Mythical Creatures Zoological Virtual Exhibition v2.0 (DIG540: Ikeda)
+
+A visitor hesitates over the mouse click as he rethinks his choice of mythical
+hero avatars. He is uncertain his hero will successfully navigate the virtual
+exhibition he is about to enter. He clicks.
+
+Never fear! The creatures of myth, folklore and gaming cannot harm the hero avatar. Each
+gallery is dedicated to creatures of similar origins and storylines; those who may
+have walked together and may have fought one another. A cacophony of their sounds erupts from
+the computer speakers as the visitor moves his avatar among the galleries.
+
+The visitor’s eyes widen in awe. He can click on a creature to discover its story, 
+to hear its range of sounds, to watch it in action, or to view its relationships.
+
+The exhibition will be accessible without need for an account or login, and without submitting
+fees or viewing advertisements.
+
+**Aims & Objectives**
+
+ - To present a contemporary and engaging exhibition of mythological creatures to
+   online audiences worldwide.
+
+ - To build support for classic fables and tales, various myths and folklore, and
+   gaming narratives, and their preservation.
+
+ - To play an important role in zoological studies, as well as in literature and the arts.
+
+ - To stimulate a visitor’s visual and auditory senses.
+
+ - To inspire the imagination.
+
+**Table Descriptions**
+
+Creatures
+  creatureID: unique identifier
+  creatureName: name of creature as known in its main storyline
+  origin: root of creature’s existence
+  howBorn: method of birth
+  foodSource: preferred food source
+  power: supernatural power, if applicable
+  venom: poison, if applicable
+  mortality: how the creature can be killed, if applicable
+  adultHeight: average height (in feet) at adulthood
+  adultWeight: average weight (in pounds) at adulthood
+
+Parts
+  partID: unique identifier
+  part: part of a existing animal that is part of the creature
+
+AnimalBase
+  animalBaseID: unique identifier
+  animalBase: an existing animal
+
+Relationship
+  creatureID1: unique identifier
+  relationshipType: how two creatures are related
+  creatureID2: unique identifier
+
+Sounds
+  soundsID: unique identifier
+  whereRecorded: studio
+  seasonRecorded: time of year
+  yearRecorded: year the sound was recorded
+  howRecorded: how the sound was recorded
+  soundType: creature’s use of sound
+  soundLength: length of sound measured in seconds
+
+Individual
+  individualID: unique identifier
+  firstName: first name of the individual
+  lastName: last name of the individual
+  affiliation: studio
+
+Role
+  roleID: unique identifier
+  roleName: individual’s job title
+
+Media
+  mediaID: unique identifier
+  storiesID: unique identifier
+  mediaType: how story is presented
+  title: title for media
+  year: year created
+  format: medium
+
+Stories
+  storiesID: unique identifier
+  storyName: title for original story
+  storyOrigin: origin of story

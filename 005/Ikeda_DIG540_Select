@@ -1,0 +1,154 @@
+## Mythical Creatures Zoological Virtual Exhibition: SELECT Statements (DIG540: Ikeda)
+
+** SIMPLE SELECT **
+SELECT creature.creature_name FROM creature
+
+"Fenrir"
+"Griffin"
+"Hati Hroovitnisson"
+"Loki"
+"Skoll"
+"Sybaris"
+"Zilant"
+
+** FOREIGN KEY AND LOOK-UP TABLE SELECT **
+SELECT c.creature_name, b.how_born FROM creature c, how_born b
+WHERE c.how_born_id = b.id
+
+"Griffin","Hatched"
+"Sybaris","Hatched"
+"Zilant","Hatched"
+"Fenrir","Live Birth"
+"Skoll","Live Birth"
+"Hati Hroovitnisson","Live Birth"
+"Loki","Live Birth"
+
+SELECT c1.creature_name, r.relationship_type, c2.creature_name FROM creature c1, creature c2, relationship r
+WHERE c1.id=r.creature_id1 AND c2.id=r.creature_id2
+
+"Fenrir","is father of","Skoll"
+"Fenrir","is father of","Hati Hroovitnisson"
+"Fenrir","is offspring of","Loki"
+"Hati Hroovitnisson","is offspring of","Fenrir"
+"Hati Hroovitnisson","is sibling of","Skoll"
+"Loki","is father of","Fenrir"
+"Skoll","is offspring of","Fenrir"
+"Skoll","is sibling of","Hati Hroovitnisson"
+
+SELECT c.creature_name, ab.animal_base, p.part FROM creature c, animal_base ab, part p, creature_animal_base_part cabp
+WHERE c.id=cabp.creature_id AND ab.id=cabp.animal_base_id AND p.id = cabp.part_id
+
+"Sybaris","Dragon","Back Legs"
+"Sybaris","Dragon","Tail"
+"Zilant","Dragon","Wings"
+"Griffin","Eagle","Head"
+"Griffin","Eagle","Wings"
+"Griffin","Eagle","Front Legs"
+"Griffin","Lion","Body"
+"Griffin","Lion","Tail"
+"Griffin","Lion","Back Legs"
+"Zilant","Snake","Body"
+"Fenrir","Wolf","All"
+"Skoll","Wolf","All"
+"Hati Hroovitnisson","Wolf","All"
+"Loki","Wolf","All"
+"Sybaris","Woman","Head"
+"Sybaris","Woman","Torso"
+
+SELECT c.creature_name, o.origin FROM creature c, origin o
+WHERE c.origin_id = o.id
+
+"Sybaris","Delphic mythology"
+"Griffin","Middle Eastern folklore"
+"Fenrir","Norse mythology"
+"Skoll","Norse mythology"
+"Hati Hroovitnisson","Norse mythology"
+"Loki","Norse mythology"
+"Zilant","Russian legend"
+
+SELECT c.creature_name, s.sound_length, s.year_recorded FROM creature c, sound s, creature_sound cs
+WHERE c.id=cs.creature_id AND s.id=cs.sound_id
+
+"Fenrir","45","2006"
+"Griffin","45","1987"
+"Hati Hroovitnisson","90","1994"
+"Loki","45","1987"
+"Skoll","60","2001"
+"Sybaris","30","1994"
+"Zilant","15","1982"
+
+SELECT s.year_recorded, st.sound_type FROM sound s, sound_type st
+WHERE s.sound_type_id = st.id
+
+"1987","Hunting"
+"1994","Full Moon"
+"2006","War Cry"
+"2001","Injuried"
+"1994","Happy"
+"1987","Call to Female"
+"1982","Hunting"
+
+SELECT s.year_recorded, i.first_name, i.last_name, r.role_name FROM sound s, individual i, role r, sound_individual_role sir
+WHERE s.id = sir.sound_id AND i.id = sir.individual_id AND r.id = sir.role_id
+
+"2006","Jackie","Brownstein","Mixer"
+"1994","Jackie","Brownstein","Mixer"
+"1987","Jackie","Brownstein","Mixer"
+"1994","Jack","Blackman","Producer"
+"2001","Jack","Blackman","Producer"
+"1994","Jack","Blackman","Sound Effects"
+"2001","Jack","Blackman","Sound Effects"
+"1987","Fredericka","James","Vocals"
+"1982","Fredericka","James","Vocals"
+"1987","Julius","McNillan","Producer"
+"1994","Julius","McNillan","Producer"
+"2006","DeNalia","Smith","Producer"
+"1982","DeNalia","Smith","Producer"
+"1987","DeNalia","Smith","Producer"
+
+** QUESTIONS & ANSWERS **
+
+(1) Which creatures are hatched from eggs?
+
+SELECT c.creature_name FROM creature c, how_born b
+WHERE c.how_born_id = b.id and b.id = 1
+
+"Griffin"
+"Sybaris"
+"Zilant"
+
+(2) Which creatures are fathers?
+
+SELECT c1.creature_name, r.relationship_type, c2.creature_name FROM creature c1, creature c2, relationship r
+WHERE c1.id=r.creature_id1 AND c2.id=r.creature_id2 AND r.relationship_type = "is father of"
+
+"Fenrir","is father of","Skoll"
+"Fenrir","is father of","Hati Hroovitnisson"
+"Loki","is father of","Fenrir"
+
+(3) Which sounds were vocalized by Fredericka James?
+
+SELECT s.year_recorded, st.sound_type FROM sound s, sound_type st, sound_individual_role sir
+WHERE s.id = sir.sound_id AND s.sound_type_id = st.id AND sir.individual_id = 3
+
+"1987","Hunting"
+"1982","Hunting"
+
+(4) Which creatures have dragon parts?
+
+SELECT c.creature_name AS 'Creature', p.part AS 'has from a Dragon' FROM creature c, animal_base ab, part p, creature_animal_base_part cabp
+WHERE c.id = cabp.creature_id AND ab.id = cabp.animal_base_id AND p.id = cabp.part_id AND p.id = 4
+
+Creature, has from a Dragon
+"Griffin","Tail"
+"Sybaris","Tail"
+
+(5) What role(s) did DeNalia Smith play?
+
+SELECT r.role_name AS "Sound Production Role" FROM individual i, sound_individual_role sir, role r
+WHERE r.id = sir.role_id AND i.id = sir.individual_id AND i.id = 5
+
+Sound Production Role
+"Producer"
+"Producer"
+"Producer"
