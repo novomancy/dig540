@@ -1,0 +1,107 @@
+#Discworld’s Disc-World AudioCDDB
+#
+#Author: Araminta Matthews
+#Created for DIG540: 19 September, 2015
+#
+#Rationale and Background: 
+#
+#My favorite author, Sir Terry Pratchett, wrote 41 books in the Discworld Universe. While not largely adapted for cinema or video-game, these books have been recorded 
+#into audiobooks in two categories (abridged or unabridged) by four readers (Stephen Briggs, Nigel Planer, Tony Robinson, or Celia Imrie). Additionally, the 41 books 
+#in the series can be further categorized into character-plotlines, as there are “series within series,” including books featuring the protagonist constellations of: 
+#Rincewind, Death, The Witches, The City Watch, The Wizards of Unseen University, Tiffany Aching, and Moist von Lipwig, with an additional possible category of the 
+#pseudo-nonfiction books within the series (such as Nanny Ogg’s Cookbook or Mrs. Bradshaw’s Handbook) which have been adapted to audiobook format but do not have a 
+#protagonist.  Almost every book in the collection has more than one audio version, each   recorded by more than one voice actor—thus, Stephen Briggs has narrated 
+#almost every book, including those also narrated by Nigel Planer or Celia Imrie such that there are at least 2 versions of, say, Wyrd Sisters; and Tony Robinson tends 
+#to narrate the abridged versions. 
+#
+#These audiobooks have also been released in multiple formats (a single audio book can span several discrete CD’s or a single MP3CD, or it can be located in the stream). 
+#For the purposes of simplifying this database schema, I’m only going to catalogue the tangible discs (and ignore the streaming versions, as the stream introduces 
+#complexities of track data that I’m not ready to unpack).  Also, because the same book (say, Hat Full of Sky) can have an abridged version, an unabridged version, 
+#and even a paperback version (a whole different type of data that what I hope to capture in this database), I was less clear about how to handle ISBN’s, as each of those 
+#three version types previously mentioned would have its own, unique ISBN. Thus, even though each disc/narrator combination represents the same book, it doesn’t represent 
+#the same artifact. 
+#
+#I expect that listeners will want to be able to extract  at least the following types of data sets:
+#1.	What book number the book appears in the overall series to determine if prior knowledge is a factor in the listening experience
+#2.	What book number the book appears in the storyline serial to ensure continuity of the plot in the listening experience
+#3.	What narrator read which book and if multiple narrators read the same title (in order to select a preference)
+#4.	How many discs are associated with this title/data set/format/narrator
+#5.	How long the relative audio-file is given different readers reading the same work (or to identify an abridgement). 
+#
+#
+#Note: Database logic is not something that comes easy to me as it is counterintuitive to my learning style. As such, I have a lot of questions in this schema (noted in-text). I’m really not sure of how this works, if things are clustered logically, or how a look-up table works (that is, I can’t quite fathom why you would need one). I offer this primarily because I need to show you what I think I understand so that I can get feedback and intervention on what I suspect is a growing foundation of misunderstanding on my part. Thanks! 
+Database Design: 
+
+BOOKID: 	The data following this keyword should be a list of book-identification numbers. Because all 
+the books in the Discworld series are by Terry Pratchett, there is no need to identify them by title. Each book, however, represents a unique entity. 
+It is also important that this numerical identification is not the ISBN as, depending on the format, the audio file may have different ISBN’s assigned to 
+different versions of the same entity. The purpose of this table is to identify the specific book title. Other tables will isolate distinguishing features 
+of the version of said title. 
+
+BTITLE:  	The data following this keyword should be the book title (1 of 41 possible titles) of the book itself. 
+
+BYEAR:		The data following this keyword represents the year in which the book was originally written. In most cases, this data will differ than the 
+year in which the corresponding audio files were created.  Because this series of books is known for being “Unnumbered,” this information may be important 
+to extrapolate a potential “listening” order of the books. 
+
+STORYID: 	The data following this keyword will be an identification number that  categorizes which of the 8 possible protagonist-constellations or storylines 
+present in Discworld. Each storyline represents its own possible listening order. 
+
+STORYLINE-THEME: The data following this keyword will identify the textual label of the story theme, as this will vary by book and/or disc. These include 
+Rincewind, Death, The Witches, The City Watch, The Wizards of Unseen University, Tiffany Aching, Moist von Lipwig, and pseudo-nonfiction. 
+
+STORYN:  	The data following this keyword will identify the number associated with the potential 
+listening order of this particular story in the storyline. That is, Discworld has an overarching reading-order (1-41) 
+and a storyline reading order in which each of the 8 unique storylines has a consequent serial. This number will identify where the story falls in the sub-serial
+ listening order. (**John: I’m less certain this data is in the right table. Any feedback? Thanks)
+
+STORYV [N]: The data following this keyword will distinguish the number of distinct character voices read by the narrator (that is, 
+how many voices are “acted” by the narrator for this particular storyline?)
+
+FORMATID:  The data following this keyword determines whether the book is an MP3CD or an Audio CD. 
+	This is relevant because it affects the number of possible discs and tracks in the particular 
+	audio-file. 
+
+FLENGTH:	 The data following this keyword will identify the length associated with the audio-file. 
+Because different readers read at different speeds, and because this database includes abridged and unabridged versions of 
+audio-files, this data will indicate the associated length of the format for this particular audio file (**John, please note 
+I’m also not sure this is in the right place. It may make sense to extrapolate this data just from disc length-total (where some books 
+will have multiple discs). It may make sense to associate this with the disc itself? Or perhaps the narrator? I’m struggling with this one, 
+but the data is important. Feedback welcome). 
+
+DISCID:  	The data following this keyword represents a comma-separaterd list of unique disc 
+identification numbers. Some books in this audio-file series will have multiple discs associated with them and others will have only 1. 
+This data is meant to capture the discid of the whole, unique audio-work, as the subsequent data field will capture which disc-number 
+is associated with the particular file. 
+
+DISCN: 	The data following this field represents the number of discs associated with the file (MP3 discs 
+	will only have N=1 in this field; whereas AudioCD’s will have N=[1 to 12] in this field). 
+
+DYEAR: 	The data following this field represents the year the disc/audio-file was published. 
+
+DPUB:	The data following this field will represent the publisher of the audio-file (which will likely 
+	differ from the publisher of the original text-work). 
+
+DNARRATOR:  The data following this keyword will be the name of the narrator associated with the 
+particular disc/version of the title. (**Note, John: I’m less certain this should be in this table. Each unique disc 
+might have a narrator or different versions of the same title, but never more than one narrator per disc. Thoughts? 
+To normalize, I took this out of the table in my graphic depiction of the database since each disc will have a one-to-one 
+relationship to the narrator) 
+
+DLENGTH:  The data following this keyword would be the length of the disc (where total length of the 
+	audiofile could be queried by adding up DLENGTH for multi-disc files). 
+
+NARRATORID:   The data following this keyword represents the numerical identification of the audio-
+	narrator of the disc. 
+
+NNAME:  The data following this keyword represents the name of the narrator.
+
+NHOME:  The data following this keyword represents the home-region of the narrator (which may be 
+	significant to listeners who are interested in certain dialectical tonality in audiofiles). 
+
+NGEND: 	The data following this keyword identifies the gender identity of the narrator (which may be 
+	significant to listeners who prefer a feminine or masculine voice). 
+
+#??(John, I did not include this in my example, but each narrator of each of the books has a prolific filmography which 
+#may or may not interest listeners. Is there a way to link databases? That is, could there be an ID in this table that connects the unique narrator with his or her 
+#filmography file on the Internet Movie Database? How would something like that work?) 

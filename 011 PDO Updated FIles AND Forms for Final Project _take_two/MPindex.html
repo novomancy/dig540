@@ -1,0 +1,47 @@
+<html>
+<head>
+    <title>The Modern Priscilla Index</title>
+    <link rel="stylesheet" type="text/css" href="mpstyle.css">
+</head>
+
+<body>
+
+  <h1>The Modern Priscilla Index</h1>
+
+  <div class="divI">
+
+<!--
+Magazine title
+Magazine Month and year of publication
+Magazine cover art
+Table of contents list -->
+
+    <form method="POST" action="">
+    <fieldset>
+      <legend>Add an issue of Modern Priscilla to the database</legend><br>
+      <p><lable>Magazine title: <input type="text" name="title" placeholder="Modern Priscilla" class="ifield"></lable></p>
+      <p><lable>Publication date: <input type="date" name="pubdate" min="1887-01-01" max="1930-12-31" class="ifield"></lable></p>
+      <p><lable>Table of Contents: </lable><br>
+      <textarea name="toc" rows="15" cols="45" class="ifield">
+With the Editors - page 2
+A Luncheon Cloth of Perennial Beauty - page 5
+Snow Crystal Doilies - page 6
+Blue and White "Willow Pattern Linens" - page 7
+Etc...
+      </textarea>
+      </p>
+      <p><lable>Cover art URL: <input type="url" name="url" placeholder="http://www.exam.ple/mp.jpg" class="ifield"></lable></p>
+    </fieldset>
+    <br>
+    <input type="submit" name="submit" value="submit" class="sbutton"></input>
+    </form>
+    <br>
+  </div>
+  <br>
+  <br>
+    <div class="divO">
+      <p> Output goes here </p>
+    </div>
+
+  </body>
+</html>

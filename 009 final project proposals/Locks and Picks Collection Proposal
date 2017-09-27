@@ -1,0 +1,33 @@
+Picking Locks and Picking Locks
+Proposal by Araminta Matthews for DIG540 Omeka Collection
+Submitted 11/28/2015
+
+
+Background: I have several friends who work with network administration, security administration,
+programming and coding, and web development, and there is a large swath of them who
+entertain a passion for picking progressively harder locks. When I ask my friends what's the
+appeal, they generally share the same response: "Picking a lock is like overcoming the security
+measures within a program. The principles are the same. Knowing how they crack helps me to
+ensure my programs are less vulnerable." Couple that with the vast number of homeowners I know,
+each with a decent amount of property to protect, and we find that knowing what locks protect
+what (and what it takes to "hack" them) can be beneficial both to the budding programmer and
+to the property-protector.
+
+Proposal: Drawing on the collection of locks held by this swath of programmer friends, I would
+like to build an exhibit that demonstrates an image of the lock, the lock by name and price-point,
+its consequent rating according to the proprietor of the brand, the rating from Underwriters
+Laboratories (UL437), the picks necessary to pick the lock, and a user-rating to validate both
+proprietary and UL437 rating systems. This collection will be built using Omeka's standard installation,
+a few readily available plug-ins, and a custom-plug-in included below.
+
+Theme: This exhibition will resemble a "character sheet" from a role-playing game. Each image of a
+lock will be accompanied by its stats, "hit points," and the experience level necessary to
+"defeat it."
+
+Process (Standard Installation and Pre-Scripted Plug-ins):
+1. Omeka Standard Installation
+2. Plug-in: COMMENTING
+    Users will be able to comment their experience with the lock, and/or ask questions
+3. Plug-in: YOUTUBE IMPORT:
+    Users will be able to connect to a Youtube video of the lock being picked
+
