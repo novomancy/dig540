@@ -1,0 +1,76 @@
+DIG 540 Week 6 Queries - Paul Smitherman
+
+Simple Query:
+SELECT * FROM `audio_object` WHERE 1
+
+"1","Brother Paul","Audio Cassette","1989","A compilation of both vocal and instrumental tunes recorded by Paul from July to December 1989."
+"2","Spring Street August 1992","Audio Cassette","1992","Recorded in the ""cold room"" of the 3rd floor Spring St apartment in Bangor, ME. Other artists: Diane Smitherman, Chris Jovanelli and Nathan Reardon."
+
+
+Query for audio objects and tracks by year:
+SELECT audio_object.title AS "Album", track.title AS "Track", track.record_year AS "Year" FROM audio_object, track, audio_object_track WHERE track.id=audio_object_track.track_id AND audio_object.id=audio_object_track.audio_object_id 
+
+"Brother Paul","From the Mountains to the Sea","1989"
+"Brother Paul","Spacehog","1989"
+"Spring Street August 1992","Bread and Water","1992"
+"Spring Street August 1992","Nicodemus","1992"
+
+
+Query for audio objects and tracks by location:
+SELECT audio_object.title AS "Album", track.title AS "Track", location.name AS "Recording Location" FROM audio_object, track, location, audio_object_track, track_location WHERE track.id=audio_object_track.track_id AND audio_object.id=audio_object_track.audio_object_id AND track.id=track_location.track_id AND location.id=track_location.location_id
+
+"Brother Paul","From the Mountains to the Sea","Horizon Inn"
+"Brother Paul","Spacehog","Horizon Inn"
+"Spring Street August 1992","Bread and Water","Spring Street"
+"Spring Street August 1992","Nicodemus","Spring Street"
+
+
+Query for audio objects and tracks by artists:
+SELECT audio_object.title AS "Album", artist.first_name AS "First Name", artist.last_name AS "Last Name", track.title AS "Track" FROM audio_object, track, artist, audio_object_track, track_artist WHERE track.id=audio_object_track.track_id AND audio_object.id=audio_object_track.audio_object_id AND track.id=track_artist.track_id AND artist.id=track_artist.artist_id
+
+"Brother Paul","Paul","Smitherman","From the Mountains to the Sea"
+"Brother Paul","Paul","Smitherman","Spacehog"
+"Spring Street August 1992","Paul","Smitherman","Bread and Water"
+"Spring Street August 1992","Diane","Smitherman","Bread and Water"
+"Spring Street August 1992","Paul","Smitherman","Nicodemus"
+"Spring Street August 1992","Diane","Smitherman","Nicodemus"
+"Spring Street August 1992","Chris","Jovanelli","Nicodemus"
+
+
+Who was on a particular track?
+SELECT audio_object.title AS "Album", track.title AS "Track", artist.first_name AS "First Name", artist.last_name AS "Last Name" FROM audio_object, track, artist, audio_object_track, track_artist WHERE track.id=audio_object_track.track_id AND audio_object.id=audio_object_track.audio_object_id AND track.id=track_artist.track_id AND artist.id=track_artist.artist_id AND track.title="Nicodemus"
+
+"Spring Street August 1992","Nicodemus","Paul","Smitherman"
+"Spring Street August 1992","Nicodemus","Diane","Smitherman"
+"Spring Street August 1992","Nicodemus","Chris","Jovanelli"
+
+
+When was a particular track recorded?
+SELECT audio_object.title AS "Album", track.title AS "Track", track.record_year AS "Year" FROM audio_object, track, audio_object_track WHERE track.id=audio_object_track.track_id AND audio_object.id=audio_object_track.audio_object_id AND track.title="Spacehog"
+
+"Brother Paul","Spacehog","1989"
+
+
+Where was a particular track recorded?
+SELECT audio_object.title AS "Album", track.title AS "Track", location.name AS "Recording Location" FROM audio_object, track, location, audio_object_track, track_location WHERE track.id=audio_object_track.track_id AND audio_object.id=audio_object_track.audio_object_id AND track.id=track_location.track_id AND location.id=track_location.location_id AND track.title="From the Mountains to the Sea"
+
+"Brother Paul","From the Mountains to the Sea","Horizon Inn"
+
+
+Which tracks were recorded in a particular year?
+SELECT audio_object.title AS "Album", track.title AS "Track", track.record_year AS "Year" FROM audio_object, track, audio_object_track WHERE track.id=audio_object_track.track_id AND audio_object.id=audio_object_track.audio_object_id AND track.record_year="1992"
+
+"Spring Street August 1992","Bread and Water","1992"
+"Spring Street August 1992","Nicodemus","1992"
+
+
+Which artists recorded in a particular year?
+SELECT audio_object.title AS "Album", track.title AS "Track", track.record_year AS "Year",artist.first_name AS "First Name", artist.last_name AS "Last Name" FROM audio_object, track, audio_object_track, artist, track_artist WHERE track.id=audio_object_track.track_id AND audio_object.id=audio_object_track.audio_object_id AND track.id=track_artist.track_id AND artist.id=track_artist.artist_id AND track.record_year="1992"
+
+"Spring Street August 1992","Bread and Water","1992","Paul","Smitherman"
+"Spring Street August 1992","Bread and Water","1992","Diane","Smitherman"
+"Spring Street August 1992","Nicodemus","1992","Paul","Smitherman"
+"Spring Street August 1992","Nicodemus","1992","Diane","Smitherman"
+"Spring Street August 1992","Nicodemus","1992","Chris","Jovanelli"
+
+
