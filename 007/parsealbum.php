@@ -2,6 +2,10 @@
 // This file is a PHP file. It will be executed when you load
 // it on a web server.
 
+// Before we do anything else, let's turn on error reporting.
+error_reporting(E_ALL); 
+ini_set("display_errors", 1); 
+
 // The goal of this PHP is to open a .csv file, read each line in it, and then render
 // those lines out to the browser.
 
