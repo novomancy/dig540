@@ -87,7 +87,7 @@ while($data_row = fgetcsv($file_handle)){
             for($j=0; $j<count($genres); $j++){
                  // We have a problem, though. $j is starting at 0. Computers may start count at 0, 
                  // but humans typically don't. We'll print out $j+1 below.
-                 print_r("$first_line[$i] #".($j+1)." is $genres[$j]<br>);
+                 print_r("$first_line[$i] #".($j+1)." is $genres[$j]<br>");
              }
         }
     }
