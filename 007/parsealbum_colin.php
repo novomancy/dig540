@@ -67,7 +67,7 @@ while($data_row = fgetcsv($file_handle)){
         if($i < 4){
             // $i starts at 1 and increases by 1 each in this loop, so it can only be 1 or 2 or 3 in this branch.
             // These data items are fine as is, so we can just print them out.
-            print_r("$first_line[$i: $data_row[$i]<br>");
+            print_r("$first_line[$i]: $data_row[$i]<br>");
         
         } else {
             // Since 1 and 2 and 3 are handled above, and the loop ends after 5, only 4 and 5 can go here
