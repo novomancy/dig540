@@ -19,7 +19,10 @@
                 $genres = str_getcsv($data_row[$i]);
 
                 for($j=0; $j<count($genres); $j++){
+                    
                     print_r("$first_line[$i] #".($j+1)." is $genres[$j]<br>");
+
+                   
                 }
             }
         }
