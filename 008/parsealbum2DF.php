@@ -57,20 +57,22 @@ while($data_row = fgetcsv($file_handle)){
     //THE HMTL code formats as typical (paragraph and space. 
     //The code below will open it and then later code will close the while loop.
 
-    print_r("<p>This is the #data_row[0] album:<br>");
+    print_r("<p>This is the #$data_row[0] album:<br>");
 
 //
     for($i=1; $i<count($data_row); $i++){
 
         if($i < 4){
 
-            print_r("$first_line[$i]: $data_row [$i]<br>");
+           print_r("$first_line[$i]: $data_row[$i]<br>");
+
+            print_r('<span style="color: red;">'"$first_line[$i]#".($j+1)." is $genres[$j]'</span><br>');
 
         } else {
 
             $genres = str_getcsv ($data_row[$i]);
 
-            for($j =0; $j<count($genre); $j++){
+            for($j =0; $j<count($genres); $j++){
 
                 print_r("$first_line[$i]#".($j+1)." is $genres[$j]<br>");
             }
