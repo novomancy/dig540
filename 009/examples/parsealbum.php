@@ -72,7 +72,7 @@
     for($i=count($albums)-1; $i>=0; $i--){
         print_r("<p>This is the #$i album:<br>");
 
-        $albus[$i]->getData();
+        $albums[$i]->getData();
 
         // $albums[$i]->getTitle();
         // $albums[$i]->getYear();
