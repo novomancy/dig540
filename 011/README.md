@@ -6,7 +6,7 @@ This set of videos will show you how to turn the basic input/output scripts we c
 
 The files I ended up with after creating these videos are in the examples directory for you to look at.
 
-- Organizing exhibit files: <https://vimeo.com/244925732>
+- Organizing exhibit files: <https://vimeo.com/246173789>
 - Creating a list: <https://vimeo.com/246180345>
 - Navigating using metadata: <http://vimeo.com/246175789>
 - Final project clarification: <https://vimeo.com/246180791>
