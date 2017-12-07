@@ -52,27 +52,27 @@
                 else print_r("<span style='color:red'>Subgenre #".($j+1)." is ".$this->subgenres[$j]."</span><br>");
             }
         }
-          //->setData runs all the setX methods  
-       //$data_row is a single row of data from the csv passed as an array. Mappings are below.  
-     public function setData($data_row){   
+        //->setData runs all the setX methods  
+        //$data_row is a single row of data from the csv passed as an array. Mappings are below.  
+        public function setData($data_row){   
         $this->setArtist($data_row[3]);  
         $this->setTitle($data_row[2]);  
         $this->setRank($data_row[0]);  
         $this->setYear($data_row[1]);  
         $this->setGenres($data_row[4]);  
         $this->setSubgenres($data_row[5]);  
-   }  
-       //->getData runs all the getX methods (which print out the data for each property)  
-    public function getData(){  
+        }  
+        //->getData runs all the getX methods (which print out the data for each property)  
+        public function getData(){  
         $this->getTitle();  
         $this->getYear();  
         $this->getRank();  
         $this->getArtist();  
         $this->getGenres();  
-        $this->getSubgenres();  
+        $this->getSubgenres(); 
         // print_r('data_row:'.$this->albums . '<br>'); unnecessary!
+        }     
     }
-
     $file_handle = fopen('./albumlist.csv', 'r');
 
     $first_line = fgetcsv($file_handle);
