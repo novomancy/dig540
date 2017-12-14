@@ -2,7 +2,7 @@
 $host = 'localhost:3306';
 $db = 'colinwin_discs';
 $user = 'colinwin_curator';
-$pass = '';
+$pass = 'Colinjcw@445';
 $charset = 'utf8';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
@@ -13,4 +13,6 @@ $opt = [
 ];
 
 $pdo = new PDO($dsn, $user, $pass, $opt);
+
+
 ?>

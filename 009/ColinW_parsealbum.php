@@ -34,13 +34,13 @@
         public function getYear(){ 
             print_r('Year: '.$this->year . '<br>'); 
         }
-        public function setGenres($genres){ 
-            $this->genres = str_getcsv($genres);
+        public function setComposer($composer){ 
+            $this->Composer = str_getcsv($composer);
         }
         public function getGenres(){ 
             for($j=0; $j<count($this->genres); $j++){
-                if($j%2==0) print_r("<span style='color:blue'>Genre #".($j+1)." is ".$this->genres[$j]."</span><br>");
-                else print_r("<span style='color:red'>Genre #".($j+1)." is ".$this->genres[$j]."</span><br>");
+                 print_r("<span style='color:blue'>Genre #".($j+1)." is ".$this->genres[$j]."</span><br>");
+                
             }
         }
         public function setSubgenres($subs){ 
@@ -86,12 +86,6 @@
     while($data_row = fgetcsv($file_handle)){
         $album = new Album();
         $album->setData($data_row);
-        // $album->setArtist($data_row[3]);
-        // $album->setTitle($data_row[2]);
-        // $album->setRank($data_row[0]);
-        // $album->setYear($data_row[1]);
-        // $album->setGenres($data_row[4]);
-        // $album->setSubgenres($data_row[5]);
         array_push($albums, $album);
     }
 

@@ -1,9 +1,9 @@
 <?php
 class Album{
-    private $artist;
+    private $ID;
     private $title;
-    private $rank;
-    private $year;
+    private $ID;
+    private $;
     private $genres;
     private $subgenres;
     private $id;
