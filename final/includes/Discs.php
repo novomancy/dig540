@@ -41,7 +41,7 @@
         print_r('Artist:'.$this->Artist . '<br>'); }
      }
      public function setComposerID($composerNumber){ 
-        $this->ComposerID = $composerNumber;
+        $this->ComposerID = str_getcsv($composerNumber);
      }
      public function getComposerID(){ 
         print_r('ComposerID:'.$this->ComposerID . '<br>'); }
@@ -89,20 +89,20 @@
             $this->ID = $pdo->lastInsertID();
             print_r("--Saved this title to the database"--<br>\n");
 
-            $select_composer = $pdo->prepare("SELECT * FROM Composer WHERE name = ?");
-            $composer_insert = $pdo->prepare("INSERT INTO Composer (name) VALUES (?);
-            $composer_link = $pdo->prepare("INSERT INTO album-composer (album_id, composer_id) VALUES (?, ?)")
+            $select_Composer = $pdo->prepare("SELECT * FROM Composer WHERE name = ?");
+            $Composer_insert = $pdo->prepare("INSERT INTO Composer (name) VALUES (?);
+            $Composer_link = $pdo->prepare("INSERT INTO album-composer (album_id, composer_id) VALUES (?, ?)")
 
-            for($i=0; $i<count($this->composers); $i++){
-                $select_composer->execute([implode(', ',$this_composers)]);
-                $exisiting_composer = select_composer->fetch();
-                if (!$exisiting_composer){
-                    $db_composer = composer_insert->execute([$this->Composer[$i]]);
+            for($i=0; $i<count($this->Composer); $i++){
+                $select_Composer->execute($this_Composer[$i]);
+                $existing_Composer = $select_Composer->fetch();
+                if (!$existing_Composer){
+                    $db_composer = Composer_insert->execute([$this->Composer[$i]]);
                     $Composer_id = $pdo->lastInsertID();
-                    $Composer_id = $existing_composer['id'];
+                    $Composer_id = $existing_Composer['id'];
                 }
-                $composer_link->execute([this->id], composer_id);
-                print_r("Connected" . $this->composers[$i]."to$this->Title<br>\n");
+                $Composer_link->execute([this->id], composer_id);
+                print_r("Connected" . $this->Composer[$i]."to$this->Title<br>\n");
             }
             flush();
             ob_flush();
@@ -114,27 +114,4 @@
         }
      }
  }
-
-//  $file_handle = fopen('./disc.list.csv', 'r');
-
-//  $first_line = fgetcsv($file_handle);
-
-//  for($i=0; $i<count($first_line); $i++){
-//      print_r('Column header found: '.$first_line[$i].'<br>');
-//  }
-
-//  $albums = array();
- 
-//  while($data_row = fgetcsv($file_handle)){
-//     $album = new Album();
-//     $album->setData($data_row);
-//      array_push($albums, $album);
-//  }
-
-//  for($i=count($albums)-1; $i>=0; $i--){
-//      print_r("<p>This is the #$i album:<br>");
-//      print_r('</p>');
-//  }
-
-//  fclose($file_handle);
 ?>

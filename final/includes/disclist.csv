@@ -1,8 +1,24 @@
-ID,Title,Year,ArtistID,Artist,ComposerID,Composer,ImageURL
-5,The Glory of Purcell,1995,6,Christopher Hogwood,7,Henry Purcell,https://goo.gl/images/brGx1q
-7,Sir Hubert Parry,2015,5,James O'Donnel,6,Hubert H. Parry,https://goo.gl/images/WDhXcE 
-10,Adam's Lament,2012,4,Tonu Kaljuste,5,Arvo Part,https://goo.gl/images/Vmw9Rm
-11,Messiah Highlights,1998,3,George Solti,4,George F. Handel,https://goo.gl/images/RG4xEi
-14,The Song of Songs,1994,2,John Rutter,3,Giovani Da Palestrina,https://goo.gl/images/Sb91CU
-15,Faure Requiem,1988,2,John Rutter,2,Henry Purcell,https://goo.gl/images/QD5nms
-18,Tallis Mass for Four Voices,1993,1,Jeremy Summerly,1,Thomas Tallis,https://goo.gl/images/yHnsnx
+"5","The Glory of Purcell","1995","6","https://goo.gl/images/brGx1q"
+"7","Sir Hubert Parry","2015","5","https://goo.gl/images/WDhXcE "
+"10","Adam's Lament","2012","4","https://goo.gl/images/Vmw9Rm"
+"11","Messiah Highlights","1998","3","https://goo.gl/images/RG4xEi"
+"14","The Song of Songs","1994","2","https://goo.gl/images/Sb91CU"
+"15","Faure Requiem","1988","2","https://goo.gl/images/QD5nms"
+"18","Tallis Mass for Four Voices, Motets","1993","1","https://goo.gl/images/yHnsnx"
+"20","A Banquet of Voices","1994","2","https://goo.gl/images/RLRa15"
+"1","Summerly, Jeremy"
+"2","Rutter, John"
+"3","Solti, Sir George"
+"4","Kaljuste, Tonu"
+"5","O'Donnel, James"
+"6","Hogwood, Christopher"
+"1","""Thomas Tallis"""
+"2","""Gabriel Faure"""
+"3","""Giovanni da Palestrina"""
+"4","""George F. Handel"""
+"5","""Arvo Part"""
+"6","""Hubert H. Parry"""
+"7","""Henry Purcell"""
+"8","""Johann Sebastian Bach"""
+"9","""Gregorio Allegri"""
+"10","""Johannes Brahms"""
