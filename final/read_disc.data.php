@@ -2,7 +2,7 @@
     error_reporting(E_ALL); 
     ini_set("display_errors", 1); 
     include_once("./includes/db_config.php");
-    include_once("./includes/Discs.php");
+    include_once("./includes/Disc.php");
 
     //Open the file
     $file_handle = fopen('./disclist.csv', 'r');
@@ -21,8 +21,9 @@
     //This loop reads through the data file and instantiates Album objects for each row
     //It stores these objects in the $albums array
     while($data_row = fgetcsv($file_handle)){
-        $album = new Album();
+        $albums = new Album();
         $album->setData($data_row);
+        $album->save();
         array_push($albums, $album);
     }
 
