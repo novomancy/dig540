@@ -1,24 +1,9 @@
-"5","The Glory of Purcell","1995","6","https://goo.gl/images/brGx1q"
-"7","Sir Hubert Parry","2015","5","https://goo.gl/images/WDhXcE "
-"10","Adam's Lament","2012","4","https://goo.gl/images/Vmw9Rm"
-"11","Messiah Highlights","1998","3","https://goo.gl/images/RG4xEi"
-"14","The Song of Songs","1994","2","https://goo.gl/images/Sb91CU"
-"15","Faure Requiem","1988","2","https://goo.gl/images/QD5nms"
-"18","Tallis Mass for Four Voices, Motets","1993","1","https://goo.gl/images/yHnsnx"
-"20","A Banquet of Voices","1994","2","https://goo.gl/images/RLRa15"
-"1","Summerly, Jeremy"
-"2","Rutter, John"
-"3","Solti, Sir George"
-"4","Kaljuste, Tonu"
-"5","O'Donnel, James"
-"6","Hogwood, Christopher"
-"1","""Thomas Tallis"""
-"2","""Gabriel Faure"""
-"3","""Giovanni da Palestrina"""
-"4","""George F. Handel"""
-"5","""Arvo Part"""
-"6","""Hubert H. Parry"""
-"7","""Henry Purcell"""
-"8","""Johann Sebastian Bach"""
-"9","""Gregorio Allegri"""
-"10","""Johannes Brahms"""
+id,title,year,artist_id,Artist,composer_id,composer,image_url
+1,The Glory of Purcell,1995,27,Christopher Hogwood,"20","Henry Purcell",https://i.ebayimg.com/images/g/55EAAOSwm8VUuSAp/s-l300.jpg
+2,Sir Hubert Parry,2015,28,James O'Donnel,"21","Hubert H. Parry",https://images-na.ssl-images-amazon.com/images/I/71GGONqfkNL._SY355_.jpg
+3,Adam's Lament,2012,29,Tonu Kaljuste,"22","Arvo Part",https://images-na.ssl-images-amazon.com/images/I/51i74kTe96L._SX355_.jpg
+4,Messiah Highlights,1998,30,George Solti,"23","George F. Handel",https://images-na.ssl-images-amazon.com/images/I/51PH0FVE38L.jpg
+5,The Song of Songs,1994,31,John Rutter,"24","Giovani Da Palestrina",https://images-na.ssl-images-amazon.com/images/I/5163J0V8NSL.jpg 
+6,Faure Requiem,1988,31,John Rutter,"33","Gabriel Faure",https://images-na.ssl-images-amazon.com/images/I/61031N3GBQL.jpg
+7,Tallis Mass for Four Voices,1993,"32",Jeremy Summerly,"25","Thomas Tallis",https://images-na.ssl-images-amazon.com/images/I/51klgD6GgyL.jpg
+8,A Banquet of Voices,1994,31,John Rutter,"25, 26, 27, 28","Thomas Tallis, Johann Sebastian Bach, Gregorio Allegri, Johannes Brahms",https://s.mxmcdn.net/images-storage/albums8/7/0/8/6/3/2/14236807_350_350.jpg

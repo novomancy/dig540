@@ -21,7 +21,7 @@
     //This loop reads through the data file and instantiates Album objects for each row
     //It stores these objects in the $albums array
     while($data_row = fgetcsv($file_handle)){
-        $albums = new Album();
+        $album = new Album();
         $album->setData($data_row);
         $album->save();
         array_push($albums, $album);
