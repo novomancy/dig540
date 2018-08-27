@@ -1,12 +1,12 @@
 ## DIG540: Digital Collections & Exhibitions
 
-Syllabus v2.0, 3 credits
+Syllabus v2.1, 3 credits
 
   ----------------------------------------------------------------
 
 **Course Information**
 
--   Slack: <https://dig540-f17.slack.com>
+-   Slack: <https://dig540-f18.slack.com>
 -   GitHub: <https://github.com/novomancy/dig540>
 -   Instructor: John Bell
 
@@ -337,5 +337,5 @@ model and output of a collection management system.
 |   |
 |  Platforms and tools |
 |   |
-|  **Final Project Due: 5PM on Friday, Dec. 15** |
+|  **Final Project Due: 5PM on Friday, Dec. 21** |
   ----------------------------------------------------------------
