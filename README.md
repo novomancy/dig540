@@ -142,10 +142,13 @@ accommodations ahead of time than after the fact.**
     sanction under the student conduct code is dismissal from the
     University.
 
-2)  **Students with disabilities statement:** If you have a disability
-    for which you may be requesting an accommodation, please contact
-    Disabilities Services, 121 East Annex, 581-2319, as early as
-    possible in the term.  
+2)  **Students with disabilities statement:** If you have a disability 
+    for which you may be requesting an accommodation, please contact 
+    Student Accessibility Services, 121 East Annex, 581.2319, as early 
+    as possible in the term. Students who have already been approved 
+    for accommodations by SAS and have a current accommodation letter 
+    should meet with me (the instructor of the course) privately as 
+    soon as possible.
 
 3)  **Course Schedule Disclaimer (Disruption Clause):** In the event of
     an extended disruption of normal classroom activities, the format
