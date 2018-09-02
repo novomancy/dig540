@@ -5,10 +5,12 @@ Hi everyone! This week is all about getting the environment set up. The videos b
 **Videos**
 
 - Introduction to DIG540: <https://vimeo.com/231592995>
-- Installing Slack: <https://vimeo.com/138143812>
-- Setting up Reclaim: <https://vimeo.com/138143813>
+- Installing Slack: <https://vimeo.com/287914943>
+- Setting up Reclaim: <https://vimeo.com/287914887>
 - Creating a GitHub Account: <https://vimeo.com/138143816>
 - Configuring Visual Studio Code: <https://vimeo.com/231766886>
+
+Important Note: At around 3:50 in the last video I tell you to click on a button that was removed from Visual Studio Code after I recorded it. Instead of clicking on "Clone Git Repository" you now need to open the command palette (Control-Shift-P on Win/Linux, Command-Shift-P on Mac), type Git:Clone in the box that appears, and hit enter. Then you will be able to proceed with the video instructions by entering the URL you want to clone in the prompt that appears.
 
 **Links**
 
@@ -26,7 +28,7 @@ Git Basics: <http://git-scm.com/video/what-is-version-control>
 
 You should watch this video to get an idea of why Git was created and what it is used for in everyday practice. There are _many_ resources about Git on the web if you want to learn more, but we will only be using it to send assignment files back and forth in this course so you don't have to worry about most of its functionality. Git is definitely a good thing to know, though!
 
-Try GitHub: <https://try.github.io/levels/1/challenges/1>
+Try GitHub: <https://learngitbranching.js.org/>
 
 Most of our interaction with Git will be handled by Visual Studio Code so you shouldn't have to actually use the command line interface much (or at all, with luck). However, if you want a little more of an introduction to what Git is actually doing I'd suggest running through this tutorial. It will show you the commands that the client is actually running behind the scenes and give you another example of the concepts that Git uses.
 
@@ -36,4 +38,4 @@ Install the software in the videos and create your GitHub account. Then, fork th
 
 Also, set up your Reclaim account or let me know if you have another hosted environment already. Since the video linked above is a couple years old the signup page looks a little different and the price is slightly higher than I say in the video but it's still ridiculously cheap and convenient!
 
-**The assignment should be done by Wednesday Sept. 6th.**
+**The assignment should be done by Wednesday Sept. 12th.**
