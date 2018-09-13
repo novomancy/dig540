@@ -4,3 +4,4 @@ GLAM - An acronym for Galleries, Libraries, Archives, and Museums
 Normalization - restructuring data so that it fits into a relational database scheme
 1NF - the first normal form, which reduces duplication and created unique IDs
 Fork: copying a repository into one's own. 
+Pull request - A request to synchronize file changes to GitHub in the master
