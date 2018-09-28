@@ -3,6 +3,7 @@
 For this batch of videos we're going to take a closer look at the CDDB and FreeDB formats and see how they compare to the kind of data structures that we'll be studying most this semester, relational databases. This will also be the first time that you need to submit your assignment via GitHub - don't worry, there are instructions below on how to do that!
 
 **GitHub**
+
 See the GitHub video below on how to update your fork of the class with this week's content and then submit your assignment. Note that, although I use a text file in the example, you can put any file you want in a directory tracked by git and it will sync up to the server. This week you'll be turning in a .txt text file and a .png graphic.
 
 **Videos**
