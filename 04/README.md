@@ -24,6 +24,7 @@ See the GitHub video below on how to update your fork of the class with this wee
 *Note 3: Apologies that the fork update video is a bit choppy; GitHub doesn't like what I'm trying to do by simulating multiple user accounts. Just let me know if you run into any trouble in Slack. It just goes to show though: despite being incredibly useful, git can also be a real pain point in any development workflow!*
 
 **Reading**
+
 This is not required, but may be helpful: <https://www.essentialsql.com/get-ready-to-learn-sql-database-normalization-explained-in-simple-english/>
 
 Note that there is also a 4NF and 5NF if you look around at other references, but you don't need to worry about them right now.
