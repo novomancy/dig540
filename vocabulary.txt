@@ -5,3 +5,4 @@ Normalization - restructuring data so that it fits into a relational database sc
 1NF - the first normal form, which reduces duplication and created unique IDs
 Fork: copying a repository into one's own. 
 Pull request - A request to synchronize file changes to GitHub in the master
+Open source - not password protected
