@@ -1,0 +1,12 @@
+I have added information about the recording locations and years to the base metadata.  This pulls year out of the 
+Disc information and places it in the recording table.  The recording information would also include the record 
+label and country of recording.  The exhibition will highlight the country of recording and the country of origin 
+for the artist so that people can then search by this attribute, which is currently not available in freedb.  
+This feature could be important for people searching for music by country of origin.  For example, in Canada, 
+rules from the Canadian Radio-television and Telecommunications Commission state that a certain percentage of 
+content needs to be at least partially created by people from Canada.  The ability to search by country of origin 
+and recording in an online list would be useful in this situation as it means material could be located easily.  
+Including the recording location is also important because, according to these rules, the artist does not 
+necessarily have to be Canadian, but if it was recorded in Canada then undoubtedly Canadian people would have 
+been involved in the creation of the record.  For this example I would start by including my own music collection 
+which is very diverse in genre and recording location, but does focus heavily on Canadian artists to begin with.
