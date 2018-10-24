@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Oct 10, 2018 at 09:39 PM
+-- Generation Time: Oct 17, 2018 at 01:14 PM
 -- Server version: 5.6.41-log
 -- PHP Version: 5.6.30
 
@@ -67,7 +67,7 @@ INSERT INTO `keyword` (`keywordid`, `keyword`) VALUES
 --
 
 CREATE TABLE `language` (
-  `languageid` int(11) NOT NULL,
+  `languageid` int(8) NOT NULL,
   `language` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -311,7 +311,8 @@ ALTER TABLE `track_speaker`
 -- Indexes for table `transcription`
 --
 ALTER TABLE `transcription`
-  ADD PRIMARY KEY (`scripid`);
+  ADD PRIMARY KEY (`scripid`),
+  ADD KEY `trackid` (`trackid`);
 
 --
 -- Indexes for table `transcription_language`
@@ -340,7 +341,7 @@ ALTER TABLE `keyword`
 -- AUTO_INCREMENT for table `language`
 --
 ALTER TABLE `language`
-  MODIFY `languageid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `languageid` int(8) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `speaker`
@@ -391,6 +392,12 @@ ALTER TABLE `track_language`
 ALTER TABLE `track_speaker`
   ADD CONSTRAINT `track_speaker_ibfk_1` FOREIGN KEY (`speakerid`) REFERENCES `speaker` (`speakerid`),
   ADD CONSTRAINT `track_speaker_ibfk_2` FOREIGN KEY (`trackid`) REFERENCES `track` (`trackID`);
+
+--
+-- Constraints for table `transcription`
+--
+ALTER TABLE `transcription`
+  ADD CONSTRAINT `transcription_ibfk_1` FOREIGN KEY (`trackid`) REFERENCES `track` (`trackID`);
 
 --
 -- Constraints for table `transcription_language`
