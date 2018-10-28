@@ -1,0 +1,95 @@
+SELECT disc.title, disc.label FROM `disc`
+
+"Let It Rock","Quality"
+"We Were Born In A Flame","Universal Music Canada"
+"Wild Life","Universal Music Canada"
+"Lo-Fantasy","Paper Bag Records"
+
+
+SELECT disc.title, genre.name FROM `disc`, `genre`, `disc_genre` WHERE disc.id = disc_genre.disc_id AND genre.id = disc_genre.genre_id
+
+"Let It Rock","Rockabilly"
+"We Were Born In A Flame","Indie Rock"
+"Lo-Fantasy","Indie Rock"
+"Wild Life","Pop Rock"
+
+
+SELECT disc.title as album, artist.artistname FROM `disc`, `artist`, `disc_artist` WHERE disc.id = disc_artist.disc_id AND artist.id = disc_artist.artist_id
+
+"We Were Born In A Flame","Sam Roberts"
+"Let It Rock","Ronnie Hawkins"
+"Lo-Fantasy","Sam Roberts Band"
+"Wild Life","Hedley"
+
+
+SELECT disc.title as album, track.title as song FROM `track`, `disc` WHERE disc.id = track.disc_id
+
+"Let It Rock","Let It Rock"
+"We Were Born In A Flame","Hard Road"
+"Wild Life","Anything"
+"Wild Life","Crazy For You"
+"Lo-Fantasy","Shapeshifters"
+"Lo-Fantasy","We're All In This Together"
+
+
+SELECT track.title as song, artist.origin as artist_origin, disc.country as recording_country FROM `artist`, `disc`, `track`, `disc_artist` WHERE artist.id = disc_artist.artist_id AND disc.id = disc_artist.disc_id AND track.disc_id = disc.id
+
+"Hard Road","Canada","Canada"
+"Let It Rock","Arkansas, USA","Canada"
+"Shapeshifters","Canada","Canada"
+"We're All In This Together","Canada","Canada"
+"Anything","Canada","Canada"
+"Crazy For You","Canada","Canada"
+
+
+SELECT artist.artistname, track.title as song FROM `track`, `disc`, `disc_artist`, `artist` WHERE artist.id = disc_artist.artist_id AND disc.id = track.disc_id AND disc.id = disc_artist.disc_id AND disc_artist.disc_id = disc.id
+
+"Sam Roberts","Hard Road"
+"Ronnie Hawkins","Let It Rock"
+"Sam Roberts Band","Shapeshifters"
+"Sam Roberts Band","We're All In This Together"
+"Hedley","Anything"
+"Hedley","Crazy For You"
+
+
+What songs were recorded by Sam Roberts as an individual artist and as the Sam Roberts Band?
+SELECT artist.artistname, track.title as song FROM `track`, `disc`, `disc_artist`, `artist` WHERE artist.id = disc_artist.artist_id AND disc.id = track.disc_id AND disc.id = disc_artist.disc_id AND disc_artist.disc_id = disc.id AND artist.artistname LIKE "Sam Roberts%"
+
+"Sam Roberts","Hard Road"
+"Sam Roberts Band","Shapeshifters"
+"Sam Roberts Band","We're All In This Together"
+
+
+What tracks were recorded in Canada?
+SELECT track.title as song, artist.origin as artist_origin, disc.country as recording_country FROM `artist`, `disc`, `track`, `disc_artist` WHERE artist.id = disc_artist.artist_id AND disc.id = disc_artist.disc_id AND track.disc_id = disc.id AND disc.country = "Canada"
+
+"Hard Road","Canada","Canada"
+"Let It Rock","Arkansas, USA","Canada"
+"Shapeshifters","Canada","Canada"
+"We're All In This Together","Canada","Canada"
+"Anything","Canada","Canada"
+"Crazy For You","Canada","Canada"
+
+
+What songs were recorded after the year 2000?
+SELECT track.title, disc.year FROM `disc`, `track` WHERE track.disc_id = disc.id AND disc.year > 2000 order by disc.year ASC
+
+"Hard Road","2004"
+"Anything","2013"
+"Crazy For You","2013"
+"Shapeshifters","2014"
+"We're All In This Together","2014"
+
+
+What albums are under the Indie Rock genre?
+SELECT disc.title, genre.name FROM `disc`, `genre`, `disc_genre` WHERE disc.id = disc_genre.disc_id AND genre.id = disc_genre.genre_id AND genre.name = "Indie Rock"
+
+"We Were Born In A Flame","Indie Rock"
+"Lo-Fantasy","Indie Rock"
+
+
+What genres were recorded by Universal Music Canada?
+SELECT disc.label, genre.name FROM `disc`, `disc_genre`, `genre` WHERE disc.id = disc_genre.disc_id AND genre.id = disc_genre.genre_id AND disc.label = "Universal Music Canada"
+
+"Universal Music Canada","Indie Rock"
+"Universal Music Canada","Pop Rock"
