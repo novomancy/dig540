@@ -1,0 +1,97 @@
+SELECT speaker.date_of_birth from speaker
+
+"date_of_birth"
+"1929-07-02"
+"1930-02-03"
+"1935-12-02"
+"1941-03-12"
+
+SELECT * from speaker
+
+"id";"name";"job_title";"date_of_birth";"biography"
+"3";"Josie Church";"Retired R.N.";"1929-07-02";"Born in 1929, Josie grew up on Goodale Corner. She later attended the University of Maine and earned a degree in nursing. She raised 2 children and moved to Bucksport for two years before returning to her hometown of Orrington."
+"4";"Dick Harrington";"Retired Store Owner";"1930-02-03";"Dick Harrington was born and raised on Settler's Way in South Orrington. His grandfather founded Harrington's General Store in 1902 and the business was passed down to Dick Harrington Sr. and finally to Dick Harrington Jr."
+"5";"Brian Jones";"Retiree, Prior Town Manager";"1935-12-02";"Most recently, Brian Jones worked as Orrington's Town Manager. Prior to that, he was a C.P.A. at a large accounting firm in Bangor. He grew up in North Orrington."
+"6";"Jackie Betts";"Retiree, Prior Schoolteacher";"1941-03-12";"Jackie Betts taught at North Orrington School for nearly 40 years before moving to Center Drive School."
+
+SELECT track.title as `interview title`, speaker.name as `person interviewed` from track, speaker, track_speaker where track.id = track_speaker.track_id and speaker.id = track_speaker.speaker_id 
+
+"Interview with Josie Church","Josie Church"
+"Interview with Dick Harrington","Dick Harrington"
+"Interview with Brian Jones","Brian Jones"
+"Interview with Jackie Betts","Jackie Betts"
+
+
+SELECT track_keyword.keyword_type as `KEYWORD TYPE`, keyword.keyword as `KEYWORD` from track, keyword, track_keyword where track.id = track_keyword.track_id and keyword.id = track_keyword.keyword_id 
+
+"noun","history"
+"noun","history"
+,"history"
+"location","King's Mountain"
+
+
+SELECT interviewer.name as `Interviewer`, track.title as `Description` from interviewer, track, track_interviewer where interviewer.id = track_interviewer.interviewer_id and track.id = track_interviewer.track_id 
+
+"Sally Hays","Interview with Josie Church"
+"Sally Hays","Interview with Dick Harrington"
+"Sally Hays","Interview with Brian Jones"
+"Antonio Rodriguez","Interview with Brian Jones"
+"Antonio Rodriguez","Interview with Jackie Betts"
+
+
+SELECT language.language as `Languages Used`, transcription.text as `Full Text`, transcription.author as `Transcriber` from language, transcription, transcription_language where language.id = transcription_language.language_id and transcription.id = transcription_language.transcription_id 
+
+"English","Sally Hays: Thank you for agreeing to meet with me, Mrs. Church.
+Josie Church: You can call me Josie.","Diana Jones"
+"English","Sally Hays: Hi, I'm Sally, with the Orrington Historical Society.
+Dick Harrington: Nice to meet you.","Diana Jones"
+
+
+SELECT language.language as `Languages Used`, track.title as `Title`, track.location as `Interview Location` from language, track, track_language where language.id = track_language.language_id and track.id = track_language.track_id 
+
+"English","Interview with Josie Church","Orrington, ME"
+"English","Interview with Dick Harrington","Orrington, ME"
+"English","Interview with Brian Jones","Orrington, ME"
+"English","Interview with Jackie Betts","Brewer, ME"
+"French","Interview with Brian Jones","Orrington, ME"
+
+
+Questions: 
+
+1. Which interviews are at least partially conducted in a language other than English? 
+
+SELECT track.title as `Interview`, language.language as `Language` from track, language, track_language where language.id = 2 or language.id = 3 AND language.id = track_language.language_id AND track_language.track_id = track.id GROUP BY language.id
+
+Interview with Josie Church	French
+
+2. Which interviews has Sally Hays conducted? 
+
+SELECT track.title as `Interview`, interviewer.name as `Interviewer` from track, interviewer, track_interviewer where interviewer.id = 5 AND interviewer.id = track_interviewer.interviewer_id AND track.id = track_interviewer.track_id GROUP BY track.title ASC
+
+Interview with Brian Jones	Sally Hays
+Interview with Dick Harrington	Sally Hays
+Interview with Josie Church	Sally Hays
+
+3. Which speakers have "o" in their name? 
+
+SELECT speaker.name from speaker where name like '%o%' 
+
+Josie Church
+Dick Harrington
+Brian Jones
+
+4. Which speakers were born after 1930?
+
+SELECT speaker.name as `Name`, speaker.date_of_birth as `Date of Birth` from speaker WHERE speaker.date_of_birth > '1930-01-01' 
+
+"Name";"Date of Birth"
+"Dick Harrington";"1930-02-03"
+"Brian Jones";"1935-12-02"
+"Jackie Betts";"1941-03-12"
+
+5. Which keywords are nouns? 
+
+SELECT distinct keyword.keyword as `Keyword`, track_keyword.keyword_type as `Type` from keyword, track_keyword where keyword.id = track_keyword.keyword_id and track_id = track_keyword.track_id and track_keyword.keyword_type = 'noun' 
+
+"history","noun"
+"school","noun"
