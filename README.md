@@ -7,7 +7,6 @@ Syllabus v2.1, 3 credits
 **Course Information**
 
 -   Slack: <https://dig540-f18.slack.com>
--   GitHub: <https://github.com/novomancy/dig540>
 -   Instructor: John Bell
 
 **Course Description**
