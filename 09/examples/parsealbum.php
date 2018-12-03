@@ -37,12 +37,23 @@
             }
         }
 
-        public function setData(){
+        public function setData($data_row){
+            $this->setArtist($data_row[3]);
+            $this->setTitle($data_row[2]);
+            $this->setRank($data_row[0]);
+            $this->setYear($data_row[1]);
+            $this->setGenres($data_row[4]);
+            $this->setSubgenres($data_row[5]);
 
         }
 
         public function getData(){
-
+            $this->getArtist();
+            $this->getTitle();
+            $this->getRank();
+            $this->getYear();
+            $this->getGenres();
+            $this->getSubgenres();
         }
 
 
@@ -60,12 +71,7 @@
     
     while($data_row = fgetcsv($file_handle)){
         $album = new Album();
-        $album->setArtist($data_row[3]);
-        $album->setTitle($data_row[2]);
-        $album->setRank($data_row[0]);
-        $album->setYear($data_row[1]);
-        $album->setGenres($data_row[4]);
-        $album->setSubgenres($data_row[5]);
+        $album->setData($data_row);
         array_push($albums, $album);
     }
 
