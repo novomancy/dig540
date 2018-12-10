@@ -25,4 +25,6 @@ Over the next couple of weeks I am going to continue to demonstrate code example
 
 To submit your project you will need to send me all of the PHP files you write, any csv files with source data, any images that are part of your site (as opposed to displayed using an external URL), and an export of your complete database (data and structure) as an sql file. Those files can be submitted either via github or as a zip file sent in Slack. I will also need the URL to where I can see your completed site on Reclaim. *If you submit via github remember that github is public and not meant for sensitive information like passwords or potentially-IP restricted content like copyrighted images.*
 
+More information on the requirements above is in the video here: <https://vimeo.com/246180791>
+
 The final project is due Dec. 21, the last day of finals week. 
