@@ -11,7 +11,40 @@
   <body>
     <h1>Hello, world!</h1>
 
-    Insert PHP for displaying album data here!
+  <?php
+    error_reporting(E_ALL);
+    ini_set("display_errors", 1);
+
+    $file_handle = fopen('./albumlist.csv', 'r');
+
+    $first_line = fgetcsv($file_handle);
+
+    for($i=0; $i<count($first_line); $i++){
+      print_r('<div>Column header found: '.$first_line[$i].'</div><br>');
+    }
+
+    while($data_row = fgetcsv($file_handle)){
+      print_r("<p><strong>This is the #$data_row[0] album:<br></strong>");
+      for($i=1; $i<count($data_row); $i++){
+        if($i < 4){
+          print_r("$first_line[$i]: $data_row[$i]<br>");
+        } else {
+          $genres = str_getcsv($data_row[$i]);
+
+          for($j=0; $j<count($genres); $j++){
+            if($j%2==0){
+              print_r("<span style='color: green'>$first_line[$i]#".($j+1)." is $genres[$j]<br></span>");
+            } else {
+              print_r("<span style='color: blue'>$first_line[$i]#".($j+1)." is $genres[$j]<br></span>");
+            }
+          }
+        }
+      }
+      print_r('</p>');
+    }
+
+    fclose($file_handle);
+  ?>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
