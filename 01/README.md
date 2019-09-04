@@ -10,7 +10,7 @@ Hi everyone! This week is all about getting the environment set up. The videos b
 - Creating a GitHub Account: <https://vimeo.com/138143816>
 - Configuring Visual Studio Code: <https://vimeo.com/231766886>
 
-Important Note: At around 3:50 in the last video I tell you to click on a button that was removed from Visual Studio Code after I recorded it. Instead of clicking on "Clone Git Repository" you now need to open the command palette (Control-Shift-P on Win/Linux, Command-Shift-P on Mac), type Git:Clone in the box that appears, and hit enter. Then you will be able to proceed with the video instructions by entering the URL you want to clone in the prompt that appears.
+NOTE: there are a couple of minor graphical differences between the sites shown in the videos and their current interfaces, but they should be functionally the same. The only exception is in the final video. At around 3:50 I tell you to click on a button that was removed from Visual Studio Code after I recorded it. Instead of clicking on "Clone Git Repository" you now need to open the command palette (Control-Shift-P on Win/Linux, Command-Shift-P on Mac), type Git:Clone in the box that appears, and hit enter. Then you will be able to proceed with the video instructions by entering the URL you want to clone in the prompt that appears.
 
 **Links**
 
@@ -38,4 +38,4 @@ Install the software in the videos and create your GitHub account. Then, fork th
 
 Also, set up your Reclaim account or let me know if you have another hosted environment already. Since the video linked above is a couple years old the signup page looks a little different and the price is slightly higher than I say in the video but it's still ridiculously cheap and convenient!
 
-**The assignment should be done by Wednesday Sept. 12th.**
+**The assignment should be done by Wednesday Sept. 11th.**
