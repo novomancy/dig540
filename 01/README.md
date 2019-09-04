@@ -10,7 +10,7 @@ Hi everyone! This week is all about getting the environment set up. The videos b
 - Creating a GitHub Account: <https://vimeo.com/138143816>
 - Configuring Visual Studio Code: <https://vimeo.com/231766886>
 
-NOTE: there are a couple of minor graphical differences between the sites shown in the videos and their current interfaces, but they should be functionally the same. The only exception is in the final video. At around 3:50 I tell you to click on a button that was removed from Visual Studio Code after I recorded it. Instead of clicking on "Clone Git Repository" you now need to open the command palette (Control-Shift-P on Win/Linux, Command-Shift-P on Mac), type Git:Clone in the box that appears, and hit enter. Then you will be able to proceed with the video instructions by entering the URL you want to clone in the prompt that appears.
+NOTE: There are a couple of minor graphical differences between the sites shown in the videos and their current interfaces, but they should be functionally the same. The only exception is in the final video. At around 3:50 I tell you to click on a button that was removed from Visual Studio Code after I recorded it. Instead of clicking on "Clone Git Repository" you now need to open the command palette (Control-Shift-P on Win/Linux, Command-Shift-P on Mac), type Git:Clone in the box that appears, and hit enter. Then you will be able to proceed with the video instructions by entering the URL you want to clone in the prompt that appears.
 
 **Links**
 

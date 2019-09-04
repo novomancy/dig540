@@ -6,7 +6,7 @@ Syllabus v2.1, 3 credits
 
 **Course Information**
 
--   Slack: <https://dig540-f18.slack.com>
+-   Slack: <https://dig540-f19.slack.com>
 -   Instructor: John Bell
 
 **Course Description**
@@ -339,5 +339,5 @@ model and output of a collection management system.
 |   |
 |  Platforms and tools |
 |   |
-|  **Final Project Due: 5PM on Friday, Dec. 21** |
+|  **Final Project Due: 5PM on Friday, Dec. 20** |
   ----------------------------------------------------------------
