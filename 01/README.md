@@ -6,7 +6,7 @@ Hi everyone! This week is all about getting the environment set up. The videos b
 
 - Introduction to DIG540: <https://vimeo.com/231592995>
 - Installing Slack: <https://vimeo.com/287914943>
-- Setting up Reclaim: <https://vimeo.com/287914887>
+- Setting up Reclaim: <https://vimeo.com/357922528>
 - Creating a GitHub Account: <https://vimeo.com/138143816>
 - Configuring Visual Studio Code: <https://vimeo.com/231766886>
 
