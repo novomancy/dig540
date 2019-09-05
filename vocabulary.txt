@@ -1,0 +1,1 @@
+commit - I assume it means something like "confirm action" or else simply "submit" in computer language.
