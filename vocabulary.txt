@@ -1,2 +1,2 @@
 scripting - thought it was the same as coding but it seems to be a particular type of coding
-CMS - content management system
+CMS: Content Management System
