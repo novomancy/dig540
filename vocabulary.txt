@@ -1,1 +1,1 @@
-CMS - Content Management System
+CMS: Content Management System
