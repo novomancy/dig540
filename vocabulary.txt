@@ -1,0 +1,4 @@
+CMS - content management system
+CDDB - Compact Disc Database. A database for software applications to look up audio CD information over the internet.
+freedb - a database of audio CD listings, where all the content is under the GNU General Public License.
+Gracenote - a company that provides music, video, and sports metadata and automatic content recognition (ACR) technologies to entertainment services and companies.
