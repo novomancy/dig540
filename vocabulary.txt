@@ -1,2 +1,2 @@
 CMS - Content Management System
-Concatenate In programming, combining or joining two strings together or merging two strings together.
+Concatenate - Combining or joining two strings together or merging two strings together in programming.
