@@ -1,0 +1,261 @@
+GENRE
+GenreID, Name
+84019, Rap/Hip-Hop
+
+ARTIST
+ArtistID, Name, YearsActive, Origin
+84111, Z-LYT, 2014-, East Lake FL
+
+ALBUM
+AlbumID, ArtistID, Name, Year, RecordedDuring
+22818, 84111, BUILD, 2018, [2017,2018]
+
+ALBUM_GENRE
+Album_GenreID, AlbumID, GenreID
+8493, 22818, 84019
+
+TRACK
+TrackID, AlbumID, Number, Name, Lyrics, Length, BPM
+10617, 22818, 1, YOUNG, explicit braggadocio, 1:48, 107
+11217, 22818, 2, CARBON, more explicit braggadocio, 2:08, 100
+2218, 22818, 3, NOTHINGTOSAY, words and raps, 2:00, 130
+12617, 22818, 4, NO P, raps and words, 2:54, 143
+112817, 22818, 5, PROGRAM, long drives, 2:19, 125
+22818, 22818, 6, BUILD, sandcastles, 4:20, 94
+12218, 22818, 7, LOUDHOUSE, bumblebees, 2:32, 115
+101917, 22818, 8, REIGN, grave digger, 2:15, 95
+21718, 22818, 9, COAT, let the blame fall, 3:33, 101
+81517, 22818, 10, MESSEDUP, been a while, 2:10, 98
+22218, 22818, 11, SOUL, we were dumb, 2:45, 165
+22718, 22818, 12, NEXT, thanks, 3:04, 79
+
+LABEL
+LabelID, Name, DatesActive
+34698, Z-LYT Records, 6/2014-
+
+ARTIST_LABEL
+ArtistLabelID, ArtistID, LabelID
+4765, 84111, 34698
+
+ENGINEERS
+EngineersID, Name
+80498, Sunny Z
+11197, D-LYT
+
+TRACK_ENGINEERS
+TrackEngineersID, TrackID, EngineersID
+180101, 10617, 80498
+180102, 10617, 11197
+180201, 11217, 80498
+180202, 11217, 11197
+180301, 2218, 80498
+180302, 2218, 11197
+180401, 12617, 80498
+180402, 12617, 11197
+180501, 112817, 80498
+180502, 112817, 11197
+180601, 22818, 80498
+180602, 22818, 11197
+180701, 12218, 80498
+180702, 12218, 11197
+180801, 101917, 80498
+180802, 101917, 11197
+180901, 21718, 80498
+180902, 21718, 11197
+181001, 81517, 80498
+181002, 81517, 11197
+181101, 22218, 80498
+181102, 22218, 11197
+181201, 22718, 80498
+181202, 22718, 11197
+
+PRODUCERS
+ProducersID, Name
+11197, D-LYT
+
+TRACK_PRODUCERS
+TrackProducersID, TrackID, ProducersID
+1801, 10617, 11197
+1802, 11217, 11197
+1803, 2218, 11197
+1804, 12617, 11197
+1805, 112817, 11197
+1806, 22818, 11197
+1807, 12218, 11197
+1808, 101917, 11197
+1809, 21718, 11197
+1810, 81517, 11197
+1811, 22218, 11197
+1812, 22718, 11197
+
+SONGWRITERS
+SongwritersID, Name
+80498, Sunny Z
+11197, D-LYT
+
+TRACK_SONGWRITERS
+TrackSongwritersID, TrackID, SongwritersID
+180101, 10617, 80498
+180102, 10617, 11197
+180201, 11217, 80498
+180202, 11217, 11197
+180301, 2218, 80498
+180302, 2218, 11197
+180401, 12617, 80498
+180402, 12617, 11197
+180501, 112817, 80498
+180502, 112817, 11197
+180601, 22818, 80498
+180602, 22818, 11197
+180701, 12218, 80498
+180702, 12218, 11197
+180801, 101917, 80498
+180802, 101917, 11197
+180901, 21718, 80498
+180902, 21718, 11197
+181001, 81517, 80498
+181002, 81517, 11197
+181101, 22218, 80498
+181102, 22218, 11197
+181201, 22718, 80498
+181202, 22718, 11197
+
+TAGS
+TagID, Name
+84111, Z-LYT
+80498, Sunny Z
+11197, D-LYT
+17823, BUILD
+19274, Rap/Hip-Hop
+79203, East Lake
+
+TRACK_TAGS
+TrackTagsID, TrackID, TagsID
+180101, 10617, 84111
+180102, 10617, 80498
+180103, 10617, 11197
+180104, 10617, 17823
+180105, 10617, 19274
+180106, 10617, 79203
+180201, 11217, 84111
+180202, 11217, 80498
+180203, 11217, 11197
+180204, 11217, 17823
+180205, 11217, 19274
+180206, 11217, 79203
+180301, 2218, 84111
+180302, 2218, 80498
+180303, 2218, 11197
+180304, 2218, 17823
+180305, 2218, 19274
+180306, 2218, 79203
+180401, 12617, 84111
+180402, 12617, 80498
+180403, 12617, 11197
+180404, 12617, 17823
+180405, 12617, 19274
+180406, 12617, 79203
+180501, 112817, 84111
+180502, 112817, 80498
+180503, 112817, 11197
+180504, 112817, 17823
+180505, 112817, 19274
+180506, 112817, 79203
+180601, 22818, 84111
+180602, 22818, 80498
+180603, 22818, 11197
+180604, 22818, 17823
+180605, 22818, 19274
+180606, 22818, 79203
+180701, 12218, 84111
+180702, 12218, 80498
+180703, 12218, 11197
+180704, 12218, 17823
+180705, 12218, 19274
+180706, 12218, 79203
+180801, 101917, 84111
+180802, 101917, 80498
+180803, 101917, 11197
+180804, 101917, 17823
+180805, 101917, 19274
+180806, 101917, 79203
+180901, 21718, 84111
+180902, 21718, 80498
+180903, 21718, 11197
+180904, 21718, 17823
+180905, 21718, 19274
+180906, 21718, 79203
+181001, 81517, 84111
+181002, 81517, 80498
+181003, 81517, 11197
+181004, 81517, 17823
+181005, 81517, 19274
+181006, 81517, 79203
+181101, 22218, 84111
+181102, 22218, 80498
+181103, 22218, 11197
+181104, 22218, 17823
+181105, 22218, 19274
+181106, 22218, 79203
+181201, 22718, 84111
+181202, 22718, 80498
+181203, 22718, 11197
+181204, 22718, 17823
+181205, 22718, 19274
+181206, 22718, 79203
+
+MOODS
+MoodID, Name
+57932, Chill
+93274, Thoughtful
+37201, Downtempo
+42945, Lyrical
+83923, Aggressive
+
+TRACK_MOODS
+TrackMoodsID, TrackID, MoodsID
+180101, 10617, 57932
+180102, 10617, 37201
+180103, 10617, 42945
+180201, 11217, 57932
+180202, 11217, 93274
+180203, 11217, 83923
+180301, 2218, 83923
+180401, 12617, 83923
+180501, 112817, 93274
+180502, 112817, 42945
+180503, 112817, 83923
+180601, 22818, 57932
+180602, 22818, 93274
+180603, 22818, 37201
+180604, 22818, 42945
+180701, 12218, 42945
+180801, 101917, 42945
+180901, 21718, 42945
+180902, 21718, 83923
+181001, 81517, 57932
+181002, 81517, 42945
+181003, 81517, 83923
+181101, 22218, 57932
+181102, 22218, 93274
+181103, 22218, 37201
+181104, 22218, 42945
+181201, 22718, 57932
+181202, 22718, 93274
+181203, 22718, 42945
+
+
+
+Explanation:
+
+This was an extremely tough assignment. As I've mentioned I have no experience with coding or its adjacent fields whatsoever, and these past two weeks of lessons have forced me to think in very non-intuitive ways. After days of head-scratching, hair-tearing, YouTube-ing, and binge-drinking, I think I managed to make a working model. 
+
+My structure is very track-oriented. I wanted to include as much data as could be reasonably found for each track. This made for a lot of tedium when it came time to demonstrate things like Track_Songwriters, which required me to list each track of this album twice. I also wanted to make for a better search feature, which is why I included Moods and Tags to help users discover tracks (and although I didn't include nearly as many tags and moods as would really be necessary, I felt I made my point with 5 and 6 respectively). I felt that if enough information is provided per track, it's then also information that can be suggested about the album, or the artist as a whole through derivation. Working up from the most granular base seemed logical to me.
+
+There's probably tons of errors with what's here. This is all new to me. I showed my schema to my girlfriend, who has no understanding of coding either, and she was able to understand fundamentally what I was trying to display. That makes me feel as though I've structured things somewhat well. However, I do recognize that this schema really only seems to work for traditional musicians, much like early CDDB. I considered adding more open-ended fields for Orator, Performer, and Author, as well as more specific ones like Guitarist, Pianist, Drummer, Composer, etcetera, but I felt as though I was quickly swimming out of my depth. I want first to have a firm grasp of the fundamental concepts I've attempted to explore in the schema and this .txt file before moving on to more complicated ideas.
+
+I look forward to your feedback. (Though not so much to actually fixing whatever's wrong.) 
+
+
+
+:)
