@@ -4,3 +4,4 @@ Gracenote - a company that provides music, video, and sports metadata and automa
 commit - I assume it means something like "confirm action" or else simply "submit" in computer language.
 scripting - thought it was the same as coding but it seems to be a particular type of coding
 CMS: Content Management System
+Concatenate - joining two strings or combining strings together in the context of programming
