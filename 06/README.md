@@ -9,6 +9,9 @@ These videos will introduce the keywords and syntax for writing SQL queries. Bui
 - Other SQL Queries: <https://vimeo.com/142031184>
 - Assignment: <https://vimeo.com/142030578> (Note: this video refers to 05, but use 06 for this year)
 
+**Readings**
+- SQL Naming Conventions: <https://launchbylunch.com/posts/2014/Feb/16/sql-naming-conventions/>
+
 **Assignment**
 
 I want you to update your database to reflect any changes you want want to make over last week's database schema and the SQL naming conventions document linked above. Then, insert some test data into your database - at least enough to make some meaningful connections between tables.
