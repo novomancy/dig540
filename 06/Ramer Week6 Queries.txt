@@ -1,0 +1,43 @@
+SELECT contributor.* FROM contributor WHERE name = "eugene walter"
+"4","Eugene Walter","1921-1998","Born and died in Mobile, AL, Eugene Ferdinand Walter, Jr. was an American screenwriter, poet, short-story author, actor, puppeteer, gourmet chef, cryptographer, translator, editor, costume designer and well-known raconteur."
+
+SELECT contributor.* FROM contributor WHERE name like "%en%"
+"3","Agnes Tennenbaum","2012","Agnes Tennenbaum, a Holocaust survivor who lived in Mobile since 2006, died Monday, May 30, 2016 at age 93."
+"4","Eugene Walter","1921-1998","Born and died in Mobile, AL, Eugene Ferdinand Walter, Jr. was an American screenwriter, poet, short-story author, actor, puppeteer, gourmet chef, cryptographer, translator, editor, costume designer and well-known raconteur."
+
+SELECT genre.name AS `name`, recording.title from `recording` , `genre` WHERE genre.id = recording.id
+"Story","""Art IS Mobile Part 4: Monologue with Eugene Walter"""
+"Poetry Reading","""We Remember"" interview with Holocaust Survivor Mrs. Agnes Tennenbaum, Mobile AL resident"
+"Song","Rare Bird : Eugene Walter Stories, Poems and Songs"
+"Interview","Songs from the Peanut Man and Other Sidewalk Vendors"
+"Field Recording","The Story of Rain in Mobile, AL"
+
+SELECT recording.*, recording_permission.permission_name FROM `recording_permission`, recording WHERE recording_permission.id = recording.recording_permission_id
+"1","Songs from the Peanut Man and Other Sidewalk Vendors","3","John A. Lomax Southern States Collection","loc.gov/folklife/guides/streetcries.html","1937","Field Recording","Original Collection contains 647 items on discs of varying sizes (8-12 inch discs.)","loc.gov"
+"2","The Story of Rain in Mobile, AL","2","Mary A. Poole","alabamapioneers.com/story-of-rain-in-mobile-alabama/","1936","folk story","Length not provided.","Alabama Pioneers"
+"3","""We Remember"" interview with Holocaust Survivor Mrs. Agnes Tennenbaum, Mobile AL resident","6","Victoria Hirsch and Cory Garfunkel","""We Remember"" produced by Gary Scovill with Kimberly and Stanley Zimmerman","2012","Holocaust Survivor","Film Score Brian Keane. Interviewees included Agnes Tennenbaum, Violet Hirsch, James Philpot, Sibylle Von Campe Heidrich, and Roland Gulp Frey.","Copyright Scoville Productions"
+"4","""Art IS Mobile Part 4: Monologue with Eugene Walter""","1","Melinda Klotz Mercer","https://youtu.be/IY01PE_F-Jg","2016","Eugene Walter Interview","Local historian, and Mobile's own screenwriter, poet, short-story author, actor, puppeteer, gourmet chef, cryptographer, translator, editor, costume designer and well-known raconteur reminisces on his childhood and Mobile histories relating to it. Copyright 1999-2016.","YouTube provided link"
+"5","Rare Bird : Eugene Walter Stories, Poems and Songs","5","Nomad Productions","ASIN B002A8AFYG","1991","Eugene Walter","Includes Cover Art by the Author, currently out of Print. Audio Cassette format. The first recording ever of this poet and novelist reading his famous story THE BYZANTINE RIDDLE, poems from The Pack Rat, Smallsong, Who's a Lyre?, Monkey Poems and singing his songs.","Copyright Eugene Walter"
+"6","Dot Moore Mardi Gras Mobile, AL 1976","1","WALA Channel 10 Local NBC Affiliate ","https://youtu.be/dwhPKL_Cgvo","1976","Mobile Mardi Gras","Local news personality Dot Moore interviews George Criminale about building Mardi Gras Floats in Mobile AL 1976. Uploaded by Roland Fields.","YouTube provided link"
+
+What genres do “Songs from the Peanut Man” contain? 
+SELECT recording.title AS `title`, genre.name AS `genre name` FROM `recording`, `genre` WHERE recording.id = genre.id AND recording.title LIKE "%peanut%"
+"Songs from the Peanut Man and Other Sidewalk Vendors","Field Recording"
+
+Who did Dot Moore interview in her 1976 Mardi Gras piece? 
+SELECT recording.extra FROM `recording` WHERE recording.extra LIKE "%moore%"
+"Local news personality Dot Moore interviews George Criminale about building Mardi Gras Floats in Mobile AL 1976. Uploaded by Roland Fields."
+
+Who produced Rare Bird and is it in the public domain?
+SELECT recording.title AS `title`, recording.producer AS `producer`, recording_permission.permission_name AS `copyright` FROM `recording`, `recording_permission` WHERE recording.id = recording_permission.id AND recording.title LIKE "%rare bird%"
+"Rare Bird : Eugene Walter Stories, Poems and Songs","Nomad Productions","Copyright Eugene Walter"
+
+
+Who reads the Byzantine Riddle? (recording track)
+SELECT recording_track.title, recording_track.extra FROM recording_track WHERE recording_track.title = "Byzantine Riddle"
+"Byzantine Riddle","Story read by the author Eugene Walter"
+
+What recording tracks are associated with “Songs from the peanut man?”
+SELECT recording.title AS `title`, recording_track.title AS `track` FROM `recording`, `recording_track` WHERE recording.id = recording_track.recording_id AND recording.title LIKE "songs from the peanut man%"
+"Songs from the Peanut Man and Other Sidewalk Vendors","Sidewalk Chants from Mobile's Peanut Man"
+"Songs from the Peanut Man and Other Sidewalk Vendors","Mobile Mardi Gras emblem walkers announce the Order of Myths parade, 1947"
