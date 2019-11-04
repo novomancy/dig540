@@ -11,8 +11,50 @@
   <body>
     <h1>Hello, world!</h1>
 
-    Insert PHP for displaying album data here!
+<?php
+    error_reporting(E_ALL); 
+    ini_set("display_errors", 1); 
 
+    $file_handle = fopen('./albumlist.csv', 'r');
+
+    $first_line = fgetcsv($file_handle);
+    for($i=0; $i<count($first_line); $i++){
+        print_r('<div style ="background-color:teal">'.'Column header found: '.$first_line[$i].'</div>');
+    } 
+    print_r('<br>');
+    while($data_row = fgetcsv($file_handle)){
+        print_r("<p><strong>This is the #$data_row[0] album:</strong><br>");
+        for($i=1; $i<count($data_row); $i++){
+            if($i < 4){
+                print_r("$first_line[$i]: $data_row[$i]<br>");
+            }
+            
+            else {
+                $genres = str_getcsv($data_row[$i]);
+
+                for($j=0; $j<count($genres); $j++){
+                
+                    if($i % 2 == 0){
+                        if($j%2==0){
+                    print_r("<span style='color: blue;'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");}
+                    else {
+                    print_r("<span style='color: goldenrod;'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");}
+                    }
+                    
+                else{
+                    if($j % 2 == 1){
+                    print_r("<span style='color: coral;'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");}
+                    else {
+                    print_r("<span style='color: darkcyan;'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");}
+                    }
+                }
+                }
+            }
+        }
+        print_r('</p>');
+
+    fclose($file_handle);
+?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
