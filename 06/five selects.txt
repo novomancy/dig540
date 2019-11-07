@@ -1,0 +1,5 @@
+SELECT artist.id from artist, ex_data, track, spotify_info where  artist.id = "3"
+SELECT track.track_title from artist, track where artist.id = track.artist_id and artist.id = "3"
+select artist.name = "justin beiber" from artist
+select artist.name, track.* from artist, track where artist.id = track.artist_id
+select artist.name, track.* from artist, track where artist.id = track.artist_id and artist.name = 'justin bieber'
