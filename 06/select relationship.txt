@@ -1,0 +1,104 @@
+select artist.name, track.track_title from artist, track where artist.id = track.artist_id
+
+name
+track_title
+Drake featuring WizKid and Kyla
+One Dance
+Major Lazer and DJ Snake featuring MØ
+Lean On
+Justin Bieber
+Sorry
+Justin Bieber
+Love Yourself
+Ed Sheeran
+Thinking Out Loud
+Justin Bieber
+What Do You Mean?
+Mike Posner
+I Took a Pill in Ibiza
+Me 4 U
+Cheerleader
+The Chainsmokers featuring Daya
+Don't Let Me Down
+The Chainsmokers featuring Halsey
+Closer
+Mark Ronson featuring Bruno Mars
+Uptown Funk
+The Weeknd
+Can't Feel My Face
+Adele
+Hello
+Lukas Graham
+7 Years
+Shawn Mendes
+Stitches
+Sia
+Cheap Thrills
+Hozier
+Take Me to Church
+Twenty One Pilots
+Stressed Out
+Skrillex and Diplo featuring Justin Bieber
+Where Are Ü Now
+Wiz Khalifa featuring Charlie Puth
+See You Again
+Rihanna featuring Drake
+Work
+Calvin Harris featuring Rihanna
+This Is What You Came For
+Major Lazer featuring MØ and Justin Bieber
+Cold Water
+Drake
+Hotline Bling
+Fifth Harmony featuring Ty Dolla $ign
+Work from Home
+Maroon 5
+Sugar
+Alan Walker
+Faded
+Sam Smith
+Stay with Me
+Sia
+Chandelier
+Major Lazer featuring Nyla and Fuse ODG
+Light It Up
+Ed Sheeran
+Photograph
+G-Eazy and Bebe Rexha
+Me Myself & I
+Ellie Goulding
+Love Me Like You Do
+The Weeknd
+The Hills
+Passenger
+Let Her Go
+Imagine Dragons
+Radioactive
+John Legend
+All of Me
+Zara Larsson
+Lush Life
+DJ Snake featuring Justin Bieber
+Let Me Love You
+Clean Bandit featuring Jess Glynne
+Rather Be
+Desiigner
+Panda
+OneRepublic
+Counting Stars
+Justin Timberlake
+Can't Stop the Feeling!
+Fetty Wap
+Trap Queen
+Avicii featuring Aloe Blacc
+Wake Me Up
+The Chainsmokers featuring Rozes
+Roses
+Robin Schulz featuring Francesco Yates
+Sugar
+DNCE
+Cake by the Ocean
+Pharrell Williams
+Happy
+Kygo featuring Conrad Sewell
+Firestone
