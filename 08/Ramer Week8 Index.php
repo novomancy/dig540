@@ -39,17 +39,24 @@
 
                 for($j=0; $j<count($genres); $j++){
                   if($j%2==0){
-                    print_r("<span style = 'color: blue;'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
-                } else {
-                    if ($j%2!=0);
-                    print_r("<span style = 'color: green;'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
+                  print_r("<span style = 'color: blue;'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
                   }
+                  else {
+                  print_r("<span style = 'color: green;'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");}
+                    if($j%2!=0){
+                    print_r("<span style = 'color: red;'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
+                    }
+                    else {
+                    print_r("<span style = 'color:yellow;'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
+                    }
+                  }
+
                 }
-                
             }
         }
-        print_r('</p>');
-    }
+         print_r('</p>');
+    
+    
 
     fclose($file_handle);
 ?>

@@ -7,7 +7,7 @@
     $first_line = fgetcsv($file_handle);
 
     for($i=0; $i<count($first_line); $i++){
-        print_r('Column header found: '.$first_line[$i].'<br>');
+        print_r('Column header found: '.$first_line[$i]. '<br>');
     }
 
     while($data_row = fgetcsv($file_handle)){
