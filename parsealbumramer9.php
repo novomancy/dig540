@@ -30,7 +30,7 @@
 
         public function getSubgenres(){
             for($j=0; $j<count($this->subgenres); $j++){
-                if($j%2==0) print_r("<span style='color:blue'.Subgenre #".($j+1)." is ".$this->subgenres[$j]."</span><br>");
+                if($j%2==0) print_r("<span style='color:blue'>Subgenre #".($j+1)." is ".$this->subgenres[$j]."</span><br>");
                 else print_r("<span style='color:red'>Subgenre #". ($j+1)." is ".$this->subgenres[$j]."</span><br>");
 
             }
