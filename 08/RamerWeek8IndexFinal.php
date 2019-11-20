@@ -22,8 +22,9 @@ $first_line = fgetcsv($file_handle);
 print_r('<div>');
 for($i=0; $i<count($first_line); $i++){
     print_r('Column header found: '.$first_line[$i].'<br>');
-} print_r('</div>');
-    
+} 
+print_r('</div>');
+   
 
 while($data_row = fgetcsv($file_handle)){
     print_r("<p><strong>This is the #$data_row[0] album:</strong><br>");
@@ -34,11 +35,10 @@ while($data_row = fgetcsv($file_handle)){
         } else {
             $genres = str_getcsv($data_row[$i]);
 
-            for($j=0; $j<count($genres); $j++)
-            {
-                $gc++;
-                if(($gc+1)%2==0)print_r("<span style=\"color: blue;\">$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
-                else print_r("$first_line[$i] #".($j+1)." is $genres[$j]<br>");
+            for($j=0; $j<count($genres); $j++){
+             if($j%2==0)print_r("<span style='color: blue'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
+             else print_r("<span style='color: green'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
+            
             }
         }
     }
