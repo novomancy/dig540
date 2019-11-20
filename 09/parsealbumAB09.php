@@ -37,7 +37,7 @@
             }
         }
         public function setData($data_row){
-            // I think this is supposed to replace the "while" loop that pulls the data out?
+            // this is supposed to replace the "while" loop that pulls the data out
             // make this a function that pulls up other functions and puts them together. But also needs to pass in the data, so it will be more complicated that the getData function from the video
         
         $this->setArtist($data_row[3]);
@@ -51,7 +51,7 @@
 
             }
         public function getData(){
-            //i think this function is supposed to replace the "for" loop that prints out the data
+            // this function is supposed to replace the "for" loop that prints out the data
             $this->getArtist();
             $this->getTitle();
             $this->getRank();
