@@ -10,8 +10,9 @@
     private $region;
     private $generation;
     private $extd;
-    
+    private $id;
 
+    public function setID($dbID){ $this->id = $dbID; }
     public function setPokedex($pokedexNumber){ $this->pokedex = $pokedexNumber; }
     public function getPokedex(){ print_r('Pokedex:# '.$this->pokedex . '<br>'); }
     public function setSpecies($speciesName){$this->species = $speciesName;}
@@ -40,15 +41,7 @@
             else print_r("<span style='color:red'>Type #".($j+1)." is ".$this->type[$j]."</span><br>");
         }
     }
-    // public function setSubgenres($subs){ 
-    //     $this->subgenres = str_getcsv($subs);
-    // }
-    // public function getSubgenres(){ 
-    //     for($j=0; $j<count($this->subgenres); $j++){
-    //         if($j%2==0) print_r("<span style='color:coral'>Subgenre #".($j+1)." is ".$this->subgenres[$j]."</span><br>");
-    //         else print_r("<span style='color:darkcyan'>Subgenre #".($j+1)." is ".$this->subgenres[$j]."</span><br>");
-    //     }
-    // }
+
     
     public function setData($data_row){
         // this is a function that pulls up other functions and puts them together. But it also passes in the data   
@@ -67,7 +60,7 @@
 
         }
     public function getData(){
-        // this function is supposed to replace the "for" loop that prints out the data
+        // this function is supposed to print out the data
         $this->getPokedex();
         $this->getSpecies();
         $this->getType();
@@ -78,10 +71,49 @@
         $this->getRegion();
         $this->getGeneration();
         $this->getExtd();
-      
-
 
     }
 
-}
+    public function save(){        
+        global $pdo;
+
+        try{
+            $pokemon_insert = $pdo->prepare("INSERT INTO pokemon (pokedex, species, buddycandy, candytoevolve, evolvesfrom, evolvesto, region, generation, extd)
+                                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $db_pokemon = $pokemon_insert->execute([$this->pokedex, $this->species, $this->buddycandy, $this->candytoevolve, $this->evolvesfrom, 
+            $this->evolvesto, $this->region, $this->generation, $this->extd]);
+
+            // implode(',', $this->extd)]);
+            // i need to go back and figure out more about the implode thing and what it does. what variable i need to be in there, if any
+
+            $this->id = $pdo->lastInsertId();
+            print_r("--Saved $this->pokemon to the database.--<br>\n");
+
+            $select_type = $pdo->prepare("SELECT * FROM type WHERE name = ?");
+            $type_insert = $pdo->prepare("INSERT INTO type (name) VALUES (?)");
+            $type_link = $pdo->prepare("INSERT INTO pokemon_type (pokemon_id, type_id) VALUES (?, ?)");
+
+            for($i=0; $i<count($this->type); $i++){
+                $select_type->execute([$this->type[$i]]);
+                $existing_type = $select_type->fetch();
+                if(!$existing_type){
+                    $db_tyoe = $type_insert->execute([$this->type[$i]]);
+                    $type_id = $pdo->lastInsertID();
+                } else {
+                    $type_id = $existing_type['id'];
+                }
+                $type_link->execute([$this->id, $type_id]);
+                print_r("Connected ".$this->type[$i]." to $this->pokemon<br>\n");
+            }
+            flush();
+            ob_flush();
+    
+        } catch (PDOException $e){
+            print_r("Error saving album to database: ".$e->getMessage() . "<br>\n");
+            exit;
+        }
+    }
+
+    }
+
 ?>
