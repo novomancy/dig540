@@ -6,8 +6,10 @@
       private $permission;
       private $subject;
       private $contributor;
-      private $genre;
+      private $genre; 
+      private $id;
 
+      public function setID ($dbID){$this->id=$dbID;}
       public function setRank($rankNumber){$this->rank = $rankNumber;}
       public function getRank(){print_r('Rank: '.$this->rank .'<br>');}
       public function setTitle($titleName){$this->title = $titleName;}
@@ -43,7 +45,8 @@
           $this->setSubject($data_row[5]);
           $this->setGenre($data_row[6]);
           $this->setContributor($data_row[2]);
-      }
+        }
+
       public function getData(){
           $this->getRank();
           $this->getTitle();
@@ -52,8 +55,55 @@
           $this->getSubject();
           $this->getGenre();
           $this->getContributor();
-      }
-      
-  }
+        }
+      public function save (){
+           global $pdo;
+           
+           try{
+               $voices_insert = $pdo->prepare("INSERT INTO recording (number, title, year, permission, subject)
+                                                VALUES (?, ?, ?, ?, ?,)");
+               $db_voices = $voices_insert->execute([$this->rank, $this->title, $this->year, $this->permission, $this->subject, implode(',', $this->contributor)]); 
+               $this->id = $pdo->lastInsertId();
+               print_r("--Saved $this->title to the database.--<br>\n");   
+               
+               $select_genre = $pdo->prepare("SELECT * FROM genre WHERE name = ?");
+               $genre_insert = $pdo->prepare("INSERT INTO genre (name) VALUES (?)");
+               $genre_link = $pdo->prepare("INSERT INTO recording_genre (recording_id, genre_id) VALUES (?, ?)");
 
-  ?>
+               for($i=0; $i<count($this->genres); $i++){
+                   $select_genre->execute([$this->genres[$i]]);
+                   $existing_genre = $select_genre->fetch();
+                   if(!$existing_genre){
+                       $db_genre = $genre_insert->execute([$this->genres[$i]]);
+                       $genre_id = $pdo->lastInsertID();
+                   } else {
+                       $genre_id = $existing_genre ['id'];
+                   } 
+                   $genre_link->execute([$this->id, $genre_id]);
+                   print_r("Connected " .$this->genres[$i]." to$this->title<br>\n"); 
+
+                   }
+                   flush ();
+                   ob_flush();
+               } catch (PDOException $e){
+                print_r("Error saving voices to database: ".$e->getMessage() . "<br>\n");
+               
+            
+               
+                exit;
+            }
+
+           
+
+
+           
+               
+              
+        }
+        
+    }
+    
+
+
+  
+?>
