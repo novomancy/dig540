@@ -112,7 +112,7 @@ class Recording{
             $contributor_insert = $pdo->prepare("INSERT INTO contributor (name) VALUES (?)");
             $contributor_link = $pdo->prepare("INSERT INTO recording_contributor (recording_id, contributor_id) VALUES (?,?)");
 
-            for($i=0; $i,count($this->contributor); $i++){
+            for($i=0; $i<count($this->contributor); $i++){
                 $select_contributor->execute([$this->contributor[$i]]);
                 $existing_contributor = $select_contributor->fetch();
                 if(!$existing_contributor){
