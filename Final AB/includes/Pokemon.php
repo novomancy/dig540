@@ -1,4 +1,6 @@
 <?php
+
+//updated 857 pm 12 15 2019
  class Pokemon{
     private $pokedex;
     private $species;
