@@ -107,24 +107,25 @@
 
             // now try to make candy work just like i made types work
 
-           // working on an idea here, just trying anything at this point
-           // $candy_insert = $pdo->prepare("INSERT INTO candy(candy_to_evolve)
-            // $select_candy = $pdo->prepare("SELECT * FROM candy WHERE candy_to_evolve = ?");
-            // $candy_insert = $pdo->prepare("INSERT INTO candy (candy_to_evolve) VALUES (?)");
-            // $candy_link = $pdo->prepare("INSERT INTO candy_pokemon (pokemon_id, candy_id) VALUES (?, ?)");
-
-            // for($i=0; $i<count($this->evolve_candy); $i++){
-            //     $select_candy->execute([$this->evolve_candy[$i]]);
-            //     $existing_candy = $select_candy->fetch();
-            //     if(!$existing_candy){
-            //         $db_candy = $candy_insert->execute([$this->evolve_candy[$i]]);
-            //         $candy_id = $pdo->lastInsertID();
-            //     } else {
-            //         $candy_id = $existing_candy['candy_id'];
-            //     }
-            //     $candy_link->execute([$this->id, $candy_id]);
-            //     print_r("Connected ".$this->evolve_candy[$i]." to $this->species<br>\n");
-            //     }
+            $select_candy = $pdo->prepare("SELECT * FROM candy WHERE candy_to_evolve = ?");
+            $candy_insert = $pdo->prepare("INSERT INTO candy (candy_to_evolve) VALUES (?)");
+            $candy_link = $pdo->prepare("INSERT INTO candy_pokemon (pokemon_id, candy_id) VALUES (?, ?)");
+                
+            //the line below is what the error message says is the problem
+            
+                for($j=0; $j<count($this->evolve_candy); $j++){
+               $select_candy->execute([$this->evolve_candy[$j]]);
+               $existing_candy = $select_candy->fetch();
+               if(!$existing_candy){
+                     $db_candy = $candy_insert->execute([$this->evolve_candy[$j]]);
+                     $candy_id = $pdo->lastInsertID();
+                } else {
+                     $candy_id = $existing_candy['candy_id'];
+                 }
+                 $candy_link->execute([$this->id, $candy_id]);
+                 print_r("Connected ".$this->evolve_candy[$j]." to $this->species<br>\n");
+                 
+                }
                     
 
     //the code above seems to work a little, although with errors. It is after this point that things get completely derailed. What do I need to fix?
