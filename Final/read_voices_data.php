@@ -14,19 +14,19 @@
     
     }
 
-    $voice = array();
+    $recordings = array();
 
     while($data_row = fgetcsv($file_handle)){
-        $voices = new Voices();
-        $voices->setContributor($data_row[6]);
-        $voices->setTitle($data_row[1]);
-        $voices->setYear($data_row[2]);
-        $voices->setRank($data_row[0]);
-        $voices->setPermission($data_row[3]);
-        $voices->setGenre($data_row[5]);
-        $voices->setSubject($data_row[4]);
-        $voices->save();
-        array_push($voice, $voices);
+        $recordings = new Recording();
+        $recordings->setContributor($data_row[6]);
+        $recordings->setTitle($data_row[1]);
+        $recordings->setYear($data_row[2]);
+        $recordings->setRank($data_row[0]);
+        $recordings->setPermission($data_row[3]);
+        $recordings->setGenre($data_row[5]);
+        $recordings->setSubject($data_row[4]);
+        $recordings->save();
+        array_push($recordings, $recording);
 
     }
     

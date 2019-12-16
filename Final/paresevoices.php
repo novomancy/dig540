@@ -3,7 +3,7 @@
     ini_set("display_errors", 1); 
     
     include('./includes/db_config.php');
-    include('./includes/Voices.php');
+    include('./includes/Recording.php');
     
     $file_handle = fopen('./voices.csv', 'r');
 
@@ -14,29 +14,29 @@
     
     }
 
-    $voice = array();
+    $recordings = array();
 
     while($data_row = fgetcsv($file_handle)){
-        $voices = new Voices();
-        $voices->setContributor($data_row[6]);
-        $voices->setTitle($data_row[1]);
-        $voices->setYear($data_row[2]);
-        $voices->setRank($data_row[0]);
-        $voices->setPermission($data_row[3]);
-        $voices->setGenre($data_row[5]);
-        $voices->setSubject($data_row[4]);
-        array_push($voice, $voices);
+        $recordings = new Recording();
+        $recordings->setContributor($data_row[6]);
+        $recordingss->setTitle($data_row[1]);
+        $recordings->setYear($data_row[2]);
+        $recordings->setRank($data_row[0]);
+        $recordings->setPermission($data_row[3]);
+        $recordings->setGenre($data_row[5]);
+        $recordings->setSubject($data_row[4]);
+        array_push($recordings, $recording);
 
     }
     for($i=0; $i<count($voice); $i++){
         print_r("<p>This is the #$i voice:<br>");
-        $voice[$i]->getTitle();
-        $voice[$i]->getYear();
-        $voice[$i]->getRank();
-        $voice[$i]->getContributor();
-        $voice[$i]->getPermission();
-        $voice[$i]->getGenre();
-        $voice[$i]->getSubject();
+        $recording[$i]->getTitle();
+        $recording[$i]->getYear();
+        $recording[$i]->getRank();
+        $recording[$i]->getContributor();
+        $recording[$i]->getPermission();
+        $recording[$i]->getGenre();
+        $recording[$i]->getSubject();
         print_r('</p>');
 
 

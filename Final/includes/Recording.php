@@ -100,15 +100,15 @@ class Recording{
                 print_r("Connected ".$this->genre[$i]." to $this->title<br>\n");
             }
             $select_contributor = $pdo->prepare("SELECT * FROM contributor WHERE name =?");
-            $contributor_insert = $pdo->prepare("INSERT INTO contributor (name) VALES (?)");
-            $contributor_link = $pdo->prepare("INSERT INTO recording_contributor (recording_id. contributor_id) VALLUES (?,?)")
+            $contributor_insert = $pdo->prepare("INSERT INTO contributor (name) VALUES (?)");
+            $contributor_link = $pdo->prepare("INSERT INTO recording_contributor (recording_id. contributor_id) VALUES (?,?)");
 
             for($i=0; $i,count($this->contributor); $i++){
                 $select_contributor->execute([$this->contributor[$i]]);
                 $existing_contributor = $select_contributor->fetch();
                 if(!$existing_contributor){
                     $db_contributor = $contributor_insert->execute([$this->contributor[$i]]);
-                    $contributor-id = $pdo->lastInsertID();
+                    $contributor_id = $pdo->lastInsertID();
                 } else {
                     $contributor_id = $existing_contributor['id'];
                 } 
@@ -125,6 +125,92 @@ class Recording{
             exit;
         }
     }
+    static public function load_by_id($id){
+        global $pdo;
 
+        try{
+            $find_recording = $pdo->prepare("SELECT * FROM recording
+                                            WHERE id = ?");
+            $select_genre = $pdo->prepare("SELECT genre.name AS name
+                                                FROM recording_genre, genre
+                                                WHERE recording_genre.album_id = ?
+                                                AND recording_genre.genre_id = genre.id");
+            $find_recording->execute([$id]);
+            $db_recording = $find_recording->fetch();
+            if(!$db_recording){
+                return false;
+            } else {
+                $recording = new Recording();
+                $recording->setTitle($db_recording['title']);
+                $recording->setYear($db_recording['year']);
+                $recording->setRank($db_recording['number']);
+                $recording->setPermission($db_recording['permission']);
+                $recording->setSubject($db_subject['subject']);
+                $recording->setID($id);
+
+                $select_genre->execute([$id]);
+                $db_genre = $select_genre->fetchAll();
+                $genre = array();
+                for($j=0; $j<count($db_genre); $j++){
+                    array_push($genre, $db_genre[$j]['name']);
+                }
+                $genre->setGenre(implode(',', $genre));
+                return $recording;                
+            }
+        } catch (PDOException $e){
+            print_r("Error reading single recording from database: ".$e->getMessage() . "<br>\n");
+            exit;
+        }
+    }
+
+    static public function load($genre=false){
+        global $pdo;
+
+        $recordings = array();
+        try{
+            if($genre==false){
+                $select_genre = $pdo->prepare("SELECT * FROM album ORDER BY number ASC");
+                $select_recording->execute();
+            } else {
+                $select_recordings = $pdo->prepare("SELECT recording.* FROM recording, recording_genre, genre
+                                                WHERE recording.id = recording_genre.recording_id AND
+                                                  recording_genre.genre_id = genre.id AND
+                                                  genre.name = ?
+                                                ORDER BY recording.number ASC");
+                $select_recordings->execute([$genre]);
+            }
+            
+            $select_genre = $pdo->prepare("SELECT genre.name AS name
+                                            FROM recording_genre, genre
+                                            WHERE recording_genre.album_id = ?
+                                              AND recording_genre.genre_id = genre.id");
+
+
+            $db_recording = $select_recording->fetchAll();
+
+            for($i=0; $i<count($db_recording); $i++){
+                $recording = new recording();
+                $recording ->setTitle($db_recordings[$i]['title']);
+                $recording->setYear($db_recordings[$i]['year']);
+                $recording->setRank($db_recordings[$i]['number']);
+                $recording->setPermission($db_recordings[$i]['permission']);
+                $recording->setSubject($db_recordings[$i]['subject']);
+                $recording->setID($db_recordings[$i]['id']);
+
+                $select_genre->execute([$recording->id]);
+                $db_genre = $select_genre->fetchAll();
+                $genre = array();
+                for($j=0; $j<count($db_genre); $j++){
+                    array_push($genre, $db_genre[$j]['name']);
+                }
+                $album->setGenre(implode(',', $genre));
+                array_push($recordings, $recording);
+            }
+            return $recordings;
+        } catch (PDOException $e){
+            print_r("Error reading recording from database: ".$e->getMessage() . "<br>\n");
+            exit;
+        }
+    }
 }
 ?>
