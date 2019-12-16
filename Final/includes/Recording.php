@@ -10,7 +10,7 @@ class Recording{
     private $id;
 
     public function setID($dbID){$this->id=$dbID;}
-    public function setRank($rankNumber){$this->rank = $rankNumber;}
+    public function setRank($rank){$this->rank = $rank;}
     public function getRank(){print_r('Rank: '.$this->rank .'<br>');}
     public function setTitle($titleName){$this->title = $titleName;}
     public function getTitle(){print_r('Title: '.$this->title .'<br>');}               
@@ -23,10 +23,12 @@ class Recording{
     }
     public function getGenre(){ 
         for($j=0; $j<count($this->genre); $j++){
-            print_r('<a href="list_recording.php?genre='.$this->genre[$j].'">Genre #'.($j+1).' is '.$this->genre[$j].'</a><br>');
+            if($j%2==0) print_r("<span style='color:blue'>genre #".($j+1)." is ".$this->genre[$j]."</span><br>");
+            else print_r("<span style='color:red'>genre #". ($j+1)." is ".$this->genre[$j]."</span><br>");
         }
+                    
     }
-    public function setSuject($subject){ 
+    public function setSubject($subject){ 
         $this->subject = str_getcsv($subject);
     }
     public function getSubject(){ 
@@ -35,10 +37,16 @@ class Recording{
         }
     }
     public function setContributor($contributor){
-        for($j=0; $j<count($this->contributor); $j++){
-            print_r("Contributor #".($j+1)." is ".$this->contributor[$j]."<br>");
-        }    
+        $this->contributor = str_getcsv($contributor);
     }
+    public function getContributor(){
+        for($j=0; $j<count($this->contributor); $j++){
+            if($j%2==0) print_r("<span style='color:blue'>Contributor #".($j+1)." is ".$this->contributor[$j]."</span><br>");
+            else print_r("<span style='color:red'>Contributor #". ($j+1)." is ".$this->contributor[$j]."</span><br>");
+        }
+            
+    }
+    
     public function getTitleLink(){
         $anchor = '<a href="show_recording.php?id='.$this->id.'">'.$this->title.'</a>';
         print_r($this->rank . ': '. $anchor . ' by ' . $this->permission . '<br>');
@@ -77,9 +85,9 @@ class Recording{
         global $pdo;
 
         try{
-            $recording_insert = $pdo->prepare("INSERT INTO recording (number, year, title, permission, subject)
+            $recording_insert = $pdo->prepare("INSERT INTO recording (rank, title, year, permission, subject)
                                             VALUES (?, ?, ?, ?, ?)");
-            $db_recording = $recording_insert->execute([$this->rank, $this->year, $this->title, $this->artist, implode(',', $this->subject)]);
+            $db_recording = $recording_insert->execute([$this->rank, $this->title, $this->year, $this->permission, implode(',', $this->subject)]);
             $this->id = $pdo->lastInsertId();
             print_r("--Saved $this->title to the database.--<br>\n");
 
@@ -99,9 +107,10 @@ class Recording{
                 $genre_link->execute([$this->id, $genre_id]);
                 print_r("Connected ".$this->genre[$i]." to $this->title<br>\n");
             }
+
             $select_contributor = $pdo->prepare("SELECT * FROM contributor WHERE name =?");
             $contributor_insert = $pdo->prepare("INSERT INTO contributor (name) VALUES (?)");
-            $contributor_link = $pdo->prepare("INSERT INTO recording_contributor (recording_id. contributor_id) VALUES (?,?)");
+            $contributor_link = $pdo->prepare("INSERT INTO recording_contributor (recording_id, contributor_id) VALUES (?,?)");
 
             for($i=0; $i,count($this->contributor); $i++){
                 $select_contributor->execute([$this->contributor[$i]]);
@@ -143,7 +152,7 @@ class Recording{
                 $recording = new Recording();
                 $recording->setTitle($db_recording['title']);
                 $recording->setYear($db_recording['year']);
-                $recording->setRank($db_recording['number']);
+                $recording->setRank($db_recording['rank']);
                 $recording->setPermission($db_recording['permission']);
                 $recording->setSubject($db_subject['subject']);
                 $recording->setID($id);
@@ -169,7 +178,7 @@ class Recording{
         $recordings = array();
         try{
             if($genre==false){
-                $select_genre = $pdo->prepare("SELECT * FROM album ORDER BY number ASC");
+                $select_genre = $pdo->prepare("SELECT * FROM recording ORDER BY number ASC");
                 $select_recording->execute();
             } else {
                 $select_recordings = $pdo->prepare("SELECT recording.* FROM recording, recording_genre, genre
@@ -192,7 +201,7 @@ class Recording{
                 $recording = new recording();
                 $recording ->setTitle($db_recordings[$i]['title']);
                 $recording->setYear($db_recordings[$i]['year']);
-                $recording->setRank($db_recordings[$i]['number']);
+                $recording->setRank($db_recordings[$i]['rank']);
                 $recording->setPermission($db_recordings[$i]['permission']);
                 $recording->setSubject($db_recordings[$i]['subject']);
                 $recording->setID($db_recordings[$i]['id']);
@@ -204,6 +213,15 @@ class Recording{
                     array_push($genre, $db_genre[$j]['name']);
                 }
                 $album->setGenre(implode(',', $genre));
+                array_push($recordings, $recording);
+
+                $select_contributor->execute([$recording->id]);
+                $db_genre = $select_contributor->fetchAll();
+                $contributor = array();
+                for($j=0; $j<count($db_contributor); $j++){
+                    array_push($contributor, $db_contributor[$j]['name']);
+                }
+                $album->setContributor(implode(',', $contributor));
                 array_push($recordings, $recording);
             }
             return $recordings;
