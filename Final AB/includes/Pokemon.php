@@ -79,7 +79,7 @@
         global $pdo;
 
         try{
-           
+       // between here and the end of connecting types, I have it working as of 1:34am on december 16. Need to rework tables and get the rest of the code working!    
            $pokemon_insert = $pdo->prepare("INSERT INTO pokemon (pokemon_pokedex, pokemon_species, pokemon_evolves_from, pokemon_evolves_to, pokemon_exdt)
                                             VALUES (?, ?, ?, ?, ?)");
             $db_pokemon = $pokemon_insert->execute([$this->pokedex, $this->species, $this->evolve_from, 
@@ -100,11 +100,29 @@
                     $db_type = $type_insert->execute([$this->type[$i]]);
                     $type_id = $pdo->lastInsertId();
                 } else {
-                    $type_id = $existing_type['id'];
+                    $type_id = $existing_type['type_id'];
                 }
                 $type_link->execute([$this->id, $type_id]);
                 print_r("Connected ".$this->type[$i]." to $this->species<br>\n");
-            }
+
+            // now try to make candy work just like i made types work
+
+            $select_candy = $pdo->prepare("SELECT * FROM candy WHERE candy_to_evolve = ?");
+            $candy_insert = $pdo->prepare("INSERT INTO candy (candy_to_evolve) VALUES (?)");
+            $candy_link = $pdo->prepare("INSERT INTO candy_pokemon (pokemon_id, candy_id) VALUES (?, ?)");
+            for($i=0; $i<count($this->evolve_candy); $i++){
+                $select_candy->execute([$this->evolve_candy[$i]]);
+                $existing_candy = $select_candy->fetch();
+                if(!$existing_candy){
+                    $db_candy = $candy_insert->execute([$this->evolve_candy[$i]]);
+                    $candy_id = $pdo->lastInsertID();
+                } else {
+                    $candy_id = $existing_candy['candy_id'];
+                }
+                $candy_link->execute([$this->id, $candy_id]);
+                print_r("Connected ".$this->evolve_candy[$i]." to $this->species<br>\n");
+                }
+                    
 
     //the code above seems to work a little, although with errors. It is after this point that things get completely derailed. What do I need to fix?
 
@@ -118,11 +136,11 @@
             //         $db_generation = $generation_insert->execute([$this->generation[$i]]);
             //         $generation_id = $pdo->lastInsertID();
             //     } else {
-            //         $generation_id = $existing_generation['id'];
+            //         $generation_id = $existing_generation['generation_id'];
             //     }
             //     $generation_link->execute([$this->id, $generation_id]);
             //     print_r("Connected ".$this->generation[$i]." to $this->species<br>\n");
-            //     }
+                }
 
             // $select_region = $pdo->prepare("SELECT * FROM region WHERE region_name = ?");
             // $region_insert = $pdo->prepare("INSERT INTO region (region_name) VALUES (?)");
@@ -156,22 +174,7 @@
             //     print_r("Connected ".$this->buddy_distance_rate[$i]." to $this->species<br>\n");
             //     }   
 
-            // $select_candy = $pdo->prepare("SELECT * FROM candy WHERE candy_to_evolve = ?");
-            // $candy_insert = $pdo->prepare("INSERT INTO candy (candy_to_evolve) VALUES (?)");
-            // $candy_link = $pdo->prepare("INSERT INTO candy_pokemon (pokemon_id, candy_id) VALUES (?, ?)");
-            // for($i=0; $i<count($this->candy); $i++){
-            //     $select_candy->execute([$this->candy[$i]]);
-            //     $existing_candy = $select_candy->fetch();
-            //     if(!$existing_candy){
-            //         $db_candy = $candy_insert->execute([$this->candy[$i]]);
-            //         $candy_id = $pdo->lastInsertID();
-            //     } else {
-            //         $candy_id = $existing_candy['id'];
-            //     }
-            //     $candy_link->execute([$this->id, $candy_id]);
-            //     print_r("Connected ".$this->candy[$i]." to $this->species<br>\n");
-            //     }
-            
+
             // flush();
             // ob_flush();
             
