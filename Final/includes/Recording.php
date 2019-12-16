@@ -111,10 +111,11 @@ class Recording{
                     $contributor-id = $pdo->lastInsertID();
                 } else {
                     $contributor_id = $existing_contributor['id'];
-                }    
-                }
+                } 
                 $contributor_link->execute([$this->id, $contributor_id]);
-                print_r("Connected ".$this->contributor[$i]." to $this->title<br>\n");
+                print_r("Connected ".$this->contributor[$i]." to $this->title<br>\n");   
+                
+                
 
             }
             flush();
