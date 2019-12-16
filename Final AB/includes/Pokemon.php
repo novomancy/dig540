@@ -9,7 +9,7 @@
     private $evolve_to;
     private $region;
     private $generation;
-    private $extd;
+    private $exdt;
     private $id;
 
     public function setID($dbID){ $this->id = $dbID; }
@@ -29,8 +29,8 @@
     public function getRegion(){ print_r( 'Region First Discoverd: '.$this->region . '<br>'); }
     public function setGeneration($generationNumber){ $this->generation = $generationNumber; }
     public function getGeneration(){ print_r( 'Generation: '.$this->generation . '<br>'); }
-    public function setExtd($extdValue){ $this->extd = $extdValue; }
-    public function getExtd(){ print_r('Special Information: '.$this->extd . '<br>'); }  
+    public function setExdt($exdtValue){ $this->exdt = $exdtValue; }
+    public function getExdt(){ print_r('Special Information: '.$this->exdt . '<br>'); }  
    
     public function setType($type){ 
         $this->type = str_getcsv($type);
@@ -55,7 +55,7 @@
     $this->setEvolvesTo($data_row[6]);
     $this->setRegion($data_row[7]);
     $this->setGeneration($data_row[8]);
-    $this->setExtd($data_row[9]);
+    $this->setExdt($data_row[9]);
 
 
         }
@@ -70,7 +70,7 @@
         $this->getEvolvesTo();   
         $this->getRegion();
         $this->getGeneration();
-        $this->getExtd();
+        $this->getExdt();
 
     }
 
@@ -78,12 +78,14 @@
         global $pdo;
 
         try{
-            $pokemon_insert = $pdo->prepare("INSERT INTO pokemon (pokedex, species, buddycandy, candytoevolve, evolvesfrom, evolvesto, region, generation, extd)
-                                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $db_pokemon = $pokemon_insert->execute([$this->pokedex, $this->species, $this->buddycandy, $this->candytoevolve, $this->evolvesfrom, 
-            $this->evolvesto, $this->region, $this->generation, $this->extd]);
-
-            // implode(',', $this->extd)]);
+           
+           
+           
+           $pokemon_insert = $pdo->prepare("INSERT INTO pokemon (pokemon_pokedex, pokemon_species, pokemon_evolves_from, pokemon_evolves_to, pokemon_exdt)
+                                            VALUES (?, ?, ?, ?, ?)");
+            $db_pokemon = $pokemon_insert->execute([$this->pokedex, $this->species, $this->evolve_from, 
+            $this->evolve_to, $this->exdt]);
+            // implode(',', $this->exdt)]);
             // i need to go back and figure out more about the implode thing and what it does. what variable i need to be in there, if any
 
             $this->id = $pdo->lastInsertId();
@@ -92,28 +94,90 @@
             $select_type = $pdo->prepare("SELECT * FROM type WHERE name = ?");
             $type_insert = $pdo->prepare("INSERT INTO type (name) VALUES (?)");
             $type_link = $pdo->prepare("INSERT INTO pokemon_type (pokemon_id, type_id) VALUES (?, ?)");
-
             for($i=0; $i<count($this->type); $i++){
                 $select_type->execute([$this->type[$i]]);
                 $existing_type = $select_type->fetch();
                 if(!$existing_type){
-                    $db_tyoe = $type_insert->execute([$this->type[$i]]);
+                    $db_type = $type_insert->execute([$this->type[$i]]);
                     $type_id = $pdo->lastInsertID();
                 } else {
                     $type_id = $existing_type['id'];
                 }
                 $type_link->execute([$this->id, $type_id]);
                 print_r("Connected ".$this->type[$i]." to $this->pokemon<br>\n");
-            }
+                }
+
+            $select_generation = $pdo->prepare("SELECT * FROM generation WHERE name = ?");
+            $generation_insert = $pdo->prepare("INSERT INTO generation (name) VALUES (?)");
+            $generation_link = $pdo->prepare("INSERT INTO pokemon (pokemon_id, generation_id) VALUES (?, ?)");
+            for($i=0; $i<count($this->generation); $i++){
+                $select_generation->execute([$this->generation[$i]]);
+                $existing_generation = $select_generation->fetch();
+                if(!$existing_generation){
+                    $db_generation = $generation_insert->execute([$this->generation[$i]]);
+                    $generation_id = $pdo->lastInsertID();
+                } else {
+                    $generation_id = $existing_generation['id'];
+                }
+                $generation_link->execute([$this->id, $generation_id]);
+                print_r("Connected ".$this->generation[$i]." to $this->pokemon<br>\n");
+                }
+            $select_region = $pdo->prepare("SELECT * FROM region WHERE name = ?");
+            $region_insert = $pdo->prepare("INSERT INTO region (name) VALUES (?)");
+            $region_link = $pdo->prepare("INSERT INTO pokemon (pokemon_id, region_id) VALUES (?, ?)");
+            for($i=0; $i<count($this->region); $i++){
+                $select_region->execute([$this->region[$i]]);
+                $existing_region = $select_region->fetch();
+                if(!$existing_region){
+                    $db_region = $region_insert->execute([$this->region[$i]]);
+                    $region_id = $pdo->lastInsertID();
+                } else {
+                    $region_id = $existing_region['id'];
+                }
+                $region_link->execute([$this->id, $region_id]);
+                print_r("Connected ".$this->region[$i]." to $this->pokemon<br>\n");
+                }
+
+            $select_buddy_distance_rate = $pdo->prepare("SELECT * FROM buddy_distance_rate WHERE name = ?");
+            $buddy_distance_rate_insert = $pdo->prepare("INSERT INTO buddy_distance_rate (name) VALUES (?)");
+            $buddy_distance_rate_link = $pdo->prepare("INSERT INTO pokemon (pokemon_id, buddy_id) VALUES (?, ?)");
+            for($i=0; $i<count($this->buddy_distance_rate); $i++){
+                $select_buddy_distance_rate->execute([$this->buddy_distance_rate[$i]]);
+                $existing_buddy_distance_rate = $select_buddy_distance_rate->fetch();
+                if(!$existing_buddy_distance_rate){
+                    $db_buddy_distance_rate = $buddy_distance_rate_insert->execute([$this->buddy_distance_rate[$i]]);
+                    $buddy_id = $pdo->lastInsertID();
+                } else {
+                    $buddy_id = $existing_buddy_distance_rate['id'];
+                }
+                $region_link->execute([$this->id, $buddy_id]);
+                print_r("Connected ".$this->buddy_distance_rate[$i]." to $this->pokemon<br>\n");
+                }   
+
+            $select_candy = $pdo->prepare("SELECT * FROM candy WHERE name = ?");
+            $candy_insert = $pdo->prepare("INSERT INTO candy (name) VALUES (?)");
+            $candy_link = $pdo->prepare("INSERT INTO candy_pokemon (pokemon_id, candy_id) VALUES (?, ?)");
+            for($i=0; $i<count($this->candy); $i++){
+                $select_candy->execute([$this->candy[$i]]);
+                $existing_candy = $select_candy->fetch();
+                if(!$existing_candy){
+                    $db_candy = $candy_insert->execute([$this->candy[$i]]);
+                    $candy_id = $pdo->lastInsertID();
+                } else {
+                    $candy_id = $existing_candy['id'];
+                }
+                $candy_link->execute([$this->id, $candy_id]);
+                print_r("Connected ".$this->candy[$i]." to $this->pokemon<br>\n");
+                }
+
             flush();
             ob_flush();
-    
-        } catch (PDOException $e){
+
+         } catch (PDOException $e){
             print_r("Error saving album to database: ".$e->getMessage() . "<br>\n");
             exit;
         }
     }
-
-    }
+ }
 
 ?>
