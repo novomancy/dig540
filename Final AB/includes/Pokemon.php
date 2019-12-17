@@ -20,8 +20,10 @@
     public function getSpecies(){print_r('Species: '.$this->species . '<br>');}
     public function setBuddyCandy($buddyCandyDistance){ $this->buddy_candy = $buddyCandyDistance; }
     public function getBuddyCandy(){ print_r('Walk this many km to earn a candy: '.$this->buddy_candy . '<br>'); }
+   
     public function setEvolveCandy($evolveCandy){ $this->evolve_candy = $evolveCandy; }
     public function getEvolveCandy(){print_r('Candies Needed to Evolve: '.$this->evolve_candy . '<br>');}
+    
     public function setEvolvesFrom($evolvesFrom){ $this->evolve_from = $evolvesFrom; }
     public function getEvolvesFrom(){ print_r( 'Evolves From: '.$this->evolve_from . '<br>'); }
     public function setEvolvesTo($evolvesTo){ $this->evolve_to = $evolvesTo; }
@@ -43,7 +45,7 @@
         }
     }
 
-    
+
     public function setData($data_row){
         // this is a function that pulls up other functions and puts them together. But it also passes in the data   
          
@@ -106,14 +108,13 @@
                 print_r("Connected ".$this->type[$i]." to $this->species<br>\n");
 
             // now try to make candy work just like i made types work
-
             $select_candy = $pdo->prepare("SELECT * FROM candy WHERE candy_to_evolve = ?");
             $candy_insert = $pdo->prepare("INSERT INTO candy (candy_to_evolve) VALUES (?)");
             $candy_link = $pdo->prepare("INSERT INTO candy_pokemon (pokemon_id, candy_id) VALUES (?, ?)");
                 
             //the line below is what the error message says is the problem
             
-                for($j=0; $j<count($this->evolve_candy); $j++){
+            for($j=0; $j<count($this->evolve_candy); $j++){
                $select_candy->execute([$this->evolve_candy[$j]]);
                $existing_candy = $select_candy->fetch();
                if(!$existing_candy){
