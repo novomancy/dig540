@@ -19,20 +19,12 @@
     public function setSpecies($speciesName){$this->species = $speciesName;}
     public function getSpecies(){print_r('Species: '.$this->species . '<br>');}
    
-    // the old version
-    // public function setBuddyCandy($buddyCandyDistance){ $this->buddy_candy = $buddyCandyDistance; }
-    // public function getBuddyCandy(){ print_r('Walk this many km to earn a candy: '.$this->buddy_candy . '<br>'); }
     public function setBuddyCandy($buddyCandyDistance){  
         $this->buddy_candy = str_getcsv($buddyCandyDistance); 
      }
      public function getBuddyCandy() {
      for($j=0; $j<count($this->buddy_candy); $j++){
          print_r("<span style='color:indigo'>Walk this many km to earn a candy: ".$this->buddy_candy[$j]."</span><br>"); }  }  
-
-
-    // the old version 
-    // public function setEvolveCandy($evolveCandy){ $this->evolve_candy = $evolveCandy; }
-    // public function getEvolveCandy(){print_r('Candies Needed to Evolve: '.$this->evolve_candy . '<br>');}
 
     public function setEvolveCandy($evolveCandy){  
         $this->evolve_candy = str_getcsv($evolveCandy); 
@@ -46,10 +38,6 @@
     public function setEvolvesTo($evolvesTo){ $this->evolve_to = $evolvesTo; }
     public function getEvolvesTo(){ print_r( 'Evolves To: '.$this->evolve_to . '<br>'); }
   
-    // old version
-    // public function setRegion($regionName){ $this->region = $regionName; }
-    // public function getRegion(){ print_r( 'Region First Discoverd: '.$this->region . '<br>'); }
-   
     public function setRegion($regionName){  
         $this->region = str_getcsv($regionName); 
      }
@@ -57,9 +45,6 @@
      for($j=0; $j<count($this->region); $j++){
          print_r("<span style='color:orange'>Region: ".$this->region[$j]."</span><br>"); }  }
 
-    // old version
-    // public function setGeneration($generationNumber){ $this->generation = $generationNumber; }
-    // public function getGeneration(){ print_r( 'Generation: '.$this->generation . '<br>'); }
     public function setGeneration($generationNumber){  
         $this->generation = str_getcsv($generationNumber); 
      }
@@ -110,12 +95,10 @@
         $this->getExdt();
 
     }
-
     public function save(){        
         global $pdo;
 
-        try{
-       // Successfully entering pokemon, candy, and generation data so far 12/16 10:17pm    
+        try{   
            $pokemon_insert = $pdo->prepare("INSERT INTO pokemon (pokemon_pokedex, pokemon_species, pokemon_evolves_from, pokemon_evolves_to, pokemon_exdt)
                                             VALUES (?, ?, ?, ?, ?)");
             $db_pokemon = $pokemon_insert->execute([$this->pokedex, $this->species, $this->evolve_from, 
@@ -172,8 +155,7 @@
                  }
                  $generation_link->execute([$this->id, $generation_id]);
                  print_r("Connected ".$this->generation[$i]." to $this->species<br>\n"); 
-           
-           
+                     
          // enter data into the region table and link it to pokemon           
             $select_region = $pdo->prepare("SELECT * FROM region WHERE region_name = ?");
             $region_insert = $pdo->prepare("INSERT INTO region (region_name) VALUES (?)");
@@ -205,9 +187,7 @@
                  }
                  $buddy_distance_rate_link->execute([$this->id, $buddy_id]);
                  print_r("Connected ".$this->buddy_candy[$i]." to $this->species<br>\n");
-                 }                  
-        
-                
+                 }                         
                 
                 }  
         // This is giving me the error message, but I am not going to deal with it right now
@@ -220,6 +200,49 @@
             exit;
         }
  }
-}
+ static public function load_all(){
+    global $pdo;
+
+    $pokemons = array();
+    try{
+        $select_pokemons = $pdo->prepare("SELECT * FROM pokemon ORDER BY pokemon_pokedex ASC");
+        $select_type = $pdo->prepare("SELECT type.type_name AS type 
+                                                    FROM pokemon_type, type
+                                                    WHERE pokemon_type.pokemon_id = ?
+                                                    AND pokemon_type.type_id = type.type_id");
+         
+        $select_pokemons->execute();
+
+
+
+        $db_pokemons = $select_pokemons->FetchAll();
+
+        for($i=0; $i<count($db_pokemons); $i++){
+            $pokemon = new Pokemon();
+            $pokemon->setPokedex($db_pokemons[$i]['pokemon_pokedex']);
+            $pokemon->setSpecies($db_pokemons[$i]['pokemon_species']);
+            $pokemon->setEvolvesFrom($db_pokemons[$i]['pokemon_evolves_from']);
+            $pokemon->setEvolvesTo($db_pokemons[$i]['pokemon_evolves_to']);
+            $pokemon->setID($db_pokemons[$i]['pokemon_id']);
+        
+            $select_type->execute([$pokemon->id]);
+            $db_types = $select_type->fetchAll();
+            $type = array();
+            for($j=0; $j<count($db_types); $j++){
+                array_push($type, $db_types[$j]['type']);
+            }
+
+            $pokemon->setType(implode(',', $type));
+            array_push($pokemons, $pokemon);
+
+        }
+        return $pokemons;
+} catch (PDOException $e){
+            print_r("Error reading Pokemon from database: ".$e->getMessage() . "<br>\n");
+            exit;
+        }
+    }
+
+ }
 
 ?>
