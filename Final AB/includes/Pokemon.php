@@ -116,11 +116,11 @@
                 $existing_type = $select_type->fetch();
                 if(!$existing_type){
                     $db_type = $type_insert->execute([$this->type[$i]]);
-                    $type_id = $pdo->lastInsertId();
+                    $typeid = $pdo->lastInsertId();
                 } else {
-                    $type_id = $existing_type['type_id'];
+                    $typeid = $existing_type['type_id'];
                 }
-                $type_link->execute([$this->id, $type_id]);
+                $type_link->execute([$this->id, $typeid]);
                 print_r("Connected ".$this->type[$i]." to $this->species<br>\n");
 
         //enter data into the candy table and link it to pokemon
@@ -200,12 +200,23 @@
             exit;
         }
  }
- static public function load_all(){
+ static public function load($type=false){
     global $pdo;
 
     $pokemons = array();
     try{
+        if ($type=false){
         $select_pokemons = $pdo->prepare("SELECT * FROM pokemon ORDER BY pokemon_id ASC");
+        $select_pokemons->execute();
+        else{ 
+//             $select_albums = $pdo->prepare("SELECT album.* FROM album, album_genre, genre
+//             WHERE album.id = album_genre.album_id AND
+//               album_genre.genre_id = genre.id AND
+//               genre.name = ?
+//             ORDER BY album.number ASC");
+//          $select_albums->execute([$genre]);
+
+        }
         $select_type = $pdo->prepare("SELECT type.type_name AS typeName 
                                                     FROM pokemon_type, type
                                                     WHERE pokemon_type.pokemon_id = ?
