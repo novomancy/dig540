@@ -41,8 +41,8 @@ class Recording{
     }
     public function getContributor(){
         for($j=0; $j<count($this->contributor); $j++){
-            if($j%2==0) print_r("<span style='color:blue'>Contributor #".($j+1)." is ".$this->contributor[$j]."</span><br>");
-            else print_r("<span style='color:red'>Contributor #". ($j+1)." is ".$this->contributor[$j]."</span><br>");
+            if($j%2==0) print_r("<span style='color:blue'>contributor #".($j+1)." is ".$this->contributor[$j]."</span><br>");
+            else print_r("<span style='color:red'>contributor #". ($j+1)." is ".$this->contributor[$j]."</span><br>");
         }
             
     }
@@ -128,7 +128,7 @@ class Recording{
 
             }
             flush();
-            ob_flush();
+             ob_flush();
         } catch (PDOException $e){
             print_r("Error saving recording to database: ".$e->getMessage() . "<br>\n");
             exit;
@@ -142,8 +142,14 @@ class Recording{
                                             WHERE id = ?");
             $select_genre = $pdo->prepare("SELECT genre.name AS name
                                                 FROM recording_genre, genre
-                                                WHERE recording_genre.album_id = ?
+                                                WHERE recording_genre.recording_id = ?
                                                 AND recording_genre.genre_id = genre.id");
+            $find_recording = $pdo->prepare("SELECT * FROM contributor
+                                              WHERE id = ?");
+            $select_contributor = $pdo->prepare("SELECT contributor.name AS name
+                                                FROM recording_contributor, contributor
+                                                WHERE recording_contributor.recording_id = ?
+                                                AND recording_contributor.contributor_id = contributor.id");                                                                      
             $find_recording->execute([$id]);
             $db_recording = $find_recording->fetch();
             if(!$db_recording){
@@ -164,7 +170,17 @@ class Recording{
                     array_push($genre, $db_genre[$j]['name']);
                 }
                 $genre->setGenre(implode(',', $genre));
-                return $recording;                
+                return $recording; 
+                
+                $select_contributor->execute([$id]);
+                $db_contributor = $select_contributor->fetchAll();
+                $contributor = array();
+                for($j=0; $j<count($db_contributor); $j++){
+                    array_push($contributor, $db_contributor[$j]['name']);
+                }
+                $contributor->setContributor(implode(',', $contributor));
+                return $recording; 
+
             }
         } catch (PDOException $e){
             print_r("Error reading single recording from database: ".$e->getMessage() . "<br>\n");
@@ -191,7 +207,7 @@ class Recording{
             
             $select_genre = $pdo->prepare("SELECT genre.name AS name
                                             FROM recording_genre, genre
-                                            WHERE recording_genre.album_id = ?
+                                            WHERE recording_genre.recording_id = ?
                                               AND recording_genre.genre_id = genre.id");
 
 
@@ -212,16 +228,58 @@ class Recording{
                 for($j=0; $j<count($db_genre); $j++){
                     array_push($genre, $db_genre[$j]['name']);
                 }
-                $album->setGenre(implode(',', $genre));
+                $recording->setGenre(implode(',', $genre));
                 array_push($recordings, $recording);
 
+                
+            }
+            
+        } catch (PDOException $e){
+            print_r("Error reading single recording from database: ".$e->getMessage() . "<br>\n");
+        }    
+        
+    }
+    static public function load($contributor=false){
+        global $pdo;
+
+        $recordings = array();
+        try{
+            if($contributor==false){
+                $select_contributor = $pdo->prepare("SELECT * FROM recording ORDER BY number ASC");
+                $select_recording->execute();
+            } else {
+                $select_recordings = $pdo->prepare("SELECT recording.* FROM recording, recording_contributor, contributor
+                                                WHERE recording.id = recording_contributor.recording_id AND
+                                                  recording_contributor.contributor_id = contributor.id AND
+                                                  contributor.name = ?
+                                                ORDER BY recording.number ASC");
+                $select_recordings->execute([$contributor]);
+            }
+            
+            $select_contributor = $pdo->prepare("SELECT contributor.name AS name
+                                            FROM recording_contributor, contributor
+                                            WHERE recording_contributor.recording_id = ?
+                                              AND recording_contributor.contributor_id = contributor.id");
+
+
+            $db_recording = $select_recording->fetchAll();
+
+            for($i=0; $i<count($db_recording); $i++){
+                $recording = new recording();
+                $recording ->setTitle($db_recordings[$i]['title']);
+                $recording->setYear($db_recordings[$i]['year']);
+                $recording->setRank($db_recordings[$i]['rank']);
+                $recording->setPermission($db_recordings[$i]['permission']);
+                $recording->setSubject($db_recordings[$i]['subject']);
+                $recording->setID($db_recordings[$i]['id']);
+
                 $select_contributor->execute([$recording->id]);
-                $db_genre = $select_contributor->fetchAll();
+                $db_contributor = $select_contributor->fetchAll();
                 $contributor = array();
                 for($j=0; $j<count($db_contributor); $j++){
                     array_push($contributor, $db_contributor[$j]['name']);
                 }
-                $album->setContributor(implode(',', $contributor));
+                $recording->setContributor(implode(',', $contributor));
                 array_push($recordings, $recording);
             }
             return $recordings;
@@ -229,6 +287,8 @@ class Recording{
             print_r("Error reading recording from database: ".$e->getMessage() . "<br>\n");
             exit;
         }
-    }
+    }            
+
+
 }
 ?>
