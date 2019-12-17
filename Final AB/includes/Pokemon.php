@@ -21,6 +21,7 @@
     public function setBuddyCandy($buddyCandyDistance){ $this->buddy_candy = $buddyCandyDistance; }
     public function getBuddyCandy(){ print_r('Walk this many km to earn a candy: '.$this->buddy_candy . '<br>'); }
    
+    // the old version 
     // public function setEvolveCandy($evolveCandy){ $this->evolve_candy = $evolveCandy; }
     // public function getEvolveCandy(){print_r('Candies Needed to Evolve: '.$this->evolve_candy . '<br>');}
 
@@ -29,7 +30,7 @@
      }
      public function getEvolveCandy() {
      for($j=0; $j<count($this->evolve_candy); $j++){
-         print_r("<span style='color:red'>Candies Needed to Evolve:".$this->evolve_candy[$j]."</span><br>"); }  }
+         print_r("<span style='color:purple'>Candies Needed to Evolve:".$this->evolve_candy[$j]."</span><br>"); }  }
     
     public function setEvolvesFrom($evolvesFrom){ $this->evolve_from = $evolvesFrom; }
     public function getEvolvesFrom(){ print_r( 'Evolves From: '.$this->evolve_from . '<br>'); }
@@ -37,8 +38,17 @@
     public function getEvolvesTo(){ print_r( 'Evolves To: '.$this->evolve_to . '<br>'); }
     public function setRegion($regionName){ $this->region = $regionName; }
     public function getRegion(){ print_r( 'Region First Discoverd: '.$this->region . '<br>'); }
-    public function setGeneration($generationNumber){ $this->generation = $generationNumber; }
-    public function getGeneration(){ print_r( 'Generation: '.$this->generation . '<br>'); }
+    
+    // public function setGeneration($generationNumber){ $this->generation = $generationNumber; }
+    // public function getGeneration(){ print_r( 'Generation: '.$this->generation . '<br>'); }
+    public function setGeneration($generationNumber){  
+        $this->generation = str_getcsv($generationNumber); 
+     }
+     public function getGeneration() {
+     for($j=0; $j<count($this->generation); $j++){
+         print_r("<span style='color:green'>".$this->generation[$j]."</span><br>"); }  }
+
+  
     public function setExdt($exdtValue){ $this->exdt = $exdtValue; }
     public function getExdt(){ print_r('Special Information: '.$this->exdt . '<br>'); }  
    
@@ -114,13 +124,11 @@
                 $type_link->execute([$this->id, $type_id]);
                 print_r("Connected ".$this->type[$i]." to $this->species<br>\n");
 
-            // now try to make candy work just like i made types work
+        //now enter data into the candy table and link it to pokemon
             $select_candy = $pdo->prepare("SELECT * FROM candy WHERE candy_to_evolve = ?");
             $candy_insert = $pdo->prepare("INSERT INTO candy (candy_to_evolve) VALUES (?)");
             $candy_link = $pdo->prepare("INSERT INTO candy_pokemon (pokemon_id, candy_id) VALUES (?, ?)");
-                
-            //the line below is what the error message says is the problem
-            
+                  
             for($j=0; $j<count($this->evolve_candy); $j++){
                $select_candy->execute([$this->evolve_candy[$j]]);
                $existing_candy = $select_candy->fetch();
@@ -133,26 +141,25 @@
                  $candy_link->execute([$this->id, $candy_id]);
                  print_r("Connected ".$this->evolve_candy[$j]." to $this->species<br>\n");
                  
-                }
+            $select_generation = $pdo->prepare("SELECT * FROM generation WHERE generation_name = ?");
+            $generation_insert = $pdo->prepare("INSERT INTO generation (generation_name) VALUES (?)");
+            $generation_link = $pdo->prepare("INSERT INTO pokemon (generation_id) VALUES (?)");
+                for($i=0; $i<count($this->generation); $i++){
+                $select_generation->execute([$this->generation[$i]]);
+                $existing_generation = $select_generation->fetch();
+                if(!$existing_generation){
+                $db_generation = $generation_insert->execute([$this->generation[$i]]);
+                   $generation_id = $pdo->lastInsertID();
+                } else {
+                     $generation_id = $existing_generation['generation_id'];
+                 }
+                 $generation_link->execute([$this->id, $generation_id]);
+                 print_r("Connected ".$this->generation[$i]." to $this->species<br>\n");
+                
+            
                     
-
     //the code above seems to work a little, although with errors. It is after this point that things get completely derailed. What do I need to fix?
 
-            // $select_generation = $pdo->prepare("SELECT * FROM generation WHERE generation_name = ?");
-            // $generation_insert = $pdo->prepare("INSERT INTO generation (generation_name) VALUES (?)");
-            // $generation_link = $pdo->prepare("INSERT INTO pokemon (pokemon_id, generation_id) VALUES (?, ?)");
-            // for($i=0; $i<count($this->generation); $i++){
-            //     $select_generation->execute([$this->generation[$i]]);
-            //     $existing_generation = $select_generation->fetch();
-            //     if(!$existing_generation){
-            //         $db_generation = $generation_insert->execute([$this->generation[$i]]);
-            //         $generation_id = $pdo->lastInsertID();
-            //     } else {
-            //         $generation_id = $existing_generation['generation_id'];
-            //     }
-            //     $generation_link->execute([$this->id, $generation_id]);
-            //     print_r("Connected ".$this->generation[$i]." to $this->species<br>\n");
-                }
 
             // $select_region = $pdo->prepare("SELECT * FROM region WHERE region_name = ?");
             // $region_insert = $pdo->prepare("INSERT INTO region (region_name) VALUES (?)");
@@ -190,7 +197,7 @@
             // flush();
             // ob_flush();
             
-         } catch (PDOException $e){
+         catch (PDOException $e){
             print_r("Error saving Pokemon to database: ".$e->getMessage() . "<br>\n");
             exit;
         }
