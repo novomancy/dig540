@@ -213,8 +213,90 @@
     global $pdo;
     
     try{
+        $find_pokemon = $pdo->prepare("SELECT * FROM pokemon
+                                            WHERE pokemon_id = ?");
+        $select_type = $pdo->prepare("SELECT type.type_name AS typeName
+                                                FROM pokemon_type, type
+                                                WHERE pokemon_type.pokemon_id = ?
+                                                AND pokemon_type.type_id = type.type_id");
+    //select region
+        $select_region = $pdo->prepare("SELECT region.region_name AS location
+                                        FROM pokemon_region, region
+                                        WHERE pokemon_region.pokemon_id = ?
+                                        AND pokemon_region.region_id = region.region_id");
+        
+    // select generation
+        $select_generation = $pdo->prepare("SELECT generation.generation_name AS gen
+                                            FROM pokemon_generation, generation
+                                            WHERE pokemon_generation.pokemon_id = ?
+                                             AND pokemon_generation.generation_id = generation.generation_id");
+    // select buddy_distance_rate
+        $select_buddy_distance_rate = $pdo->prepare("SELECT buddy_distance_rate.buddy_candy_rate AS buddy
+                                                     FROM pokemon_buddy_distance_rate, buddy_distance_rate
+                                                    WHERE pokemon_buddy_distance_rate.pokemon_id = ?
+                                                      AND pokemon_buddy_distance_rate.buddy_id = buddy_distance_rate.buddy_id");
 
+    //select candy
+        $select_candy = $pdo->prepare("SELECT candy.candy_to_evolve AS candies
+                                        FROM candy_pokemon, candy
+                                        WHERE candy_pokemon.pokemon_id = ?
+                                        AND candy_pokemon.candy_id = candy.candy_id");
 
+       $find_pokemon->execute([$id]);
+        $db_pokemon = $find_pokemon->fetch();
+            if(!$db_pokemon){
+                return false;
+            } else {
+            $pokemon = new Pokemon();
+            $pokemon->setPokedex($db_pokemon['pokemon_pokedex']);
+            $pokemon->setSpecies($db_pokemon['pokemon_species']);
+            $pokemon->setEvolvesFrom($db_pokemon['pokemon_evolves_from']);
+            $pokemon->setEvolvesTo($db_pokemon['pokemon_evolves_to']);
+            $pokemon->setID($id);
+
+                $select_type->execute([$id]);
+                $db_types = $select_type->fetchAll();
+                $types = array();
+                for($j=0; $j<count($db_types); $j++){
+                    array_push($types, $db_types[$j]['typeName']);
+                }
+               
+                $pokemon->setType(implode(',', $types));
+               
+                $select_region->execute([$pokemon->id]);
+                $db_regions = $select_region->fetchAll();
+                $regions = array();
+                for($j=0; $j<count($db_regions); $j++){ 
+                    array_push($regions, $db_regions[$j]['location']);
+                }
+               $pokemon->setRegion(implode(',', $regions));
+               
+               $select_generation->execute([$pokemon->id]);
+               $db_generations = $select_generation->fetchAll();
+               $generations = array();
+               for($j=0; $j<count($db_generations); $j++){ 
+                   array_push($generations, $db_generations[$j]['gen']);
+               }
+              $pokemon->setGeneration(implode(',', $generations));
+    
+              $select_buddy_distance_rate->execute([$pokemon->id]);
+              $db_buddys = $select_buddy_distance_rate->fetchAll();
+              $buddys = array();
+              for($j=0; $j<count($db_buddys); $j++){ 
+                  array_push($buddys, $db_buddys[$j]['buddy']);
+              }
+             $pokemon->setBuddyCandy(implode(',', $buddys));
+    
+             $select_candy->execute([$pokemon->id]);
+             $db_candies = $select_candy->fetchAll();
+             $candies = array();
+             for($j=0; $j<count($db_candies); $j++){ 
+                 array_push($candies, $db_candies[$j]['candies']);
+             }
+            $pokemon->setEvolveCandy(implode(',', $candies));  
+              
+                return $pokemon;                
+            }
 
 
     } catch(PDOException $e){

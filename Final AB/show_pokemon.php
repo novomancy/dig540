@@ -6,9 +6,9 @@
 
     // creates an empty array to be filled with pokemon
     if(isset($_GET['id']) && $_GET['id'] != ''){
-        $pokemon = Pokemon::load($_GET['id']);
+        $pokemon = Pokemon::load_by_id($_GET['id']);
     } else {
-    $pokemon = Pokemon::load();
+    $pokemon = false;
     }
 ?>
 
@@ -25,12 +25,12 @@
   <body>
     <h1>Here are the Pokemon in the Database</h1>
 
-<?php
-
-    // this loop goes through the $albums array i just made and prints out the data for each pokemon
-    for($i=0; $i<count($pokemons); $i++){
-       print_r("<p>");
-        $pokemons[$i]->getData();
+<?php 
+      if(!$pokemon){
+  print_r('Something went wrong. Either you did not specify a Pokemon ID or the Pokemon was not found.');
+            } else {
+        print_r("<p>");
+        $pokemon->getData();
         print_r('</p>');
     }
 
