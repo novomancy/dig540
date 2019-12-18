@@ -16,7 +16,7 @@
     }
 
     //Create an empty array that will be filled with albums
-    $recordings = array();
+    $voices = array();
     
     //This loop reads through the data file and instantiates Album objects for each row
     //It stores these objects in the $albums array
@@ -24,7 +24,7 @@
         $recording = new Recording();
         $recording->setData($data_row);
         $recording->save();
-        array_push($recordings, $recording);
+        array_push($voices, $recording);
     }
 
     //Close the file
