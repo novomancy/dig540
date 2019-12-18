@@ -57,11 +57,13 @@
    
     public function setType($type){ 
         $this->type = str_getcsv($type);
+        for($i=0; $i<count($this->type); $i++){
+            $this->type[$i] = trim($this->type[$i]);
+        }
     }
     public function getType(){ 
         for($j=0; $j<count($this->type); $j++){
-            if($j% 2==0) print_r("<span style='color:blue'>Type #".($j+1)." is ".$this->type[$j]."</span><br>");
-            else print_r("<span style='color:red'>Type #".($j+1)." is ".$this->type[$j]."</span><br>");
+            print_r('<a href="list_pokemon.php?type='.$this->type[$j].'">Type #'.($j+1).' is '.$this->type[$j].'</a><br>');
         }
     }
 
