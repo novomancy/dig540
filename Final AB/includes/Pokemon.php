@@ -65,6 +65,12 @@
         }
     }
 
+    public function getPokemonLink(){
+        $anchor = '<a href="show_pokemon.php?id='.$this->id.'">'.$this->species.'</a>';
+     //  print_r($this->pokedex . ': '. $anchor . $this->species . '<br>');
+       print_r($this->pokedex . ' is '. $anchor . '<br>');
+    }
+
     public function setData($data_row){
         // this is a function that pulls up other functions and puts them together. But it also passes in the data   
          
@@ -121,7 +127,8 @@
                     $typeid = $existing_type['type_id'];
                 }
                 $type_link->execute([$this->id, $typeid]);
-                print_r("Connected ".$this->type[$i]." to $this->species<br>\n");
+                    print_r("Connected ".$this->type[$i]." to $this->species<br>\n");
+            }
 
         //enter data into the candy table and link it to pokemon
             $select_candy = $pdo->prepare("SELECT * FROM candy WHERE candy_to_evolve = ?");
@@ -139,6 +146,7 @@
                  }
                  $candy_link->execute([$this->id, $candy_id]);
                  print_r("Connected ".$this->evolve_candy[$j]." to $this->species<br>\n");
+            }
         
         // enter data into the generation table and link it to pokemon      
             $select_generation = $pdo->prepare("SELECT * FROM generation WHERE generation_name = ?");
@@ -155,7 +163,7 @@
                  }
                  $generation_link->execute([$this->id, $generation_id]);
                  print_r("Connected ".$this->generation[$i]." to $this->species<br>\n"); 
-                     
+             }
          // enter data into the region table and link it to pokemon           
             $select_region = $pdo->prepare("SELECT * FROM region WHERE region_name = ?");
             $region_insert = $pdo->prepare("INSERT INTO region (region_name) VALUES (?)");
@@ -171,7 +179,7 @@
                 }
                 $region_link->execute([$this->id, $region_id]);
                 print_r("Connected ".$this->region[$i]." to $this->species<br>\n");              
-      
+            }
          // enter data into the buddy_distance_rate table and link it to pokemon            
             $select_buddy_distance_rate = $pdo->prepare("SELECT * FROM buddy_distance_rate WHERE buddy_candy_rate = ?");
             $buddy_distance_rate_insert = $pdo->prepare("INSERT INTO buddy_distance_rate (buddy_candy_rate) VALUES (?)");
@@ -195,28 +203,47 @@
 
             // flush();
             //  ob_flush();           
-   }}}} catch (PDOException $e){
+    catch (PDOException $e){
             print_r("Error saving Pokemon to database: ".$e->getMessage() . "<br>\n");
             exit;
         }
  }
+
+ static public function load_by_id($id){
+    global $pdo;
+    
+    try{
+
+
+
+
+    } catch(PDOException $e){
+        print_r("Error reading single Pokemon from database: ".$e->getMessage() . "<br>\n");
+        exit;
+    }
+
+ }
+
+
+
  static public function load($type=false){
     global $pdo;
 
     $pokemons = array();
     try{
-        if ($type=false){
+        if ($type==false){
         $select_pokemons = $pdo->prepare("SELECT * FROM pokemon ORDER BY pokemon_id ASC");
         $select_pokemons->execute();
-        else{ 
-//             $select_albums = $pdo->prepare("SELECT album.* FROM album, album_genre, genre
-//             WHERE album.id = album_genre.album_id AND
-//               album_genre.genre_id = genre.id AND
-//               genre.name = ?
-//             ORDER BY album.number ASC");
-//          $select_albums->execute([$genre]);
+          }  else{ 
+             $select_pokemons = $pdo->prepare("SELECT pokemon.* FROM pokemon, pokemon_type, type
+                                            WHERE pokemon.pokemon_id = pokemon_type.pokemon_id 
+                                            AND pokemon_type.type_id = type.type_id 
+                                            AND type.type_name = ?
+                                            ORDER BY pokemon.pokemon_id ASC");
+            $select_pokemons->execute([$type]);
 
         }
+
         $select_type = $pdo->prepare("SELECT type.type_name AS typeName 
                                                     FROM pokemon_type, type
                                                     WHERE pokemon_type.pokemon_id = ?
@@ -238,10 +265,7 @@
                                                 WHERE candy_pokemon.pokemon_id = ?
                                                 AND candy_pokemon.candy_id = candy.candy_id");
 
-
-        $select_pokemons->execute();
-
-
+     //   $select_pokemons->execute();
 
         $db_pokemons = $select_pokemons->FetchAll();
 
