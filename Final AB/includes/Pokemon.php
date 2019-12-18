@@ -57,6 +57,9 @@
    
     public function setType($type){ 
         $this->type = str_getcsv($type);
+        for($i=0; $i<count($this->type); $i++){
+            $this->type[$i] = trim($this->type[$i]);
+        }
     }
     public function getType(){ 
         for($j=0; $j<count($this->type); $j++){
