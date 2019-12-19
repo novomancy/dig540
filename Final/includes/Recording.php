@@ -118,19 +118,33 @@ class Recording{
             exit;
         }
     }
-    static public function load(){
+    static public function load($genre=false){
         global $pdo;
         $voices = array();
 
         try{
-            $select_voices = $pdo->prepare("SELECT * FROM recording ORDER BY rank ASC");
+            if($genre=false){
+                $select_voices = $pdo->prepare("SELECT * FROM recording ORDER BY rank ASC");
+                $select_voices->execute();
+            } else {
+                $select_voices = $pdo->prepare("SELECT recording.* FROM recording, recording_genre, genre
+                                                 WHERE recording.id = recording_genre.recording_id AND
+                                                  recording_genre.genre_id = genre.id AND
+                                                  genre.name = ?
+                                                  ORDER BY recording.rank ASC");
+                $select_voices->execute([$genre]);
+
+            }    
+                 
+
+
+            
+            
             $select_genre = $pdo->prepare("SELECT genre.name AS name
                                              FROM recording_genre, genre
                                             WHERE recording_genre.recording_id = ?
                                               AND recording_genre.genre_id = genre.id");
-            $select_voices->execute();
-
-
+            
             $db_voices = $select_voices->fetchAll();
 
             for ($i=0; $i<count($db_voices); $i++){
