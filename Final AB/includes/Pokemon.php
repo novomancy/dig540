@@ -11,6 +11,7 @@
     private $region;
     private $generation;
     private $exdt;
+    private $image;
     private $id;
 
     public function setID($dbID){ $this->id = $dbID; }
@@ -41,20 +42,25 @@
     public function setRegion($regionName){  
         $this->region = str_getcsv($regionName); 
      }
-     public function getRegion() {
+     public function getRegion(){
      for($j=0; $j<count($this->region); $j++){
          print_r("<span style='color:orange'>Region: ".$this->region[$j]."</span><br>"); }  }
 
     public function setGeneration($generationNumber){  
         $this->generation = str_getcsv($generationNumber); 
      }
-     public function getGeneration() {
+     public function getGeneration(){
      for($j=0; $j<count($this->generation); $j++){
          print_r("<span style='color:green'>Generation: ".$this->generation[$j]."</span><br>"); }  }
 
     public function setExdt($exdtValue){ $this->exdt = $exdtValue; }
     public function getExdt(){ print_r('Special Information: '.$this->exdt . '<br>'); }  
-   
+
+    public function setImage($image){ $this->image = $image;}
+
+    public function getImage(){
+    print_r('Image:'.$this->image . '<br>');}
+  
     public function setType($type){ 
         $this->type = str_getcsv($type);
         for($i=0; $i<count($this->type); $i++){
@@ -86,6 +92,7 @@
     $this->setRegion($data_row[7]);
     $this->setGeneration($data_row[8]);
     $this->setExdt($data_row[9]);
+    $this->setImage($data_row[10]);
 
 
         }
@@ -101,16 +108,17 @@
         $this->getRegion();
         $this->getGeneration();
         $this->getExdt();
+        $this->getImage();
 
     }
     public function save(){        
         global $pdo;
 
         try{   
-           $pokemon_insert = $pdo->prepare("INSERT INTO pokemon (pokemon_pokedex, pokemon_species, pokemon_evolves_from, pokemon_evolves_to, pokemon_exdt)
-                                            VALUES (?, ?, ?, ?, ?)");
+           $pokemon_insert = $pdo->prepare("INSERT INTO pokemon (pokemon_pokedex, pokemon_species, pokemon_evolves_from, pokemon_evolves_to, pokemon_exdt, pokemon_image)
+                                            VALUES (?, ?, ?, ?, ?, ?)");
             $db_pokemon = $pokemon_insert->execute([$this->pokedex, $this->species, $this->evolve_from, 
-            $this->evolve_to, $this->exdt]);
+            $this->evolve_to, $this->exdt, $this->image]);
 
             $this->id = $pdo->lastInsertId();
             print_r("--Saved $this->species to the database.--<br>\n");
@@ -254,6 +262,8 @@
             $pokemon->setSpecies($db_pokemon['pokemon_species']);
             $pokemon->setEvolvesFrom($db_pokemon['pokemon_evolves_from']);
             $pokemon->setEvolvesTo($db_pokemon['pokemon_evolves_to']);
+            $pokemon->setExdt($db_pokemon['pokemon_exdt']);
+            $pokemon->setImage($db_pokemon['pokemon_image']);
             $pokemon->setID($id);
 
                 $select_type->execute([$id]);
@@ -359,6 +369,8 @@
             $pokemon->setSpecies($db_pokemons[$i]['pokemon_species']);
             $pokemon->setEvolvesFrom($db_pokemons[$i]['pokemon_evolves_from']);
             $pokemon->setEvolvesTo($db_pokemons[$i]['pokemon_evolves_to']);
+            $pokemon->setExdt($db_pokemons[$i]['pokemon_exdt']);
+            $pokemon->setImage($db_pokemons[$i]['pokemon_image']);
             $pokemon->setID($db_pokemons[$i]['pokemon_id']);
         
             $select_type->execute([$pokemon->id]);
