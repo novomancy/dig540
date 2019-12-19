@@ -118,40 +118,22 @@ class Recording{
             exit;
         }
     }
-    static public function load($genre=false){
+    static public function load_all(){
         global $pdo;
-
         $voices = array();
+
         try{
-            if($genre==false){
-                $select_voices = $pdo->prepare("SELECT * FROM recording ORDER BY number ASC");
-                $select_voices->execute();
-            } else {
-                $select_voices = $pdo->prepare("SELECT recording.* FROM recording, recording_genre, genre
-                                                WHERE recording.id = recording_genre.recording_id AND
-                                                  recording_genre.genre_id = genre.id AND
-                                                  genre.name = ?
-                                                ORDER BY recording.number ASC");
-                $select_voices->execute([$genre]);
+            $select_voices = $pdo->prepare("SELECT * FROM recording ORDER BY rank ASC");
+            $select_genre = $pdo->prepare("SELECT genre.name AS name
+                                             FROM recording_genre, genre
+                                            WHERE recording_genre.recording_id = ?
+                                              AND recording_genre.genre_id = genre.id");
+            $select_voices->execute();
 
 
+            $db_voices = $select_voices->fetchAll();
 
-
-            }    
-                
-           $select_genre = $pdo->prepare("SELECT genre.name AS name
-                                          FROM recording_genre, genre
-                                          WHERE recording_genre.album_id = ?
-                                            AND recording_genre.genre_id = genre.id");  
-                                          
-                                          
-            $db_voices = $select_voices->fetchAll(); 
-
-
-            
-
-
-            for($i=0; $i<count($db_recording); $i++){
+            for ($i=0; $i<count($db_voices); $i++){
                 $recording = new Recording();
                 $recording->setTitle($db_voices[$i]['title']);
                 $recording->setYear($db_voices[$i]['year']);
@@ -164,15 +146,17 @@ class Recording{
                 $select_genre->execute([$recording->id]);
                 $db_genre = $select_genre->fetchAll();
                 $genre = array();
-                for($j=0; $j<count($db_genre); $j++){
-                    array_push($genre, $db_genre[$j]['name']);
+                for ($j=0; $j<count($db_genre); $j++){
+                     array_push($genre, $db_genre[$j]['name']);
                 }
-                $voices->setGenres(implode(',', $genre));
+                $recording->setGenre(implode(',', $genre));
                 array_push($voices, $recording);
-                
 
-            }    
-            return $voices;
+
+            }
+            return $voices;          
+
+            
 
 
         } catch (PDOException $e){

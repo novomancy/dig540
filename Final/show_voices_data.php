@@ -9,9 +9,9 @@
     
 
     //This loop iterates through the $albums array and prints out the data for each album
-    for($i=0; $i<count($recording); $i++){
+    for($i=0; $i<count($voices); $i++){
         print_r("<p>");
-        $recording[$i]->getData();
+        $voices[$i]->getData();
         print_r('</p>');
     }    
 ?>
