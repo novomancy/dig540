@@ -118,7 +118,7 @@ class Recording{
             exit;
         }
     }
-    static public function load_all(){
+    static public function load(){
         global $pdo;
         $voices = array();
 

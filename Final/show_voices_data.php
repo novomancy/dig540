@@ -5,7 +5,7 @@
     include_once("./includes/Recording.php");
 
     //Create an empty array that will be filled with albums
-    $voices = Recording::load_all();
+    $voices = Recording::load();
     
 
     //This loop iterates through the $albums array and prints out the data for each album
