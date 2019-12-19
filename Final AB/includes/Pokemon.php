@@ -59,7 +59,7 @@
     public function setImage($image){ $this->image = $image;}
 
     public function getImage(){
-    print_r('Image:'.$this->image . '<br>');}
+    print_r($this->image . '<br>');}
   
     public function setType($type){ 
         $this->type = str_getcsv($type);
