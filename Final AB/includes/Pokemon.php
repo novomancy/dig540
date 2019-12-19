@@ -58,8 +58,12 @@
 
     public function setImage($image){ $this->image = $image;}
 
+   // public function getImage(){
+    //    print_r($this->image . '<br>');}
+
     public function getImage(){
-    print_r($this->image . '<br>');}
+        print_r('<p><b>Image:<br> </b><img src ='.$this->image.' width="240" height="240"></p>');
+    }
   
     public function setType($type){ 
         $this->type = str_getcsv($type);
@@ -264,6 +268,7 @@
             $pokemon->setEvolvesTo($db_pokemon['pokemon_evolves_to']);
             $pokemon->setExdt($db_pokemon['pokemon_exdt']);
             $pokemon->setImage($db_pokemon['pokemon_image']);
+                
             $pokemon->setID($id);
 
                 $select_type->execute([$id]);
