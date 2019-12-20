@@ -141,13 +141,13 @@ class Recording{
 
             } else {
                 $recording = new Recording();
-                $recording->setTitle($db_voice[$i]['title']);
-                $recording->setYear($db_voice[$i]['year']);
-                $recording->setRank($db_voice[$i]['rank']);
-                $recording->setPermission($db_voice[$i]['permission']);
-                $recording->setSubject($db_voice[$i]['subject']);
-                $recording->setContributor($db_voice[$i]['contributor']);
-                $recording->setID($db_voice[$i]['id']);
+                $recording->setTitle($db_voice['title']);
+                $recording->setYear($db_voice['year']);
+                $recording->setRank($db_voice['rank']);
+                $recording->setPermission($db_voice['permission']);
+                $recording->setSubject($db_voice['subject']);
+                $recording->setContributor($db_voice['contributor']);
+                $recording->setID($db_voice['id']);
 
                 $select_genre->execute([$id]);
                 $db_genre = $select_genre->fetchAll();
@@ -156,7 +156,7 @@ class Recording{
                      array_push($genre, $db_genre[$j]['name']);
                 }
                 $recording->setGenre(implode(',', $genre));
-                return $voice;
+                return $recording;
 
 
 
