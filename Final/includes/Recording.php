@@ -47,9 +47,9 @@ class Recording{
             
     }
     
-    public function getTitleLink(){
-        $anchor = '<a href="show_recording.php?id='.$this->id.'">'.$this->title.'</a>';
-        print_r($this->rank . ': '. $anchor . ' by ' . $this->permission . '<br>');
+    public function getTitleLink(){    
+        $anchor = '<a href="show_recording.php?id='.$this->id.'">'.$this->title.'</a>';    
+        print_r($this->rank . ': '. $anchor . ' from ' . $this->year . '<br>');
     }
 
     //->setData runs all the setX methods
@@ -126,28 +126,28 @@ class Recording{
        
 
         try{
-            $find_voices = $pdo->prepare("SELECT * FROM recording 
+            $find_voice = $pdo->prepare("SELECT * FROM recording 
                                             WHERE id = ?");
             $select_genre = $pdo->prepare("SELECT genre.name AS name
                                              FROM recording_genre, genre
                                             WHERE recording_genre.recording_id = ?
                                               AND recording_genre.genre_id = genre.id");
 
-            $find_voices->execute([$id]);
+            $find_voice->execute([$id]);
 
-            $db_voices = $find_voices->fetch();
-            if(!$db_recording){
+            $db_voice = $find_voice->fetch();
+            if(!$db_voice){
                 return false;
 
             } else {
                 $recording = new Recording();
-                $recording->setTitle($db_voices[$i]['title']);
-                $recording->setYear($db_voices[$i]['year']);
-                $recording->setRank($db_voices[$i]['rank']);
-                $recording->setPermission($db_voices[$i]['permission']);
-                $recording->setSubject($db_voices[$i]['subject']);
-                $recording->setContributor($db_voices[$i]['contributor']);
-                $recording->setID($db_voices[$i]['id']);
+                $recording->setTitle($db_voice[$i]['title']);
+                $recording->setYear($db_voice[$i]['year']);
+                $recording->setRank($db_voice[$i]['rank']);
+                $recording->setPermission($db_voice[$i]['permission']);
+                $recording->setSubject($db_voice[$i]['subject']);
+                $recording->setContributor($db_voice[$i]['contributor']);
+                $recording->setID($db_voice[$i]['id']);
 
                 $select_genre->execute([$id]);
                 $db_genre = $select_genre->fetchAll();
@@ -156,7 +156,7 @@ class Recording{
                      array_push($genre, $db_genre[$j]['name']);
                 }
                 $recording->setGenre(implode(',', $genre));
-                return $voices;
+                return $voice;
 
 
 
@@ -167,7 +167,7 @@ class Recording{
                 
                 
         } catch (PDOException $e){
-            print_r("Error reading recording from database: ".$e->getMessage() . "<br>\n");
+            print_r("Error reading single recording from database: ".$e->getMessage() . "<br>\n");
         } exit;                     
 
 
