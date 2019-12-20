@@ -133,7 +133,7 @@ class Recording{
                                             WHERE recording_genre.recording_id = ?
                                               AND recording_genre.genre_id = genre.id");
 
-            $finds_voices->execute([$id]);
+            $find_voices->execute([$id]);
 
             $db_voices = $find_voices->fetch();
             if(!$db_recording){
@@ -186,7 +186,7 @@ class Recording{
         $voices = array();
 
         try{
-            if($genre=false){
+            if($genre==false){
                 $select_voices = $pdo->prepare("SELECT * FROM recording ORDER BY rank ASC");
                 $select_voices->execute();
             } else {
