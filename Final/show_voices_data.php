@@ -5,11 +5,7 @@
     include_once("./includes/Recording.php");
 
     //Create an empty array that will be filled with albums
-    if(isset($_GET['genre']) && $_GET['genre'] != ''){
-         $voices = Recording::load($_GET['genre']);
-    } else {
-        $voices = Recording::load();
-    }     
+    $voices = Recording:: load_all();     
 
        
 
@@ -18,6 +14,5 @@
         print_r("<p>");
         $voices[$i]->getData();
         print_r('</p>');
-    }    
-?>
-
+    }  
+?>   
