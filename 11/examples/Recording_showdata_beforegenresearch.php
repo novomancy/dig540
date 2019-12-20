@@ -111,78 +111,29 @@ class Recording{
 
             
             
-            
-            
+            flush();
+            ob_flush();
         } catch (PDOException $e){
             print_r("Error saving recording to database: ".$e->getMessage() . "<br>\n");
             exit;
         }
     }
 
-    static public function load_by_id($id){
+    static public function load_all(){
        global $pdo;
+ 
 
-        try{
-           $find_voices = $pdo->prepare("SELECT * FROM recording
-                                        WHERE id = ?");
-           $select_genre = $pdo->prepare("SELECT genre.name AS name
-                                            FROM recording_genre, genre
-                                            WHERE recording_genre.recording_id = ?
-                                            AND recording_genre.genre_id = genre.id");
-            $find_voices->execute([$id]);
-            $db_voices = $find_voices->fetch();
-            if(!$db_voices){
-              return false;
-            }  else {
-                $recording = new Recording();
-                $recording->setTitle($db_voices['title']);
-                $recording->setYear($db_voices['year']);
-                $recording->setRank($db_voices['rank']);
-                $recording->setPermission($db_voices['permission']);
-                $recording->setSubject($db_voices['subject']);
-                $recording->setContributor($db_voices['contributor']);
-                $recording->setID($id);
-
-                $select_genre->execute([$id]);
-                $db_genre = $select_genre->fetchAll();
-                $genre = array();
-                for($j=0; $j<count($db_genre); $j++){
-                    array_push($genre, $db_genre[$j]['name']);
-                }
-                $album->setGenre(implode(',', $genre));
-                return $voices;    
-            }                
-        }catch (PDOException $e){
-            print_r("Error reading single recording from database: ".$e->getMessage() . "<br>\n");
-            exit;
-
-        } 
-    }
-
-    static public function load($genre=false){
-       global $pdo;         
+       
 
        $voices = array();
-
         try{
-            if($genre=false){
-                $select_voices = $pdo->prepare("SELECT * FROM recording ORDER BY rank ASC");
-                $select_voices->execute();
-            } else {
-                $select_voices = $pdo->prepare("SELECT recording.* FROM recording, recording_genre, genre
-                                                 WHERE recording.id = recording_genre.recording_id AND
-                                                  recording_genre.genre_id = genre.id AND
-                                                  genre.name = ?
-                                                  ORDER BY recording.rank ASC");
-                $select_voices->execute([$genre]);
-
-            }                
-
-            
+            $select_voices = $pdo->prepare("SELECT * FROM recording ORDER BY rank ASC");
             $select_genre = $pdo->prepare("SELECT genre.name AS name
                                              FROM recording_genre, genre
                                             WHERE recording_genre.recording_id = ?
                                               AND recording_genre.genre_id = genre.id");
+
+            $select_voices->execute();
 
             $db_voices = $select_voices->fetchAll();
 
