@@ -25,14 +25,14 @@
      }
      public function getBuddyCandy() {
      for($j=0; $j<count($this->buddy_candy); $j++){
-         print_r("<span style='color:indigo'>Walk this many km to earn a candy: ".$this->buddy_candy[$j]."</span><br>"); }  }  
+         print_r("<span style='color:#FF0000'>Walk this many km to earn a candy: ".$this->buddy_candy[$j]."</span><br>"); }  }  
 
     public function setEvolveCandy($evolveCandy){  
         $this->evolve_candy = str_getcsv($evolveCandy); 
      }
      public function getEvolveCandy() {
      for($j=0; $j<count($this->evolve_candy); $j++){
-         print_r("<span style='color:purple'>Candies Needed to Evolve: ".$this->evolve_candy[$j]."</span><br>"); }  }
+         print_r("<span style='color:#B3A125'>Candies Needed to Evolve: ".$this->evolve_candy[$j]."</span><br>"); }  }
     
     public function setEvolvesFrom($evolvesFrom){ $this->evolve_from = $evolvesFrom; }
     public function getEvolvesFrom(){ print_r( 'Evolves From: '.$this->evolve_from . '<br>'); }
@@ -44,14 +44,14 @@
      }
      public function getRegion(){
      for($j=0; $j<count($this->region); $j++){
-         print_r("<span style='color:orange'>Region: ".$this->region[$j]."</span><br>"); }  }
+         print_r("<span style='color:#CC0000'>Region: ".$this->region[$j]."</span><br>"); }  }
 
     public function setGeneration($generationNumber){  
         $this->generation = str_getcsv($generationNumber); 
      }
      public function getGeneration(){
      for($j=0; $j<count($this->generation); $j++){
-         print_r("<span style='color:green'>Generation: ".$this->generation[$j]."</span><br>"); }  }
+         print_r("<span style='color:#FFDE00'>Generation: ".$this->generation[$j]."</span><br>"); }  }
 
     public function setExdt($exdtValue){ $this->exdt = $exdtValue; }
     public function getExdt(){ print_r('Special Information: '.$this->exdt . '<br>'); }  
