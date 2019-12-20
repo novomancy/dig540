@@ -111,7 +111,8 @@ class Recording{
 
             
             
-            
+          flush();
+          ob_flush();
             
         } catch (PDOException $e){
             print_r("Error saving recording to database: ".$e->getMessage() . "<br>\n");
@@ -122,47 +123,67 @@ class Recording{
     static public function load_by_id($id){
        global $pdo;
 
+       
+
         try{
-           $find_voices = $pdo->prepare("SELECT * FROM recording
-                                        WHERE id = ?");
-           $select_genre = $pdo->prepare("SELECT genre.name AS name
-                                            FROM recording_genre, genre
+            $find_voices = $pdo->prepare("SELECT * FROM recording 
+                                            WHERE id = ?");
+            $select_genre = $pdo->prepare("SELECT genre.name AS name
+                                             FROM recording_genre, genre
                                             WHERE recording_genre.recording_id = ?
-                                            AND recording_genre.genre_id = genre.id");
-            $find_voices->execute([$id]);
+                                              AND recording_genre.genre_id = genre.id");
+
+            $finds_voices->execute([$id]);
+
             $db_voices = $find_voices->fetch();
-            if(!$db_voices){
-              return false;
-            }  else {
+            if(!$db_recording){
+                return false;
+
+            } else {
                 $recording = new Recording();
-                $recording->setTitle($db_voices['title']);
-                $recording->setYear($db_voices['year']);
-                $recording->setRank($db_voices['rank']);
-                $recording->setPermission($db_voices['permission']);
-                $recording->setSubject($db_voices['subject']);
-                $recording->setContributor($db_voices['contributor']);
-                $recording->setID($id);
+                $recording->setTitle($db_voices[$i]['title']);
+                $recording->setYear($db_voices[$i]['year']);
+                $recording->setRank($db_voices[$i]['rank']);
+                $recording->setPermission($db_voices[$i]['permission']);
+                $recording->setSubject($db_voices[$i]['subject']);
+                $recording->setContributor($db_voices[$i]['contributor']);
+                $recording->setID($db_voices[$i]['id']);
 
                 $select_genre->execute([$id]);
                 $db_genre = $select_genre->fetchAll();
                 $genre = array();
                 for($j=0; $j<count($db_genre); $j++){
-                    array_push($genre, $db_genre[$j]['name']);
+                     array_push($genre, $db_genre[$j]['name']);
                 }
-                $album->setGenre(implode(',', $genre));
-                return $voices;    
-            }                
-        }catch (PDOException $e){
-            print_r("Error reading single recording from database: ".$e->getMessage() . "<br>\n");
-            exit;
+                $recording->setGenre(implode(',', $genre));
+                return $voices;
 
-        } 
-    }
+
+
+
+            }
+                  
+
+                
+                
+        } catch (PDOException $e){
+            print_r("Error reading recording from database: ".$e->getMessage() . "<br>\n");
+        } exit;                     
+
+
+
+            
+
+
+
+        
+        
+    
+    }    
 
     static public function load($genre=false){
-       global $pdo;         
-
-       $voices = array();
+        global $pdo;
+        $voices = array();
 
         try{
             if($genre=false){
@@ -176,17 +197,20 @@ class Recording{
                                                   ORDER BY recording.rank ASC");
                 $select_voices->execute([$genre]);
 
-            }                
+            }    
+                 
 
+
+            
             
             $select_genre = $pdo->prepare("SELECT genre.name AS name
                                              FROM recording_genre, genre
                                             WHERE recording_genre.recording_id = ?
                                               AND recording_genre.genre_id = genre.id");
-
+            
             $db_voices = $select_voices->fetchAll();
 
-            for($i=0; $i<count($db_voices); $i++){
+            for ($i=0; $i<count($db_voices); $i++){
                 $recording = new Recording();
                 $recording->setTitle($db_voices[$i]['title']);
                 $recording->setYear($db_voices[$i]['year']);
@@ -196,33 +220,29 @@ class Recording{
                 $recording->setContributor($db_voices[$i]['contributor']);
                 $recording->setID($db_voices[$i]['id']);
 
-
                 $select_genre->execute([$recording->id]);
                 $db_genre = $select_genre->fetchAll();
                 $genre = array();
-                for($j=0; $j<count($db_genre); $j++){
+                for ($j=0; $j<count($db_genre); $j++){
                      array_push($genre, $db_genre[$j]['name']);
                 }
                 $recording->setGenre(implode(',', $genre));
                 array_push($voices, $recording);
-                              
-
 
 
             }
-            return $voices;
+            return $voices;          
+
+            
 
 
+        }catch (PDOException $e){
+            print_r("Error reading recording from database: ".$e->getMessage() . "<br>\n");
+        } exit;       
 
-        }catch(PDOException $e){
-            print_r("Error saving recording to database: ".$e->getMessage() . "<br>\n");
-            exit;
-        }    
-        
-        
     
-    }     
-
+    
+    }        
 
        
 
