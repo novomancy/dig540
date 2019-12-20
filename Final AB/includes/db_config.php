@@ -3,7 +3,7 @@
 $host = 'localhost:3306';
 $db = 'abdignet_pokemongo';
 $user = 'abdignet_trainer';
-$pass = 'c@tch3m';
+$pass = '';
 $charset = 'utf8';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
