@@ -49,7 +49,7 @@ class Recording{
     
     public function getTitleLink(){    
         $anchor = '<a href="show_voice.php?id='.$this->id.'">'.$this->title.'</a>';    
-        print_r($this->rank . ': '. $anchor . ' from ' . $this->year . '<br>');
+        print_r($this->rank . ': '. $anchor . ' by ' . $this->contributor . '<br>');
     }
 
     //->setData runs all the setX methods
