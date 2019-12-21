@@ -23,8 +23,8 @@ class Recording{
     }
     public function getGenre(){ 
         for($j=0; $j<count($this->genre); $j++){
-            if($j%2==0) print_r("<span style='color:blue'>genre #".($j+1)." is ".$this->genre[$j]."</span><br>");
-            else print_r("<span style='color:red'>genre #". ($j+1)." is ".$this->genre[$j]."</span><br>");
+            print_r('<a href="list_voices.php?genre='.$this->genre[$j].'">Genre #'.($j+1). ' is '.$this->genre[$j].'</a><br>');
+            
         }
                     
     }
@@ -41,14 +41,14 @@ class Recording{
     }
     public function getContributor(){
         for($j=0; $j<count($this->contributor); $j++){
-            if($j%2==0) print_r("<span style='color:blue'>contributor #".($j+1)." is ".$this->contributor[$j]."</span><br>");
-            else print_r("<span style='color:red'>contributor #". ($j+1)." is ".$this->contributor[$j]."</span><br>");
+            print_r("Contributor #".($j+1)." is ".$this->contributor[$j]."<br>");
+            
         }
             
     }
     
     public function getTitleLink(){    
-        $anchor = '<a href="show_recording.php?id='.$this->id.'">'.$this->title.'</a>';    
+        $anchor = '<a href="show_voice.php?id='.$this->id.'">'.$this->title.'</a>';    
         print_r($this->rank . ': '. $anchor . ' from ' . $this->year . '<br>');
     }
 
