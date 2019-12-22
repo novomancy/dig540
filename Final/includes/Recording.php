@@ -39,18 +39,17 @@ class Recording{
     public function setContributor($contributor){
         $this->contributor = str_getcsv($contributor);
     }
-    
     public function getContributor(){
         for($j=0; $j<count($this->contributor); $j++){
-            if($j%2==0) print_r("<span style='color:green'>contributor #".($j+1)." is ".$this->contributor[$j]."</span><br>");
-            else print_r('<b>Image title:</b>' <?php echo $image_row['name'];?><img src=<?php echo $image_row['image_url'];?>"> <span style='color:blue'>contributor #".($j+1)." is ".$this->contributor[$j]."</span><br>");
+            print_r("Contributor #".($j+1)." is ".$this->contributor[$j]."<br>");
+            
         }
             
     }
     
     public function getTitleLink(){    
         $anchor = '<a href="show_voice.php?id='.$this->id.'">'.$this->title.'</a>';    
-        print_r($this->rank . ': '. $anchor . ' by ' . $this->contributor . '<br>');
+        print_r($this->rank . ': '. $anchor . ' by ' . $this->year . '<br>');
     }
 
     //->setData runs all the setX methods
