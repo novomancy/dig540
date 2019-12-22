@@ -39,10 +39,11 @@ class Recording{
     public function setContributor($contributor){
         $this->contributor = str_getcsv($contributor);
     }
+    
     public function getContributor(){
         for($j=0; $j<count($this->contributor); $j++){
-            print_r("Contributor #".($j+1)." is ".$this->contributor[$j]."<br>");
-            
+            if($j%2==0) print_r("<span style='color:green'>contributor #".($j+1)." is ".$this->contributor[$j]."</span><br>");
+            else print_r('<b>Image title:</b>' <?php echo $image_row['name'];?><img src=<?php echo $image_row['image_url'];?>"> <span style='color:blue'>contributor #".($j+1)." is ".$this->contributor[$j]."</span><br>");
         }
             
     }
