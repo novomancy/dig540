@@ -237,7 +237,7 @@ class Recording{
 
 
         }catch (PDOException $e){
-            print_r("Error reading recording from database: ".$e->getMessage() . "<br>\n");
+            print_r("Error reading recording no image from database: ".$e->getMessage() . "<br>\n");
         } exit;       
 
     
