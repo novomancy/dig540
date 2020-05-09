@@ -1,3 +1,21 @@
+<?php
+    error_reporting(E_ALL); 
+    ini_set("display_errors", 1); 
+    include_once("./includes/db_config.php");
+    include_once("./includes/Recording.php");
+
+    //Create an empty array that will be filled with albums
+    if(isset($_GET['id']) && $_GET['id'] != ''){
+         $voice = Recording::load_by_id($_GET['id']);
+    } else {
+        $voice = false;
+    }   
+?>    
+
+
+
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -9,9 +27,27 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <h1>Here are some Voices from Mobile, AL!</h1>
+    
 
-    Insert PHP for displaying album data here!
+    <?php
+      if(!$voice){
+        print_r('Something went wrong. Either you did not specify a recording ID or the ID was not found');
+      }else{
+        print_r("<p>");
+        $voice->getData();
+        print_r('</p>');
+      
+      }    
+        
+         
+      
+
+
+       
+    ?>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -20,3 +56,4 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
   </body>
 </html>
+

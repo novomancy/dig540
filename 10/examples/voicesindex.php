@@ -15,7 +15,7 @@
 error_reporting(E_ALL); 
 ini_set("display_errors", 1); 
 
-$file_handle = fopen('./albumlist.csv', 'r');
+$file_handle = fopen('./voices.csv', 'r');
 
 $first_line = fgetcsv($file_handle);
 
@@ -34,11 +34,10 @@ while($data_row = fgetcsv($file_handle)){
         } else {
             $genres = str_getcsv($data_row[$i]);
 
-            for($j=0; $j<count($genres); $j++)
-            {
-                $gc++;
-                if(($gc+1)%2==0)print_r("<span style=\"color: blue;\">$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
-                else print_r("$first_line[$i] #".($j+1)." is $genres[$j]<br>");
+            for($j=0; $j<count($genres); $j++){
+             if($j%2==0)print_r("<span style='color: blue'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
+             else print_r("<span style='color: green'>$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
+            
             }
         }
     }

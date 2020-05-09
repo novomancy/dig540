@@ -22,8 +22,9 @@ $first_line = fgetcsv($file_handle);
 print_r('<div>');
 for($i=0; $i<count($first_line); $i++){
     print_r('Column header found: '.$first_line[$i].'<br>');
-} print_r('</div>');
-    
+} 
+print_r('</div>');
+   
 
 while($data_row = fgetcsv($file_handle)){
     print_r("<p><strong>This is the #$data_row[0] album:</strong><br>");
