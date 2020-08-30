@@ -1,7 +1,0 @@
-CDDB - Compact Disc Database. A database for software applications to look up audio CD information over the internet.
-freedb - a database of audio CD listings, where all the content is under the GNU General Public License.
-Gracenote - a company that provides music, video, and sports metadata and automatic content recognition (ACR) technologies to entertainment services and companies.
-commit - I assume it means something like "confirm action" or else simply "submit" in computer language.
-scripting - thought it was the same as coding but it seems to be a particular type of coding
-CMS: Content Management System
-Concatenate - joining two strings or combining strings together in the context of programming

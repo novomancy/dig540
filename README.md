@@ -6,7 +6,7 @@ Syllabus v2.1, 3 credits
 
 **Course Information**
 
--   Slack: <https://dig540-f19.slack.com>
+-   Slack: <https://dig540-2020.slack.com>
 -   Instructor: John Bell
 
 **Course Description**
@@ -94,8 +94,9 @@ week’s videos.
 The course is broken up into a series of topics that consist of video
 lectures, readings, and associated assignments. Nominally each topic
 takes one week, though you should expect some variation based on the
-complexity of the material in the topic (you'll notice that there are topics than weeks in the semester). New topics will begin on
-Wednesdays. For each topic you are expected to:
+complexity of the material in the topic (you'll notice that there are 
+topics than weeks in the semester). New topics will begin on Wednesdays. 
+For each topic you are expected to:
 
 -   Watch all of the lectures and tutorials listed in the week’s
     introduction and read any assigned material.
@@ -207,7 +208,14 @@ weighted equally across each week of the class. Your final project will
 count as 1/4 of your grade, as it largely occupies the final 1/4 of the
 semester.
 
-In most cases you will be allowed to submit your work more than once if you so desire. Since you are allowed to resubmit work you will generally not be given an explicit grade on each assignment. If you want I can provide a grade, but in general I'd rather have you focus on understanding concepts and getting technology working than hitting a specific point mark when you decide whether or not to resubmit any given assignment. If you feel like you need to review or rework something you probably do; if you don't feel that way and I don't tell you otherwise, you're probably fine.
+In most cases you will be allowed to submit your work more than once if 
+you so desire. Since you are allowed to resubmit work you will generally
+not be given an explicit grade on each assignment. If you want I can
+provide a grade, but in general I'd rather have you focus on understanding
+concepts and getting technology working than hitting a specific point 
+mark when you decide whether or not to resubmit any given assignment. If 
+you feel like you need to review or rework something you probably do; if
+you don't feel that way and I don't tell you otherwise, you're probably fine.
 
 Participation is a significant part of your grade. The more you add
 thoughtful, insightful comments to the discussion the more both you and
@@ -339,5 +347,5 @@ model and output of a collection management system.
 |   |
 |  Platforms and tools |
 |   |
-|  **Final Project Due: 5PM on Friday, Dec. 20** |
+|  **Final Project Due: 5PM on Friday, Dec. 19** |
   ----------------------------------------------------------------
