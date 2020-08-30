@@ -347,5 +347,5 @@ model and output of a collection management system.
 |   |
 |  Platforms and tools |
 |   |
-|  **Final Project Due: 5PM on Friday, Dec. 19** |
+|  **Final Project Due: 5PM on Friday, Dec. 18** |
   ----------------------------------------------------------------
