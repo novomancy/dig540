@@ -16,7 +16,7 @@ NOTE: There are a couple of minor graphical differences between the sites shown 
 
 Before going to the first link, make sure you have your GitHub account set up.
 
-Installing Git: <https://www.visualstudio.com/learn/install-and-set-up-git/>
+Installing Git: <https://docs.microsoft.com/en-us/azure/devops/learn/git/install-and-set-up-git>
 
 You'll want to install Git before installing Visual Studio Code. This link provides instructions for setting up Git on Windows, MacOS, and Linux.
 
@@ -38,4 +38,4 @@ Install the software in the videos and create your GitHub account. Then, fork th
 
 Also, set up your Reclaim account or let me know if you have another hosted environment already. Since the video linked above is a couple years old the signup page looks a little different and the price is slightly higher than I say in the video but it's still ridiculously cheap and convenient!
 
-**The assignment should be done by Wednesday Sept. 11th.**
+**The assignment should be done by Wednesday Sept. 9th.**
