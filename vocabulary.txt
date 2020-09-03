@@ -1,0 +1,2 @@
+CMS - Content Management System
+Fork - In GitHub, this duplicates a series of folders and files into your own account
