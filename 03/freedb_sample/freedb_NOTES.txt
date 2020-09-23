@@ -1,0 +1,28 @@
+9e104c0b; 9e126c0b - Years that were in the EXTD field were deleted and/or moved to the DYEAR field to avoid redundancy.
+9e11f609 - moved what apeared to be extraneous info from track titles to EXTT
+9e11f609 - copied composers to EXTD
+9e104c0b - Moved composer details to EXTD from DTITLE; copied appropriate composers to TTIILE
+9e126c0b - Moved "Barockmusik" genre to EXTD (more of a sub-genre) and updated to "Klassisch"; extraneous info from track titles to EXTT
+9e10140d - removed redundant artist name from DTITLE; clarified artist names in TTITLE; moved instruments to EXTT
+9e11420b - edited commas to dashes in TTITLE for consistency
+9e11700a - removed symphonies from DTITLE and copied to EXTD; left composer in DTITLE since applies to whole album; moved misc. numbers from TTITLE to EXTT
+9e11830c - moved artist names from TTITLE to DTITLE & EXTD
+9f0cb30c - missing genre; don't see edits needed
+9f0d150c - removed composers from DTITLE, moved to EXTD; already in appropriate TTITLE; edited ":" to "/" for consistentcy; odd numbers moved to EXTT
+9f0dc71d - moved "Renaissance" from GENRE to EXTD (more of a sub-genre); updated GENRE to "Classica"
+9f0e501c - expanded on DTITLE
+9f0eae0c - added composers to EXTD; updated ":" in TTITLE to "/" for consistency
+9f10b60b - updated DTITLE to include artists/orchestra; edited ";" to "," and expanded orchestra name in TTITLE
+9f10d40b - moved GENRE to EXTD and updated GENRE to "Misc"
+9f12100d - removed redundant artist name in DTITLE
+010cdf12 - moved "ca. 1500" date to EXTD; moved dates in TTITLE to EXTT for each track - formats are still a bit weird, removing "c"s since dates span a range anyway; not sure what "fl." stands for
+010e3613 - edited punctuation in TTITLE; moved extraneous numbers in TTITLE to EXTT
+010f2c12 - moved "Kk" data from DTITLE to EXTD and from TTITLE to EXTT
+0010fe11 - moved composers from DTITLE to EXTD since they appear in each TTITLE; edited ":" to "/" in TTITLE
+020b7401 - deleted duplicate artist names from DTITLE; moved GENRE to EXTD and updated
+DELETED "PROCESSED BY" data since it was all the same
+DELETED "PLAY ORDER" data since it was all blank and track numbers control the order of tracks played?
+Not sure what TRACK FRAME OFFSETS are used for, so keeping for now. I think it's linked to DISCID unique info for track lengths, but not in seconds.
+Genre categories = blues; classical; country; data (ISO9660 and other data CDs); folk; jazz; newage; reggae; rock (incl. funk, soul, rap, pop, industrial, metal, etc.); soundtrack	(movies, shows); misc	(others that do not fit the above categories)
+Reference: http://www.hierlaw.com/MacIntosh_Users_Group_Of_Regina_Saskatchewan/Information/Factoids.Jaques_Law_Bits/Jaques_Law_Bits.9902.AudioCDs/CDDB_Technical_Info.html
+Was tempted to separate disc data from track data (except for DISCID) into different sheets/tables, but didn't since I needed to move data around in some of the fields.
