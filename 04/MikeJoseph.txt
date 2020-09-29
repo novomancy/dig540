@@ -1,0 +1,47 @@
+My audio data set for DIG540's  Week 4's Assignment is a collection of audio e-books with the following data:
+
+ADDRESS: physical location address of publisher, author, or narrator.
+
+BOOK: Original non-digital work created by the author.
+
+EBOOK: Digital work created by the narrator recording the authored book or an original digital recorded book.
+
+
+BOOKID:  Equal to the Book's International Standard Book Number (ISBN)
+
+TITLE: Title of the book or audio e-book.
+
+PUBLISHEDYEAR:   The (4-digit) year, in which the original book was published in whatever format. 
+	It should be empty (not 0) if the user hasn't entered a year.
+RECORDINGYEAR:  The (4-digit) year, in which the e-book's audio was recorded. 
+	It should be empty (not 0) if the user hasn't entered a year.
+
+GENRE: This field contains the type of genre of the book or author in a textual formal name capitalized form. 
+
+CHAPTER: Section of a book or ebook composed of written or spoken paragraphs and sentences.
+
+PARAGRAPH:  Section of a chapter composed of written or spoken sentences.
+
+SENTENCE:  Section of a paragraph composed of written or spoken words.
+
+AUTHOR:  Name of author of the original book format; i.e. the copyright holder.
+
+NATIONALITY:  Type of nationality of the author.
+
+LIFESPAN:  Birth and death years of the author, death year blank with a still living author.
+
+LANGUAGE:  Type of Language(s) of the original book or the type of Language(s) in which the e-book audio is recorded, note the book or e-book can be available in multiple languages 
+
+NARRATOR:  Name of person who provided narration to the original book format to create the audio e-book.  
+
+PUBLISHER:  Original publishing company that produced the first format of the book.
+
+PUBLISHEDYEAR:  Year original book format was published.
+
+AUDIOPUBLISHER:  Company that produced the audio e-book. 
+
+CITY:  Physical City name of publisher, author, or narrator.
+
+STATE:  Physical State name of publisher, author, or narrator.
+
+ZIPCODE:  Zip code of publisher, author, or narrator.
