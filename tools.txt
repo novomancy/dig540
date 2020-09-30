@@ -1,1 +1,2 @@
- 
+ Gliffy.com - diagramming software
+ LucidChart - diagramming and data visualization; helpful in designing relational database
