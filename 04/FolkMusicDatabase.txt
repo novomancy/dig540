@@ -1,0 +1,6 @@
+Dig 540 
+Folk/Traditional Music Database
+
+     I was interested in looking at traditional music, the derivatives from the origin, and the web of recordings and sheet music from the origin through to present day.  In exploring this I looked at the American Folklife Center, the British Library, and the British Folk Music Archives.  With traditional music, the focus is on the deviations and connections between the origin ballad through time and space to the most modern equivalent.  In looking at the metadata and database forms, I thought about multiple variants and recordings within a song, the derivatives of the song, sheet music versus recordings, and the importance of origin, country, and culture.  I got a little confused with the data arrows but many of the datasets would have multiple options and variants.  More unique to a traditional music database is the need for scores and recordings, ethnographic descriptions and ties, and a potential lack of certain data like authorship.  
+
+
