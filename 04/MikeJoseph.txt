@@ -1,47 +1,62 @@
 My audio data set for DIG540's  Week 4's Assignment is a collection of audio e-books with the following data:
 
-ADDRESS: physical location address of publisher, author, or narrator.
+Adress: database table with physical location address of publisher, author, or narrator. containing: city, state, zipcode information related to the address. 
 
-BOOK: Original non-digital work created by the author.
+address_id: unique database generated primary key for Address database table.  
 
-EBOOK: Digital work created by the narrator recording the authored book or an original digital recorded book.
+Book: literary work created by an author(s) and when found in audio ebook form narrated by a narrator.
 
+book_id: unique database generated primary key for Book database table.  
 
-BOOKID:  Equal to the Book's International Standard Book Number (ISBN)
+international_standard_book_number:  equal to the Book's International Standard Book Number (ISBN).
 
-TITLE: Title of the book or audio e-book.
+title: title of the book or audio e-book.
 
-PUBLISHEDYEAR:   The (4-digit) year, in which the original book was published in whatever format. 
-	It should be empty (not 0) if the user hasn't entered a year.
-RECORDINGYEAR:  The (4-digit) year, in which the e-book's audio was recorded. 
-	It should be empty (not 0) if the user hasn't entered a year.
+format: format of the book as digital audio or print.
 
-GENRE: This field contains the type of genre of the book or author in a textual formal name capitalized form. 
+published_year:   the (4-digit) year, in which the print book or audio e-book was produced in whatever format; 
+	it should be empty (not 0) if the user hasn't entered a year.
 
-CHAPTER: Section of a book or ebook composed of written or spoken paragraphs and sentences.
+Genre: this database table contains the type of genre of the book or author in a textual formal name capitalized form. 
 
-PARAGRAPH:  Section of a chapter composed of written or spoken sentences.
+genre_id:  primary key for the Genre table an auto produced integer key. 
 
-SENTENCE:  Section of a paragraph composed of written or spoken words.
+genre_type:  is the type of genre related to the book or to the author
 
-AUTHOR:  Name of author of the original book format; i.e. the copyright holder.
+Language: this database table contains a list of natural languages.
 
-NATIONALITY:  Type of nationality of the author.
+language_id:  primary key for the Language table an auto produced integer key.
 
-LIFESPAN:  Birth and death years of the author, death year blank with a still living author.
+natural_language: natural languages associated with the book both in print and audio ebook. 
 
-LANGUAGE:  Type of Language(s) of the original book or the type of Language(s) in which the e-book audio is recorded, note the book or e-book can be available in multiple languages 
+Contributor:  this data table contains the name of person with role of author of the book in whatever format and or the person with the role of narrator of the audio ebook.
 
-NARRATOR:  Name of person who provided narration to the original book format to create the audio e-book.  
+contributor_id:  primary key for the Contributor data table; auto generated integer key.
 
-PUBLISHER:  Original publishing company that produced the first format of the book.
+first_name:  first name of contributor, either author or narrator by role. 
 
-PUBLISHEDYEAR:  Year original book format was published.
+last_name:  last name of contributor, either author or narrator by role.
 
-AUDIOPUBLISHER:  Company that produced the audio e-book. 
+nationality:  type of nationality of the contributor.
 
-CITY:  Physical City name of publisher, author, or narrator.
+lifespan:  birth and death years of the author (four digit years), death year blank with a still living author.
 
-STATE:  Physical State name of publisher, author, or narrator.
+Publisher:  this database table contains the publishing company that produced the print or audio ebook format of the book.
 
-ZIPCODE:  Zip code of publisher, author, or narrator.
+publisher_id:  primary key for the Publisher data table; auto generated integer key
+
+publisher_name:  Name of company that produces print or audio ebook formats 
+
+publisher_role:  Role of company in the production of print books or audio ebooks, i.e. published print or published digital
+
+city:  physical city name of publisher, author, or narrator location.
+
+state:  physical state name of publisher, author, or narrator location.
+
+zipcode:  zip code of publisher, author, or narrator location.
+
+Book_Contributor:  database table for lookup of book and contributor and contributor and book many to many relationships.
+
+Publisher_Contributor:  database table for lookup of publisher and contributor and contributor and publisher many to many relationships. 
+
+Book_Language:  database table for lookup of book and language and language and book many to many relationships.
