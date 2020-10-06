@@ -1,0 +1,79 @@
+Sean Crawford
+10/5/20
+DIG 540 - Week 5
+Schema Revision
+
+
+Audio files in MP3 format are this collection's primary source.  
+
+The collection will be made available on a website, such as a university's English or Writing department site, to create a digital exhibition that's a retrospective of a poetry reading series. 
+
+The department holds three events per year (fall, spring, summer), and the audio files span 10 years.  
+
+Each event results in a MP3 that runs between 30-60 minutes containing numerous speakers. Speakers often recite poems written by other poets. 
+
+
+Here are field specs for building a relational database about these audio files:
+
+TABLES 
+
+ENTITY: 
+file
+ATTRIBUTES: 
+file_id : system generated PK
+file_name : name of MP3 file
+file_length : running time (in seconds)
+file_date : creation date (also date of recorded event)
+ext : extended track information (if any)
+event_id : FK connecting file to one event
+
+
+ENTITY:
+speaker
+ATTRIBUTES:
+speaker_id 
+speaker_name
+speaker_country 
+
+
+ENTITY:
+poet 
+ATTRIBUTES:
+poet_id  
+poet_name 
+poet_country
+ 
+
+ENTITY:
+poem
+ATTRIBUTES: 
+poem_id
+poem
+poet_id  
+
+
+ENTITY: 
+event
+ATTRIBUTES: 
+event_id : 4 digit PK containing event season and year (e.g. sp04=Spring2004; fl07=Fall2007; su08=Summer2008) 
+file_date : creation date of file (date of recorded event) 
+file_id : FK connecting event to one audio file
+venue : e.g. free text such as "Johnson Writers House" or "Temple University" 
+place : e.g. free text such as "Philadelphia, PA" or "Los Angeles, CA" 
+
+
+Lookup table to sort out many:many relationships of events table: 
+
+ENTITY:
+event_appearances
+ATTRIBUTES:
+speaker_id
+poet_id
+poem_id 
+event_id  
+
+One question I'm left with is whether it's OK to have a table (event_appearances) that doesn't have a primary key?  It's a lookup/join table of only foreign keys.  
+
+I debated whether file_id should be in speaker/poet/poem tables, but decided against it because one speaker/poet/poem could be associated with more than one file.
+Further, I thought speaker/poet/poem would each end up connected to their file(s) via the join table anyway. 
+
