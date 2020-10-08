@@ -1,5 +1,10 @@
 What is the point of the exhibition I’m designing? What materials am I working with? How do I want to describe them?
 
-I plan to collect discs of spoken word recordings of Arthurian literature and draw comparisons (or contrasts) between the lines selected for recording as well as the gender of the performer, the year of production, and version/language chosen to read. I could foresee something like this serving to not only highlight the increased diversity (re: gender) in Arthurian studies but also an increased desire to make these works accessible to the more general public via more accessible language and section selections. 
+I plan to collect discs of spoken word recordings of Arthurian literature and draw comparisons (or contrasts) 
+between the lines selected for recording as well as the gender of the performer, the year of production, 
+and version/language chosen to read. I could foresee something like this serving to not only highlight the 
+increased diversity (re: gender) in Arthurian studies but also an increased desire to make these works 
+accessible to the more general public via more accessible language and section selections. 
 
-I plan to pull out the following information from the discs: Lines (title, play order, track length etc.), Genre (name + GenreID // Artist and Disc genres), and Artists (Name, Gender etc.) among other pieces of information.
+I plan to pull out the following information from the discs: Lines (title, play order, track length etc.), 
+Genre (name + GenreID // Artist and Disc genres), and Artists (Name, Gender etc.) among other pieces of information.
