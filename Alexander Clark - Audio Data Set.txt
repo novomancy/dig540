@@ -1,0 +1,1 @@
+There are certainly a variety of audio data sets that exist nowadays.  One audio data set that I have always looked at throughout most of my life is Wikipedia.  Wikipedia's way of adding information is very simple and does not have a ton of exquisite details as FreeDB and CDDB.  Essentially, my audio data set will be simple and not have too much detail.
