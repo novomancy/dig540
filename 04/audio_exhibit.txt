@@ -1,0 +1,81 @@
+Sean Crawford
+9/28/20
+DIG 540 - Week 4
+
+
+I thought it would be interesting to focus on a data set of audio files from a poetry reading series.  I imagine a collection of files in MP3 format. 
+
+This collection could be made available on a website, such as a university's English or Writing department site.  
+
+UPenn's "PennSound" (https://writing.upenn.edu/pennsound/about.php) is an example. 
+
+This data could be used to create a digital exhibition on the site that's a retrospective of the reading series.  Ideally, the data on these events would be searchable.
+
+I imagine this department holding three events per year (fall, spring, summer), and the audio files spanning 10 years.  
+
+Each event results in a MP3 that runs between 30-60 minutes containing numerous speakers. Speakers often recite poems written by other poets. 
+
+Here are field specs for building a relational database about these audio files:
+
+TABLES 
+
+ENTITY: 
+AudioFile 
+ATTRIBUTES: 
+FileID : system generated PK
+FileLength : running time (in seconds)
+FileDate : creation date (also date of recorded event)
+ExtT : extended track information (if any)
+EventID : foreign key that might make sense here
+
+From this AudioFile table, I split out the one-to-many relationships. 
+
+Each AudioFile can have more than one Speaker, Poet, and PoemTitle (1:many), but only one Event (1:1).
+
+A lookup table (Event Appearances) seems necessary to help sort out many:many relationships of the Event table (i.e. each speaker can appear at more than one event; each event contains more than one speaker, etc)
+
+ENTITY:
+Speaker
+ATTRIBUTES:
+SpeakerID
+SpeakerName
+PoemTitle 
+EventID 
+
+ENTITY:
+Poet
+ATTRIBUTES:
+PoetID 
+PoetName 
+PoetCountry 
+EventID 
+
+ENTITY:
+PoemTitle 
+ATTRIBUTES: 
+PoemTitleID 
+PoemTitle 
+EventID 
+
+ENTITY: 
+Event 
+ATTRIBUTES: 
+EventID : 4 digit PK containing event season and year (e.g. sp04=Spring2004; fl07=Fall2007; su08=Summer2008) 
+FileDate : creation date of file (also in AudioFile table aka date of recorded event) 
+
+ENTITY:
+Event Appearances (lookup table)
+ATTRIBUTES:
+SpeakerID
+PoetID
+PoemTitleID 
+EventID 
+
+
+Final Notes: 
+
+I tried to open a few MP3 files in VSC; they were loaded with errors that made them unreadable. 
+I hope to figure out how to open MP3 files in VSC or another program, to make sure I'm not missing fields.
+"ExtT" is just a guess on my part that MP3 files contain Extended Track Info. 
+
+
