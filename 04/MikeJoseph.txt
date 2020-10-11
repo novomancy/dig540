@@ -60,3 +60,11 @@ Book_Contributor:  database table for lookup of book and contributor and contrib
 Publisher_Contributor:  database table for lookup of publisher and contributor and contributor and publisher many to many relationships. 
 
 Book_Language:  database table for lookup of book and language and language and book many to many relationships.
+
+Book_Publisher:  database table for lookup of book and publisher and publisher and book many to many relationships. 
+
+role:  is contributor's role as an author (print and audio format) or narrator of the book (audio format)
+
+Book_Genre:  database table for lookup of book and genre and genre and book many to many relationships.
+
+Contributor_Genre: database table for lookup of contributor and genre and genre and contibutor many to many relationships.
