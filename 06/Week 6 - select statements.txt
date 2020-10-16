@@ -1,0 +1,123 @@
+Simple statements:
+
+SELECT * FROM poet
+
+"3","Robert Frost","USA" 
+"4","Elizabeth Bishop","USA"
+"5","Arthur Rimbaud","FRA"
+"6","Rainer Maria Rilke","GER"
+"7","Walt Whitman","USA"
+"8","Robinson Jeffers","USA"
+
+SELECT poem.* 
+FROM poem 
+WHERE poem_title = "Hurt Hawks"
+
+"9","Hurt Hawks","8"
+
+
+
+
+
+Statement that joins two tables:
+
+SELECT poet.poet_name, poem.title 
+FROM poet, poem 
+WHERE poet.id = poem.poet_id
+
+"Arthur Rimbaud","The Drunken Boat"
+"Elizabeth Bishop","The Imaginary Iceberg"
+"Rainer Maria Rilke","The Panther"
+"Robert Frost","The Road Not Taken"
+"Robert Frost","Mending Wall"
+"Robert Frost","Birches"
+"Robinson Jeffers","Hurt Hawks"
+"Robinson Jeffers","Cassandra"
+"Robinson Jeffers","Vulture"
+"Walt Whitman","Song of Myself"
+
+
+
+
+
+Statement that uses lookup table (event_appearances):
+
+
+SELECT poet.poet_name as `poet`, poem.title as `poem`, speaker.speaker_name as `speaker`, event.filename as `filename` 
+FROM poet, poem, speaker, event, event_appearances 
+WHERE poet.id = event_appearances.poet_id and poem.id = event_appearances.poem_id and speaker.id = event_appearances.speaker_id and event.id = event_appearances.event_id
+
+"Robert Frost","The Road Not Taken","John Smith","fall20.mp3"
+"Elizabeth Bishop","The Imaginary Iceberg","Mary Williams","fall19.mp3"
+"Arthur Rimbaud","The Drunken Boat","Jack Stanton","fall19.mp3"
+"Rainer Maria Rilke","The Panther","Joanna Curtain","fall19.mp3"
+"Robert Frost","Mending Wall","Joanna Curtain","fall20.mp3"
+"Robert Frost","Birches","Joanna Curtain","fall20.mp3"
+"Walt Whitman","Song of Myself","John Smith","fall20.mp3"
+"Robinson Jeffers","Hurt Hawks","John Smith","spring20.mp3"
+"Robinson Jeffers","Cassandra","John Smith","spring20.mp3"
+"Robinson Jeffers","Vulture","John Smith","spring20.mp3"
+
+
+
+
+
+5 Questions
+
+
+
+What poems by Robinson Jeffers have been included in events, and when?
+
+SELECT poet.poet_name, poem.title, event.date 
+FROM poet, poem, event, event_appearances 
+WHERE poet.poet_name = "Robinson Jeffers" and poet.id = event_appearances.poet_id and poem.id = event_appearances.poem_id and event.id = event_appearances.event_id
+
+"Robinson Jeffers","Hurt Hawks","2020-04-24"
+"Robinson Jeffers","Cassandra","2020-04-24"
+"Robinson Jeffers","Vulture","2020-04-24"
+
+
+Which speakers have recited Robert Frost poems at events?
+
+SELECT poet.poet_name, speaker.speaker_name, poem.title, event.date 
+FROM poet, speaker, poem, event, event_appearances 
+WHERE poet.poet_name = "Robert Frost" and speaker.id = event_appearances.speaker_id and poet.id = event_appearances.poet_id and poem.id = event_appearances.poem_id and event.id = event_appearances.event_id
+
+"Robert Frost","John Smith","The Road Not Taken","2020-09-18"
+"Robert Frost","Joanna Curtain","Mending Wall","2020-09-18"
+"Robert Frost","Joanna Curtain","Birches","2020-09-18"
+
+
+What poets and poems were featured at the Fall 2019 event?
+
+SELECT poet.poet_name, poem.title, event.filename 
+FROM poet, poem, event, event_appearances 
+WHERE event.filename = "fall19.mp3" and poet.id = event_appearances.poet_id and poem.id = event_appearances.poem_id and event.id = event_appearances.event_id
+
+"Elizabeth Bishop","The Imaginary Iceberg","fall19.mp3"
+"Arthur Rimbaud","The Drunken Boat","fall19.mp3"
+"Rainer Maria Rilke","The Panther","fall19.mp3"
+
+
+What poets and poems have speakers of American origin recited?
+
+SELECT speaker.speaker_name, poet.poet_name, poem.title, speaker.speaker_country 
+FROM speaker, poet, poem, event_appearances 
+WHERE speaker.speaker_country = "USA" and speaker.id = event_appearances.speaker_id and poet.id = event_appearances.poet_id and poem.id = event_appearances.poem_id 
+
+"John Smith","Robert Frost","The Road Not Taken","USA"
+"John Smith","Walt Whitman","Song of Myself","USA"
+"John Smith","Robinson Jeffers","Hurt Hawks","USA"
+"John Smith","Robinson Jeffers","Cassandra","USA"
+"John Smith","Robinson Jeffers","Vulture","USA"
+"Mary Williams","Elizabeth Bishop","The Imaginary Iceberg","USA"
+
+
+What is the only Rainer Maria Rilke poem recited at any event, and when and where (venue and place) was it recited?
+
+SELECT poet.poet_name, poem.title, event.date, event.venue, event.place 
+FROM poet, poem, event, event_appearances 
+WHERE poet.poet_name = "Rainer Maria Rilke" and poet.id = event_appearances.poet_id and poem.id = event_appearances.poem_id and event.id = event_appearances.event_id
+
+"Rainer Maria Rilke","The Panther","2019-09-20","Williams Cafe","Worcester, MA"
+
