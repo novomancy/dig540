@@ -19,10 +19,11 @@ SELECT Address.*, Publisher.publisher_name FROM Publisher, Address WHERE Publish
 6	Nashville	TN	37011	Thomas Nelson 
 
 SELECT Book.*, publisher_name FROM Book, Publisher, Book_Publisher WHERE Book.id = Book_Publisher.book_id AND Publisher.id = Book_Publisher.publisher_id
-2	Prince Fredrick	MD	20678	Recorded Books, Inc
-1	New York	NY	10020	Scribner
-6	Nashville	TN	37011	Thomas Nelson
-6	Nashville	TN	37011	Thomas Nelson 
+1	9781501126352	The Fire This Time	Print	2017	Scribner
+2	9781501941030	The Fire This Time 	Audio E-Book	2016	Recorded Books, Inc
+3	9781595540560	Chasing Fireflies	Print	2007	Thomas Nelson
+4	9781418537265	Chasing Fireflies	Audio E-Book	2020	Thomas Nelson 
+
 
 SELECT Book.*, first_name, last_name FROM Book, Contributor, Book_Contributor WHERE Book.id = Book_Contributor.book_id AND Contributor.id = Book_Contributor.contributor_id
 1	9781501126352	The Fire This Time	Print	2017	Jesmyn	Ward
@@ -36,6 +37,7 @@ SELECT Book.*, first_name, last_name FROM Book, Contributor, Book_Contributor WH
 2	9781501941030	The Fire This Time 	Audio E-Book	2016	Susan	Spain
 4	9781418537265	Chasing Fireflies	Audio E-Book	2020	Adam	Verner
 
+
 SELECT Genre.*, title FROM Genre, Book, Book_Genre WHERE Book.id = Book_Genre.book_id AND Genre.id = Book_Genre.genre_id
 1	Social Science 	The Fire This Time
 5	History	The Fire This Time
@@ -46,11 +48,12 @@ SELECT Genre.*, title FROM Genre, Book, Book_Genre WHERE Book.id = Book_Genre.bo
 
 SELECT Language.*, title FROM Language, Book, Book_Language WHERE Book.id = Book_Language.book_id AND Language.id = Book_Language.language_id
 1	English	The Fire This Time
+5	German	The Fire This Time
 1	English	The Fire This Time 
 1	English	Chasing Fireflies
-1	English	Chasing Fireflies
 4	French	Chasing Fireflies
-5	German	The Fire This Time
+1	English	Chasing Fireflies
+
 
 SELECT Genre.*, last_name FROM Genre, Contributor, Contributor_Genre WHERE Genre.id = Contributor_Genre.genre_id AND Contributor.id = Contributor_Genre.contributor_id
 1	Social Science 	Ward
@@ -65,6 +68,7 @@ SELECT Genre.*, last_name FROM Genre, Contributor, Contributor_Genre WHERE Genre
 5	History	Spain
 2	Christian Fiction	Martin
 2	Christian Fiction	Verner
+
 
 1. What is the role of Mr. Martin with the book Chasing Fireflies?  (Answer: Author for two formats)
 SELECT Book.title, Book.format, Contributor.first_name, Contributor.last_name, Contributor.role FROM Contributor, Book, Book_Contributor WHERE Contributor.last_name = "Martin" AND Book.title = "Chasing Fireflies" AND Book.id = Book_Contributor.book_id AND Contributor.id = Book_Contributor.contributor_id
