@@ -1,2 +1,3 @@
  Gliffy.com - diagramming software
  LucidChart - diagramming and data visualization; helpful in designing relational database
+ SQL Tutorial reference - https://www.w3schools.com/sql/sql_and_or.asp 

@@ -3,3 +3,4 @@ Fork - In GitHub, this duplicates a series of folders and files into your own ac
 Primary Key - ensures data in a specific column is unique; only one primary key is allowed in a table.
 Foreign Key - a column or group of columns that links data between two tables in a relational database. Visual explanation: https://www.essentialsql.com/what-is-the-difference-between-a-primary-key-and-a-foreign-key/
 Foreign Key Constraint - help keep the related data consistent; a foreign key constraint is defined on the child table https://dev.mysql.com/doc/refman/5.7/en/create-table-foreign-keys.html
+Alias - SQL aliases are used to give a table or column a temporary name and is often used when creating search queries

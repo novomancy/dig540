@@ -1,0 +1,145 @@
+BASIC SELECT STATEMENTS:
+
+SELECT * FROM `category` ORDER BY `id` ASC
+
+"1","Symbolism"
+"2","Sound Art"
+"3","Futurism"
+"4","Interview"
+"5","Pop Art"
+
+
+SELECT * FROM `artist` WHERE name LIKE "apoll%"
+
+"1","Apollinaire, Guillaume","1880-1918","France",
+
+
+FOREIGN KEY SELECT STATEMENT TESTS:
+
+SELECT `compilation`.`title`, `audio`.`title` from `compilation`, `audio` where `compilation`.`id` = `audio`.`compilation_id`
+
+"Popular Image Exhibition","Jim Dine"
+"Popular Image Exhibition","George Brecht"
+"Recordings by Apollinaire","Le Pont Mirabeau (Alcools)"
+"Recordings by Apollinaire","Marie"
+"Recordings by Apollinaire","Le Voyageur"
+"Russian Futurists from the GLM Collection","Sunset Painter"
+"Russian Futurists from the GLM Collection","How I Live"
+
+
+SELECT `audio`.`title`, `artist`.`name`, `role`.`name` FROM `audio`, `artist`, `role`, `artist_role` WHERE `audio`.`id` = `artist_role`.`audio_id` AND `artist`.`id` = `artist_role`.`artist_id` AND `role`.`id` = `artist_role`.`role_id`
+
+"Le Pont Mirabeau (Alcools)","Apollinaire, Guillaume","Poet"
+"Marie","Apollinaire, Guillaume","Poet"
+"Thirst","Lesko, Lauren","Artist"
+"Thirst","Kieltyka, Connie","Producer"
+"Sunset Painter","Burljuk, David","Poet"
+"How I Live","Kamenskij, Vasilij","Poet"
+"Jim Dine","Dine, Jim","Artist"
+"Jim Dine","Klüver, Billy","Interviewer"
+"George Brecht","Brecht, George","Artist"
+"George Brecht","Klüver, Billy","Interviewer"
+"Don't Be Naughty","Khlebnikov, Velimir (Viktor Vladimirovich)","Poet"
+"Don't Be Naughty","Kirsanov, Semyon","Reader"
+"Jasper Johns","Johns, Jasper","Artist"
+"Man Ray (Interview)","Ray, May (Emmanuel Radnitzky)","Artist"
+
+
+SELECT `audio`.`title` as 'audio', `category`.`name` as 'category' FROM `audio`, `category`, `audio_category` WHERE `audio`.`id` = `audio_category`.`audio_id` AND `audio_category`.`category_id` = `category`.`id`
+
+"Sunset Painter","Futurism"
+"How I Live","Futurism"
+"Don't Be Naughty","Futurism"
+"Jim Dine","Interview"
+"George Brecht","Interview"
+"Jasper Johns","Interview"
+"Man Ray (Interview)","Interview"
+"Jim Dine","Pop Art"
+"George Brecht","Pop Art"
+"Jasper Johns","Pop Art"
+"Thirst","Sound Art"
+"Le Pont Mirabeau (Alcools)","Symbolism"
+"Marie","Symbolism"
+"Le Voyageur","Symbolism"
+
+
+Q1. Which audio files are not part of a compilation?
+
+SELECT `audio`.* FROM `audio` WHERE `audio`.`compilation_id` IS NULL
+
+"3","Thirst","1995",,"https://ubusound.memoryoftheworld.org/lesko_lauren/Lesko-Lauren_Thirst.mp3","Audio: Harvestworks, NYC
+Edition of 12",NULL,NULL
+"11","Man Ray (Interview)",NULL,"English","https://www.ubu.com/media/sound/ray_man/Ray-Man_Interview.mp3",,NULL,NULL
+
+
+Q2a. Which audio tracks are categorized as an interview? 
+
+SELECT `audio`.`title` as 'audio', `category`.`name` as 'category' FROM `audio`, `category`, `audio_category` WHERE `audio`.`id` = `audio_category`.`audio_id` AND `audio_category`.`category_id` = `category`.`id` AND `category`.`name` = 'Interview'
+
+"Jim Dine","Interview"
+"George Brecht","Interview"
+"Jasper Johns","Interview"
+"Man Ray (Interview)","Interview"
+
+Q2b. Which audio tracks are categorized as an interview? And who is speaking?
+
+SELECT `audio`.`title` as 'audio', `category`.`name` as 'category', `artist`.`name`, `role`.`name` FROM `audio`, `category`, `audio_category`, `artist`, `role`, `artist_role` WHERE `audio`.`id` = `audio_category`.`audio_id` AND `audio_category`.`category_id` = `category`.`id` AND `category`.`name` = 'Interview' AND `audio`.`id` = `artist_role`.`audio_id` AND `artist`.`id` = `artist_role`.`artist_id` AND `role`.`id` = `artist_role`.`role_id`
+
+"Jim Dine","Interview","Dine, Jim","Artist"
+"Jim Dine","Interview","Klüver, Billy","Interviewer"
+"George Brecht","Interview","Brecht, George","Artist"
+"George Brecht","Interview","Klüver, Billy","Interviewer"
+"Jasper Johns","Interview","Johns, Jasper","Artist"
+"Man Ray (Interview)","Interview","Ray, May (Emmanuel Radnitzky)","Artist"
+
+
+Q3. Which Audio files are dated between 1950-1970? 
+
+SELECT `audio`.`title`, `audio`.`year` FROM `audio` WHERE `audio`.`year` BETWEEN '1950' AND '1970'
+
+"How I Live","1959"
+"Jim Dine","1963"
+"George Brecht","1963"
+"Don't Be Naughty","1963"
+"Jasper Johns","1963"
+
+
+Q4. Which artists/people are associated with the Pop Art category?
+
+SELECT `audio`.`title` as 'audio', `category`.`name` as 'category', `artist`.`name` FROM `audio`, `category`, `audio_category`, `artist`, `artist_role`, `role` WHERE `audio`.`id` = `audio_category`.`audio_id` AND `audio_category`.`category_id` = `category`.`id` AND `category`.`name` = 'Pop Art' AND `audio`.`id` = `artist_role`.`audio_id` AND `artist`.`id` = `artist_role`.`artist_id` AND `role`.`id` = `artist_role`.`role_id`
+
+"Jim Dine","Pop Art","Dine, Jim"
+"Jim Dine","Pop Art","Klüver, Billy"
+"George Brecht","Pop Art","Brecht, George"
+"George Brecht","Pop Art","Klüver, Billy"
+"Jasper Johns","Pop Art","Johns, Jasper"
+
+
+Q5. Which audio files are not in English? Show associated artist names and their country of origin.
+
+SELECT `audio`.`title`, `audio`.`language`, `artist`.`name`, `artist`.`origin` FROM `audio`, `artist`, `artist_role` WHERE `audio`.`id` = `artist_role`.`audio_id` AND `artist`.`id` = `artist_role`.`artist_id` AND NOT `audio`.`language` = 'English'
+
+"Le Pont Mirabeau (Alcools)","French","Apollinaire, Guillaume","France"
+"Marie","French","Apollinaire, Guillaume","France"
+"Thirst",,"Lesko, Lauren","United States"
+"Thirst",,"Kieltyka, Connie",
+"Sunset Painter","Ukrainian","Burljuk, David","Ukraine"
+"How I Live","Russian","Kamenskij, Vasilij","Russia"
+"Don't Be Naughty",,"Khlebnikov, Velimir (Viktor Vladimirovich)","Russia"
+"Don't Be Naughty",,"Kirsanov, Semyon","Russia"
+
+Q6. Which artists appear on compilations? List along with their associated audio files. This shows when compilations have multiple associated artists.
+
+SELECT `compilation`.`title`, `artist`.`name`, `audio`.`title` FROM `compilation`, `artist`, `audio`, `artist_role` WHERE `compilation`.`id` = `audio`.`compilation_id` AND `audio`.`id` = `artist_role`.`audio_id` AND `artist`.`id` = `artist_role`.`artist_id`
+
+"Popular Image Exhibition","Dine, Jim","Jim Dine"
+"Popular Image Exhibition","Klüver, Billy","Jim Dine"
+"Popular Image Exhibition","Brecht, George","George Brecht"
+"Popular Image Exhibition","Klüver, Billy","George Brecht"
+"Popular Image Exhibition","Johns, Jasper","Jasper Johns"
+"Recordings by Apollinaire","Apollinaire, Guillaume","Le Pont Mirabeau (Alcools)"
+"Recordings by Apollinaire","Apollinaire, Guillaume","Marie"
+"Russian Futurists from the GLM Collection","Burljuk, David","Sunset Painter"
+"Russian Futurists from the GLM Collection","Kamenskij, Vasilij","How I Live"
+"Russian Futurists from the GLM Collection","Khlebnikov, Velimir (Viktor Vladimirovich)","Don't Be Naughty"
+"Russian Futurists from the GLM Collection","Kirsanov, Semyon","Don't Be Naughty"
