@@ -1,0 +1,92 @@
+1
+SELECT *
+FROM `artist`
+
+"1","Sergio","Mendes","1990-1995","0"
+"3","Gotan","Project","1999-2020","3"
+"4","Denis","Jasarevic","2008-2020","4"
+"5","Michel","Cox","2005-2012","4"
+
+2
+SELECT artist.*
+FROM `artist`
+WHERE artist.id = 3
+LIMIT 0 , 30
+
+"3","Gotan","Project","1999-2020","3"
+
+3
+SELECT artist.*
+FROM `artist`
+WHERE (`artist`.`first_name` = "Denis")
+LIMIT 0 , 25
+
+"4","Denis","Jasarevic","2008-2020","4"
+
+4
+SELECT track.*
+FROM `track`
+WHERE (`track`.`image_id` = "2")
+LIMIT 0 , 25
+
+"2","Epoca","2","2","2","2",,
+
+5
+SELECT `disc`.*, `track`.*, `artist_track`.*
+FROM `disc`
+	LEFT JOIN `track` ON `track`.`disc_id` = `disc`.`id`
+	LEFT JOIN `artist_track` ON `artist_track`.`track_id` = `track`.`id`;
+
+  "1","Brasileiro","Sergio Mendes","1992",,"1","Magalenha","1","1","1","1",,"0",NULL,NULL
+  "2","La revancha del tango","Gotan Project","2001",,"2","Epoca","2","2","2","2",,,NULL,NULL
+  "3","Street Bangerz Vol. 3","Gramatik","2010",,"8","Balkan Express","3","3","2","3",,,NULL,NULL
+  "4","Desert Chill: Sensual Arabian Grooves","Petrol Bomb Samosa","2012",,"9","The Baghdad Groove","4","4","4","4",,,NULL,NULL
+
+6
+Which countries are represented in my db?
+SELECT *
+FROM `origin`
+LIMIT 0 , 25
+
+"1","Brazil"
+"3","Argentina"
+"4","United States"
+
+7
+Which artist(s) is from the United States (4)?
+SELECT artist.*
+FROM `artist`
+WHERE (`artist`.`origin_id` = "4")
+LIMIT 0 , 25
+
+"4","Denis","Jasarevic","2008-2020","4"
+"5","Michel","Cox","2005-2012","4"
+
+8
+How many styles are in my db?
+SELECT *
+FROM `style`
+
+"1","Samba"
+"2","Tango"
+"3","International Tribal Style"
+"4","Arabian Groove"
+
+9
+How many genres are in my db?
+SELECT *
+FROM `genre`
+
+"1","Samba"
+"2","Downtempo"
+"4","Arabian Groove"
+
+10
+What is the track with genre_id "1"?
+
+SELECT track.*
+FROM `track`
+WHERE (`track`.`genre_id` = "1")
+LIMIT 0 , 25
+
+"1","Magalenha","1","1","1","1",,"0"
