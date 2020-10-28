@@ -1,0 +1,21 @@
+1. One simple SELECT statement
+
+SELECT * FROM `artist`
+
+"1","Alison Baker","USA","female"
+"2","Rosamund Allen","UK","female"
+
+
+2. A SELECT statement for each of the relationships between tables that demonstrates how they are linked by foreign keys
+
+
+
+3. Five SELECT statements that answer questions using the relationships between your tables.
+
+SELECT * FROM `discs` ORDER BY `year` ASC
+
+"2","Malory Aloud","2","2002","172526","1",
+"1","King Arthur's Death","1","2007","7561965","1",
+"3","Alliterative Morte","1","2007","756785","1",
+
+
