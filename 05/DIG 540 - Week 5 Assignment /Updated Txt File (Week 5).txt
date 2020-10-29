@@ -1,0 +1,17 @@
+Week 4.5 Content: 
+
+What is the point of the exhibition I’m designing? What materials am I working with? How do I want to describe them?
+
+I plan to collect discs of spoken word recordings of Arthurian literature and draw comparisons (or contrasts) between the lines selected for recording as well as the gender of the performer, the year of production, and version/language chosen to read. I could foresee something like this serving to not only highlight the  increased diversity (re: gender) in Arthurian studies but also an increased desire to make these works accessible to the more general public via more accessible language and section selections. 
+
+I plan to pull out the following information from the discs: Lines (title, play order, track length etc.), 
+Genre (name + GenreID // Artist and Disc genres), and Artists (Name, Gender etc.) among other pieces of information.
+
+Updated information for Week 5:
+
+I’ve decided against using the term track in reference to the individual pieces of recorded content on the discs in question since on the CDs themselves they are often only referred to by their line numbers. So, I have also decided to refer to each track as a line, with one exception when I refer to track_length, which is a better descriptor in my mind than line_length, because I think that implies something a bit different. 
+
+I’ve also added another category and that is producer, which I think is important information because it can provide geographic data about who and where these types of recordings are produced. This type of data might help me make deductions about the audience for these recordings and what kind of interest there is in them (be it mainly private academic interest or public interest). I also include the "genre" of the production company to account for private vs public interests. 
+
+Finally, instead of duplicating my tables for the purposes of an exhibition I created an “exhibition” table and put “discs” in it to imply multiple discs as well as an idea of the “exhibition” as a whole. 
+
