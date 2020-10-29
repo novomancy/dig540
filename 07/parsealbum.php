@@ -26,12 +26,12 @@ while($data_row = fgetcsv($file_handle)){
             print_r("$first_line[$i]: $data_row[$i]<br>");
         } else {
             $genres = str_getcsv($data_row[$i]);
+
             for($j=0; $j<count($genres); $j++){
                 print_r("$first_line[$i] #". ($j+1)." is $genres[$j]<br>");
             }
         }
     }
-
     print_r('</p>');
 }
 
