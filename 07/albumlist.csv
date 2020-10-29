@@ -120,7 +120,7 @@ Number,Year,Album,Artist,Genre,Subgenre
 119,1960,At Last!,Etta James,"Funk / Soul, Blues","Rhythm & Blues, Soul"
 120,1968,Sweetheart of the Rodeo,The Byrds,Rock,"Folk Rock, Country Rock"
 121,1969,Stand!,Sly & The Family Stone,Funk / Soul,"Funk, Psychedelic, Disco"
-122,1972,The Harder They Come,Various Artists,"Reggae,ÊPop,ÊFolk, World, & Country,ÊStage & Screen","Reggae,ÊRoots Reggae,ÊRocksteady,ÊContemporary,ÊSoundtrack"
+122,1972,The Harder They Come,Various Artists,"Reggae,ï¿½Pop,ï¿½Folk, World, & Country,ï¿½Stage & Screen","Reggae,ï¿½Roots Reggae,ï¿½Rocksteady,ï¿½Contemporary,ï¿½Soundtrack"
 123,1986,Raising Hell,Run D.M.C.,Hip Hop,None
 124,1967,Moby Grape,Moby Grape,Rock,"Folk Rock, Psychedelic Rock"
 125,1971,Pearl,Janis Joplin,"Rock, Blues",Blues Rock
@@ -130,7 +130,7 @@ Number,Year,Album,Artist,Genre,Subgenre
 129,1980,Remain in Light,Talking Heads,"Electronic, Rock","New Wave, Art Rock, Funk"
 130,1977,Marquee Moon,Television,Rock,"New Wave, Punk"
 131,1970,Paranoid,Black Sabbath,Rock,"Hard Rock, Heavy Metal"
-132,1977,Saturday Night Fever: The Original Movie Sound Track,Various Artists,"Electronic,ÊStage & Screen","Soundtrack,ÊDisco"
+132,1977,Saturday Night Fever: The Original Movie Sound Track,Various Artists,"Electronic,ï¿½Stage & Screen","Soundtrack,ï¿½Disco"
 133,1973,"The Wild, the Innocent & the E Street Shuffle",Bruce Springsteen,Rock,None
 134,1994,Ready to Die,The Notorious B.I.G.,Hip Hop,Thug Rap
 135,1992,Slanted and Enchanted,Pavement,Rock,Alternative Rock
@@ -193,8 +193,8 @@ Number,Year,Album,Artist,Genre,Subgenre
 192,1969,The Gilded Palace of Sin,The Flying Burrito Brothers,"Rock, Folk, World, & Country",Country Rock
 193,1994,Dookie,Green Day,Rock,"Alternative Rock, Pop Punk, Punk"
 194,1972,Transformer,Lou Reed,Rock,Glam
-195,1966,"Blues Breakers With Eric Clapton (""The Beano Album"")",John Mayall & The Bluesbreakers,"Rock,ÊBlues","Blues Rock,ÊElectric Blues,ÊHarmonica Blues"
-196,1998,"Nuggets: Original Artyfacts From the First Psychedelic Era, 1965-1968",Various Artists,Rock,"Garage Rock,ÊPsychedelic Rock"
+195,1966,"Blues Breakers With Eric Clapton (""The Beano Album"")",John Mayall & The Bluesbreakers,"Rock,ï¿½Blues","Blues Rock,ï¿½Electric Blues,ï¿½Harmonica Blues"
+196,1998,"Nuggets: Original Artyfacts From the First Psychedelic Era, 1965-1968",Various Artists,Rock,"Garage Rock,ï¿½Psychedelic Rock"
 197,1983,Murmur,R.E.M.,Rock,Alternative Rock
 198,1967,The Best of Little Walter,Little Walter,Blues,Chicago Blues
 199,2001,Is This It,The Strokes,Rock,Indie Rock
@@ -357,7 +357,7 @@ Number,Year,Album,Artist,Genre,Subgenre
 356,1970,12 Songs,Randy Newman,"Rock, Pop","Pop Rock, Vocal"
 357,1967,Between the Buttons,The Rolling Stones,Rock,"Blues Rock, Psychedelic Rock, Pop Rock"
 358,1960,Sketches of Spain,Miles Davis,Jazz,Modal
-359,1972,Honky Ch‰teau,Elton John,Rock,"Pop Rock,ÊClassic Rock"
+359,1972,Honky Chï¿½teau,Elton John,Rock,"Pop Rock,ï¿½Classic Rock"
 360,1979,Singles Going Steady,Buzzcocks,Rock,Punk
 361,2000,Stankonia,OutKast,"Hip Hop, Funk / Soul","Gangsta, P.Funk, Crunk, Conscious"
 362,1993,Siamese Dream,The Smashing Pumpkins,Rock,Alternative Rock
@@ -386,7 +386,7 @@ Number,Year,Album,Artist,Genre,Subgenre
 385,2001,"""Love and Theft""",Bob Dylan,Rock,"Folk Rock, Blues Rock"
 386,1974,Pretzel Logic,Steely Dan,"Jazz, Rock","Jazz-Rock, Pop Rock, Classic Rock"
 387,1993,Enter the Wu_Tang: 36 Chambers,Wu Tang Clan,Hip Hop,Gangsta
-388,1985,The Indestructible Beat of Soweto,Various Artists,"Funk / Soul,ÊFolk, World, & Country",African
+388,1985,The Indestructible Beat of Soweto,Various Artists,"Funk / Soul,ï¿½Folk, World, & Country",African
 389,1989,The End of the Innocence,Don Henley,Rock,Pop Rock
 390,2003,Elephant,The White Stripes,Rock,"Blues Rock, Garage Rock, Alternative Rock"
 391,1976,The Pretender,Jackson Browne,Rock,"Soft Rock, Pop Rock"
@@ -419,7 +419,7 @@ Number,Year,Album,Artist,Genre,Subgenre
 418,1973,Band on the Run,Paul McCartney & Wings,Rock,Pop Rock
 419,1994,Dummy,Portishead,Electronic,"Trip Hop, Downtempo"
 420,1957,"The ""Chirping"" Crickets",The Crickets,"Rock, Pop","Rockabilly, Rock & Roll"
-421,1990,"The Best of the Girl Groups, Volume 1",Various Artists,"Rock,ÊPop","Pop Rock, Vocal"
+421,1990,"The Best of the Girl Groups, Volume 1",Various Artists,"Rock,ï¿½Pop","Pop Rock, Vocal"
 422,1963,Presenting the Fabulous Ronettes Featuring Veronica,The Ronettes,"Rock, Pop","Rock & Roll, Vocal"
 423,2001,Anthology,Diana Ross & The Supremes,"Electronic, Funk / Soul","Pop Rock, Soul, Disco"
 424,2002,The Rising,Bruce Springsteen,Rock,"Folk Rock, Classic Rock"
@@ -445,9 +445,9 @@ Number,Year,Album,Artist,Genre,Subgenre
 444,1972,The World Is a Ghetto,War,Funk / Soul,Funk
 445,1976,Fly Like an Eagle,Steve Miller Band,Rock,Pop Rock
 446,1970,Back in the USA,MC5,Rock,"Garage Rock, Rock & Roll"
-447,1964,Getz / Gilberto,Stan GetzÊ/ÊJoao GilbertoÊfeaturingÊAntonio Carlos Jobim,Jazz,"Bossa Nova,ÊLatin Jazz"
+447,1964,Getz / Gilberto,Stan Getzï¿½/ï¿½Joao Gilbertoï¿½featuringï¿½Antonio Carlos Jobim,Jazz,"Bossa Nova,ï¿½Latin Jazz"
 448,1983,Synchronicity,The Police,"Rock, Pop","New Wave, Pop Rock"
-449,1978,Third/Sister Lovers,Big Star,Rock,"Lo-Fi,ÊIndie Rock"
+449,1978,Third/Sister Lovers,Big Star,Rock,"Lo-Fi,ï¿½Indie Rock"
 450,1973,For Everyman,Jackson Browne,Rock,"Pop Rock, Classic Rock"
 451,2006,Back to Black,Amy Winehouse,"Funk / Soul, Pop",Soul
 452,1971,John Prine,John Prine,"Folk, World, & Country","Country, Folk"
