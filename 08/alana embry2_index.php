@@ -38,14 +38,22 @@
                 $genres = str_getcsv($data_row[$i]);
 
                 for($j=0; $j<count($genres); $j++){
-                    print_r("$first_line[$i] #".($j+1)." is $genres[$j]<br>");
+                    //print_r("$first_line[$i] #".($j+1)." is $genres[$j]<br>");
                    
-                    if($j % 2 == 0) {
-                        echo("<span style=\"color:blue\">$first_line[$i] #".($j+1)." is $genres[$j]</span><br>"); 
+                    if($i == 4)
+                        if($j % 2 == 0){
+                       print_r("<span style=\"color:blue\">$first_line[$i] #".($j+1)." is $genres[$j]</span><br>"); 
                     } else {
-                        if ($j % 2 != 0) 
-                       echo("<span style=\"color:blue\">$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
+                        print_r("$first_line[$i] #".($j+1)." is $genres[$j]<br>");
                     }
+                    if($i ==5)
+                    if($j % 2 == 0){
+                        print_r("$first_line[$i] #".($j+1)." is $genres[$j]<br>"); 
+                     } else {
+                        print_r("<span style=\"color:blue\">$first_line[$i] #".($j+1)." is $genres[$j]</span><br>");
+
+                        }
+                
                 }        
             }   
         }
