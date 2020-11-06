@@ -1,0 +1,1 @@
+SELECT track.title as "track_title", style.label as "style_label", origin.country as "origin_country" from track, style, origin_style, origin WHERE track.style_id = style.id AND style.id = origin_style.style_id
