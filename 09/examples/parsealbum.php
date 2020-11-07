@@ -37,11 +37,26 @@
             }
         }
 
-        public function setData(){
+        
+        public function setData($data_row){
+            $this->setArtist($data_row[3]);
+            $this->setTitle($data_row[2]);
+            $this->setYear($data_row[1]);
+            $this->setRank($data_row[0]);
+            $this->setGenres($data_row[4]);
+            $this->setSubgenres($data_row[5]);
 
         }
 
+
         public function getData(){
+            $this->getArtist(); 
+            $this->getTitle();
+            $this->getYear();
+            $this->getRank();
+            $this->getGenres();
+            $this->getSubgenres();
+
 
         }
 
@@ -56,32 +71,28 @@
         print_r('Column header found: '.$first_line[$i].'<br>');
     }
 
+
+
+
     $albums = array();
     
     while($data_row = fgetcsv($file_handle)){
         $album = new Album();
-        $album->setArtist($data_row[3]);
-        $album->setTitle($data_row[2]);
-        $album->setRank($data_row[0]);
-        $album->setYear($data_row[1]);
-        $album->setGenres($data_row[4]);
-        $album->setSubgenres($data_row[5]);
+        $album->setData($data_row);
         array_push($albums, $album);
     }
+
+
 
     for($i=count($albums)-1; $i>=0; $i--){
         print_r("<p>This is the #$i album:<br>");
 
+
         $albums[$i]->getData();
 
-        // $albums[$i]->getTitle();
-        // $albums[$i]->getYear();
-        // $albums[$i]->getRank();
-        // $albums[$i]->getArtist();
-        // $albums[$i]->getGenres();
-        // $albums[$i]->getSubgenres();
         print_r('</p>');
     }
+
 
     fclose($file_handle);
 ?>
