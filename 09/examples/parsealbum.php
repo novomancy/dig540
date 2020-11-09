@@ -38,28 +38,26 @@
         }
 
         
+        
         public function setData($data_row){
-            $this->setArtist($data_row[3]);
-            $this->setTitle($data_row[2]);
-            $this->setYear($data_row[1]);
+            
             $this->setRank($data_row[0]);
+            $this->setYear($data_row[1]);
+            $this->setTitle($data_row[2]);
+            $this->setArtist($data_row[3]);
             $this->setGenres($data_row[4]);
             $this->setSubgenres($data_row[5]);
 
         }
 
-
         public function getData(){
-            $this->getArtist(); 
-            $this->getTitle();
-            $this->getYear();
             $this->getRank();
+            $this->getYear();
+            $this->getTitle();
+            $this->getArtist(); 
             $this->getGenres();
             $this->getSubgenres();
-
-
         }
-
 
     }
 
