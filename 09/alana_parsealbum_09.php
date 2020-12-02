@@ -96,7 +96,7 @@
     }
 
     for($i=0; $i<count($albums); $i++){
-        print_r("<p>This is the #$i album:<br>");
+        print_r("<p>This is the #".($i+1). " album:<br>");
 
         $albums[$i]->getData();
 
