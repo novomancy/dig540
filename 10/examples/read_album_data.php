@@ -10,7 +10,7 @@
     //Read the first line (which is the row of headers)
     $first_line = fgetcsv($file_handle);
 
-    //Print out the headers
+    //Print out the headers. May not need this if we don't want to display the headers
     for($i=0; $i<count($first_line); $i++){
         print_r('Column header found: '.$first_line[$i].'<br>');
     }
@@ -23,7 +23,7 @@
     while($data_row = fgetcsv($file_handle)){
         $album = new Album();
         $album->setData($data_row);
-        $album->save();
+        $album->save();//this line was added to make sure the Albums are saved to DB
         array_push($albums, $album);
     }
 
