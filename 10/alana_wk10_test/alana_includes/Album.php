@@ -90,7 +90,7 @@ class Album{
             $genre_link = $pdo->prepare("INSERT INTO album_genre (album_id, genre_id) VALUES (?, ?)");//link genre to album
 
             //walk through array of genres
-            for(i=0); $i<count($this->genres); $i++){
+            for($i=0; $i<count($this->genres); $i++){
                 //is genre already in DB? Execute select statement written above
                 $select_genre->execute([$this->genres[$i]]);
                 //access result from query; might get one result (if already exists), or no result
@@ -104,11 +104,13 @@ class Album{
                 $genre_link->execute([$this->id, $genre_id]);//execute linking statement
                 print_r("Connected ".$this->genres[$i]." to $this->title<br>\n");//confirm result            
             }
+            //these two flush lines makes data appear as it is created and allow us to see in real time how the code is executed
+            if(ob_get_length()!==FALSE){
             flush();
-            ob_flush();//these two flush lines makes data appear as it is created and allow us to see in real time how the code is executed
-
+            ob_flush();
+            }
         }   catch (PDOException $e){
-                print_r ("Error saving album to database: " .$e->getmessage() . "<br>\n");
+                print_r ("Error saving album to database: ".$e->getmessage() . "<br>\n");
                 exit;//exit out of this particular section of code after an error
         }
     }
@@ -161,6 +163,7 @@ class Album{
         } catch (PDOException $e){
             print_r ("Error reading album from database: " .$e->getmessage() . "<br>\n");
             exit;
-    }
+        }    
+    }           
 }
 ?>
