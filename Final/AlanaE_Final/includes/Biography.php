@@ -83,24 +83,48 @@ class Biography{
         global $pdo;
          
         try{
-            $bio_insert = $pdo->prepare("INSERT INTO artist (name, life_dates) VALUES (?, ?)");
-            //add 'for' loop similar to tag loop below to prevent duplicate artists?    
-            $db_bio = $bio_insert->execute([$this->artist, $this->lifedates]);
-            $this->id = $pdo->lastInsertId();
-            print_r("--Saved $this->artist to the database.--<br>\n");
+            //'Artist' Table:
+            $select_artist = $pdo->prepare("SELECT * FROM artist WHERE name = ?");
+            $artist_insert = $pdo->prepare("INSERT INTO artist (name, life_dates) VALUES (?, ?)");
 
-            $bio_insert = $pdo->prepare("INSERT INTO format (name) VALUES (?)");
-            $db_bio = $bio_insert->execute([$this->format]);
-            $this->id = $pdo->lastInsertId();
-            print_r("--Saved $this->format to the database.--<br>\n");
-            //how do I link format_id foreign key to biography table?
+            for($i=0; $i<count($this->artist); $i++){
+                $select_artist->execute([$this->artist[$i]]);
+                $existing_artist = $select_artist->fetch();
+            } if(!$existing_artist){
+                    $db_artist = $artist_insert->execute([$this->artist[$i]]);
+                    $artist_id = $pdo->lastInsertID();
+                } else {
+                    $artist_id = $existing_artist['id'];
+                }
+            $db_artist = $artist_insert->execute([$this->artist, $this->lifedates]);
+            $artist_id = $pdo->lastInsertId();
+            print_r("--Saved ".$this->artist. "to the database.--<br>\n");
             
+            //'Format' Table:
+            $select_format = $pdo->prepare("SELECT * FROM format WHERE name = ?");
+            $format_insert = $pdo->prepare("INSERT INTO format (name) VALUES (?)");
+            
+            for($i=0; $i<count($this->format); $i++){
+                $select_format->execute([$this->format[$i]]);
+                $existing_format = $select_format->fetch();
+            } if(!$existing_format){
+                    $db_format = $format_insert->execute([$this->format[$i]]);
+                    $format_id = $pdo->lastInsertID();
+                } else {
+                    $format_id = $existing_format['id'];
+                }
+            $db_format = $format_insert->execute([$this->format]);
+            $format_id = $pdo->lastInsertId();
+            print_r("--Saved ".$this->format. "to the database.--<br>\n");
+            
+            //'Biography' Table:
             $bio_insert = $pdo->prepare("INSERT INTO biography (artist_id, title, year, author_director, format_id, categories, image_url)
-                                            VALUES (?, ?, ?, ?, ?, ?, ?)");//probably need to adjust these INSERTS for the 2 foreign ids
-            $db_bio = $bio_insert->execute([$this->artist, $this->title, $this->year, $this->author, $this->format, implode(',', $this->category), $this->url]);
+                                            VALUES (?, ?, ?, ?, ?, ?, ?)");//probably need to adjust these INSERTS for the 2 foreign ids?
+            $db_bio = $bio_insert->execute([$artist_id, $this->title, $this->year, $this->author, $format_id, implode(',', $this->category), $this->url]);
             $this->id = $pdo->lastInsertId();
-            print_r("--Saved $this->title to the database.--<br>\n");
-
+            print_r("--Saved ".$this->title. "to the database.--<br>\n");
+            
+            //'Tag' Table:
             $select_tag = $pdo->prepare("SELECT * FROM tag WHERE name = ?");
             $tag_insert = $pdo->prepare("INSERT INTO tag (name) VALUES (?)");
             $tag_link = $pdo->prepare("INSERT INTO artist_tag (artist_id, tag_id) VALUES (?, ?)");
@@ -114,8 +138,8 @@ class Biography{
                 } else {
                     $tag_id = $existing_tag['id'];
                 }
-                $tag_link->execute([$this->id, $tag_id]);
-                print_r("Connected ".$this->tags[$i]." to $this->artist<br>\n");
+                $tag_link->execute([$artist_id, $tag_id]);
+                print_r("Connected ".$this->tags[$i]." to".$this->artist."<br>\n");
             }
             flush();
             ob_flush();
@@ -124,58 +148,59 @@ class Biography{
             exit;
         }
     }
-
-    static public function load($tags=false){
-        global $pdo;
-
-        $bios = array();
-        try{
-            if($tags==false){
-                $select_artist = $pdo->prepare("SELECT * FROM artist ORDER BY name ASC");
-                $select_artist->execute();
-            } else {//but tags are linked to artist, NOT biography -- restart
-                $select_artist = $pdo->prepare("SELECT artist.* FROM artist, artist_tag, tag
-                                                WHERE tag.id = artist_tag.artist_id AND
-                                                  artist_tag.tag_id = tag.id AND
-                                                  tag.name = ?
-                                                ORDER BY artist.name ASC");
-                $select_artist->execute([$tags]);
-            }
-            
-            $select_tags = $pdo->prepare("SELECT tag.name AS name
-                                            FROM artist_tag, tag
-                                            WHERE artist_tag.artist_id = ?
-                                              AND artist_tag.tag_id = tag.id");
-
-
-            $db_artist = $select_artist->fetchAll();
-
-            for($i=0; $i<count($db_bio); $i++){
-                $biography = new Biography();
-                $biography->setArtist($db_bio[$i]['artist']);
-                $biography->setLifeDates($db_bio[$i]['lifeDates']);
-                $biography->setTitle($db_bio[$i]['title']);
-                $biography->setYear($db_bio[$i]['year']);
-                $biography->setAuthor($db_bio[$i]['author']);
-                $biography->setFormat($db_bio[$i]['format']);
-                $biography->setCategory($db_bio[$i]['category']);
-                $biography->setUrl($db_bio[$i]['url']);
-                $biography->setID($db_bio[$i]['id']);
-
-                $select_artist->execute([$artist->id]);//executes tag query defined above
-                $db_tags = $select_tag->fetchAll();
-                $tags = array();
-                for($j=0; $j<count($db_tags); $j++){
-                    array_push($tags, $db_tags[$j]['name']);
-                }
-                $artist->setTags(implode(',', $tags));
-                array_push($bios, $biography);//this looks wrong...readjust
-            }
-            return $bios;
-        } catch (PDOException $e){
-            print_r("Error reading album from database: ".$e->getMessage() . "<br>\n");
-            exit;
-        }
-    }
 }
+//     static public function load($tags=false){
+//         global $pdo;
+
+//         $bios = array();
+
+//         try{
+//             if($tags=false){
+//                 $select_artist = $pdo->prepare("SELECT * FROM artist ORDER BY name ASC");
+//                 $select_artist->execute();
+//             } else {//but tags are linked to artist, NOT biography -- restart
+//                 $select_artist = $pdo->prepare("SELECT artist.* FROM artist, artist_tag, tag
+//                                                 WHERE tag.id = artist_tag.artist_id AND
+//                                                   artist_tag.tag_id = tag.id AND
+//                                                   tag.name = ?
+//                                                 ORDER BY artist.name ASC");
+//                 $select_artist->execute([$tags]);
+//             }
+            
+//             $select_tags = $pdo->prepare("SELECT tag.name AS name
+//                                             FROM artist_tag, tag
+//                                             WHERE artist_tag.artist_id = ?
+//                                               AND artist_tag.tag_id = tag.id");
+
+
+//             $db_artist = $select_artist->fetchAll();
+
+//             for($i=0; $i<count($db_bio); $i++){
+//                 $biography = new Biography();
+//                 $biography->setArtist($db_bio[$i]['artist']);
+//                 $biography->setLifeDates($db_bio[$i]['lifeDates']);
+//                 $biography->setTitle($db_bio[$i]['title']);
+//                 $biography->setYear($db_bio[$i]['year']);
+//                 $biography->setAuthor($db_bio[$i]['author']);
+//                 $biography->setFormat($db_bio[$i]['format']);
+//                 $biography->setCategory($db_bio[$i]['category']);
+//                 $biography->setUrl($db_bio[$i]['url']);
+//                 $biography->setID($db_bio[$i]['id']);
+
+//                 $select_artist->execute([$artist->id]);//executes tag query defined above
+//                 $db_tags = $select_tag->fetchAll();
+//                 $tags = array();
+//                 for($j=0; $j<count($db_tags); $j++){
+//                     array_push($tags, $db_tags[$j]['name']);
+//                 }
+//                 $artist->setTags(implode(',', $tags));
+//                 array_push($bios, $biography);//this looks wrong...readjust
+//             }
+//             return $bios;
+//         } catch (PDOException $e){
+//             print_r("Error reading biography from database: ".$e->getMessage() . "<br>\n");
+//             exit;
+//         }
+//     }
+// }
 ?>
