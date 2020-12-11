@@ -4,16 +4,14 @@
     include_once("./includes/db_config.php");
     include_once("./includes/Biography.php");
 
-    //Create an empty array that will be filled with albums. Get variables...if (is set) checks to see if the variable exists; 
-    //double && means that BOTH halves of the variable must be TRUE; and cannot equal an empty string; 
-    //if genre is not set, or if genre is blank, then it will just load everything
-    if(isset($_GET['tag']) && $_GET['tag'] != ''){
-        $bios = Biography::load($_GET['tag']);
+    //Create an empty array that will be filled with Bios
+    $bios = Biography::load();//rewrite load script part in Biography.php - got confused
+    if(isset($_GET['tags']) && $_GET['tags'] != ''){
+        $bios = Biography::load($_GET['tags']);
     } else {
-        $bios = Biography::load();//refers to static method function in Album.php
+        $bios = Biography::load();//refers to static method function in Biography.php
     }
-
-    //This loop iterates through the $albums array and prints out the data for each album
+    //This loop iterates through the $bios array and prints out the data for each biography
     for($i=0; $i<count($bios); $i++){
         print_r("<p>");
         $bios[$i]->getData();

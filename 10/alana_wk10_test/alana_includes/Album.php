@@ -75,6 +75,7 @@ class Album{
         global $pdo;//global refers to a variable that exists outside of this class; $pdo will connect to db
 
         try{
+            //ALBUM TABLE
             $album_insert = $pdo->prepare("INSERT INTO album (number, year, title, artist, subgenre)
                                             VALUES (?, ?, ?, ?, ?)");
             $db_album = $album_insert->execute([$this->rank, $this->year, $this->title, $this->artist, implode(',',$this->subgenres)]);
@@ -85,6 +86,7 @@ class Album{
             //our DB has multiple tables, including lookup tabels; so we have to consider how data enters into the DB.
             //whatever is in this block of code, php will attempt to execute, but if you run into an error, it will stop and 'catch' the error, and now print the error as you commanded below
 
+            //GENRE TABLE
             $select_genre = $pdo->prepare("SELECT * FROM genre WHERE name = ?");//see if genre already exists
             $genre_insert = $pdo->prepare("INSERT INTO genre (name) VALUES (?)");//insert genre if doesn't already exist
             $genre_link = $pdo->prepare("INSERT INTO album_genre (album_id, genre_id) VALUES (?, ?)");//link genre to album
