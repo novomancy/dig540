@@ -100,46 +100,40 @@ class Biography{
          
         try{
             //'Artist' Table:
-            $select_artist = $pdo->prepare("SELECT * FROM artist WHERE name = ?");
-            $artist_insert = $pdo->prepare("INSERT INTO artist (name, life_dates) VALUES (?, ?)");
-
-            $select_artist->execute([$this->artist]);
-            $existing_artist = $select_artist->fetch();
-                if(!$existing_artist){
-                    $db_artist = $artist_insert->execute([$this->artist]);
-                    $artist_id = $pdo->lastInsertID();
+            $select_artist = $pdo->prepare("SELECT artist.id FROM artist WHERE name = ?");            
+            $artist_insert = $pdo->prepare("INSERT INTO artist (name, life_dates) VALUES (?, ?)");                      
+            $select_artist->execute([$this->artist]);            
+            $existing_artist = $select_artist->fetch();            
+                if(!$existing_artist){                    
+                    $db_artist = $artist_insert->execute([$this->artist, $this->lifedates]);                    
+                    $artist_id = $pdo->lastInsertID();                    
                 } else {
                     $artist_id = $existing_artist['id'];
                 }
-            $db_artist = $artist_insert->execute([$this->artist, $this->lifedates]);
-            $artist_id = $pdo->lastInsertId();
-            print_r("--Saved ".$this->artist. "to the database.--<br>\n");
-            
+            print_r("--Saved artist: ".$this->artist. " to the database.--<br>\n");                       
+
             //'Format' Table:
-            $select_format = $pdo->prepare("SELECT * FROM format WHERE name = ?");
-            $format_insert = $pdo->prepare("INSERT INTO format (name) VALUES (?)");
-            
+            $select_format = $pdo->prepare("SELECT format.id FROM format WHERE name = ?");
+            $format_insert = $pdo->prepare("INSERT INTO format (name) VALUES (?)");            
             $select_format->execute([$this->format]);
             $existing_format = $select_format->fetch();
                 if(!$existing_format){
                     $db_format = $format_insert->execute([$this->format]);
-                    $format_id = $pdo->lastInsertID();
+                    $format_id = $pdo->lastInsertID();                    
                 } else {
                     $format_id = $existing_format['id'];
                 }
-            $db_format = $format_insert->execute([$this->format]);
-            $format_id = $pdo->lastInsertId();
-            print_r("--Saved ".$this->format. "to the database.--<br>\n");
+            print_r("--Saved ".$this->format. " format to the database.--<br>\n");
             
             //'Biography' Table:
             $bio_insert = $pdo->prepare("INSERT INTO biography (artist_id, title, year, author_director, format_id, categories, image_url)
                                             VALUES (?, ?, ?, ?, ?, ?, ?)");
             $db_bio = $bio_insert->execute([$artist_id, $this->title, $this->year, $this->author, $format_id, implode(',', $this->category), $this->url]);
-            $bio_id = $pdo->lastInsertId();//ADJUST $THIS->ID TO $BIO->ID?
-            print_r("--Saved ".$this->title. "to the database.--<br>\n");
-            
-            //'Tag' Table:
-            $select_tag = $pdo->prepare("SELECT * FROM tag WHERE name = ?");
+            $this->id = $pdo->lastInsertId();//ADJUST $THIS->ID TO $BIO_ID?
+            print_r("--Saved title: ".$this->title. " to the database.--<br>\n");
+                                   
+            //'Tag' Table: TAGS ARE DUPLICATING WHEN LINKING TO A NEW AND EXISTING ARTIST; AND INSERTING NULL FIELDS
+            $select_tag = $pdo->prepare("SELECT tag.id FROM tag WHERE name = ?"); 
             $tag_insert = $pdo->prepare("INSERT INTO tag (name) VALUES (?)");
             $tag_link = $pdo->prepare("INSERT INTO artist_tag (artist_id, tag_id) VALUES (?, ?)");
 
@@ -148,17 +142,17 @@ class Biography{
                 $existing_tag = $select_tag->fetch();
                 if(!$existing_tag){
                     $db_tag = $tag_insert->execute([$this->tags[$i]]);
-                    $tag_id = $pdo->lastInsertID();
+                    $tag_id = $pdo->lastInsertID();                    
                 } else {
                     $tag_id = $existing_tag['id'];
                 }
                 $tag_link->execute([$artist_id, $tag_id]);
-                print_r("Connected ".$this->tags[$i]." to".$this->artist."<br>\n");
+                print_r("Connected tag: ".$this->tags[$i]." to ".$this->artist."<br>\n");                                
             }
             flush();
             ob_flush();
         } catch (PDOException $e){
-            print_r("Error saving to database: ".$e->getMessage() . "<br>\n");
+            print_r("Error saving bio to database: ".$e->getMessage() . "<br>\n");
             exit;
         }
     }

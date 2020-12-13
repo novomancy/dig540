@@ -12,13 +12,13 @@
         print_r('Column header found: '.$first_line[$i].'<br>');
     }
 
-    $bios = array();
+    $bios = array(); 
      
     while($data_row = fgetcsv($file_handle)){
-        $biography = new Biography();
+        $biography = new Biography();        
         $biography->setData($data_row);
-        $biography->save();
-        array_push($bios, $biography);
+        $biography->save();        
+        array_push($bios, $biography);        
     }
 
     fclose($file_handle);

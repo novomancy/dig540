@@ -1,9 +1,9 @@
-Artist,LifeDates,ArtistTag,Title,Category,ReleaseDate,Author/Director,Format,ImageURL
+ArtistName,LifeDates,ArtistTag,Title,Category,ReleaseDate,Author/Director,Format,ImageURL
 Alice Neel,1900-1984,"American, expressionism, portraits",Alice Neel: The Art of Not Sitting Pretty,Biography,2010,Phoebe Hoban,Book,https://images-na.ssl-images-amazon.com/images/I/81lc0i5okKL.jpg
 Alice Neel,1900-1984,"modernism, painting",Alice Neel,Documentary,2007,Andrew Neel,Film,https://www.imdb.com/title/tt0914358/mediaviewer/rm2619575552/
 Amedeo Clemente Modigliani,1884-1920,"Italian, painting, Paris, sculpture",Montparnasse 19,"Drama, Romance",1958,Jacques Becker,Film,"https://m.media-amazon.com/images/M/MV5BNjk4OGEwODUtYzUxOS00YmY1LWI2ZTgtYTljMDdjMWM1OGJmXkEyXkFqcGdeQXVyODcwODg0OQ@@._V1_UY209_CR10,0,140,209_AL_.jpg"
-Amedeo Clemente Modigliani,1884-1920,,Modigliani,Drama,2004,Mick Davis,Film,https://arthistoryramblings.files.wordpress.com/2011/08/modigliani.png
-Amedeo Clemente Modigliani,1884-1920,,Modigliani: A Life,Nonfiction,2011,Meryle Secrest,Book,"https://images-na.ssl-images-amazon.com/images/I/515oYk78ZNL._SX350_BO1,204,203,200_.jpg"
+Amedeo Clemente Modigliani,1884-1920,"Italian, painting, Paris, sculpture",Modigliani,Drama,2004,Mick Davis,Film,https://arthistoryramblings.files.wordpress.com/2011/08/modigliani.png
+Amedeo Clemente Modigliani,1884-1920,"Italian, painting, Paris, sculpture",Modigliani: A Life,Nonfiction,2011,Meryle Secrest,Book,"https://images-na.ssl-images-amazon.com/images/I/515oYk78ZNL._SX350_BO1,204,203,200_.jpg"
 Artemisia Gentileschi,1593-1654,"baroque, Italian, painting",Artemesia,"Drama, History",1997,Agnès Merlet,Film,"https://m.media-amazon.com/images/M/MV5BZjI1ZWVkNzQtOTJlNS00MWI3LWE1MTctMjg4ZTVmY2MzN2RmXkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_UY209_CR9,0,140,209_AL_.jpg"
 Artemisia Gentileschi,1593-1654,,Artemisia Gentileschi,"Nonfiction, History",1991,Mary D. Garrard,Book,https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1347797053l/179341.jpg
 Camille Claudel,1864-1943,"French, graphic arts, sculpture",Camille Claudel,"Drama, History",1988,Bruno Nuytten,Film,"https://m.media-amazon.com/images/M/MV5BMWIzZGM5MDEtMGJjNC00ODJiLTk0NTktZDQ5NDcxNzE2Yzc2XkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_UY209_CR0,0,140,209_AL_.jpg"
