@@ -4,10 +4,10 @@
     include_once("./includes/db_config.php");
     include_once("./includes/Biography.php");
 
-    //Create an empty array that will be filled with Bios
-    $bios = Biography::load();//rewrite load script part in Biography.php - got confused
-    if(isset($_GET['tags']) && $_GET['tags'] != ''){
-        $bios = Biography::load($_GET['tags']);
+    //$bios = Biography::load();
+    
+    if(isset($_GET['tag']) && $_GET['tag'] != ''){
+        $bios = Biography::load($_GET['tag']);
     } else {
         $bios = Biography::load();//refers to static method function in Biography.php
     }

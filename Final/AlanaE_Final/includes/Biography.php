@@ -51,19 +51,17 @@ class Biography{
     public function setCategory($category){ 
         $this->category = str_getcsv($category);
     } 
-    public function getCategory(){ 
-        for($j=0; $j<count($this->category); $j++){
-            print_r("<span style='color:red'>Categories: ".($j+1)." is ".$this->category[$j]."</span><br>");
-        }
-    }    
+    public function getCategory(){        
+        print_r("Categories: " .implode(',',$this->category)."<br>");
+    }
+        
     public function setTags($tags){
         $this->tags = str_getcsv($tags);
     }
-    public function getTags(){ 
-        for($j=0; $j<count($this->tags); $j++){
-            print_r("<span style='color:blue'>Tags: ".($j+1)." is ".$this->tags[$j]."</span><br>");
-        }
+    public function getTags(){        
+        print_r("<span style='color:blue'>Tags: ".implode(', ',$this->tags)."</span><br>");
     }
+
     public function setUrl($urlLink){ 
         $this->url = $urlLink; 
     }
@@ -158,39 +156,70 @@ class Biography{
     }
 
     //SHOWING DATABASE RESULTS: create SQL scripts...this section pulls data back out of the database to display on the page
-    static public function load(){
+    static public function load($tag=false){
         global $pdo;
 
         $bios = array();
 
         try{
-            $select_bios = $pdo->prepare("SELECT * FROM biography ORDER BY title ASC");
-            $select_bios->execute();
+            if($tag==false){
+                //Searches biography table:
+                $select_bios = $pdo->prepare("SELECT * FROM biography ORDER BY title ASC");
+                $select_bios->execute(); 
+            } else {
+                $select_bios = $pdo->prepare("SELECT biography.* FROM biography, artist, artist_tag, tag 
+                                            WHERE biography.artist_id = artist.id AND artist.id = artist_tag.artist_id
+                                            AND artist_tag.tag_id = tag.id AND tag.name = ?");//this appears to need some work
+                $select_bios->execute([$tag]); 
+            }            
                             
-            //I think I need to write SELECT statements for all of the foreign key relationships?
-            $select_artist = $pdo->prepare("SELECT artist.name FROM artist, biography 
-                                            WHERE artist.id = ? AND artist.id = biography.artist_id 
-                                            ORDER BY artist.name ASC");            
+            //Search for artist name connected to biography by artist_id:
+            $select_artistName = $pdo->prepare("SELECT artist.name AS artist_id FROM artist, biography 
+                                            WHERE biography.artist_id = ? AND biography.artist_id = artist.id");
+            
+            //Search for artist's life dates connected to artist table:
+            $select_lifeDates = $pdo->prepare("SELECT artist.life_dates AS life_dates FROM artist, biography
+                                                WHERE biography.artist_id = ? AND artist.id = biography.artist_id"); 
+            
+            //Search for biography format connected to biography by format_id:
+            $select_format = $pdo->prepare("SELECT format.name AS format_id FROM format, biography
+                                            WHERE biography.format_id = ? AND biography.format_id = format.id");
 
-            $db_bios = $select_bios->fetchAll();//put results in a variable, and fetch all of the results in an array
+            //Search for tags connected to artist by artist_tags lookup table:
+            $select_tags = $pdo->prepare("SELECT tag.name AS tags FROM tag, artist_tag, artist 
+                                        WHERE artist_tag.tag_id = ? AND artist_tag.tag_id = tag.id 
+                                        AND artist_tag.artist_id = artist.id");
+
+            $db_bios = $select_bios->fetchAll();//put results in a variable, and fetch all of the results in an array                                                     
 
             for($i=0; $i<count($db_bios); $i++){
-                $biography = new Biography();//empty object
-                $biography->setArtist($db_bios[$i]['artist']);//call each of the set functions
-                $biography->setLifeDates($db_bios[$i]['lifeDates']);
+                $biography = new Biography();//empty object                
+                $biography->setArtist($db_bios[$i]['artist_id']);//only showing artist_id number, not name
+                $biography->setLifeDates($db_bios[$i]['life_dates']);//error undefined index; this comes from artist_table
                 $biography->setTitle($db_bios[$i]['title']);
                 $biography->setYear($db_bios[$i]['year']);
-                $biography->setAuthor($db_bios[$i]['author']);
-                $biography->setFormat($db_bios[$i]['format']);
-                $biography->setCategory($db_bios[$i]['category']);
-                $biography->setUrl($db_bios[$i]['url']);
+                $biography->setAuthor($db_bios[$i]['author_director']);
+                $biography->setFormat($db_bios[$i]['format_id']);//only showing format_id number, not name
+                $biography->setCategory($db_bios[$i]['categories']);
+                $biography->setUrl($db_bios[$i]['image_url']);
                 $biography->setID($db_bios[$i]['id']);//database ID
+                
+                $select_artistName->execute([$biography->id]);
+                $db_artist = $select_artistName->fetch();
 
-                //select artist from lookup table associated with Biography table:
-                $select_artist->execute([$biography->id]);//???--I don't understand this part. And is it not setting properly?--
-                $db_artist = $select_artist->fetchAll();
-                $artists = array();//is this necessary?
-                array_push($artists, $db_artists[$j]['name']);
+                $select_lifeDates->execute([$biography->id]);
+                $db_lifeDates = $select_lifeDates->fetch();
+
+                $select_format->execute([$biography->id]);
+                $db_format = $select_format->fetch();
+
+                $select_tags->execute([$biography->id]);
+                $db_tags = $select_tags->fetchAll();
+                $tags = array();
+                for($j=0; $j<count($db_tags); $j++){
+                    array_push($tags, $db_tags[$j]['tags']);//repeats WAY too many times; may partially be b/c of duplicates in DB?
+                    }
+                $biography->setTags(implode(',', $tags));
                 array_push($bios, $biography);
             }
             return $bios;
