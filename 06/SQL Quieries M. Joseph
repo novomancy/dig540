@@ -1,0 +1,99 @@
+SELECT Address.* FROM `Address`WHERE state LIKE '%N%'
+1	New York	NY	10020
+6	Nashville	TN	37011
+
+SELECT Address.*, Contributor.last_name FROM Contributor, Address WHERE Contributor.address_id = Address.id
+3	New Orleans	LA	70118	Ward
+5	St Peters	MO	63304	Booth
+6	Nashville	TN	37011	Early
+1	New York	NY	10020	Free
+1	New York	NY	10020	Jackson
+1	New York	NY	10020	Spain
+8	Jacksonville	FL	32034	Martin
+8	Jacksonville	FL	32034	Verner
+
+SELECT Address.*, Publisher.publisher_name FROM Publisher, Address WHERE Publisher.address_id = Address.id
+2	Prince Fredrick	MD	20678	Recorded Books, Inc
+1	New York	NY	10020	Scribner
+6	Nashville	TN	37011	Thomas Nelson
+6	Nashville	TN	37011	Thomas Nelson 
+
+SELECT Book.*, publisher_name FROM Book, Publisher, Book_Publisher WHERE Book.id = Book_Publisher.book_id AND Publisher.id = Book_Publisher.publisher_id
+1	9781501126352	The Fire This Time	Print	2017	Scribner
+2	9781501941030	The Fire This Time 	Audio E-Book	2016	Recorded Books, Inc
+3	9781595540560	Chasing Fireflies	Print	2007	Thomas Nelson
+4	9781418537265	Chasing Fireflies	Audio E-Book	2020	Thomas Nelson 
+
+
+SELECT Book.*, first_name, last_name FROM Book, Contributor, Book_Contributor WHERE Book.id = Book_Contributor.book_id AND Contributor.id = Book_Contributor.contributor_id
+1	9781501126352	The Fire This Time	Print	2017	Jesmyn	Ward
+2	9781501941030	The Fire This Time 	Audio E-Book	2016	Jesmyn	Ward
+3	9781595540560	Chasing Fireflies	Print	2007	Charles	Martin
+4	9781418537265	Chasing Fireflies	Audio E-Book	2020	Charles	Martin
+2	9781501941030	The Fire This Time 	Audio E-Book	2016	Cherise	Booth
+2	9781501941030	The Fire This Time 	Audio E-Book	2016	Michael 	Early
+2	9781501941030	The Fire This Time 	Audio E-Book	2016	Kevin	Free
+2	9781501941030	The Fire This Time 	Audio E-Book	2016	Korey	Jackson
+2	9781501941030	The Fire This Time 	Audio E-Book	2016	Susan	Spain
+4	9781418537265	Chasing Fireflies	Audio E-Book	2020	Adam	Verner
+
+
+SELECT Genre.*, title FROM Genre, Book, Book_Genre WHERE Book.id = Book_Genre.book_id AND Genre.id = Book_Genre.genre_id
+1	Social Science 	The Fire This Time
+5	History	The Fire This Time
+1	Social Science 	The Fire This Time 
+5	History	The Fire This Time 
+2	Christian Fiction	Chasing Fireflies
+2	Christian Fiction	Chasing Fireflies
+
+SELECT Language.*, title FROM Language, Book, Book_Language WHERE Book.id = Book_Language.book_id AND Language.id = Book_Language.language_id
+1	English	The Fire This Time
+5	German	The Fire This Time
+1	English	The Fire This Time 
+1	English	Chasing Fireflies
+4	French	Chasing Fireflies
+1	English	Chasing Fireflies
+
+
+SELECT Genre.*, last_name FROM Genre, Contributor, Contributor_Genre WHERE Genre.id = Contributor_Genre.genre_id AND Contributor.id = Contributor_Genre.contributor_id
+1	Social Science 	Ward
+5	History	Ward
+1	Social Science 	Booth
+5	History	Booth
+5	History	Early
+1	Social Science 	Early
+1	Social Science 	Free
+1	Social Science 	Jackson
+5	History	Jackson
+5	History	Spain
+2	Christian Fiction	Martin
+2	Christian Fiction	Verner
+
+
+1. What is the role of Mr. Martin with the book Chasing Fireflies?  (Answer: Author for two formats)
+SELECT Book.title, Book.format, Contributor.first_name, Contributor.last_name, Contributor.role FROM Contributor, Book, Book_Contributor WHERE Contributor.last_name = "Martin" AND Book.title = "Chasing Fireflies" AND Book.id = Book_Contributor.book_id AND Contributor.id = Book_Contributor.contributor_id
+Chasing Fireflies	Print	Charles	Martin	Author
+Chasing Fireflies	Audio E-Book	Charles	Martin	Author
+
+
+
+2. In what languages is The Fire This Time? (English, German, English recall two formats.)
+SELECT Book.title, Book.format, Language.natural_language FROM Book, Language, Book_Language WHERE Book.title = 'The Fire This Time' AND Book.id = Book_Language.book_id AND Language.id = Book_Language.language_id
+The Fire This Time	Print	English
+The Fire This Time	Print	German
+The Fire This Time 	Audio E-Book	English
+
+
+3. Where does Mr. Michael Early live?
+SELECT Contributor.first_name, Contributor.last_name, Address.city, Address.state FROM Contributor, Address WHERE Contributor.last_name = 'Early' AND Contributor.address_id = Address.id
+Michael 	Early	Nashville	TN
+
+
+4. What Genres does Jesmyn Ward write? 
+SELECT Contributor.first_name, Contributor.last_name, genre_type FROM Contributor, Genre, Contributor_Genre WHERE Contributor.last_name = 'Ward' AND Contributor.first_name = 'Jesmyn' AND Contributor.id = Contributor_Genre.contributor_id AND Genre.id = Contributor_Genre.genre_id
+Jesmyn	Ward	Social Science 
+Jesmyn	Ward	History
+
+5. What book was audio recorded in Maryland (coded MD, The Fire This Time)?
+SELECT Book.title, Address.state FROM Book, Book_Publisher, Publisher, Address WHERE Address.state = 'MD' AND Book.id = Book_Publisher.book_id AND Publisher.id = Book_Publisher.publisher_id AND Publisher.address_id = Address.id
+The Fire This Time	MD
