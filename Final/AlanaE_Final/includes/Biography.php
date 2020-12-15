@@ -135,12 +135,12 @@ class Biography{
             $this->id = $pdo->lastInsertId();//ADJUST $THIS->ID TO $BIO_ID?
             print_r("--Saved title: ".$this->title. " to the database.--<br>\n");
                                    
-            //'Tag' Table: TAGS ARE DUPLICATING WHEN LINKING TO A NEW AND EXISTING ARTIST; AND INSERTING NULL FIELDS
+            //'Tag' Table: TAGS ARE DUPLICATING WHEN LINKING TO A NEW AND EXISTING ARTIST
             $select_tag = $pdo->prepare("SELECT tag.id FROM tag WHERE name = ?"); 
             $tag_insert = $pdo->prepare("INSERT INTO tag (name) VALUES (?)");
             $select_tag_link = $pdo->prepare("SELECT tag.id FROM tag, artist_tag, artist 
                                             WHERE tag.name = ? AND tag.id = artist_tag.tag_id AND
-                                            artist_tag.artist_id = artist.id");//ADDED NEW STATEMENT TO FIND EXISTING LINKS TO ARTISTS?
+                                            artist_tag.artist_id = artist.id");//ADDED NEW STATEMENT TO FIND EXISTING LINKS TO ARTISTS? didn't work...
             $tag_link = $pdo->prepare("INSERT INTO artist_tag (artist_id, tag_id) VALUES (?, ?)");
 
             for($i=0; $i<count($this->tags); $i++){
@@ -258,12 +258,12 @@ class Biography{
             
             //Search for biography format connected to biography by format_id:
             $select_format = $pdo->prepare("SELECT format.name AS format_id FROM format, biography
-                                            WHERE biography.format_id = ? AND biography.format_id = format.id");
+                                            WHERE format_id = ? AND biography.format_id = format.id");
 
             //Search for tags connected to artist by artist_tags lookup table:
             $select_tags = $pdo->prepare("SELECT tag.name AS tags FROM tag, artist_tag, artist 
                                         WHERE artist_tag.tag_id = ? AND tag.id = artist_tag.tag_id
-                                        AND artist_tag.artist_id = artist.id");
+                                        AND artist_tag.artist_id = artist.id");//adding this line didn't correct a thing...                                        
 
             $db_bios = $select_bios->fetchAll();//put results in a variable, and fetch all of the results in an array                                                     
 
@@ -278,7 +278,7 @@ class Biography{
                 $db_format = $select_format->fetch();
 
                 $biography->setArtist($db_bios[$i]['artist_id']);//only showing artist_id number, not name
-                $biography->setLifeDates($db_bios[$i]['life_dates']);//this comes from artist_table; showing same life dates?
+                $biography->setLifeDates($db_bios[$i]['life_dates']);//this comes from artist_table; finally works after adding artist.* to $select_bios
                 $biography->setTitle($db_bios[$i]['title']);
                 $biography->setYear($db_bios[$i]['year']);
                 $biography->setAuthor($db_bios[$i]['author_director']);
