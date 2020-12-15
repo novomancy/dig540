@@ -3,20 +3,18 @@
     ini_set("display_errors", 1); 
     include_once("./includes/db_config.php");
     include_once("./includes/Biography.php");
-
-    $bios = Biography::load();
-    
-    // if(isset($_GET['tag']) && $_GET['tag'] != ''){
-    //     $bios = Biography::load($_GET['tag']);
-    // } else {
-    //     $bios = Biography::load();//refers to static method function in Biography.php
-    // }
+     
+    if(isset($_GET['id']) && $_GET['id'] != ''){
+        $biography = Biography::load_by_id($_GET['id']);
+    } else {
+        $biography = false;
+    }
 ?>
 
 <!doctype html>
 <html lang="en">
   <head>
-    <title>List of all artist biopics</title>
+    <title>Selected Biography</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -24,15 +22,16 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
   <body>
-    <h1>List of all Artist Biopics:</h1>
+    <h1>Selected Biography:</h1>
 
-    <?php
-    //This loop iterates through the $bios array and prints out the data for each biography(all data)
-    for($i=0; $i<count($bios); $i++){
+    <?php    
+      if(!$biography){
+        print_r('OOPS! Something went wrong. Either you did not specify a Biography ID or the ID was not found.');
+      } else {
         print_r("<p>");
-        $bios[$i]->getData();
+        $biography->getData();
         print_r('</p>');
-    }
+      }      
     ?>
 
     <!-- Optional JavaScript -->
