@@ -69,6 +69,11 @@ class Biography{
         print_r('Image URL: '.$this->url . '<br>'); 
     }
     
+    public function getTitleLink(){
+        $anchor = '<a href="show_biography.php?id='.$this->id.'">'.$this->title.'</a>';
+        print_r($this->artist . ', '. $anchor . ' (' . $this->year .') -- ' . $this->format .'<br>');
+    }
+
     public function setData($data_row){
         $this->setArtist($data_row[0]);
         $this->setLifeDates($data_row[1]);
@@ -133,6 +138,9 @@ class Biography{
             //'Tag' Table: TAGS ARE DUPLICATING WHEN LINKING TO A NEW AND EXISTING ARTIST; AND INSERTING NULL FIELDS
             $select_tag = $pdo->prepare("SELECT tag.id FROM tag WHERE name = ?"); 
             $tag_insert = $pdo->prepare("INSERT INTO tag (name) VALUES (?)");
+            $select_tag_link = $pdo->prepare("SELECT tag.id FROM tag, artist_tag, artist 
+                                            WHERE tag.name = ? AND tag.id = artist_tag.tag_id AND
+                                            artist_tag.artist_id = artist.id");//ADDED NEW STATEMENT
             $tag_link = $pdo->prepare("INSERT INTO artist_tag (artist_id, tag_id) VALUES (?, ?)");
 
             for($i=0; $i<count($this->tags); $i++){
@@ -144,7 +152,14 @@ class Biography{
                 } else {
                     $tag_id = $existing_tag['id'];
                 }
-                $tag_link->execute([$artist_id, $tag_id]);
+                $select_tag_link->execute([$this->tags[$i]]); //NEW STATEMENT HERE to find existing artist link?
+                $existing_tag_link = $select_tag_link->fetch();
+                if(!$existing_tag_link){
+                    $tag_link->execute([$artist_id, $tag_id]); //MOVED EXISTING STATEMENT HERE                                
+                    $tag_id = $pdo->lastInsertID();
+                } else {
+                    $tag_id = $existing_tag_link['id'];
+                    }                        
                 print_r("Connected tag: ".$this->tags[$i]." to ".$this->artist."<br>\n");                                
             }
             flush();
@@ -156,22 +171,22 @@ class Biography{
     }
 
     //SHOWING DATABASE RESULTS: create SQL scripts...this section pulls data back out of the database to display on the page
-    static public function load($tag=false){
+    static public function load(){
         global $pdo;
 
         $bios = array();
 
         try{
-            if($tag==false){
-                //Searches biography table:
-                $select_bios = $pdo->prepare("SELECT * FROM biography ORDER BY title ASC");
+            //if($tag==false){
+                //Searches biography table: the Search function seemed to disorient my results...REVIEW
+                $select_bios = $pdo->prepare("SELECT * FROM biography, artist ORDER BY artist.name ASC");
                 $select_bios->execute(); 
-            } else {
-                $select_bios = $pdo->prepare("SELECT biography.* FROM biography, artist, artist_tag, tag 
-                                            WHERE biography.artist_id = artist.id AND artist.id = artist_tag.artist_id
-                                            AND artist_tag.tag_id = tag.id AND tag.name = ?");//this appears to need some work
-                $select_bios->execute([$tag]); 
-            }            
+            // } else {
+            //     $select_bios = $pdo->prepare("SELECT biography.*, artist.name, tag.name FROM biography, artist, artist_tag, tag 
+            //                                 WHERE biography.artist_id = artist.id AND artist.id = artist_tag.artist_id
+            //                                 AND artist_tag.tag_id = tag.id AND tag.name = ?");//this appears to need some work
+            //     $select_bios->execute([$tag]); 
+            // }            
                             
             //Search for artist name connected to biography by artist_id:
             $select_artistName = $pdo->prepare("SELECT artist.name AS artist_id FROM artist, biography 
@@ -179,7 +194,7 @@ class Biography{
             
             //Search for artist's life dates connected to artist table:
             $select_lifeDates = $pdo->prepare("SELECT artist.life_dates AS life_dates FROM artist, biography
-                                                WHERE biography.artist_id = ? AND artist.id = biography.artist_id"); 
+                                                WHERE biography.artist_id = ? AND biography.artist_id = artist.id"); 
             
             //Search for biography format connected to biography by format_id:
             $select_format = $pdo->prepare("SELECT format.name AS format_id FROM format, biography
@@ -187,37 +202,36 @@ class Biography{
 
             //Search for tags connected to artist by artist_tags lookup table:
             $select_tags = $pdo->prepare("SELECT tag.name AS tags FROM tag, artist_tag, artist 
-                                        WHERE artist_tag.tag_id = ? AND artist_tag.tag_id = tag.id 
+                                        WHERE artist_tag.tag_id = ? AND tag.id = artist_tag.tag_id
                                         AND artist_tag.artist_id = artist.id");
 
             $db_bios = $select_bios->fetchAll();//put results in a variable, and fetch all of the results in an array                                                     
 
             for($i=0; $i<count($db_bios); $i++){
-                $biography = new Biography();//empty object                
+                $biography = new Biography();//empty object
+                
+                $select_artistName->execute([$biography->id]);
+                $db_artist = $select_artistName->fetchAll();
+                $select_lifeDates->execute([$biography->id]);
+                $db_lifeDates = $select_lifeDates->fetchAll();
+                $select_format->execute([$biography->id]);
+                $db_format = $select_format->fetchAll();
+
                 $biography->setArtist($db_bios[$i]['artist_id']);//only showing artist_id number, not name
-                $biography->setLifeDates($db_bios[$i]['life_dates']);//error undefined index; this comes from artist_table
+                $biography->setLifeDates($db_bios[$i]['life_dates']);//this comes from artist_table; showing same life dates?
                 $biography->setTitle($db_bios[$i]['title']);
                 $biography->setYear($db_bios[$i]['year']);
                 $biography->setAuthor($db_bios[$i]['author_director']);
                 $biography->setFormat($db_bios[$i]['format_id']);//only showing format_id number, not name
                 $biography->setCategory($db_bios[$i]['categories']);
                 $biography->setUrl($db_bios[$i]['image_url']);
-                $biography->setID($db_bios[$i]['id']);//database ID
-                
-                $select_artistName->execute([$biography->id]);
-                $db_artist = $select_artistName->fetch();
-
-                $select_lifeDates->execute([$biography->id]);
-                $db_lifeDates = $select_lifeDates->fetch();
-
-                $select_format->execute([$biography->id]);
-                $db_format = $select_format->fetch();
+                $biography->setID($db_bios[$i]['id']);//database ID                       
 
                 $select_tags->execute([$biography->id]);
                 $db_tags = $select_tags->fetchAll();
                 $tags = array();
                 for($j=0; $j<count($db_tags); $j++){
-                    array_push($tags, $db_tags[$j]['tags']);//repeats WAY too many times; may partially be b/c of duplicates in DB?
+                    array_push($tags, $db_tags[$j]['tags']);//showing incorrect tag names...
                     }
                 $biography->setTags(implode(',', $tags));
                 array_push($bios, $biography);
