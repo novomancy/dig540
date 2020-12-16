@@ -3,7 +3,8 @@
     ini_set("display_errors", 1); 
     include_once("./includes/db_config.php");
     include_once("./includes/Biography.php");
-     
+    
+    //PAGE NOT DISPLAYING CORRECTLY
     if(isset($_GET['id']) && $_GET['id'] != ''){
         $biography = Biography::load_by_id($_GET['id']);
     } else {

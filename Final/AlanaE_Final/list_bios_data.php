@@ -4,13 +4,13 @@
     include_once("./includes/db_config.php");
     include_once("./includes/Biography.php");
 
-    $bios = Biography::load();
-    
-    // if(isset($_GET['tag']) && $_GET['tag'] != ''){
-    //     $bios = Biography::load($_GET['tag']);
-    // } else {
-    //     $bios = Biography::load();//refers to static method function in Biography.php
-    // }
+    //PAGE NOT DISPLAYING ACCURATELY; REFRESHING PAGE MOVES THINGS AROUND
+    //AND TITLE LINKS TO WRONG ID# BELOW?
+    if(isset($_GET['artist_id']) && $_GET['artist_id'] != ''){
+      $bios = Biography::load($_GET['artist_id']);
+    } else {
+      $bios = Biography::load();
+    }
 ?>
 
 <!doctype html>
@@ -27,7 +27,7 @@
     <h1>List of all Artist Biopics:</h1>
 
     <?php
-    //This loop iterates through the $bios array and prints out the data for each biography(all data from DB)
+    //This loop iterates through the $bios array and prints out the data for public function getTitleLink()
       for($i=0; $i<count($bios); $i++){        
         $bios[$i]->getTitleLink();
       }

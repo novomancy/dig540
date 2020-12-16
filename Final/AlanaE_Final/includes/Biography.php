@@ -68,10 +68,10 @@ class Biography{
     public function getUrl(){         
         print_r('<img src='.$this->url.' width="200"<br>');
     }
-    //List bios page:
+    //List bios page: connected to list_bios_data.php, linked to Biography Title
     public function getTitleLink(){
         $anchor = '<a href="show_biography.php?id='.$this->id.'">'.$this->title.'</a>';
-        print_r($this->artist . ', '. $anchor . ' (' . $this->year .') -- ' . $this->format .'<br>');
+        print_r($anchor . ' (' . $this->year .') by ' . $this->author . ' -- ' . $this->format .'<br>');
     }
 
     public function setData($data_row){
@@ -173,94 +173,80 @@ class Biography{
         }
     }
 
-    //LOAD INDIVIDUAL BIOGRAPHY: UPDATE AFTER FIXING SECTION BELOW
+    //LOAD INDIVIDUAL BIOGRAPHY: DOING WEIRDO THINGS - REFRESHING PAGE MOVES RESULTS AROUND, TITLE LINK IS TO WRONG ID
     static public function load_by_id($id){
         global $pdo;
 
         try{
-            $find_biography = $pdo->prepare("SELECT biography.*, artist.* FROM biography, artist WHERE biography.id = ?");
+            $find_biography = $pdo->prepare("SELECT biography.*, artist.name AS artist_id, artist.life_dates AS life_dates, 
+                                            artist.id, format.name AS format_id FROM biography, artist, format 
+                                            WHERE biography.id = ? 
+                                            AND biography.artist_id = artist.id 
+                                            AND biography.format_id = format.id");
 
-            $select_artistName = $pdo->prepare("SELECT artist.name FROM artist, biography 
-                                            WHERE biography.artist_id = ? AND biography.artist_id = artist.id");
-
-            $select_lifeDates = $pdo->prepare("SELECT artist.life_dates AS life_dates FROM artist, biography
-                                            WHERE biography.artist_id = ? AND biography.artist_id = artist.id");
-            
-            $select_tags = $pdo->prepare("SELECT tag.name AS tags FROM tag, artist_tag, artist, biography 
-                                        WHERE artist_tag.tag_id = ? AND tag.id = artist_tag.tag_id
-                                        AND artist_tag.artist_id = artist.id AND artist.id = biography.artist_id");    
+            $select_tags = $pdo->prepare("SELECT tag.name AS tags FROM tag, artist_tag 
+                                        WHERE artist_tag.tag_id = tag.id AND artist_tag.artist_id = ?");                
 
             $find_biography->execute([$id]);
             $db_biography = $find_biography->fetch();
             if(!$db_biography){
                 return false;        
-            } else {
-                $biography = new Biography();//empty object
-                $biography->setArtist($db_biography['artist_id']);//only showing artist_id number, not name
-                $biography->setLifeDates($db_biography['life_dates']);//this comes from artist_table; showing same life dates?
+            } else {                
+                $biography = new Biography();
+                $biography->setArtist($db_biography['artist_id']);
+                $biography->setLifeDates($db_biography['life_dates']);
                 $biography->setTitle($db_biography['title']);
                 $biography->setYear($db_biography['year']);
                 $biography->setAuthor($db_biography['author_director']);
-                $biography->setFormat($db_biography['format_id']);//only showing format_id number, not name
+                $biography->setFormat($db_biography['format_id']);
                 $biography->setCategory($db_biography['categories']);
                 $biography->setUrl($db_biography['image_url']);
-                $biography->setID($id);//database ID
-                
-                $select_artistName->execute([$id]);                       
-                $db_artist = $select_artistName->fetch();
-
-                $select_lifeDates->execute([$id]);
-                $db_lifeDates = $select_lifeDates->fetch();
-                
-                // $select_format->execute([$id]);
-                // $db_format = $select_format->fetch();
-                
+                $biography->setID($id);           
+    
                 $select_tags->execute([$id]);
                 $db_tags = $select_tags->fetchAll();
                 $tags = array();
                 for($j=0; $j<count($db_tags); $j++){
                     array_push($tags, $db_tags[$j]['tags']);
-                    }
+                }
                 $biography->setTags(implode(',', $tags));
-                return $biography;                
+                return $biography;                                             
             }
-
         } catch (PDOException $e){
             print_r("Error reading single biography from database: ".$e->getMessage() . "<br>\n");
             exit;
         }
     }
 
-
-    //SHOWING DATABASE RESULTS:
-    static public function load(){
+    //SHOWING DATABASE RESULTS: WORKING CORRECTLY
+    static public function load($artistSearch=false){
         global $pdo;
 
         $bios = array();
 
         try{
-            //if($tag==false){
-            
+            if($artistSearch==false){            
             //Searches biography table & one-to-many foreign keys: 
-            $select_bios = $pdo->prepare("SELECT biography.*, artist.name AS artist_id, artist.life_dates AS life_dates, 
-                                        format.name AS format_id FROM biography, artist, format 
+                $select_bios = $pdo->prepare("SELECT biography.*, artist.name AS artist_id, artist.life_dates AS life_dates, 
+                                        artist.id, format.name AS format_id FROM biography, artist, format 
                                         WHERE biography.artist_id = artist.id 
                                         AND biography.format_id = format.id 
                                         ORDER BY artist.name ASC");            
-            $select_bios->execute();
+                $select_bios->execute();            
+            } else {
+                //search by artist name:
+                $select_bios = $pdo->prepare("SELECT biography.*, artist.name AS artist_id, artist.life_dates AS life_dates, 
+                                        artist.id, format.name AS format_id FROM biography, artist, format 
+                                        WHERE biography.artist_id = artist.id 
+                                        AND biography.format_id = format.id 
+                                        AND artist.name = ?");
+                $select_bios->execute([$artistSearch]);            }            
             
-            // } else {
-            //     $select_bios = $pdo->prepare("SELECT biography.*, artist.name, tag.name FROM biography, artist, artist_tag, tag 
-            //                                 WHERE biography.artist_id = artist.id AND artist.id = artist_tag.artist_id
-            //                                 AND artist_tag.tag_id = tag.id AND tag.id = ?");//this appears to need some work
-            //     $select_bios->execute([$tag]); 
-            // }            
-            
-            //Search for tags connected to artist by artist_tags lookup table: WORKS! -- search for what artist it's connected to!
+            //Search for tags connected to artist by artist_tags lookup table: search for what artist it's connected to
             $select_tags = $pdo->prepare("SELECT tag.name AS tags FROM tag, artist_tag 
                                         WHERE artist_tag.tag_id = tag.id AND artist_tag.artist_id = ?"); 
                                         
-            $db_bios = $select_bios->fetchAll();//put results in a variable, and fetch all of the results in an array                                                     
+            $db_bios = $select_bios->fetchAll();                                                     
 
             for($i=0; $i<count($db_bios); $i++){
                 $biography = new Biography();
