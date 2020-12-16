@@ -241,7 +241,7 @@ class Biography{
         try{
             //if($tag==false){
             
-            //Searches biography table & foreign keys: 
+            //Searches biography table & one-to-many foreign keys: 
             $select_bios = $pdo->prepare("SELECT biography.*, artist.name AS artist_id, artist.life_dates AS life_dates, 
                                         format.name AS format_id FROM biography, artist, format 
                                         WHERE biography.artist_id = artist.id 
