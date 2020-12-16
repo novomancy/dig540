@@ -59,7 +59,7 @@ class Biography{
         $this->tags = str_getcsv($tags);
     }
     public function getTags(){        
-        print_r("<span style='color:blue'>Tags: ".implode(', ',$this->tags)."</span><br>");
+        print_r("Tags: ".implode(', ',$this->tags)."<br>");
     }
 
     public function setUrl($urlLink){ 
@@ -232,7 +232,7 @@ class Biography{
     }
 
 
-    //SHOWING DATABASE RESULTS: create SQL scripts...this section pulls data back out of the database to display on the page
+    //SHOWING DATABASE RESULTS:
     static public function load(){
         global $pdo;
 
@@ -240,27 +240,22 @@ class Biography{
 
         try{
             //if($tag==false){
-                //Searches biography table: the Search function seemed to disorient my results...REVIEW
-                $select_bios = $pdo->prepare("SELECT * FROM biography, artist 
-                                            WHERE biography.artist_id = artist.id ORDER BY artist.name ASC");
-                $select_bios->execute(); //Note: Life-dates finally appear after adding artist to above Select statement
+            
+            //Searches biography table & foreign keys: 
+            $select_bios = $pdo->prepare("SELECT biography.*, artist.name AS artist_id, artist.life_dates AS life_dates, 
+                                        format.name AS format_id FROM biography, artist, format 
+                                        WHERE biography.artist_id = artist.id 
+                                        AND biography.format_id = format.id 
+                                        ORDER BY artist.name ASC");            
+            $select_bios->execute();
+            
             // } else {
             //     $select_bios = $pdo->prepare("SELECT biography.*, artist.name, tag.name FROM biography, artist, artist_tag, tag 
             //                                 WHERE biography.artist_id = artist.id AND artist.id = artist_tag.artist_id
-            //                                 AND artist_tag.tag_id = tag.id AND tag.name = ?");//this appears to need some work
+            //                                 AND artist_tag.tag_id = tag.id AND tag.id = ?");//this appears to need some work
             //     $select_bios->execute([$tag]); 
             // }            
-                            
-            //Search for artist name connected to biography by artist_id: THIS STATEMENT DOES NOT WORK - there is no change when inactive
-            $select_artist = $pdo->prepare("SELECT artist.name AS artist_id FROM artist WHERE artist.id = ?");
-            //("SELECT artist.name AS artist_id FROM artist, biography WHERE biography.artist_id = artist.id AND artist.id = ?"); - NO CHANGE
-            //WITHOUT artist.id = ? - no change; biography.artist_id = ? - no change; no AND statement - no change; artist.name = ? - no change.                                        
-                                               
-            //Search for biography format connected to biography by format_id: THIS STATEMENT DOES NOT WORK - there is no change when inactive
-            $select_format = $pdo->prepare("SELECT format.name AS format_id FROM format, biography 
-                                            WHERE biography.format_id = format.id AND biography.format_id = ?");            
-            //("SELECT format.name AS format_id FROM format, biography WHERE biography.format_id = ? AND biography.format_id = format.id"); NO CHANGE
-
+            
             //Search for tags connected to artist by artist_tags lookup table: WORKS! -- search for what artist it's connected to!
             $select_tags = $pdo->prepare("SELECT tag.name AS tags FROM tag, artist_tag 
                                         WHERE artist_tag.tag_id = tag.id AND artist_tag.artist_id = ?"); 
@@ -269,32 +264,26 @@ class Biography{
 
             for($i=0; $i<count($db_bios); $i++){
                 $biography = new Biography();
-                $biography->setArtist($db_bios[$i]['artist_id']);//only showing artist_id number, not name; also refuses to be called anything other than 'artist_id', otherwise "Undefined index" error
-                $biography->setLifeDates($db_bios[$i]['life_dates']);//this comes from artist_table; finally works after adding artist to $select_bios; otherwise error for Undefined index
+                $biography->setArtist($db_bios[$i]['artist_id']);
+                $biography->setLifeDates($db_bios[$i]['life_dates']);
                 $biography->setTitle($db_bios[$i]['title']);
                 $biography->setYear($db_bios[$i]['year']);
                 $biography->setAuthor($db_bios[$i]['author_director']);
-                $biography->setFormat($db_bios[$i]['format_id']);//only showing format_id number, not name; refuses to be called anything else, otherwise Notice: Undefined index: format (or whatever else I call it)
+                $biography->setFormat($db_bios[$i]['format_id']);
                 $biography->setCategory($db_bios[$i]['categories']);
                 $biography->setUrl($db_bios[$i]['image_url']);
-                $biography->setID($db_bios[$i]['id']);                       
-
-                $select_artist->execute([$biography->id]);
-                $db_artist = $select_artist->fetch();
-                $select_format->execute([$biography->id]);
-                $db_format = $select_format->fetch();
+                $biography->setID($db_bios[$i]['id']);           
 
                 $select_tags->execute([$biography->id]);
                 $db_tags = $select_tags->fetchAll();
                 $tags = array();
                 for($j=0; $j<count($db_tags); $j++){
                     array_push($tags, $db_tags[$j]['tags']);
-                    }
+                }
                 $biography->setTags(implode(',', $tags));
                 array_push($bios, $biography);
             }
-            return $bios;
-            
+            return $bios;            
         } catch (PDOException $e){
             print_r("Error reading biography from database: ".$e->getMessage() . "<br>\n");
             exit;
