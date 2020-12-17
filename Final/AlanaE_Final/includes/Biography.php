@@ -16,8 +16,8 @@ class Biography{
         $this->artist = $artistName; 
     }
     public function getArtist(){ 
-        print_r( '<a href="list_bios_data.php?artist='.$this->artist.'">Artist: '.$this->artist.'</a><br>'); //LINK TO ARTIST SEARCH
-    }
+        print_r( '<a href="list_bios_data.php?artist='.$this->artist.'">Artist: '.$this->artist.'</a><br>'); 
+    }//LINK TO ARTIST SEARCH
     public function setLifeDates($lifeDates){ 
         $this->lifedates = $lifeDates; 
     }
@@ -221,7 +221,7 @@ class Biography{
                                         artist.id, format.name AS format FROM biography, artist, format 
                                         WHERE biography.artist_id = artist.id 
                                         AND biography.format_id = format.id
-                                        ORDER BY artist.name ASC");            
+                                        ORDER BY biography.id ASC");            
                 $select_bios->execute();            
             } else {
                 //search by artist name: ALL GOOD - WORKING CORRECTLY
