@@ -16,7 +16,7 @@ class Biography{
         $this->artist = $artistName; 
     }
     public function getArtist(){ 
-        print_r( 'Artist: '.$this->artist . '<br>'); //MODIFY OUTPUT HERE TO ADD LINK (see "Navigation using metadata" video @26:33)
+        print_r( 'Artist: '.$this->artist.'<br>'); //MODIFY OUTPUT HERE TO ADD LINK (see "Navigation using metadata" video @26:33)
     }
     public function setLifeDates($lifeDates){ 
         $this->lifedates = $lifeDates; 
@@ -71,7 +71,7 @@ class Biography{
     //List bios page: connected to list_bios_data.php, linked to Biography Title
     public function getTitleLink(){
         $anchor = '<a href="show_biography.php?id='.$this->id.'">'.$this->title.'</a>';
-        print_r($anchor . ' (' . $this->year .') by ' . $this->author . ' -- ' . $this->format .'<br>');
+        print_r($this->id . ', ' . $anchor . ' (' . $this->year .') by ' . $this->author . ' -- ' . $this->format .'<br>');
     }
 
     public function setData($data_row){
@@ -160,8 +160,8 @@ class Biography{
         }
     }
 
-    //LOAD INDIVIDUAL BIOGRAPHY: DOING WEIRDO THINGS - REFRESHING PAGE MOVES RESULTS AROUND, 
-    //TITLE LINK IS FINDING ARTIST ID INSTEAD OF BIO ID
+    //LOAD INDIVIDUAL BIOGRAPHY: WORKING WHEN ID# ENTERED MANUALLY; FULL LIST DOING WEIRDO THINGS - REFRESHING PAGE MOVES RESULTS AROUND, 
+    //TITLE LINK IS FINDING ARTIST ID = BIO ID
     static public function load_by_id($id){
         global $pdo;
 
@@ -189,9 +189,9 @@ class Biography{
                 $biography->setFormat($db_biography['format']);
                 $biography->setCategory($db_biography['categories']);
                 $biography->setUrl($db_biography['image_url']);
-                $biography->setID($id);           
+                $biography->setID($db_biography ['id']);           
     
-                $select_tags->execute([$id]);
+                $select_tags->execute([$biography->id]);
                 $db_tags = $select_tags->fetchAll();
                 $tags = array();
                 for($j=0; $j<count($db_tags); $j++){
@@ -228,7 +228,8 @@ class Biography{
                                         WHERE biography.artist_id = artist.id 
                                         AND biography.format_id = format.id 
                                         AND artist.name = ?");
-                $select_bios->execute([$artistSearch]);            }            
+                $select_bios->execute([$artistSearch]);            
+            }            
             
             //Search for tags connected to artist by artist_tags lookup table: search for what artist it's connected to
             $select_tags = $pdo->prepare("SELECT tag.name AS tags FROM tag, artist_tag 
