@@ -16,7 +16,7 @@ class Biography{
         $this->artist = $artistName; 
     }
     public function getArtist(){ 
-        print_r( 'Artist: '.$this->artist.'<br>'); //MODIFY OUTPUT HERE TO ADD LINK (see "Navigation using metadata" video @26:33)
+        print_r( '<a href="list_bios_data.php?artist='.$this->artist.'">Artist: '.$this->artist.'</a><br>'); //LINK TO ARTIST SEARCH
     }
     public function setLifeDates($lifeDates){ 
         $this->lifedates = $lifeDates; 
@@ -60,6 +60,9 @@ class Biography{
     }
     public function getTags(){        
         print_r("Tags: ".implode(', ',$this->tags)."<br>");
+        // for($j=0; $j<count($this->tags); $j++){
+        //     print_r('<a href="list_bio_data.php?tags='.$this->tags[$j].'">Tags: '.($j+1).' is '.$this->tags[$j].'</a><br>');
+        // } ADD SEARCH TAG LINKS?
     }
 
     public function setUrl($urlLink){ 
@@ -206,7 +209,6 @@ class Biography{
         }
     }
 
-    //SHOWING DATABASE RESULTS: WORKING CORRECTLY
     static public function load($artistSearch=false){
         global $pdo;
 
@@ -218,7 +220,7 @@ class Biography{
                 $select_bios = $pdo->prepare("SELECT biography.*, artist.name AS artist, artist.life_dates AS life_dates, 
                                         artist.id, format.name AS format FROM biography, artist, format 
                                         WHERE biography.artist_id = artist.id 
-                                        AND biography.format_id = format.id 
+                                        AND biography.format_id = format.id
                                         ORDER BY artist.name ASC");            
                 $select_bios->execute();            
             } else {

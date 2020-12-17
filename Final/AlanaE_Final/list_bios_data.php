@@ -10,7 +10,7 @@
       $bios = Biography::load($_GET['artist']);
     } else {
       $bios = Biography::load();
-    }
+    }   
 ?>
 
 <!doctype html>
