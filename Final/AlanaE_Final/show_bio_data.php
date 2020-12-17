@@ -5,8 +5,8 @@
     include_once("./includes/Biography.php");
     
     //ALL WORKING CORRECTLY
-    if(isset($_GET['artist_id']) && $_GET['artist_id'] != ''){
-        $bios = Biography::load($_GET['artist_id']);
+    if(isset($_GET['artist']) && $_GET['artist'] != ''){
+        $bios = Biography::load($_GET['artist']);
     } else {
         $bios = Biography::load();
     }

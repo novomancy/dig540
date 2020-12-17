@@ -6,8 +6,8 @@
 
     //PAGE NOT DISPLAYING ACCURATELY; REFRESHING PAGE MOVES THINGS AROUND
     //AND TITLE LINKS TO WRONG ID# BELOW?
-    if(isset($_GET['artist_id']) && $_GET['artist_id'] != ''){
-      $bios = Biography::load($_GET['artist_id']);
+    if(isset($_GET['artist']) && $_GET['artist'] != ''){
+      $bios = Biography::load($_GET['artist']);
     } else {
       $bios = Biography::load();
     }
@@ -29,7 +29,7 @@
     <?php
     //This loop iterates through the $bios array and prints out the data for public function getTitleLink()
       for($i=0; $i<count($bios); $i++){        
-        $bios[$i]->getTitleLink();
+          $bios[$i]->getTitleLink();
       }
     ?>
 

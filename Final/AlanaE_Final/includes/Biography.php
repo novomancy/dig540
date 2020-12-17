@@ -135,12 +135,9 @@ class Biography{
             $this->id = $pdo->lastInsertId();
             print_r("--Saved title: ".$this->title. " to the database.--<br>\n");
                                    
-            //'Tag' Table: TAGS ARE STILL DUPLICATING WHEN LINKING TO A NEW AND EXISTING ARTIST???
+            //'Tag' Table: TAGS ARE STILL DUPLICATING WHEN LINKING TO A NEW AND EXISTING ARTIST??? **CHECK COMPOUND INDEX**
             $select_tag = $pdo->prepare("SELECT tag.id FROM tag WHERE name = ?"); 
-            $tag_insert = $pdo->prepare("INSERT INTO tag (name) VALUES (?)");
-            // $select_tag_link = $pdo->prepare("SELECT tag.id FROM tag, artist_tag, artist 
-            //                                 WHERE tag.name = ? AND tag.id = artist_tag.tag_id AND
-            //                                 artist_tag.artist_id = artist.id");//ADDED NEW STATEMENT TO FIND EXISTING LINKS TO ARTISTS? didn't work...
+            $tag_insert = $pdo->prepare("INSERT INTO tag (name) VALUES (?)");            
             $tag_link = $pdo->prepare("INSERT INTO artist_tag (artist_id, tag_id) VALUES (?, ?)");
 
             for($i=0; $i<count($this->tags); $i++){
@@ -153,17 +150,7 @@ class Biography{
                     $tag_id = $existing_tag['id'];
                 }
                 $tag_link->execute([$artist_id, $tag_id]);
-                print_r("Connected tag: ".$this->tags[$i]." to ".$this->artist."<br>\n");
-
-                // $select_tag_link->execute([$this->tags[$i]]); //TRIED ADDING NEW STATEMENT HERE to find existing artist link? DIDN'T MAKE ANY DIFFERENCE...
-                // $existing_tag_link = $select_tag_link->fetch();
-                // if(!$existing_tag_link){
-                //     $tag_link->execute([$artist_id, $tag_id]); //MOVED EXISTING link STATEMENT HERE                                
-                //     $tag_id = $pdo->lastInsertID();
-                // } else {
-                //     $tag_id = $existing_tag_link['id'];
-                //     }                        
-                // print_r("Connected tag: ".$this->tags[$i]." to ".$this->artist."<br>\n");                                
+                print_r("Connected tag: ".$this->tags[$i]." to ".$this->artist."<br>\n");                               
             }
             flush();
             ob_flush();
@@ -173,14 +160,15 @@ class Biography{
         }
     }
 
-    //LOAD INDIVIDUAL BIOGRAPHY: DOING WEIRDO THINGS - REFRESHING PAGE MOVES RESULTS AROUND, TITLE LINK IS TO WRONG ID
+    //LOAD INDIVIDUAL BIOGRAPHY: DOING WEIRDO THINGS - REFRESHING PAGE MOVES RESULTS AROUND, 
+    //TITLE LINK IS FINDING ARTIST ID INSTEAD OF BIO ID
     static public function load_by_id($id){
         global $pdo;
 
         try{
-            $find_biography = $pdo->prepare("SELECT biography.*, artist.name AS artist_id, artist.life_dates AS life_dates, 
-                                            artist.id, format.name AS format_id FROM biography, artist, format 
-                                            WHERE biography.id = ? 
+            $find_biography = $pdo->prepare("SELECT biography.*, artist.name AS artist, artist.life_dates AS life_dates, 
+                                            artist.id, format.name AS format FROM biography, artist, format 
+                                            WHERE biography.id = ?
                                             AND biography.artist_id = artist.id 
                                             AND biography.format_id = format.id");
 
@@ -193,12 +181,12 @@ class Biography{
                 return false;        
             } else {                
                 $biography = new Biography();
-                $biography->setArtist($db_biography['artist_id']);
+                $biography->setArtist($db_biography['artist']);
                 $biography->setLifeDates($db_biography['life_dates']);
                 $biography->setTitle($db_biography['title']);
                 $biography->setYear($db_biography['year']);
                 $biography->setAuthor($db_biography['author_director']);
-                $biography->setFormat($db_biography['format_id']);
+                $biography->setFormat($db_biography['format']);
                 $biography->setCategory($db_biography['categories']);
                 $biography->setUrl($db_biography['image_url']);
                 $biography->setID($id);           
@@ -227,16 +215,16 @@ class Biography{
         try{
             if($artistSearch==false){            
             //Searches biography table & one-to-many foreign keys: 
-                $select_bios = $pdo->prepare("SELECT biography.*, artist.name AS artist_id, artist.life_dates AS life_dates, 
-                                        artist.id, format.name AS format_id FROM biography, artist, format 
+                $select_bios = $pdo->prepare("SELECT biography.*, artist.name AS artist, artist.life_dates AS life_dates, 
+                                        artist.id, format.name AS format FROM biography, artist, format 
                                         WHERE biography.artist_id = artist.id 
                                         AND biography.format_id = format.id 
                                         ORDER BY artist.name ASC");            
                 $select_bios->execute();            
             } else {
-                //search by artist name:
-                $select_bios = $pdo->prepare("SELECT biography.*, artist.name AS artist_id, artist.life_dates AS life_dates, 
-                                        artist.id, format.name AS format_id FROM biography, artist, format 
+                //search by artist name: ALL GOOD - WORKING CORRECTLY
+                $select_bios = $pdo->prepare("SELECT biography.*, artist.name AS artist, artist.life_dates AS life_dates, 
+                                        artist.id, format.name AS format FROM biography, artist, format 
                                         WHERE biography.artist_id = artist.id 
                                         AND biography.format_id = format.id 
                                         AND artist.name = ?");
@@ -250,12 +238,12 @@ class Biography{
 
             for($i=0; $i<count($db_bios); $i++){
                 $biography = new Biography();
-                $biography->setArtist($db_bios[$i]['artist_id']);
+                $biography->setArtist($db_bios[$i]['artist']);
                 $biography->setLifeDates($db_bios[$i]['life_dates']);
                 $biography->setTitle($db_bios[$i]['title']);
                 $biography->setYear($db_bios[$i]['year']);
                 $biography->setAuthor($db_bios[$i]['author_director']);
-                $biography->setFormat($db_bios[$i]['format_id']);
+                $biography->setFormat($db_bios[$i]['format']);
                 $biography->setCategory($db_bios[$i]['categories']);
                 $biography->setUrl($db_bios[$i]['image_url']);
                 $biography->setID($db_bios[$i]['id']);           
