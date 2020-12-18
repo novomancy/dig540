@@ -4,7 +4,6 @@
     include_once("./includes/db_config.php");
     include_once("./includes/Biography.php");
     
-    //PAGE NOT DISPLAYING CORRECTLY
     if(isset($_GET['id']) && $_GET['id'] != ''){
         $biography = Biography::load_by_id($_GET['id']);
     } else {
@@ -24,14 +23,17 @@
   </head>
   <body>
     <h1>Selected Biography:</h1>
+    <p style="font-size: 1em;">         
+    <a href="list_bios_data.php"><span style="color: purple;">Return to List of All biographies</span></a></p>
 
     <?php    
       if(!$biography){
         print_r('OOPS! Something went wrong. Either you did not specify a Biography ID or the ID was not found.');
       } else {
         print_r("<p>");
+        //print_r('<a href="list_bios_data.php"><span style="color: puple;">Return to List of All biographies</span></a><br>');
         $biography->getData();
-        print_r('</p>');
+        print_r('</p>');        
       }      
     ?>
 

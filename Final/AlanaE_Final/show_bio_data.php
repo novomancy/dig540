@@ -4,12 +4,15 @@
     include_once("./includes/db_config.php");
     include_once("./includes/Biography.php");
     
-    //ALL WORKING CORRECTLY
     if(isset($_GET['artist']) && $_GET['artist'] != ''){
-        $bios = Biography::load($_GET['artist']);
+      $bios = Biography::load($_GET['artist']);    
+    } else if (isset($_GET['tags']) && $_GET['tags'] != ''){
+        $bios = Biography::load_by_tag($_GET['tags']);
+    } else if(isset($_GET['format']) && $_GET['format'] != ''){
+        $bios = Biography::load_by_format($_GET['format']);
     } else {
-        $bios = Biography::load();
-    }
+      $bios = Biography::load();
+    }  
 ?>
 
 <!doctype html>

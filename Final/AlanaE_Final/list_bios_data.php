@@ -3,11 +3,13 @@
     ini_set("display_errors", 1); 
     include_once("./includes/db_config.php");
     include_once("./includes/Biography.php");
-
-    //PAGE NOT DISPLAYING ACCURATELY; REFRESHING PAGE MOVES THINGS AROUND
-    //AND TITLE LINKS TO WRONG ID# BELOW?
+    
     if(isset($_GET['artist']) && $_GET['artist'] != ''){
-      $bios = Biography::load($_GET['artist']);
+      $bios = Biography::load($_GET['artist']);    
+    } else if (isset($_GET['tags']) && $_GET['tags'] != ''){
+        $bios = Biography::load_by_tag($_GET['tags']);
+    } else if(isset($_GET['format']) && $_GET['format'] != ''){
+        $bios = Biography::load_by_format($_GET['format']);
     } else {
       $bios = Biography::load();
     }   
@@ -25,12 +27,14 @@
   </head>
   <body>
     <h1>List of all Artist Biopics:</h1>
-
+    <p><strong>This collection began as a list of dramatized films about artists and their lives, and grew to include films that were based on historical fiction novels, as well as documentary films, autobiographies, and memoirs.</strong></p>
+    <a href="list_bios_data.php"><span style="color: purple;">Return to List of All biographies</span></a><br></p>
+    
     <?php
     //This loop iterates through the $bios array and prints out the data for public function getTitleLink()
       for($i=0; $i<count($bios); $i++){        
-          $bios[$i]->getTitleLink();
-      }
+          $bios[$i]->getTitleLink();        
+      }    
     ?>
 
     <!-- Optional JavaScript -->
