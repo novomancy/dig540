@@ -181,10 +181,8 @@
 	        
 	         $image = file_get_contents("$image_urlName");
              print_r ($image);
-
+        }
 	         
-	         
-	        }    
 	        
 	   
             
@@ -259,12 +257,12 @@
 	           $this->exhibit_id=$pdo->lastInsertId();              
 	                          
 	                          
-	          $image_insert=$pdo->prepare("INSERT INTO Image(title,subject,date,hour,pixel_x_dimension,pixel_y_dimension,horizontal_resolution,vertical_resolution,bit_depth,resolution_unit,color_representation,compression, image_item_type,image_url)
-	                          VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+	          $image_insert=$pdo->prepare("INSERT INTO Image(title,subject,date,hour,pixel_x_dimension,pixel_y_dimension,horizontal_resolution,vertical_resolution,bit_depth,resolution_unit,color_representation,compression, image_item_type,image_url,photographer_id)
+	                          VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
 	           $db_image=$image_insert->execute([$this->image_title,$this->image_subject,
 	           $this->image_date,$this->image_hour,$this->pixel_x_dimension,$this->pixel_y_dimension,$this->horizontal_resolution,
 	           $this->vertical_resolution,$this->bit_depth,$this->image_resolution_unit,$this->color_representation,
-	           $this->compression,$this->image_item_type,$this->image_url]);
+	           $this->compression,$this->image_item_type,$this->image_url,$this->photographer_id]);
 	           $this->image_id=$pdo->lastInsertId();
 	          
 	          $Image_Exhibit_insert = $pdo->prepare("INSERT INTO Image_Exhibit(image_id, exhibit_id) 
@@ -284,9 +282,66 @@
 	} 		 
 					
       }	
-			 
-	     
-    
+	
+	    static public function load_by_id($exhibit_id){
+        global $pdo;
+
+        try{
+            $find_exhibit = $pdo->prepare("SELECT * FROM Exhibit, Image, Photographer
+                                            WHERE Exhibit.id = ?");
+            $select_exhibit = $pdo->prepare("SELECT Exhibit.title AS title
+                                                FROM Exhibit, Image, Image_Exhibit, Photographer
+                                                WHERE Image_Exhibit.exhibit_id = ?
+                                                AND Image_Exhibit.image_id = image_id");
+            $find_exhibit->execute([$exhibit_id]);
+            $db_exhibit = $find_exhibit->fetch();
+            if(!$db_exhibit){
+                return false;
+            } else {
+	     //new code       
+               
+                $exhibit = new Exhibit();
+			        
+			        $exhibit-> setPhotographerFirst_Name ($db_exhibits[$i]['Photographer.first_name']); 
+			        $exhibit-> setPhotographerLast_Name ($db_exhibits[$i]['Photograher.last_name']);    
+			        $exhibit-> setCity ($db_exhibits[$i]['Photographer.city']); 
+			        $exhibit-> setState ($db_exhibits[$i]['Photographer.state']); 
+			        $exhibit-> setZipCode($db_exhibits[$i]['Photographer.zip_code']); 
+			        $exhibit-> setExhibitTitle ($db_exhibits[$i]['Exhibit.title']); 
+			        $exhibit-> setExhibitSubject ($db_exhibits[$i]['Exhibit.subject']);
+			        $exhibit-> setExhibitTheme ($db_exhibits[$i]['Exhibit.theme']); 
+			        $exhibit-> setImageTitle ($db_exhibits[$i]['Image.title']); 
+			        $exhibit-> setImageSubject($db_exhibits[$i]['Image.subject']);  
+			        $exhibit-> setImageDate   ($db_exhibits[$i]['Imgage.date']); 
+			        $exhibit-> setImageHour  ($db_exhibits[$i]['Image.hour']);  
+			        $exhibit-> setPixelXDimension($db_exhibits[$i]['pixel_x_demension']);  
+			        $exhibit-> setPixelYDimension ($db_exhibits[$i]['pixel_y_demension']); 
+			        $exhibit-> setHorizontalResolution ($db_exhibits[$i]['Image.horizontal_resolution']);
+			        $exhibit-> setVerticalResolution($db_exhibits[$i]['Image.vertical_resolution']); 
+			        $exhibit-> setBitDepth ($db_exhibits[$i]['Image.bit_depth']);  
+			        $exhibit-> setImageResolutionUnit($db_exhibits[$i]['Image.resolution_unit']);  
+			        $exhibit-> setColorRepresentation ($db_exhibits[$i]['Image.color_representation']);  
+			        $exhibit-> setCompression ($db_exhibits[$i]['Image.compression']);  
+			        $exhibit-> setImageItemType($db_exhibits[$i]['Image.image_item_type']);  
+			        $exhibit-> setImageURL ($db_exhibits[$i]['Image.url']);  
+			        $exhibit-> setPhotographerID ($db_exhibits[$i]['Photographer.id']); 
+			        $exhibit-> setExhibitID ($db_exhibits[$i]['Exhibit.id']);
+			        $exhibit-> setImageID($db_exhibits[$i]['Images.id']);  
+        
+			
+                     
+         		 
+
+                array_push($exhibits, $db_exhibits [$i]['title']);
+                }
+                return $exhibits;                
+  }      
+         catch (PDOException $e){
+            print_r("Error reading single exhibit from database: ".$e->getMessage() . "<br>\n");
+            exit;
+        }
+    }    
+ 
 	   
 	   static public function load($title=false){
 		   
@@ -299,38 +354,41 @@
 			   if($title==false){
 			   
 			   
-			   $select_exhibits = $pdo->prepare("SELECT*FROM Exhibit ORDER BY Exhibit.title ASC");
-			   $select_images = $pdo->prepare ("SELECT Image.id,Image.title,Image.subject,Image.date,Image.hour,Image.pixel_x_dimension,Image.pixel_y_dimension,Image.horizontal_resolution,Image.vertical_resolution,Image.bit_depth,Image.resolution_unit,Image.color_representation,Image.compression,Image.image_item_type,Image.image_url, Image.photographer_id 
-			                                    FROM Image_Exhibit, Image
-			                                    WHERE Image_Exhibit.Exhibit_id = ?
-			                                    AND   Image_Exhibit.Image_id = Image.id ORDER BY Image.title ASC");
+			   $select_exhibits = $pdo->prepare("SELECT Exhibit.* FROM Exhibit ORDER BY Exhibit.title ASC");
+			   $select_images = $pdo->prepare ("SELECT Image.id,Image.title,Image.subject,Image.date,Image.hour,Image.pixel_x_dimension,Image.pixel_y_dimension,Image.horizontal_resolution,Image.vertical_resolution,Image.bit_depth,Image.resolution_unit,Image.color_representation,Image.compression,Image.image_item_type,Image.image_url,Image.photographer_id 
+			                                    FROM Image_Exhibit, Image, Exhibit
+			                                    WHERE Image_Exhibit.Exhibit_id = Exhibit.id
+			                                    AND   Image_Exhibit.Image_id = Image.id  ORDER BY Image.title ASC");
 
-			   $select_photographers = $pdo->prepare("SELECT Photographer.first_name, Photographer.last_name, Photographer.city, Photographer.state,Photographer.zip_code,Photographer.id 
-			                                   FROM Photographer 
-			                                   WHERE Photographer.id = Image.photographer_id");                                               
+			   $select_photographers = $pdo->prepare("SELECT Image.photographer_id, Photographer.first_name, Photographer.last_name, Photographer.city, Photographer.state,Photographer.zip_code,Photographer.id 
+			                               FROM Image,Photographer 
+			                                WHERE Photographer.id = ?
+			                                AND Image.photographer_id = Photographer.id");                                               
 			
-			  } else { $select_exhibits = $pdo->prepare("SELECT Exhibit.*, Image.*, Photographer.first_name, Photographer.last_name FROM Exhibit, Image, Photographer, Image_Exhibit WHERE (Exhibit.title = ? OR Image.title = ?) AND Image.id = Image_Exhibit.Image_id AND Exhibit.id = Image_Exhibit.Exhibit_id AND Photographer.id = Image.photographer_id ORDER BY Exhibit.title ASC");
+			  } else { $select_exhibits = $pdo->prepare("SELECT Exhibit.*, Image.*, Photographer.id, Photographer.first_name, Photographer.last_name FROM Exhibit, Image, Photographer, Image_Exhibit 
+			                               WHERE Image_Exhibit.exhibit_id = Exhibit.id AND Image_Exhibit.image_id = Image.id AND Image.title OR Exhibit.title = ? ORDER BY Image.title ASC");
 		         }                             
 			   			   
-		       $select_exhibits->execute();
+		       $select_exhibits->execute([$exhibit_id]);
 		   
 		       $db_exhibits =$select_exhibits->fetchAll();
-		       
+		       $exhibits = array();
 		       for ($i=0; $i<count($db_exhibits); $i++){
 			       $exhibit = new Exhibit();
 			       $exhibit->setExhibitTitle($db_exhibits[$i]['Exhibit.title']);
 			       $exhibit->setExhibitSubject ($db_exhibits[$i]['Exhibit.subject']);
 			       $exhibit->setExhibitTheme ($db_exhibits[$i]['Exhibit.theme']);
-			       $exhibit->setExhibitID($db_exhibits[$i]['exhibit_id']);
-             
-			    $select_images->execute([$exhibits->exhibit_id]);   
+			       $exhibit->setExhibitID($exhibit_id);
+			   
+			        $select_images->execute([$image_id]);   
 			    $db_images =$select_images->fetchAll();   
-			    $images = array();   
+			       $images = array();
 			     for ($j=0; $j<count($db_images); $j++){
                     
-                   $exhibit->setZipCode ($db_images[$j]['Photographer.zip_code']);    
+                   $exhibit->setZipCode($db_images[$j]['Photographer.zip_code']);   
+                    
                    $exhibit->setImageTitle ($db_images[$j]['Image.title']);
-                   $exhibit->setImageSubject($db_exhibits[$j]['Image.subject']);
+                   $exhibit->setImageSubject($db_images[$j]['Image.subject']);
 			       $exhibit->setImageDate($db_images[$j]['Image.date']);
                    $exhibit->setImageHour($db_images[$j]['Image.hour']);
                    $exhibit->setPixelXDimension($db_images[$j]['Image.pixel_x_dimension']);
@@ -344,19 +402,20 @@
 				   $exhibit->setImageItemType($db_images[$j]['Image.image_item_type']); 
 				   $exhibit->setImageURL($db_images[$j]['Image.image_url']);
 		           $exhibit->setImagePhotographer_ID ($db_images[$j]['Image.photographer_id']);
-			   }
+		           $exhibit->setImageID($image_id);
+		       }
 			   
 			       
-				   $select_photographers->execute([$images->photographer_id]);   
+				   $select_photographers->execute([$photographer_id]);   
 			    $db_photographers =$select_photographers->fetchAll();   
-			    $photographers = array();   
+			    $exhibits = array();   
 			     for ($k=0; $k<count($db_photographers); $k++){
 				   
 				   $exhibit->setPhotographerFirst_Name ($db_photographers[$k]['Photographer.first_name']);
                    $exhibit->setPhotographerLast_Name ($db_photographers[$k]['Photographer.last_name']);
                    $exhibit->setCity ($db_photographers[$k]['Photographer.city']);
                    $exhibit->setState ($db_photographers[$k]['Photographer.state']); 
-                        	   
+                   $exhibit->setPhotographer_ID ($photographer_id);	   
 	    }   
 		           array_push($exhibits, $exhibit);
 		   }
@@ -372,6 +431,6 @@
 		  
 		     
        //End of Exhibit class
-} 
+}
 }
 ?>

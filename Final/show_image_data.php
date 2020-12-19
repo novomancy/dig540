@@ -6,8 +6,9 @@
     include_once('./includes/Exhibit.php');
     
     if(isset($_GET['title']) && $_GET['title']!= ' '){
-	    $exhibits = Exhibit::load($_GET['title']);
- }  else{
+	                $exhibits = Exhibit::load_by_id($_GET['id']);
+
+	     }  else{
 	    
     
     $exhibits = Exhibit::load();}

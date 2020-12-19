@@ -1,0 +1,19 @@
+M. Joseph Final Project - Discussion 
+I started this project as a development of an online photo (image) exhibit. I created a comma separated variable file containg information regarding
+photographers, photos, and groupings of photos as well as the URLs for where I stored the photos on line. I developed a data base from family member
+photos and their attributes. I created a schema which evolved into the following tables:  Image to hold the attributes of the photos as well as a URL 
+to the memory location of the photo.  Exhibit to hold the attributes of collections of photos and to allow for ultimate establishment of on exhibitions.
+Photographer was the third table hold the photogrpher's first and last name as well as address.  Finally, I created a lookup table to tie together 
+the Exhibit and Image tables.  I succeeded in creating each of the tables within PHPMyAdmin and moved on to creating a PHP parsing program to parse 
+through the comma seperated variable file that I had created to act as a repostitory for the filling of the data base. I succeeded in creating code 
+that parsed through the data and it is contained in parseexhibit.php.  I began coding my exhibit.php file as well as an .htaccess, database_config.php,
+read_image_data.php, and show_image_data.php files.  
+
+I succeeded with assistance from yourself in creating code that read the data from the CSV file into the SQL database that I had created earlier. 
+My focus then went to the development of code to extract data from the SQL database, feed it to the PHP code and then create a web view of the data.
+I have floundered again at this point and while when I test my SQL statements with the data in PHPMyAdmin, I have yet to get the coding correct to 
+perform the remainder of the tasks.
+
+During the course of this project, I had to lower the expectations for the database and I believe that at present it is more complicated than the 
+class example which I stretch to comprehend.  SQL makes sense to me and I can puzzle out issues as need be.  The syntax of PHP throws me, seems to 
+minimialistic at presentation for the powerful work it is doing. My website for viewing my programming is:  https://dig540mikejoseph.org/album_data/.
