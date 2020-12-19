@@ -14,7 +14,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Selected Biography</title>
+    <title>Selected Biopic</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -22,9 +22,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Selected Biography:</h1>
+    <h1>Selected Biopic:</h1>
     <p style="font-size: 1em;">         
-    <a href="list_bios_data.php"><span style="color: purple;">Return to List of All biographies</span></a></p>
+    <a href="list_bios_data.php"><span style="color: purple;">Return to List of All biopics</span></a></p>
 
     <?php    
       if(!$biography){

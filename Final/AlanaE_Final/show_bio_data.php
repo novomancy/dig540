@@ -27,7 +27,8 @@
   </head>
   <body>
     <h1>All Artist Biopics in Database:</h1>
-
+    <p><strong>This collection began as a list of dramatized films about artists and their lives, and grew to include films that were based on historical fiction novels, as well as documentary films, autobiographies, and memoirs.</strong></p>
+    <a href="list_bios_data.php"><span style="color: purple;">See Index of All biopics</span></a><br></p>
     <?php
     //This loop iterates through the $bios array and prints out the data for each biography(all data)
     for($i=0; $i<count($bios); $i++){

@@ -69,7 +69,7 @@ class Biography{
         $this->url = $urlLink; 
     }
     public function getUrl(){         
-        print_r('<img src='.$this->url.' width="200"<br>');
+        print_r($this->url.'<br>');
     }
     //List bios page: connected to list_bios_data.php, linked to Biography Title
     public function getTitleLink(){
@@ -283,7 +283,7 @@ class Biography{
                 $select_bios->execute();            
             } else {
                 //search by tag name: 
-                $select_bios = $pdo->prepare("SELECT artist.name AS artist, artist.*, biography.*, format.name AS format 
+                $select_bios = $pdo->prepare("SELECT artist.name AS artist, artist.life_dates, artist.id, biography.*, format.name AS format 
                                             FROM artist, biography, format, artist_tag, tag 
                                             WHERE biography.artist_id = artist.id AND biography.format_id = format.id
                                             AND artist.id = artist_tag.artist_id 

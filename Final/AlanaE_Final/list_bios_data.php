@@ -28,7 +28,7 @@
   <body>
     <h1>List of all Artist Biopics:</h1>
     <p><strong>This collection began as a list of dramatized films about artists and their lives, and grew to include films that were based on historical fiction novels, as well as documentary films, autobiographies, and memoirs.</strong></p>
-    <a href="list_bios_data.php"><span style="color: purple;">Return to List of All biographies</span></a><br></p>
+    <a href="list_bios_data.php"><span style="color: purple;">Return to List of All biopics</span></a><br></p>
     
     <?php
     //This loop iterates through the $bios array and prints out the data for public function getTitleLink()
