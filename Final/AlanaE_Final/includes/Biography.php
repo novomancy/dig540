@@ -63,7 +63,7 @@ class Biography{
         
         for($j=0; $j<count($this->tags); $j++){
             print_r('<a href="list_bios_data.php?tags='.$this->tags[$j].'">'.$this->tags[$j].'</a><br>');
-        }// } ADD SEARCH TAG LINKS?
+        }// ADDED SEARCH TAG LINKS
     }
     public function setUrl($urlLink){ 
         $this->url = $urlLink; 
@@ -74,7 +74,7 @@ class Biography{
     //List bios page: connected to list_bios_data.php, linked to Biography Title
     public function getTitleLink(){
         $anchor = '<a href="show_biography.php?id='.$this->id.'">'.$this->title.'</a>';
-        print_r($this->id . ', ' . $anchor . ' (' . $this->year .') by ' . $this->author . ' -- ' . $this->format .'<br>');
+        print_r($this->id . ' - ' . $anchor . ' (' . $this->year .') by ' . $this->author . ' -- ' . $this->format .'<br>');
     }
 
     public function setData($data_row){
@@ -138,7 +138,7 @@ class Biography{
             $this->id = $pdo->lastInsertId();
             print_r("--Saved title: ".$this->title. " to the database.--<br>\n");
                                    
-            //'Tag' Table: TAGS ARE STILL DUPLICATING  **CHECK COMPOUND INDEX**
+            //'Tag' Table: Tag still duplicated connection to same artist. Tried code to prevent that, but didn't work. Maybe needed code + compound index?
             $select_tag = $pdo->prepare("SELECT tag.id FROM tag WHERE name = ?"); 
             $tag_insert = $pdo->prepare("INSERT INTO tag (name) VALUES (?)");                        
             $tag_link = $pdo->prepare("INSERT INTO artist_tag (artist_id, tag_id) VALUES (?, ?)");
@@ -325,6 +325,7 @@ class Biography{
             exit;
         }
     }
+    
     //LOAD BY FORMAT:
     static public function load_by_format($formatSearch=false){      
         global $pdo;
