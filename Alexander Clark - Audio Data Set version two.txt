@@ -1,0 +1,15 @@
+Websites of interest: https://lionbridge.ai/datasets/12-best-audio-datasets-for-machine-learning/
+http://millionsongdataset.com/lastfm/
+
+For my audio data set, I plan on making something in a very similar way to the videos shown for this week's assignment.  Essentially, I will be using the FreeDB method.  If placed into a coding software program such as Visual Studio Code, however, I will not lump the Artist name with the Disk name, as this personally caused a bit of confusion for me in the previous week's assignment.  Instead, the artist name and the disk name will have their own "lines."
+
+How I wish to have my audio data set:
+
+-Disk Title and ID
+-Artist/Composer Name (the artist name and the composer name could be similar for most disks, but not all music is written by the artist)
+-Disk Length
+-Track Titles and IDs
+-Track Lengths
+-Genre
+
+The artist and the composer will both have their primary, secondary, and tertiary genres that people typically think of when they hear the artist and composer.  On the other hand, the tracks will not contain primary, secondary, and tertiary genres.  Only the disc information will show the genre of the music.

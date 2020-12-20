@@ -1,0 +1,334 @@
+SELECT Artist.* FROM Artist WHERE name = "Tool"
+
+
+Full texts
+Artist_ID
+Name
+Origin
+Active_Years
+
+Edit Edit
+Copy Copy
+Delete Delete
+1
+Tool
+Los Angeles, California, USA
+1990-today
+
+SELECT Artist.* FROM Artist WHERE Name LIKE "%ool%"
+
+
+Full texts
+Artist_ID
+Name
+Origin
+Active_Years
+
+Edit Edit
+Copy Copy
+Delete Delete
+1
+Tool
+Los Angeles, California, USA
+1990-today
+
+SELECT Artist.* FROM Artist WHERE Name LIKE "%a%"
+
+
+Full texts
+Artist_ID
+Name
+Origin
+Active_Years
+
+Edit Edit
+Copy Copy
+Delete Delete
+2
+Rammstein
+Berlin, Germany
+1994-today
+
+Edit Edit
+Copy Copy
+Delete Delete
+4
+Deadmau5
+Niagara Falls, Ontario, Canada
+1998-today
+
+Edit Edit
+Copy Copy
+Delete Delete
+5
+Anberlin
+Winter Haven, Florida, USA
+2002-2014
+
+SELECT Artist.Name, Disc.Disc_Title FROM Artist, Disc WHERE Artist.Artist_ID = Disc.Artist_ID
+
+
+Name
+Disc_Title
+Anberlin
+New Surrender
+Deadmau5
+Random Album Title
+Muse
+Black Holes and Revelations
+Muse
+Drones
+Rammstein
+Reise, Reise
+Tool
+Fear Inoculum
+
+SELECT Disc.Disc_Title AS `Album`, Track.Title AS `Song`, Disc_Track.Playorder AS `Position` FROM Disc, Track, Disc_Track WHERE Track.ID = Disc_Track.Track_ID AND Disc.DiscID = Disc_Track.Disc_ID
+
+
+Album
+Song
+Position
+Black Holes and Revelations
+Assassin
+7
+Drones
+Dead Inside
+1
+Fear Inoculum
+Pneuma
+2
+New Surrender
+Disappear
+6
+Random Album Title
+Arguru
+11
+Reise, Reise
+Los
+5
+
+Question One: How do you find the band with an artist ID of 3?
+
+SELECT Artist.* FROM Artist WHERE Artist_ID = "3"
+
+
+Full texts
+Artist_ID
+Name
+Origin
+Active_Years
+
+Edit Edit
+Copy Copy
+Delete Delete
+3
+Muse
+Teignmouth, Devon, England
+1994-today
+
+
+Question Two: How do you find bands that were active from 1994 in the database?
+
+SELECT Artist.* FROM `Artist` WHERE `Active_Years` = 1994
+
+
+Full texts
+Artist_ID
+Name
+Origin
+Active_Years
+
+Edit Edit
+Copy Copy
+Delete Delete
+2
+Rammstein
+Berlin, Germany
+1994-today
+
+Edit Edit
+Copy Copy
+Delete Delete
+3
+Muse
+Teignmouth, Devon, England
+1994-today
+
+
+
+Question Three: How do you find bands from Berlin, Germany?
+
+SELECT Artist.* FROM Artist WHERE Origin = "Berlin, Germany"
+
+
+Full texts
+Artist_ID
+Name
+Origin
+Active_Years
+
+Edit Edit
+Copy Copy
+Delete Delete
+2
+Rammstein
+Berlin, Germany
+1994-today
+
+
+
+Quesiton Four: How do you find all the bands with the letter "m" in their name?
+
+SELECT Artist.* FROM Artist WHERE Name LIKE "%m%"
+
+
+Full texts
+Artist_ID
+Name
+Origin
+Active_Years
+
+Edit Edit
+Copy Copy
+Delete Delete
+2
+Rammstein
+Berlin, Germany
+1994-today
+
+Edit Edit
+Copy Copy
+Delete Delete
+3
+Muse
+Teignmouth, Devon, England
+1994-today
+
+Edit Edit
+Copy Copy
+Delete Delete
+4
+Deadmau5
+Niagara Falls, Ontario, Canada
+1998-today
+
+
+Question Five: How do you find the composer of the songs by Muse in the database?
+
+SELECT * FROM `Disc_Track` WHERE Composer = "Matthew James Bellamy"
+
+Full texts
+Disc_ID
+Title
+Composer
+Artist_ID
+Playorder
+Track_Length
+Track_ID
+
+Edit Edit
+Copy Copy
+Delete Delete
+4
+Assassin
+Matthew James Bellamy
+3
+7
+3
+3
+
+Edit Edit
+Copy Copy
+Delete Delete
+7
+Dead Inside
+Matthew James Bellamy
+3
+1
+4
+6
+
+
+BONUS QUESTION: How do you accidentally make Deadmau5 have his song "Arguru" become a song title for every other band in the database?
+
+SELECT Disc.Disc_Title AS `Album`, Track.Title AS `Song`, Artist.Name AS `Band` FROM Disc, Track, Artist
+
+Album
+Song
+Band
+Black Holes and Revelations
+Arguru
+Anberlin
+Drones
+Arguru
+Anberlin
+Fear Inoculum
+Arguru
+Anberlin
+New Surrender
+Arguru
+Anberlin
+Random Album Title
+Arguru
+Anberlin
+Reise, Reise
+Arguru
+Anberlin
+Black Holes and Revelations
+Arguru
+Deadmau5
+Drones
+Arguru
+Deadmau5
+Fear Inoculum
+Arguru
+Deadmau5
+New Surrender
+Arguru
+Deadmau5
+Random Album Title
+Arguru
+Deadmau5
+Reise, Reise
+Arguru
+Deadmau5
+Black Holes and Revelations
+Arguru
+Muse
+Drones
+Arguru
+Muse
+Fear Inoculum
+Arguru
+Muse
+New Surrender
+Arguru
+Muse
+Random Album Title
+Arguru
+Muse
+Reise, Reise
+Arguru
+Muse
+Black Holes and Revelations
+Arguru
+Rammstein
+Drones
+Arguru
+Rammstein
+Fear Inoculum
+Arguru
+Rammstein
+New Surrender
+Arguru
+Rammstein
+Random Album Title
+Arguru
+Rammstein
+Reise, Reise
+Arguru
+Rammstein
+Black Holes and Revelations
+Arguru
+Tool

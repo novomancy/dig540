@@ -1,0 +1,12 @@
+All vocabulary terms are taken from here: https://docs.github.com/en/github/getting-started-with-github/github-glossary
+
+These vocabulary terms are terms that interest me personally about GitHub
+
+
+-CA Certificate: The Certificate Authority provides a certificate that is digital and makes sure that legitimate conversations among two computers and servers occur as well as looking at the legitimacy of a website's possession.
+-Clone: A reproduction of GitHub's repository that is placed onto one's computer.
+-Commit: A single evolution of a file or group of files.
+-Dirty: "A working tree is considered 'dirty' if it contains modifications that have not been committed to the current branch."
+-Pull: "Pull refers to when you are fetching in changes and merging them. For instance, if someone has edited the remote file you're both working on, you'll want to pull in those changes to your local copy so that it's up to date. See also fetch."
+-Pull Request: "Pull requests are proposed changes to a repository submitted by a user and accepted or rejected by a repository's collaborators. Like issues, pull requests each have their own discussion forum."
+
