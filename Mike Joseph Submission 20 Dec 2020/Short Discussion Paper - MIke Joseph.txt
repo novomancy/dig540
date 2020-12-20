@@ -27,3 +27,7 @@ Will submit tomorrow my efforts in that regard, but gave some more effort to thi
 Ideally, I would have had code that would have read an CSV files data into a prepared SQL database tables, extracted the data from the database view queries 
 and displayed the results on a webpage with the ability to search for specific photo (or image) informaion as well as the actual photo (or image) and display
 both on the same page.     
+
+Added: 20 December 2020:  I ended up trying to update what I had already worked on and submitted.  Two files updated show_image_data.php and 
+Exhibits.php trying to get my images printed out.  I get to the error message, but no further.  I suspect that I have too many like named variables 
+and they are causing confusion with the writing of and comprehension of the code.  

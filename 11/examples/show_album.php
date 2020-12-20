@@ -5,8 +5,8 @@
         include_once("./includes/Album.php");
 
         //Create an empty array that will be filled with albums
-        if(isset($_GET['id']) && $_GET['id'] != ''){
-            $album = Album::load_by_id($_GET['id']);
+        if(isset($_GET['dbID']) && $_GET['dbID'] != ''){
+            $album = Album::load_by_id($_GET['dbID']);
         } else {
             $album = false;
         }
@@ -24,7 +24,7 @@
   <body>
     <h1>Here are all the albums in the database</h1>
     <?php
-        if(!$album){
+        if(!$dbID){
             print_r('Something went wrong. Either you did not specify an album ID or the ID was not found.');
         } else {
             print_r("<p>");

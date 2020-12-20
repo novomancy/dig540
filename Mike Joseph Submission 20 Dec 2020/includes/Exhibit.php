@@ -27,7 +27,11 @@
         private $exhibit_id;
         private $image_id;
         
-        public function setID($dbID){$this->image_id = $dbID;}   
+        public function setID($dbID){$this->image_id = $dbID;} 
+        
+        public function getID(){
+		    print_r( 'ID: '.$this->image_id . '<br>'); 
+	        }  
        
         public function setphotographerFirst_Name($photographerfirst_Name)
         { 
