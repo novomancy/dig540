@@ -1,7 +1,0 @@
-Here are the primary issues I ran into while fine-tuning my schema and entering it into myPHPadmin:
-
-I’m unsure of the best solution for a field like death_date or relationship_end when the person is still alive or the relationship still current. If I use the Year format, leaving it blank puts four zeroes in, which isn’t ideal. So I’ve turned that into a varchar field so I can enter “present” like in the active_years field. I’d love to know if there’s a more systematic approach for this. I worry about taking away the data cleanliness of the zeroes but I don’t like the way it will display.
-
-In inputting data, I realized my original schema had only a single person_id associated with any given couple, and I also learned that you can’t have duplicate fields in a table. So I backtracked and created a linking table between person and couple, and added couple_name as a field in the couple table. Now I can associate two people with a couple. 
-
-I’m dissatisfied with the relationship_begin field. I need to clarify this, though I haven’t yet decided what I’ll do. I originally conceived of relationship_begin as being a marriage date, but that’s not helpful in the case of unmarried couples, and in the case of my test data, where the marriage date of the couple is after the date of their collaboration on a track. So I changed my criteria to be the beginning of the relationship as generally acknowledged. I’d love to be able to clarify this in my exhibit though! 

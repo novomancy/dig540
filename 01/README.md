@@ -16,7 +16,7 @@ NOTE: There are a couple of minor graphical differences between the sites shown 
 
 Before going to the first link, make sure you have your GitHub account set up.
 
-Installing Git: <https://www.visualstudio.com/learn/install-and-set-up-git/>
+Installing Git: <https://docs.microsoft.com/en-us/azure/devops/learn/git/install-and-set-up-git>
 
 You'll want to install Git before installing Visual Studio Code. This link provides instructions for setting up Git on Windows, MacOS, and Linux.
 
@@ -36,6 +36,6 @@ Most of our interaction with Git will be handled by Visual Studio Code so you sh
 
 Install the software in the videos and create your GitHub account. Then, fork the <http://github.com/novomancy/dig540> repository. Once the fork is created, send me the link to your fork as a direct message in Slack. Clone your fork onto your local computer and edit the vocabulary.txt file like I did in the video, then sync it back to GitHub. (It may ask for an account and password when you try to sync; just use the GitHub account you created.) The end result should be that your fork will have one more file than the master. Finally, create a pull request so I can see your new vocabulary term.
 
-Also, set up your Reclaim account or let me know if you have another hosted environment already. Since the video linked above is a couple years old the signup page looks a little different and the price is slightly higher than I say in the video but it's still ridiculously cheap and convenient!
+Also, set up your Reclaim account or let me know if you have another hosted environment already. I'm happy to answer any questions about this.
 
-**The assignment should be done by Wednesday Sept. 11th.**
+**The assignment should be done by Wednesday Sept. 9th.**

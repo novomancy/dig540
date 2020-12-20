@@ -37,4 +37,4 @@ Once that is done (tip: test it first before moving on to this part) I want you 
 
 Once you've got that working on Reclaim, submit your complete index.php file to me on github. Also, please send me the URL where I can view it in Slack.
 
-This assignment is due on Wednesday Nov 6 at 11:59PM.
+This assignment is due on Wednesday Nov 4 at 11:59PM.

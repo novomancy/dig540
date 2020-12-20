@@ -17,4 +17,4 @@ Worth noting: there are two versions of PHP currently in wide use, PHP7 and PHP5
 
 I want you to recreate the PHP file I walk through in the video in VSC. Then, save and upload it to Reclaim as I do in the video. Synchronize your github so that your 07 directory contains your version of the parsealbum.php file (change the name appropriately) and send me a link so I can see it on the web.
 
-This assignment is due on Wednesday Oct 30 at 11:59PM.
+This assignment is due on Friday Oct 30 at 11:59PM.

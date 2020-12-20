@@ -14,9 +14,9 @@ MySQL is not trivial to learn - like the other language we'll use in the class, 
 - Inserting Data: <https://vimeo.com/141132711>
 - Assignment: <https://vimeo.com/141132710>
 
-***Note: cPanel now looks a little bit different than it does in the Creating Databases video above, but it's still pretty close and is functionally the same as in the video.***
+***Note: cPanel now looks a little bit different than it does in the Creating Databases video above, but it's still pretty close and is functionally the same as in the video, they just moved some icons around.***
 
-***Note 2: The "previous class" reaction videos are good to look at because they help explain a few specific examples of normalization methodology. Please take a look.***
+***Note 2: The "previous class" reaction videos are good to look at because they help explain a few specific examples of normalization methodology. Please take a look. If anyone wants me to go in-depth on their schemas in this way I'm happy to do so - just ask! - but I'm giving reaction videos from previous iterations of the class as a way to keep you from waiting on me to get to your next assignment.***
 
 **Assignment**
 
@@ -26,4 +26,4 @@ Then, follow the directions in the videos to turn your schema into an actual dat
 
 Also, please ask questions and give others feedback on their databases in Slack!
 
-Please submit your assignment to GitHub by 11:59PM on Wednesday, October 9.
+Please submit your assignment to GitHub by 11:59PM on Wednesday, October 7.

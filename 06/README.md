@@ -7,7 +7,11 @@ These videos will introduce the keywords and syntax for writing SQL queries. Bui
 - Compound Indices: <https://vimeo.com/142030577>
 - Select Statements: <https://vimeo.com/142030906>
 - Other SQL Queries: <https://vimeo.com/142031184>
-- Assignment: <https://vimeo.com/142030578> (Note: this video refers to 05, but use 06 for this year)
+- Assignment: <https://vimeo.com/142030578> 
+
+Two Notes: first, as with the last couple of weeks, there are some minor visual changes made to phpMyAdmin between when I recorded this video and now. I looked through the videos and do not see any functional changes, but if you run into something, just ask. It looks like I will need to re-record some of these videos after this semester; apologies for getting caught in an upgrade cycle.
+
+Second, the assignment video refers to 05, but use 06 for this year.
 
 **Readings**
 - SQL Naming Conventions: <https://launchbylunch.com/posts/2014/Feb/16/sql-naming-conventions/>
@@ -24,4 +28,4 @@ Once your database is ready to go, I want you to start a new text file in your 0
 
 Run those queries, and paste the results of the queries into the text file as demonstrated in the assignment video (export as CSV is your friend!). Include that file and a new .sql export of your database in the 06 folder and sync it to your Github fork.
 
-This assignment is due on Wednesday Oct 23 at 11:59 PM.
+This assignment is due on Wednesday Oct 21 at 11:59 PM.
