@@ -1,0 +1,42 @@
+﻿Alana Embry
+DIG 540 FINAL
+Final Project: Artist Biopics
+This collection began as a list of dramatized films about artists and their lives, and grew to include films that were based on historical fiction novels, as well as documentary films, autobiographies, and memoirs.
+
+
+My schema is comprised of the primary Biography table that contains the main content such as titles, release dates, author/director, image urls, categories, and is connected to two additional tables through foreign keys, and one-to-many relationships (one artist may be affiliated with many biographies, and one format may apply to many biographies). Categories such as “Historical Fiction” or “Memoir” were deemed as less important data, since all of the selected content was pretty similar, so this field stayed under the Biography table.
+* Format - names the format of the biopic as book or film. 
+* Artist - which names the artist that is the primary subject of the Biopic and their life dates. The Artist table is connected to a lookup table for Tags that relate to the Artists.
+* Tags - are connected to artists by the Artist_Tag lookup table, creating a many-to-many relationship.
+
+
+Pages & Navigation
+* Index or List of Titles: http://alanadig540.com/bios_data/list_bios_data.php 
+This page is the Index or list of all titles in the Database. The titles are linked to go to an individually selected Biography.
+* Selected Biography: http://alanadig540.com/bios_data/show_biography.php?id=2 
+A selected Biography shows all of the data for an individual biography.
+* Search Functions & Links: There are three search functions enabled between Artist names, tag names, and format names. This enables a viewer to see a list of all related biographies about a selected artist, a selected tag name (such as ‘American’), or a selected format (such as ‘Film’). I added a “Return to Full List” link at the top of the pages, so it’s easy to return to the full list page.
+
+
+Embedded Content
+If I could redesign this mini-exhibition, I would do it very differently. Initially I was indecisive about the subject and content and finally decided to choose a topic that would be fun, and focus mostly on the functionality, which would be my biggest hurdle.
+
+Issues: I still had some issues with Tags duplicating, and I’m sure it’s a simple fix, but I did not solve it. Honestly I’m surprised that I managed to get multiple search functionalities to work. I have a feeling there’s a simpler way to write the SQL searches for those Load functions, but it’s functional as-is. The page that “shows all DB content” is off, and I’m not sure why. It appears to be repeating an earlier problem I had where the tags are displaying incorrectly (but only on that page). I don’t remember how I solved it earlier. I need to keep better “working” notes.
+
+
+
+
+
+
+File List:
+* Artist Biopics_schema.jpeg
+* artist_biopics.csv - data & fields
+* alanadig_artistbios_database.sql (Database Export)
+* list_bios_data.php - Full list of biopics
+* read_bio_data.php - read into DB file
+* show_bio_data.php - show all DB content
+* show_biography.php - show individual biopic
+* Includes Folder: 
+   * .htaccess
+   * db_config.php
+   * Biography.php

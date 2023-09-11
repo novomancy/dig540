@@ -1,0 +1,14 @@
+CMS - Content Management System
+Fork - In GitHub, this duplicates a series of folders and files into your own account
+Primary Key - ensures data in a specific column is unique; only one primary key is allowed in a table.
+Foreign Key - a column or group of columns that links data between two tables in a relational database. Visual explanation: https://www.essentialsql.com/what-is-the-difference-between-a-primary-key-and-a-foreign-key/
+Foreign Key Constraint - help keep the related data consistent; a foreign key constraint is defined on the child table https://dev.mysql.com/doc/refman/5.7/en/create-table-foreign-keys.html
+Alias - SQL aliases are used to give a table or column a temporary name and is often used when creating search queries
+HTML - "HyperText Markup Language"; the fundamental way of marking up text on the web; a web browser understands HTML
+PHP - PHP Hypertext Processor; takes plain text + logic to it; PHP was originally designed to modify HTML files and work with them on a server and integrate them with other files.
+Variables - PHP uses variables; concept is that I can reference text that I don't know yet, or that might change in the future, within a kind of 'formula'
+Arrays - an array stores multiple values in one single variable, and you can access the values by referring to an index number
+Count - the count function understands what an array is, and will tell you how many items are in the array
+For loop - loops through a block of code a specified number of times
+While loop - loops through a block of code as long as the specified condition is true
+Code blocks - inside of the curly braces {}, lines of code execute one after another; you can nest code blocks together

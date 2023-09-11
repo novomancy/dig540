@@ -1,8 +1,8 @@
 <?php
     error_reporting(E_ALL); 
     ini_set("display_errors", 1); 
-    include_once("./includes/db_config.php");
-    include_once("./includes/Album.php");
+    include('./alana_includes/db_config.php');
+    include('./alana_includes/Album.php');
 
     //Open the file
     $file_handle = fopen('./albumlist.csv', 'r');

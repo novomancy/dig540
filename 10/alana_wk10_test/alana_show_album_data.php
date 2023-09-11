@@ -1,8 +1,8 @@
 <?php
     error_reporting(E_ALL); 
     ini_set("display_errors", 1); 
-    include_once("./includes/db_config.php");
-    include_once("./includes/Album.php");
+    include('./alana_includes/db_config.php');
+    include('./alana_includes/Album.php');
 
     //Create an empty array that will be filled with albums. Get variables...if (is set) checks to see if the variable exists; 
     //double && means that BOTH halves of the variable must be TRUE; and cannot equal an empty string; 

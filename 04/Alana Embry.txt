@@ -1,0 +1,37 @@
+UbuWeb: Sound is a collection of historical and contemporary Sound Poetry, from the early 20th century to present day (https://www.ubu.com/sound/index.html). In its current presentation, links to audio files appear as a lengthy list one one page, and are listed by artist name(s), series or compilations, and sometimes by category (such as Dada, Russian Futurism, etc). The UbuWeb: Sound index page explains that “as the practices of sound art continue to evolve, categories become increasingly irrelevant...Hence, our artists are listed alphabetically instead of categorically.”  However, in its present form, it’s an overwhelmingly lengthy list for someone who wants to explore art historical categories or time periods. 
+Some categories and series titles already appear in the current list anyway, so it’s not purely an artist-based list. Categories are a worthwhile piece of associated data that aid in identifying and searching for examples, so I think it would be beneficial to have the option to toggle between different views -- categories; an alphabetical list of artist names (preferably visibly separated into sections by letters); and even date ranges.
+
+There are some complex challenges -- some of these audio files are individual audio files, while others are part of a compilation or album. Some recordings are later renditions rather than original recordings, and could therefore have multiple associated dates, and some also have named readers of the poems and additional performers in addition to the primary artist(s). There are also lengthier blocks of text on some pages, describing the compilation, historical context, artist biography, or details about the audio tracks. 
+
+The primary entities that I started with were: 1. Compilation / 2. Audio / 3. Artist.
+
+Compilation refers to a collection of audio recordings like an album, but also leaves room for other types of collections. The fields assigned are currently: Comp_ID; Title; Year; and Description.
+
+Initially, the Audio entity consisted of the Audio_ID; Title; Artist_ID; Year; URL (that links to the media file); and Comp_ID; but it was later expanded to include Language; Playorder; and Extd fields due to variances noted in the below sample material.
+
+For the Compilation Entity, I’m connecting it to the Audio Entity with a “zero or one” endpoint on the Compilation, since audio files may be part of a compilation or may be a standalone audio file, and the “one or many” endpoint on the Audio file so that an album/compilation may have one or many associated audio files. It is also for this reason, that the Audio Entity is the more robust one - some of the data in the Audio Entity could easily apply to the whole Compilation (Language or Year fields could apply to a whole compilation or vary by track), but a Compilation will not always exist, while an Audio track will definitely always exist.
+
+Each Audio track may have one or many Artists, and artists may have one or many different Roles. The Category entity is treated much like a Genre, where many may apply to both Artists and/or the Audio tracks. Again, I’m choosing to link this to the Audio instead of the Compilation, which may or many not exist for each audio file.
+
+I’ve selected a sampling of data from UbuWeb: Sound to start examining the needed data fields and relationships:
+
+1. Guillaume Apollinaire (1880 - 1918), Recordings by Apollinaire, Recorded in 1913. https://www.ubu.com/sound/app.html 
+This sample illustrates a compilation of three poems by a single artist. The poems are in French, so I’m adding a field for “Language” into the Audio entity. I could add this into the Compilation entity, but some audio files will not have an associated Compilation. The other four audio recordings on the Guillaume page are from a second compilation/album and combine multiple poems into one audio track. I’m not sure how to deal with that issue - so I’ll omit for now.
+
+2. Russian Futurists from the GLM Collection (1920-1959) https://www.ubu.com/sound/russian_futurists.html 
+This sample has 22 audio files, each with one artist (though sometimes another named “reader”), and 5 different artists across the collection. The latest date actually goes beyond 1959 to 1983. Since the dates vary for each audio file, a “Year” field is needed in the Audio entity.
+
+3. Popular Image Exhibition (1963) https://www.ubu.com/sound/pop.html 
+This sample is a compilation of ten interviews, each with a different artist, and in one case multiple artists. I need to document the “interviewer” as well as the “artists” that are being interviewed. I could create a “role” field in the Artist entity, to distinguish the role associated individuals play (i.e. artist; reader; interviewer). Since there already may be multiple Artists associated with an Audio file, this makes sense to do, even if most of the time “Role” will say “Artist,” it gives the option to expand. However --- an Artist may have multiple roles; perhaps they are the creating artist for one example and a performer on a different compilation or track.
+However --- an Artist may have multiple roles; perhaps they are the creating artist for one example and a performer on a different compilation or track.
+
+4. Lauren Lesko - Thirst - 1995 https://www.ubu.com/sound/lesko.html 
+This example is of a single audio file without an associated “album” and limited information is available on the artist.
+
+5. Henri Chopin: Espaces et gestes https://www.ubu.com/sound/question.html 
+This is a single track that does not appear to be part of an album or compilation. It’s labeled as “Concrete Poetry,” and as (Stedelijk Museum, Amsterdam, 1970), which may be where and when this sample was recorded. Though additional research shows that the original date of creation is 1959, so we have two potential associated dates for the one audio track. One solution is to use the original date (1959) for the “Year” field, and to place the (Stedelijk Museum, Amsterdam, 1970) data in the “Extd” field, even though this places two different types of data in the Extd field, which is not ideal.
+
+6. Nam June Paik (1932-2006) - https://www.ubu.com/sound/paik.html 
+This is a complex sample page. Some of these appear to be single tracks, and others are albums broken into two tracks; there are additional performers listed along with some instruments (which can be documented under the new Roles entity), but there is also a location noted on one track. Perhaps an “Extended” data field is necessary for the Audio entity after all.
+Creating a Roles entity rather than a field under Artists will allow artists to have multiple roles, as these may vary depending on the associated audio track. I’ve also added a “Notes” field into the Roles entity to note instrumentation when applicable.
+There are occasionally links to related resources at the bottom of the page, usually affiliated with the artist, so I’ll add a “Resources URL” field to the Artist entity.  

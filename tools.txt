@@ -1,1 +1,6 @@
- 
+ Gliffy.com - diagramming software
+ LucidChart - diagramming and data visualization; helpful in designing relational database
+ SQL Tutorial reference - https://www.w3schools.com/sql/sql_and_or.asp 
+ HTML Tutorials - https://www.w3schools.com/html/default.asp
+ PHP Tutorials - https://www.w3schools.com/php/default.asp
+ Coding Playground - test coding and programming at https://code.sololearn.com/#php
